@@ -68,7 +68,7 @@ namespace DragonAidWindowsClient.Data
                     "Assets/DarkGray.png",
                     "Here you can view the characteristics and skills of all the player characters.");
 
-            var muscles = new Character("PC-Muscles", "Muscles Bufflyton", "Dan Bjorge", "Assets/LightGray.png", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
+            var muscles = new Character("PC-Muscles", "Muscles Bufflyton", "Dan Bjorge", "Assets/muscles-bufflyton.jpg", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
                               {
                                   Agility = 16,
                                   Endurance = 20,
@@ -83,7 +83,7 @@ namespace DragonAidWindowsClient.Data
 
             group1.Items.Add(muscles);
 
-            var caldus = new Character("PC-Caldus", "Caldus Stormcinder", "Matt Meehan", "Assets/DarkGray.png","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
+            var caldus = new Character("PC-Caldus", "Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
                              {
                                  Agility = 12,
                                  Endurance = 17,

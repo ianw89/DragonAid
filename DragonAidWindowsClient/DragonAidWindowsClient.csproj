@@ -136,7 +136,9 @@
     <None Include="DragonAidWindowsClient_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\eagleback.jpg" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\muscles-bufflyton.jpg" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
