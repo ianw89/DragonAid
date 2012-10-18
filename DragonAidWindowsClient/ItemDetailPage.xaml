@@ -9,7 +9,7 @@
     xmlns:common="using:DragonAidWindowsClient.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:Generic="using:System.Collections.Generic" xmlns:System="using:System" mc:Ignorable="d">
 
     <Page.Resources>
 
@@ -34,7 +34,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        
         <!--
             The remainder of the page is one large FlipView that displays details for
             one item at a time, allowing the user to flip through all items in the chosen
@@ -62,13 +62,16 @@
                         Loaded/unloaded events explicitly subscribe to view state updates from the page
                     -->
                     <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates">
+
+
+
                         <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
 
                             <!-- Content is allowed to flow across as many columns as needed -->
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                                     <Paragraph>
-                                        <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
+                                        <Run FontSize="36" FontWeight="Light" Text="{Binding Title}"/>
                                         <LineBreak/>
                                         <LineBreak/>
                                         <Run FontWeight="Normal" Text="{Binding Subtitle}"/>
@@ -78,11 +81,34 @@
                                             <Image x:Name="image" MaxHeight="480" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
                                         </InlineUIContainer>
                                     </Paragraph>
-                                    
-                                    <Paragraph>
-                                        <Run FontWeight="SemiLight" Text="{Binding Content}"/>
+                                    <Paragraph FontSize="36" FontWeight="Light" LineHeight="50">
+                                        <LineBreak/>
+                                        <LineBreak/>
+                                        PS: 
+                                        <Run Text="{Binding PhysicalStrength}"/>
+                                        MD: 
+                                        <Run Text="{Binding ManualDexterity}"/>
+                                        AG: 
+                                        <Run Text="{Binding Agility}"/>
+                                        MA: 
+                                        <Run Text="{Binding MagicalAptitude}"/>
+                                        WP: 
+                                        <Run Text="{Binding Willpower}"/>
+                                        EN:
+                                        <Run Text="{Binding Endurance}"/>
+                                        FT:
+                                        <Run Text="{Binding Fatigue}"/>
+                                        PC: 
+                                        <Run Text="{Binding Perception}"/>
+                                        PB: 
+                                        <Run Text="{Binding PhysicalBeauty}"/>
+                                        TMR:
+                                        <Run Text="{Binding TacticalMovementRate}"/>
+                                        <LineBreak/>
+                                        <LineBreak/>
                                     </Paragraph>
                                 </RichTextBlock>
+
 
                                 <!-- Additional columns are created from this template -->
                                 <common:RichTextColumns.ColumnTemplate>
@@ -139,7 +165,7 @@
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
-
+         
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>

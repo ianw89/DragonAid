@@ -67,20 +67,36 @@ namespace DragonAidWindowsClient.Data
                     "View Characteristics and Information",
                     "Assets/DarkGray.png",
                     "Here you can view the characteristics and skills of all the player characters.");
-            group1.Items.Add(new Character("PC-Muscles",
-                    "Muscles Bufflyton",
-                    "Dan Bjorge",
-                    "Assets/LightGray.png",
-                    "Shadow Weaver and Nazi Hunter from Celbina.",
-                    ITEM_CONTENT,
-                    group1));
-            group1.Items.Add(new Character("PC-Caldus",
-                    "Caldus Stormcinder",
-                    "Matt Meehan",
-                    "Assets/DarkGray.png",
-                    "Namer and Magekiller from Celbina.",
-                    ITEM_CONTENT,
-                    group1));
+
+            var muscles = new Character("PC-Muscles", "Muscles Bufflyton", "Dan Bjorge", "Assets/LightGray.png", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
+                              {
+                                  Agility = 16,
+                                  Endurance = 20,
+                                  Fatigue = 22,
+                                  MagicalAptitude = 20,
+                                  ManualDexterity = 12,
+                                  Perception = 9,
+                                  PhysicalBeauty = 15,
+                                  PhysicalStrength = 9,
+                                  Willpower = 15
+                              };
+
+            group1.Items.Add(muscles);
+
+            var caldus = new Character("PC-Caldus", "Caldus Stormcinder", "Matt Meehan", "Assets/DarkGray.png","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
+                             {
+                                 Agility = 12,
+                                 Endurance = 17,
+                                 Fatigue = 23,
+                                 MagicalAptitude = 10,
+                                 ManualDexterity = 15,
+                                 Perception = 9,
+                                 PhysicalBeauty = 14,
+                                 PhysicalStrength = 17,
+                                 Willpower = 18
+                             };
+
+            group1.Items.Add(caldus);
             this.AllGroups.Add(group1);
 
             var group2 = new SampleDataGroup("Non-Player-Character-Group",

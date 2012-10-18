@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace DragonAidWindowsClient.Data
 {
@@ -21,11 +22,54 @@ namespace DragonAidWindowsClient.Data
             set { this.SetProperty(ref this._content, value); }
         }
 
+        private int _physicalStrength;
+        public int PhysicalStrength
+        {
+            get { return this._physicalStrength; }
+            set { this.SetProperty(ref this._physicalStrength, value); }
+        }
+
+        private int _manualDexterity;
+        public int ManualDexterity
+        {
+            get { return this._manualDexterity; }
+            set { this.SetProperty(ref this._manualDexterity, value); }
+        }
+
+        public int Agility { get; set; }
+        public int Endurance { get; set; }
+        public int MagicalAptitude { get; set; }
+        public int Willpower { get; set; }
+        public int Perception { get; set; }
+        public int PhysicalBeauty { get; set; }
+        public int Fatigue { get; set; }
+        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(this.Agility); } }
+
         private SampleDataGroup _group;
         public SampleDataGroup Group
         {
             get { return this._group; }
             set { this.SetProperty(ref this._group, value); }
+        }
+    }
+
+    public class CharacterEquations
+    {
+        public static int ComputeBasicTacticalMovementRate(int agility)
+        {
+            if (agility > 25)
+                return 8;
+            if (agility > 21)
+                return 7;
+            if (agility > 17)
+                return 6;
+            if (agility > 12)
+                return 5;
+            if (agility > 8)
+                return 4;
+            if (agility > 4)
+                return 3;
+            return 2;
         }
     }
 }
