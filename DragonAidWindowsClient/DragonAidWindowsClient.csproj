@@ -106,8 +106,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\ExceptionUtils.cs" />
     <Compile Include="DataModel\Character.cs" />
     <Compile Include="DataModel\CharacterEquations.cs" />
+    <Compile Include="DataModel\Race.cs" />
     <Compile Include="DataModel\SampleDataCommon.cs" />
     <Compile Include="DataModel\SampleDataGroup.cs" />
     <Compile Include="GroupedItemsPage.xaml.cs">

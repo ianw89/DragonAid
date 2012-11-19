@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DragonAidWindowsClient.DataModel;
 
 namespace DragonAidWindowsClient.Data
 {
@@ -8,11 +9,12 @@ namespace DragonAidWindowsClient.Data
     /// </summary>
     public class Character : SampleDataCommon
     {
-        public Character(String uniqueId, String title, String subtitle, String imagePath, String description, String content, SampleDataGroup group)
-            : base(uniqueId, title, subtitle, imagePath, description)
+        public Character(String title, String subtitle, String imagePath, String description, String content, SampleDataGroup group)
+            : base(Guid.NewGuid().ToString(), title, subtitle, imagePath, description)
         {
             this._content = content;
             this._group = group;
+            this.Race = Race.Human;
         }
 
         private string _content = string.Empty;
@@ -43,7 +45,8 @@ namespace DragonAidWindowsClient.Data
         public int Perception { get; set; }
         public int PhysicalBeauty { get; set; }
         public int Fatigue { get; set; }
-        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(this.Agility); } }
+        public Race Race { get; set; }
+        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(this.Agility, this.Race); } }
 
         private SampleDataGroup _group;
         public SampleDataGroup Group
@@ -51,5 +54,6 @@ namespace DragonAidWindowsClient.Data
             get { return this._group; }
             set { this.SetProperty(ref this._group, value); }
         }
+
     }
 }

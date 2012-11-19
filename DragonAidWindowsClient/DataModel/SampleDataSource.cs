@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml.Data;
+using DragonAidWindowsClient.DataModel;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -68,7 +69,7 @@ namespace DragonAidWindowsClient.Data
                     "Assets/DarkGray.png",
                     "Here you can view the characteristics and skills of all the player characters.");
 
-            var muscles = new Character("PC-Muscles", "Muscles Bufflyton", "Dan Bjorge", "Assets/muscles-bufflyton.jpg", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
+            var muscles = new Character("Muscles Bufflyton", "Dan Bjorge", "Assets/muscles-bufflyton.jpg", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
                               {
                                   Agility = 16,
                                   Endurance = 20,
@@ -78,12 +79,13 @@ namespace DragonAidWindowsClient.Data
                                   Perception = 9,
                                   PhysicalBeauty = 15,
                                   PhysicalStrength = 9,
-                                  Willpower = 15
+                                  Willpower = 15,
+                                  Race = Race.Human
                               };
 
             group1.Items.Add(muscles);
 
-            var caldus = new Character("PC-Caldus", "Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
+            var caldus = new Character("Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
                              {
                                  Agility = 12,
                                  Endurance = 17,
@@ -93,7 +95,8 @@ namespace DragonAidWindowsClient.Data
                                  Perception = 9,
                                  PhysicalBeauty = 14,
                                  PhysicalStrength = 17,
-                                 Willpower = 18
+                                 Willpower = 18,
+                                 Race = Race.Elf
                              };
 
             group1.Items.Add(caldus);
@@ -104,15 +107,13 @@ namespace DragonAidWindowsClient.Data
                     "Group Subtitle: 2",
                     "Assets/LightGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
-            group2.Items.Add(new Character("Group-2-Item-1",
-                    "Item Title: 1",
+            group2.Items.Add(new Character("Item Title: 1",
                     "Item Subtitle: 1",
                     "Assets/DarkGray.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group2));
-            group2.Items.Add(new Character("Group-2-Item-2",
-                    "Item Title: 2",
+            group2.Items.Add(new Character("Item Title: 2",
                     "Item Subtitle: 2",
                     "Assets/MediumGray.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
