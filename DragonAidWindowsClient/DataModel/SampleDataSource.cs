@@ -50,7 +50,7 @@ namespace DragonAidWindowsClient.Data
             return null;
         }
 
-        public static Character GetItem(string uniqueId)
+        public static Character GetCharacter(string uniqueId)
         {
             // Simple linear search is acceptable for small data sets
             var matches = _sampleDataSource.AllGroups.SelectMany(group => group.Items).Where((item) => item.UniqueId.Equals(uniqueId));
@@ -83,6 +83,9 @@ namespace DragonAidWindowsClient.Data
                                   Race = Race.Human
                               };
 
+            muscles.CombatActions.Add(CombatAction.AttackWithSap);
+            muscles.CombatActions.Add(CombatAction.CastWalkingUnseen);
+
             group1.Items.Add(muscles);
 
             var caldus = new Character("Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
@@ -100,6 +103,7 @@ namespace DragonAidWindowsClient.Data
                              };
 
             group1.Items.Add(caldus);
+
             this.AllGroups.Add(group1);
 
             var group2 = new SampleDataGroup("Non-Player-Character-Group",

@@ -106,7 +106,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\ExceptionUtils.cs" />
+    <Compile Include="DataModel\CombatAction.cs" />
+    <Compile Include="GeneralHelpers\ExceptionUtils.cs" />
     <Compile Include="DataModel\Character.cs" />
     <Compile Include="DataModel\CharacterEquations.cs" />
     <Compile Include="DataModel\Race.cs" />

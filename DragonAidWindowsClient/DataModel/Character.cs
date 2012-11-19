@@ -15,6 +15,7 @@ namespace DragonAidWindowsClient.Data
             this._content = content;
             this._group = group;
             this.Race = Race.Human;
+            this._combatActions = new List<CombatAction>();
         }
 
         private string _content = string.Empty;
@@ -54,6 +55,13 @@ namespace DragonAidWindowsClient.Data
             get { return this._group; }
             set { this.SetProperty(ref this._group, value); }
         }
+
+        private List<CombatAction> _combatActions;
+        public List<CombatAction> CombatActions
+        {
+            get { return this._combatActions; }
+        }
+
 
     }
 }
