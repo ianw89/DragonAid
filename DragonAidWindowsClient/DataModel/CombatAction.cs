@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DragonAidWindowsClient.Common;
-using DragonAidWindowsClient.Data;
+using System.Diagnostics.Contracts;
 
 namespace DragonAidWindowsClient.DataModel
 {
@@ -11,29 +7,29 @@ namespace DragonAidWindowsClient.DataModel
     {
         private CombatAction(string name, Func<Character, int> determineChanceOfSuccess)
         {
-            ExceptionUtils.CheckArgumentNotNull(name);
-            ExceptionUtils.CheckArgumentNotNull(determineChanceOfSuccess);
-
-            this._name = name;
-            this._determineChanceOfSuccess = determineChanceOfSuccess;
-
+            Contract.Requires(name != null);
+            Contract.Requires(determineChanceOfSuccess != null);
+            
+            _name = name;
+            _determineChanceOfSuccess = determineChanceOfSuccess;
         }
 
-        private string _name;
+        private readonly string _name;
         public string Name
         {
-            get { return this._name; }
+            get { return _name; }
         }
 
         
-        private Func<Character, int> _determineChanceOfSuccess;
+        private readonly Func<Character, int> _determineChanceOfSuccess;
         public int DetermineChanceOfSuccess(Character character)
         {
-            ExceptionUtils.CheckArgumentNotNull(character);
-            return this._determineChanceOfSuccess(character);
+            Contract.Requires(character != null);
+
+            return _determineChanceOfSuccess(character);
         }
         
-        public static CombatAction AttackWithSap = new CombatAction("Attack with Sap", (c) => { return 45 + c.ManualDexterity; });
-        public static CombatAction CastWalkingUnseen = new CombatAction("Cast 'Walking Unseen'", (c) => { return 50 + (c.MagicalAptitude - 15); });
+        public static CombatAction AttackWithSap = new CombatAction("Attack with Sap", c => 45 + c.ManualDexterity);
+        public static CombatAction CastWalkingUnseen = new CombatAction("Cast 'Walking Unseen'", c => 50 + (c.MagicalAptitude - 15));
     }
 }

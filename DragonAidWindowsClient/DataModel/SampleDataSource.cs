@@ -2,13 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Resources.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Data;
-using DragonAidWindowsClient.DataModel;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -17,7 +10,7 @@ using DragonAidWindowsClient.DataModel;
 // Applications may use this model as a starting point and build on it, or discard it entirely and
 // replace it with something appropriate to their needs.
 
-namespace DragonAidWindowsClient.Data
+namespace DragonAidWindowsClient.DataModel
 {
     /// <summary>
     /// Creates a collection of groups and items with hard-coded content.
@@ -32,7 +25,7 @@ namespace DragonAidWindowsClient.Data
         private ObservableCollection<SampleDataGroup> _allGroups = new ObservableCollection<SampleDataGroup>();
         public ObservableCollection<SampleDataGroup> AllGroups
         {
-            get { return this._allGroups; }
+            get { return _allGroups; }
         }
 
         public static IEnumerable<SampleDataGroup> GetGroups(string uniqueId)
@@ -45,22 +38,18 @@ namespace DragonAidWindowsClient.Data
         public static SampleDataGroup GetGroup(string uniqueId)
         {
             // Simple linear search is acceptable for small data sets
-            var matches = _sampleDataSource.AllGroups.Where((group) => group.UniqueId.Equals(uniqueId));
-            if (matches.Count() == 1) return matches.First();
-            return null;
+            return _sampleDataSource.AllGroups.First(group => group.UniqueId.Equals(uniqueId));
         }
 
         public static Character GetCharacter(string uniqueId)
         {
             // Simple linear search is acceptable for small data sets
-            var matches = _sampleDataSource.AllGroups.SelectMany(group => group.Items).Where((item) => item.UniqueId.Equals(uniqueId));
-            if (matches.Count() == 1) return matches.First();
-            return null;
+            return _sampleDataSource.AllGroups.SelectMany(group => group.Items).First(item => item.UniqueId.Equals(uniqueId));
         }
 
         public SampleDataSource()
         {
-            String ITEM_CONTENT = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
+            String itemContent = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
                         "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
 
             var group1 = new SampleDataGroup("Player-Character-Group",
@@ -69,7 +58,7 @@ namespace DragonAidWindowsClient.Data
                     "Assets/DarkGray.png",
                     "Here you can view the characteristics and skills of all the player characters.");
 
-            var muscles = new Character("Muscles Bufflyton", "Dan Bjorge", "Assets/muscles-bufflyton.jpg", "Shadow Weaver and Nazi Hunter from Celbina.", ITEM_CONTENT, group1)
+            var muscles = new Character("Muscles Bufflyton", "Dan Bjorge", "Assets/muscles-bufflyton.jpg", "Shadow Weaver and Nazi Hunter from Celbina.", itemContent, group1)
                               {
                                   Agility = 16,
                                   Endurance = 20,
@@ -88,7 +77,7 @@ namespace DragonAidWindowsClient.Data
 
             group1.Items.Add(muscles);
 
-            var caldus = new Character("Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg","Namer and Magekiller from Celbina.", ITEM_CONTENT, group1)
+            var caldus = new Character("Caldus Stormcinder", "Matt Meehan", "Assets/eagleback.jpg", "Namer and Magekiller from Celbina.", itemContent, group1)
                              {
                                  Agility = 12,
                                  Endurance = 17,
@@ -104,7 +93,7 @@ namespace DragonAidWindowsClient.Data
 
             group1.Items.Add(caldus);
 
-            this.AllGroups.Add(group1);
+            AllGroups.Add(group1);
 
             var group2 = new SampleDataGroup("Non-Player-Character-Group",
                     "Group Title: 2",
@@ -115,16 +104,16 @@ namespace DragonAidWindowsClient.Data
                     "Item Subtitle: 1",
                     "Assets/DarkGray.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
-                    ITEM_CONTENT,
+                    itemContent,
                     group2));
             group2.Items.Add(new Character("Item Title: 2",
                     "Item Subtitle: 2",
                     "Assets/MediumGray.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
-                    ITEM_CONTENT,
+                    itemContent,
                     group2));
-            this.AllGroups.Add(group2);
-
+            
+            AllGroups.Add(group2);
         }
     }
 }

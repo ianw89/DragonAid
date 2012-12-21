@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml.Data;
 
 namespace DragonAidWindowsClient.Common
 {
@@ -28,12 +27,15 @@ namespace DragonAidWindowsClient.Common
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected bool  SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
-            if (object.Equals(storage, value)) return false;
+            if (Equals(storage, value)) return false;
 
             storage = value;
-            this.OnPropertyChanged(propertyName);
+// ReSharper disable ExplicitCallerInfoArgument
+// It's not useful for OnPropertyChanged to report "SetProperty"
+            OnPropertyChanged(propertyName);
+// ReSharper restore ExplicitCallerInfoArgument
             return true;
         }
 
@@ -45,7 +47,7 @@ namespace DragonAidWindowsClient.Common
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var eventHandler = this.PropertyChanged;
+            var eventHandler = PropertyChanged;
             if (eventHandler != null)
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));

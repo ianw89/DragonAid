@@ -2,7 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace DragonAidWindowsClient.Data
+namespace DragonAidWindowsClient.DataModel
 {
     /// <summary>
     /// Generic group data model.
@@ -15,7 +15,7 @@ namespace DragonAidWindowsClient.Data
             Items.CollectionChanged += ItemsCollectionChanged;
         }
 
-        private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             // Provides a subset of the full items collection to bind to from a GroupedItemsPage
             // for two reasons: GridView will not virtualize large items collections, and it
@@ -79,16 +79,16 @@ namespace DragonAidWindowsClient.Data
             }
         }
 
-        private ObservableCollection<Character> _items = new ObservableCollection<Character>();
+        private readonly ObservableCollection<Character> _items = new ObservableCollection<Character>();
         public ObservableCollection<Character> Items
         {
-            get { return this._items; }
+            get { return _items; }
         }
 
-        private ObservableCollection<Character> _topItem = new ObservableCollection<Character>();
+        private readonly ObservableCollection<Character> _topItem = new ObservableCollection<Character>();
         public ObservableCollection<Character> TopItems
         {
-            get {return this._topItem; }
+            get {return _topItem; }
         }
     }
 }

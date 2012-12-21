@@ -1,13 +1,12 @@
-using DragonAidWindowsClient.Common;
-using DragonAidWindowsClient.DataModel;
+using System.Diagnostics.Contracts;
 
-namespace DragonAidWindowsClient.Data
+namespace DragonAidWindowsClient.DataModel
 {
     public static class CharacterEquations
     {
         public static int ComputeBasicTacticalMovementRate(int agility, Race race)
         {
-            ExceptionUtils.CheckArgumentNotNull(race);
+            Contract.Requires(race != null);
 
             int tmr;
 

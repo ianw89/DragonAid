@@ -1,85 +1,86 @@
 using System;
+using DragonAidWindowsClient.Common;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace DragonAidWindowsClient.Data
+namespace DragonAidWindowsClient.DataModel
 {
     /// <summary>
     /// Base class for <see cref="Character"/> and <see cref="SampleDataGroup"/> that
     /// defines properties common to both.
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public abstract class SampleDataCommon : DragonAidWindowsClient.Common.BindableBase
+    public abstract class SampleDataCommon : BindableBase
     {
         private static Uri _baseUri = new Uri("ms-appx:///");
 
         public SampleDataCommon(String uniqueId, String title, String subtitle, String imagePath, String description)
         {
-            this._uniqueId = uniqueId;
-            this._title = title;
-            this._subtitle = subtitle;
-            this._description = description;
-            this._imagePath = imagePath;
+            _uniqueId = uniqueId;
+            _title = title;
+            _subtitle = subtitle;
+            _description = description;
+            _imagePath = imagePath;
         }
 
         private string _uniqueId = string.Empty;
         public string UniqueId
         {
-            get { return this._uniqueId; }
-            set { this.SetProperty(ref this._uniqueId, value); }
+            get { return _uniqueId; }
+            set { SetProperty(ref _uniqueId, value); }
         }
 
         private string _title = string.Empty;
         public string Title
         {
-            get { return this._title; }
-            set { this.SetProperty(ref this._title, value); }
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         private string _subtitle = string.Empty;
         public string Subtitle
         {
-            get { return this._subtitle; }
-            set { this.SetProperty(ref this._subtitle, value); }
+            get { return _subtitle; }
+            set { SetProperty(ref _subtitle, value); }
         }
 
         private string _description = string.Empty;
         public string Description
         {
-            get { return this._description; }
-            set { this.SetProperty(ref this._description, value); }
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
         }
 
-        private ImageSource _image = null;
-        private String _imagePath = null;
+        private ImageSource _image;
+        private String _imagePath;
         public ImageSource Image
         {
             get
             {
-                if (this._image == null && this._imagePath != null)
+                if (_image == null && _imagePath != null)
                 {
-                    this._image = new BitmapImage(new Uri(SampleDataCommon._baseUri, this._imagePath));
+                    _image = new BitmapImage(new Uri(_baseUri, _imagePath));
                 }
-                return this._image;
+                return _image;
             }
 
             set
             {
-                this._imagePath = null;
-                this.SetProperty(ref this._image, value);
+                _imagePath = null;
+                SetProperty(ref _image, value);
             }
         }
 
         public void SetImage(String path)
         {
-            this._image = null;
-            this._imagePath = path;
-            this.OnPropertyChanged("Image");
+            _image = null;
+            _imagePath = path;
+            OnPropertyChanged();
         }
 
         public override string ToString()
         {
-            return this.Title;
+            return Title;
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DragonAidWindowsClient.DataModel
+﻿namespace DragonAidWindowsClient.DataModel
 {
     public class Race
     {
@@ -12,8 +7,8 @@ namespace DragonAidWindowsClient.DataModel
 
         private Race(string name, int tmr)
         {
-            this._name = name;
-            this._tmr = tmr;
+            _name = name;
+            _tmr = tmr;
         }
 
         public string Name

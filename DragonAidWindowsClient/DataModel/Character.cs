@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using DragonAidWindowsClient.DataModel;
 
-namespace DragonAidWindowsClient.Data
+namespace DragonAidWindowsClient.DataModel
 {
     /// <summary>
     /// Generic item data model.
@@ -12,31 +11,31 @@ namespace DragonAidWindowsClient.Data
         public Character(String title, String subtitle, String imagePath, String description, String content, SampleDataGroup group)
             : base(Guid.NewGuid().ToString(), title, subtitle, imagePath, description)
         {
-            this._content = content;
-            this._group = group;
-            this.Race = Race.Human;
-            this._combatActions = new List<CombatAction>();
+            _content = content;
+            _group = group;
+            Race = Race.Human;
+            _combatActions = new List<CombatAction>();
         }
 
         private string _content = string.Empty;
         public string Content
         {
-            get { return this._content; }
-            set { this.SetProperty(ref this._content, value); }
+            get { return _content; }
+            set { SetProperty(ref _content, value); }
         }
 
         private int _physicalStrength;
         public int PhysicalStrength
         {
-            get { return this._physicalStrength; }
-            set { this.SetProperty(ref this._physicalStrength, value); }
+            get { return _physicalStrength; }
+            set { SetProperty(ref _physicalStrength, value); }
         }
 
         private int _manualDexterity;
         public int ManualDexterity
         {
-            get { return this._manualDexterity; }
-            set { this.SetProperty(ref this._manualDexterity, value); }
+            get { return _manualDexterity; }
+            set { SetProperty(ref _manualDexterity, value); }
         }
 
         public int Agility { get; set; }
@@ -47,19 +46,19 @@ namespace DragonAidWindowsClient.Data
         public int PhysicalBeauty { get; set; }
         public int Fatigue { get; set; }
         public Race Race { get; set; }
-        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(this.Agility, this.Race); } }
+        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(Agility, Race); } }
 
         private SampleDataGroup _group;
         public SampleDataGroup Group
         {
-            get { return this._group; }
-            set { this.SetProperty(ref this._group, value); }
+            get { return _group; }
+            set { SetProperty(ref _group, value); }
         }
 
         private List<CombatAction> _combatActions;
         public List<CombatAction> CombatActions
         {
-            get { return this._combatActions; }
+            get { return _combatActions; }
         }
 
 
