@@ -1,7 +1,8 @@
-﻿using DragonAidWindowsClient.Common;
+﻿using DragonAidLib.Data;
+using DragonAidLib.Data.Model;
+using DragonAidWindowsClient.Common;
 using System;
 using System.Collections.Generic;
-using DragonAidWindowsClient.DataModel;
 using Windows.UI.Xaml.Controls;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232

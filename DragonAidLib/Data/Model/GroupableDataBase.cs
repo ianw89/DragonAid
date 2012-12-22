@@ -1,20 +1,18 @@
 using System;
-using DragonAidWindowsClient.Common;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace DragonAidWindowsClient.DataModel
+namespace DragonAidLib.Data.Model
 {
     /// <summary>
-    /// Base class for <see cref="Character"/> and <see cref="SampleDataGroup"/> that
-    /// defines properties common to both.
+    /// Base class for data intended to be displayed as part of a group (eg, as a tile in a Windows 8 app)
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public abstract class SampleDataCommon : BindableBase
+    public abstract class GroupableDataBase : BindableBase
     {
         private static Uri _baseUri = new Uri("ms-appx:///");
 
-        public SampleDataCommon(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public GroupableDataBase(String uniqueId, String title, String subtitle, String imagePath, String description)
         {
             _uniqueId = uniqueId;
             _title = title;

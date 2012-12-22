@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DragonAidWindowsClient.DataModel;
+using DragonAidLib.Data;
+using DragonAidLib.Data.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -46,7 +47,7 @@ namespace DragonAidWindowsClient
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            this.Frame.Navigate(typeof(GroupDetailPage), ((SampleDataGroup)group).UniqueId);
+            this.Frame.Navigate(typeof(GroupDetailPage), ((Party)group).UniqueId);
         }
 
         /// <summary>

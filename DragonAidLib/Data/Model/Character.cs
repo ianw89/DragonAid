@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace DragonAidWindowsClient.DataModel
+namespace DragonAidLib.Data.Model
 {
     /// <summary>
     /// Generic item data model.
     /// </summary>
-    public class Character : SampleDataCommon
+    public class Character : GroupableDataBase
     {
-        public Character(String title, String subtitle, String imagePath, String description, String content, SampleDataGroup group)
+        public Character(String title, String subtitle, String imagePath, String description, String content, Party group)
             : base(Guid.NewGuid().ToString(), title, subtitle, imagePath, description)
         {
             _content = content;
@@ -48,8 +48,8 @@ namespace DragonAidWindowsClient.DataModel
         public Race Race { get; set; }
         public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(Agility, Race); } }
 
-        private SampleDataGroup _group;
-        public SampleDataGroup Group
+        private Party _group;
+        public Party Group
         {
             get { return _group; }
             set { SetProperty(ref _group, value); }

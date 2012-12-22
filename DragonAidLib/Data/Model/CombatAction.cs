@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 
-namespace DragonAidWindowsClient.DataModel
+namespace DragonAidLib.Data.Model
 {
     public class CombatAction
     {
-        private CombatAction(string name, Func<Character, int> determineChanceOfSuccess)
+        public CombatAction(string name, Func<Character, int> determineChanceOfSuccess)
         {
             Contract.Requires(name != null);
             Contract.Requires(determineChanceOfSuccess != null);
@@ -22,11 +22,9 @@ namespace DragonAidWindowsClient.DataModel
 
         
         private readonly Func<Character, int> _determineChanceOfSuccess;
-        public int DetermineChanceOfSuccess(Character character)
+        public Func<Character, int> DetermineChanceOfSuccess
         {
-            Contract.Requires(character != null);
-
-            return _determineChanceOfSuccess(character);
+            get { return _determineChanceOfSuccess; }
         }
         
         public static CombatAction AttackWithSap = new CombatAction("Attack with Sap", c => 45 + c.ManualDexterity);

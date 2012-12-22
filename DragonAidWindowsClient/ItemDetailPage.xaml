@@ -5,11 +5,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DragonAidWindowsClient"
-    xmlns:data="using:DragonAidWindowsClient.DataModel"
+    xmlns:data="using:DragonAidLib.Data"
+    xmlns:datamodel="using:DragonAidLib.Data.Model"
     xmlns:common="using:DragonAidWindowsClient.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Generic="using:System.Collections.Generic" xmlns:System="using:System" mc:Ignorable="d">
+    mc:Ignorable="d">
 
     <Page.Resources>
 
@@ -145,7 +146,7 @@
                                                     <TextBlock Text="{Binding Name}"/>
                                                 </StackPanel>
                                                 <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                                                    <TextBlock Text="TODO: no idea how to bind to a function call (it has a parameter)"/>
+                                                    <TextBlock Text="TODO: Figure out how to map DetermineChanceOfSuccess. Possibly a converter?"/>
                                                 </StackPanel>
                                             </Grid>
                                         </DataTemplate>

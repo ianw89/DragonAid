@@ -1,4 +1,4 @@
-﻿namespace DragonAidWindowsClient.DataModel
+namespace DragonAidLib.Data.Model
 {
     public class Race
     {

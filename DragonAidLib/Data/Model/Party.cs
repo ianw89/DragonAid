@@ -2,14 +2,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace DragonAidWindowsClient.DataModel
+namespace DragonAidLib.Data.Model
 {
     /// <summary>
     /// Generic group data model.
     /// </summary>
-    public class SampleDataGroup : SampleDataCommon
+    public class Party : GroupableDataBase
     {
-        public SampleDataGroup(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public Party(String uniqueId, String title, String subtitle, String imagePath, String description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             Items.CollectionChanged += ItemsCollectionChanged;

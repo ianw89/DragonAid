@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DragonAidWindowsClient.Common
+namespace DragonAidLib.Data.Model
 {
     /// <summary>
     /// Implementation of <see cref="INotifyPropertyChanged"/> to simplify models.
