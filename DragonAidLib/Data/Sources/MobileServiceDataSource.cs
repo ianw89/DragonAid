@@ -2,7 +2,7 @@
 
 namespace DragonAidLib.Data.Sources
 {
-    class MobileServiceDataSource : IDataSource
+    public sealed class MobileServiceDataSource : IDataSource
     {
         private static readonly MobileServiceClient MobileService = new MobileServiceClient(
             "https://dragonaid-msvc.azure-mobile.net/",

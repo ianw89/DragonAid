@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
+using DragonAidLib.Data.Sources;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229

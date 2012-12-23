@@ -100,6 +100,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <SDKReference Include="MobileServicesManagedClient, Version=0.2.0.0">
+      <Name>Windows Azure Mobile Services Managed Client</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Model\BindableBase.cs" />
@@ -110,7 +113,9 @@
     <Compile Include="Data\Model\GroupableDataBase.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
-    <Compile Include="Data\SampleDataSource.cs" />
+    <Compile Include="Data\Sources\IDataSource.cs" />
+    <Compile Include="Data\Sources\MobileServiceDataSource.cs" />
+    <Compile Include="Data\Sources\SampleDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
