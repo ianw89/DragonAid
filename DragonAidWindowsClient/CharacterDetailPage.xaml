@@ -45,7 +45,7 @@
         -->
         <FlipView
             x:Name="flipView"
-            AutomationProperties.AutomationId="ItemsFlipView"
+            AutomationProperties.AutomationId="CharactersFlipView"
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"

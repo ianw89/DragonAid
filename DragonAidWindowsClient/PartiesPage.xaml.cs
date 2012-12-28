@@ -5,7 +5,7 @@ using DragonAidLib.Data.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
+// The Grouped Characters Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
 
 namespace DragonAidWindowsClient
 {
@@ -30,9 +30,13 @@ namespace DragonAidWindowsClient
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
-            DefaultViewModel["Groups"] = sampleDataGroups;
+            // Ignoring navigationParameter - just displaying all parties
+            DefaultViewModel["Parties"] = new AllPartiesViewModel(pageState);
+        }
+
+        protected override void SaveState(Dictionary<string, object> pageState)
+        {
+            (DefaultViewModel["Parties"] as AllPartiesViewModel).SaveState(pageState);
         }
 
         /// <summary>
@@ -47,7 +51,7 @@ namespace DragonAidWindowsClient
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            Frame.Navigate(typeof(PartyDetailPage), ((Party)group).UniqueId);
+            Frame.Navigate(typeof(PartyDetailPage), ((Party)group).Id);
         }
 
         /// <summary>
@@ -60,8 +64,8 @@ namespace DragonAidWindowsClient
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((Character)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(CharacterDetailPage), itemId);
+            var characterId = ((Character)e.ClickedItem).Id;
+            this.Frame.Navigate(typeof(CharacterDetailPage), characterId);
         }
     }
 }

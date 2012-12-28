@@ -102,6 +102,26 @@ namespace DragonAidWindowsClient.Common
             }
         }
 
+        #region Loading support
+        public enum LoadingStates
+        {
+            NotLoading, LoadingUpdate, LoadingFresh
+        }
+        protected event EventHandler OnLoadingStateChanged;
+        private LoadingStates _loadingState;
+        protected LoadingStates LoadingState
+        {
+            get { return _loadingState; }
+            set
+            {
+                _loadingState = value;
+                OnLoadingStateChanged(this, null);
+            }
+        }
+
+        // TODO: Create default handler and UI and hook it to OnLoadingStateChanged in the constructor
+        #endregion
+
         #region Navigation support
 
         /// <summary>

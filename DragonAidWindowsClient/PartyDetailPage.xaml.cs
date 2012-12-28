@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
-using DragonAidLib.Data.Sources;
+using DragonAidWindowsClient.ViewModel;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
@@ -17,7 +16,7 @@ namespace DragonAidWindowsClient
     {
         public PartyDetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -29,12 +28,22 @@ namespace DragonAidWindowsClient
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var group = SampleDataSource.GetGroup((String)navigationParameter);
-            this.DefaultViewModel["Group"] = group;
-            this.DefaultViewModel["Items"] = group.Items;
+            int partyId = (int) navigationParameter;
+            var viewModel = new PartyViewModel();
+
+            this.DefaultViewModel["Party"] = viewModel;
+            this.DefaultViewModel["Characters"] = viewModel.Characters;
+
+            // This is fast and can be done synchronously
+            bool loaded = viewModel.LoadState(pageState);
+
+            // This involves network IO. We'll put up a loading indicator (either full-screen or
+            // non-obtrusive, depending on if anything could be loaded synchronously)
+            LoadingState = loaded ? LoadingStates.LoadingUpdate : LoadingStates.LoadingFresh;
+            await viewModel.LoadPartyFromServiceAsync(partyId);
+            LoadingState = LoadingStates.NotLoading;
         }
 
         /// <summary>
@@ -43,12 +52,12 @@ namespace DragonAidWindowsClient
         /// <param name="sender">The GridView (or ListView when the application is snapped)
         /// displaying the item clicked.</param>
         /// <param name="e">Event data that describes the item clicked.</param>
-        void ItemView_ItemClick(object sender, ItemClickEventArgs e)
+        void CharacterView_CharacterClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((Character)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(CharacterDetailPage), itemId);
+            var characterId = ((Character)e.ClickedItem).Id;
+            this.Frame.Navigate(typeof(CharacterDetailPage), characterId);
         }
     }
 }
