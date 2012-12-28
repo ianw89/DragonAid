@@ -1,8 +1,9 @@
 using System;
+using DragonAidLib.Data.Model;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace DragonAidLib.Data.Model
+namespace DragonAidWindowsClient.ViewModel
 {
     /// <summary>
     /// Base class for data intended to be displayed as part of a group (eg, as a tile in a Windows 8 app)

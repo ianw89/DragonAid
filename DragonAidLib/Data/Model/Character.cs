@@ -1,43 +1,32 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace DragonAidLib.Data.Model
 {
     /// <summary>
-    /// Generic item data model.
+    /// This base class just consists of those properties which are persisted to the backing service
+    /// Secondary properties are provided by extension methods in DragonAid.Data.CharacterEquations
+    /// 
+    /// Most properties of a character (skills, inventory, etc) are just baked into the character table;
+    /// it simplifies the MobileServices usage at the cost of losing the ability to query based on them
+    /// (which we expect never to need)
     /// </summary>
-    public class Character : GroupableDataBase
+    public sealed class Character
     {
-        public Character(String title, String subtitle, String imagePath, String description, String content, Party group)
-            : base(Guid.NewGuid().ToString(), title, subtitle, imagePath, description)
-        {
-            _content = content;
-            _group = group;
-            Race = Race.Human;
-            _combatActions = new List<CombatAction>();
-        }
+        // *** RPG system agnostic properties
+        public int Id { get; set; }
 
-        private string _content = string.Empty;
-        public string Content
-        {
-            get { return _content; }
-            set { SetProperty(ref _content, value); }
-        }
+        public string Name { get; set; }
+        // This is purposefully unrelated to the userId used internally for server-side authorization
+        public string PlayerName { get; set; }
+        public string ImageUri { get; set; }
+        public int PartyId { get; set; }
 
-        private int _physicalStrength;
-        public int PhysicalStrength
-        {
-            get { return _physicalStrength; }
-            set { SetProperty(ref _physicalStrength, value); }
-        }
+        // *** DragonQuest specific properties (may be refactored later)
+        [DataMemberJsonConverter(ConverterType = typeof(RaceJsonConverter))]
+        public Race Race { get; set; }
 
-        private int _manualDexterity;
-        public int ManualDexterity
-        {
-            get { return _manualDexterity; }
-            set { SetProperty(ref _manualDexterity, value); }
-        }
-
+        public int PhysicalStrength { get; set; }
+        public int ManualDexterity { get; set; }
         public int Agility { get; set; }
         public int Endurance { get; set; }
         public int MagicalAptitude { get; set; }
@@ -45,22 +34,13 @@ namespace DragonAidLib.Data.Model
         public int Perception { get; set; }
         public int PhysicalBeauty { get; set; }
         public int Fatigue { get; set; }
-        public Race Race { get; set; }
-        public int TacticalMovementRate { get { return CharacterEquations.ComputeBasicTacticalMovementRate(Agility, Race); } }
 
-        private Party _group;
-        public Party Group
-        {
-            get { return _group; }
-            set { SetProperty(ref _group, value); }
-        }
+        /* TODO
+        [DataMemberJsonConverter(ConverterType = typeof(InventoryJsonConverter))]
+        public Inventory Inventory { get; set; }
 
-        private List<CombatAction> _combatActions;
-        public List<CombatAction> CombatActions
-        {
-            get { return _combatActions; }
-        }
-
-
+        [DataMemberJsonConverter(ConverterType = typeof(SkillsJsonConverter))]
+        public IDictionary<string, int> Skills { get; set; }
+        */
     }
 }

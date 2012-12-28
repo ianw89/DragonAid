@@ -2,10 +2,10 @@ using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace DragonAidLibTest.Data
+namespace DragonAidLibTest.Tests.Unit
 {
     [TestClass]
-    public class CharacterEquationsTest
+    public class CharacterEquationsTests
     {
         [TestMethod]
         public void ComputeBasicTacticalMovementRate_VaryingAgilities()

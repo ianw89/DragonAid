@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Data\CharacterEquationsTest.cs" />
     <Compile Include="Data\DetermineChanceOfSuccessConverterTest.cs" />
+    <Compile Include="Data\Sources\MobileServiceDataSourceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,11 @@
       <Project>{63cdff4a-7c4f-42f0-a7f4-8d5d831fa15e}</Project>
       <Name>DragonAidLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAzure.MobileServices.Managed">
+      <HintPath>..\DragonAidWindowsClient\bin\Debug\Microsoft.WindowsAzure.MobileServices.Managed.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

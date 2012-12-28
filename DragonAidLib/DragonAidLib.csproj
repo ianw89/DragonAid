@@ -110,7 +110,7 @@
     <Compile Include="Data\CharacterEquations.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
     <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
-    <Compile Include="Data\Model\GroupableDataBase.cs" />
+    <Compile Include="Data\Model\EntityBase.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
     <Compile Include="Data\Sources\IDataSource.cs" />

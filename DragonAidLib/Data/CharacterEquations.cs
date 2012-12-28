@@ -27,5 +27,9 @@ namespace DragonAidLib.Data
 
             return tmr + race.TacticalMovementRateModifier;
         }
+        public static int TacticalMovementRate(this Character character)
+        {
+            return ComputeBasicTacticalMovementRate(character.Agility, character.Race);
+        }
     }
 }
