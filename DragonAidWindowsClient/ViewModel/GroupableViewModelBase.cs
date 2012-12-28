@@ -1,5 +1,6 @@
 using System;
 using DragonAidLib.Data.Model;
+using DragonAidWindowsClient.Common;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -9,11 +10,15 @@ namespace DragonAidWindowsClient.ViewModel
     /// Base class for data intended to be displayed as part of a group (eg, as a tile in a Windows 8 app)
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public abstract class GroupableDataBase : BindableBase
+    public abstract class GroupableViewModelBase : BindableBase
     {
         private static Uri _baseUri = new Uri("ms-appx:///");
 
-        public GroupableDataBase(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public GroupableViewModelBase()
+        {
+        }
+
+        public GroupableViewModelBase(String uniqueId, String title, String subtitle, String imagePath, String description)
         {
             _uniqueId = uniqueId;
             _title = title;

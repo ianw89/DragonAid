@@ -1,4 +1,5 @@
-﻿using DragonAidLib.Data;
+﻿using System.ComponentModel;
+using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
@@ -19,12 +20,33 @@ namespace DragonAidWindowsClient.ViewModel
     /// </summary>
     class PartyViewModel : GroupableViewModelBase
     {
-        public PartyViewModel(IDictionary<string, object> savedState)
+        public static readonly Party AllCharactersParty = new Party
+            {
+                Id = -1,
+                Title = "My Characters",
+                Description = null,
+                GameMasterName = null,
+                ImageUri = "Assets\\MyCharacters.png"
+            };
+
+        public PartyViewModel()
         {
             Characters.CollectionChanged += CharacterCollectionChanged;
-            LoadState(savedState);
+            PropertyChanged += PartyChangedHandler;
         }
 
+        void PartyChangedHandler(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Party")
+            {
+                this.UniqueId = Party.Id.ToString();
+                Title = Party.Title;
+                Subtitle = Party.GameMasterName ?? string.Format("GM: {0}", Party.GameMasterName);
+                Description = Party.Description;
+                SetImage(Party.ImageUri);
+            }
+        }
+        
         /// <summary>
         /// Populates view model from saved page state that was previously populated with LoadState
         /// </summary>
@@ -56,8 +78,19 @@ namespace DragonAidWindowsClient.ViewModel
             await LoadPartyFromServiceAsync(DragonAidService.Client, partyId);
         }
 
+        public async Task LoadAllCharactersFromServiceAsync()
+        {
+            await LoadAllCharactersFromServiceAsync(DragonAidService.Client);
+        }
+
         public async Task LoadPartyFromServiceAsync(MobileServiceClient client, int partyId)
         {
+            if (partyId == AllCharactersParty.Id)
+            {
+                await LoadAllCharactersFromServiceAsync(client);
+                return;
+            }
+
             var partyTable = client.GetTable<Party>();
             var characterTable = client.GetTable<Character>();
 
@@ -70,6 +103,20 @@ namespace DragonAidWindowsClient.ViewModel
 
             // Only after both succeed do we change either
             Party = party;
+            foreach (var c in characters)
+            {
+                Characters.Add(c);
+            }
+        }
+
+        public async Task LoadAllCharactersFromServiceAsync(MobileServiceClient client)
+        {
+ 	        var characterTable = client.GetTable<Character>();
+            var characters = await characterTable.Where(c => c.IsMine).ToListAsync();
+
+            // Only after the network IO succeeds do we change anything
+            Party = AllCharactersParty;
+            Characters.Clear();
             foreach (var c in characters)
             {
                 Characters.Add(c);
@@ -140,7 +187,8 @@ namespace DragonAidWindowsClient.ViewModel
             }
         }
 
-        public Party Party { get; private set; }
+        private Party _party;
+        public Party Party { get { return _party; } private set { SetProperty(ref _party, value); } }
 
         private readonly ObservableCollection<Character> _characters = new ObservableCollection<Character>();
         public ObservableCollection<Character> Characters
