@@ -5,22 +5,31 @@ using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DragonAidWindowsClient.ViewModel
 {
     /// <summary>
-    /// ViewModel for a Party with its set of associated Characters
+    /// ViewModel for a Character with its set of associated Characters
     /// 
     /// Also understands how to deal with the special "party" of ID PartyViewModel.AllCharactersParty,
     /// which deals with displaying a view of all of a player's characters irrespective of their Parties
     /// 
-    /// Users must await a LoadPartyFromServiceAsync call for this to be useful
+    /// Users must await a LoadCharacterFromServiceAsync call for this to be useful
     /// </summary>
     class PartyViewModel : GroupableViewModelBase
     {
-        public static readonly Party AllCharactersParty = new Party
+        private static string PartyIdToUniqueId(int partyId)
+        {
+            return string.Format("Party/{0}", partyId);
+        }
+
+        private static string PartyIdToUniquePartyCharactersId(int partyId)
+        {
+            return string.Format("Party/{0}/CharacterIds", partyId);
+        }
+
+        private static readonly Party AllCharactersParty = new Party
             {
                 Id = -1,
                 Title = "My Characters",
@@ -37,9 +46,9 @@ namespace DragonAidWindowsClient.ViewModel
 
         void PartyChangedHandler(object sender, PropertyChangedEventArgs args)
         {
-            if (args.PropertyName == "Party")
+            if (args.PropertyName == "Character")
             {
-                this.UniqueId = Party.Id.ToString();
+                UniqueId = Party.Id.ToString();
                 Title = Party.Title;
                 Subtitle = Party.GameMasterName ?? string.Format("GM: {0}", Party.GameMasterName);
                 Description = Party.Description;
@@ -51,26 +60,39 @@ namespace DragonAidWindowsClient.ViewModel
         /// Populates view model from saved page state that was previously populated with LoadState
         /// </summary>
         /// <returns>Whether or not any saved state was found and loaded</returns>
-        public bool LoadState(IDictionary<string, object> savedState)
+        public bool LoadState(int partyId, IDictionary<string, object> savedState)
         {
             if (savedState == null) return false;
 
-            var savedParty = savedState["Party"] as Party;
-            var savedCharacters = savedState["Characters"] as IEnumerable<Character>;
-            if (savedParty == null || savedCharacters == null) return false;
+            var uniqueId = PartyIdToUniqueId(partyId);
+            var savedParty = savedState[uniqueId] as Party;
+            if (savedParty == null) return false;
 
             Party = savedParty;
-            foreach (var c in savedCharacters)
+
+            // Now check for known character IDs
+            var uniquePartyCharactersId = PartyIdToUniquePartyCharactersId(partyId);
+            var savedCharacterIds = savedState[uniquePartyCharactersId] as IEnumerable<int>;
+            if (savedCharacterIds == null) return true; // We loaded something...
+
+            foreach (var savedCharacterId in savedCharacterIds)
             {
-                Characters.Add(c);
+                var characterViewModel = new CharacterViewModel();
+                if (characterViewModel.LoadState(savedCharacterId, savedState))
+                {
+                    Characters.Add(characterViewModel);
+                }
             }
             return true;
         }
 
         public void SaveState(IDictionary<string, object> stateContainer)
         {
-            stateContainer["Party"] = Party;
-            stateContainer["Characters"] = Characters.Select(c => c).ToList(); // shallow copy
+            stateContainer[UniqueId] = Party;
+            foreach (var characterViewModel in Characters)
+            {
+                characterViewModel.SaveState(stateContainer);
+            }
         }
 
         public async Task LoadPartyFromServiceAsync(int partyId)
@@ -102,11 +124,7 @@ namespace DragonAidWindowsClient.ViewModel
             List<Character> characters = await getCharactersTask;
 
             // Only after both succeed do we change either
-            Party = party;
-            foreach (var c in characters)
-            {
-                Characters.Add(c);
-            }
+            SetModels(party, characters);
         }
 
         public async Task LoadAllCharactersFromServiceAsync(MobileServiceClient client)
@@ -115,11 +133,16 @@ namespace DragonAidWindowsClient.ViewModel
             var characters = await characterTable.Where(c => c.IsMine).ToListAsync();
 
             // Only after the network IO succeeds do we change anything
-            Party = AllCharactersParty;
+            SetModels(AllCharactersParty, characters);
+        }
+
+        private void SetModels(Party party, IEnumerable<Character> characters)
+        {
             Characters.Clear();
+            Party = party;
             foreach (var c in characters)
             {
-                Characters.Add(c);
+                Characters.Add(new CharacterViewModel(c));
             }
         }
 
@@ -190,14 +213,14 @@ namespace DragonAidWindowsClient.ViewModel
         private Party _party;
         public Party Party { get { return _party; } private set { SetProperty(ref _party, value); } }
 
-        private readonly ObservableCollection<Character> _characters = new ObservableCollection<Character>();
-        public ObservableCollection<Character> Characters
+        private readonly ObservableCollection<CharacterViewModel> _characters = new ObservableCollection<CharacterViewModel>();
+        public ObservableCollection<CharacterViewModel> Characters
         {
             get { return _characters; }
         }
 
-        private readonly ObservableCollection<Character> _topCharacters = new ObservableCollection<Character>();
-        public ObservableCollection<Character> TopCharacters
+        private readonly ObservableCollection<CharacterViewModel> _topCharacters = new ObservableCollection<CharacterViewModel>();
+        public ObservableCollection<CharacterViewModel> TopCharacters
         {
             get {return _topCharacters; }
         }

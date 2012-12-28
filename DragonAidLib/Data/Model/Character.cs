@@ -26,6 +26,8 @@ namespace DragonAidLib.Data.Model
         public string Name { get; set; }
         // This is purposefully unrelated to the userId used internally for server-side authorization
         public string PlayerName { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public string ImageUri { get; set; }
         public int PartyId { get; set; }
 

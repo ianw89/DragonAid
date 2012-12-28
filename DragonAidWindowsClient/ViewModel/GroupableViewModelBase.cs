@@ -1,5 +1,4 @@
 using System;
-using DragonAidLib.Data.Model;
 using DragonAidWindowsClient.Common;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
