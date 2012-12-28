@@ -14,9 +14,9 @@ namespace DragonAidWindowsClient
     /// A page that displays details for a single item within a group while allowing gestures to
     /// flip through other items belonging to the same group.
     /// </summary>
-    public sealed partial class ItemDetailPage : DragonAidWindowsClient.Common.LayoutAwarePage
+    public sealed partial class CharacterDetailPage : DragonAidWindowsClient.Common.LayoutAwarePage
     {
-        public ItemDetailPage()
+        public CharacterDetailPage()
         {
             this.InitializeComponent();
         }
