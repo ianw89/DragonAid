@@ -105,17 +105,13 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Model\BindableBase.cs" />
+    <Compile Include="Data\DragonAidService.cs" />
     <Compile Include="Data\Model\Character.cs" />
     <Compile Include="Data\CharacterEquations.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
     <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
-    <Compile Include="Data\Model\EntityBase.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
-    <Compile Include="Data\Sources\IDataSource.cs" />
-    <Compile Include="Data\Sources\MobileServiceDataSource.cs" />
-    <Compile Include="Data\Sources\SampleDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

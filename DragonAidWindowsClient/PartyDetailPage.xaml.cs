@@ -30,14 +30,14 @@ namespace DragonAidWindowsClient
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            int partyId = (int) navigationParameter;
+            var partyId = (int) navigationParameter;
             var viewModel = new PartyViewModel();
 
             this.DefaultViewModel["Party"] = viewModel;
             this.DefaultViewModel["Characters"] = viewModel.Characters;
 
             // This is fast and can be done synchronously
-            bool loaded = viewModel.LoadState(pageState);
+            bool loaded = viewModel.LoadState(partyId, pageState);
 
             // This involves network IO. We'll put up a loading indicator (either full-screen or
             // non-obtrusive, depending on if anything could be loaded synchronously)

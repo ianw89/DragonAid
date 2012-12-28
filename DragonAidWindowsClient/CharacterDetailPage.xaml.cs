@@ -1,9 +1,8 @@
-﻿using DragonAidLib.Data;
-using DragonAidLib.Data.Model;
-using DragonAidLib.Data.Sources;
+﻿using DragonAidLib.Data.Model;
 using DragonAidWindowsClient.Common;
 using System;
 using System.Collections.Generic;
+using DragonAidWindowsClient.ViewModel;
 using Windows.UI.Xaml.Controls;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
@@ -30,33 +29,23 @@ namespace DragonAidWindowsClient
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // Allow saved page state to override the initial item to display
-            if (pageState != null && pageState.ContainsKey("SelectedItem"))
-            {
-                navigationParameter = pageState["SelectedItem"];
-            }
+            var characterId = (int)navigationParameter;
+            var viewModel = new CharacterViewModel();
 
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = SampleDataSource.GetCharacter((String)navigationParameter);
-            this.DefaultViewModel["Group"] = item.Group;
-            this.DefaultViewModel["Items"] = item.Group.Items;
-            this.flipView.SelectedItem = item;
+            this.DefaultViewModel["Character"] = viewModel;
+
+            // This is fast and can be done synchronously
+            bool loaded = viewModel.LoadState(characterId, pageState);
+
+            // This involves network IO. We'll put up a loading indicator (either full-screen or
+            // non-obtrusive, depending on if anything could be loaded synchronously)
+            LoadingState = loaded ? LoadingStates.LoadingUpdate : LoadingStates.LoadingFresh;
+            await viewModel.LoadCharacterFromServiceAsync(characterId);
+            LoadingState = LoadingStates.NotLoading;
         }
-
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
-        {
-            var selectedItem = (Character)this.flipView.SelectedItem;
-            pageState["SelectedItem"] = selectedItem.UniqueId;
-        }
-
+        
         private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

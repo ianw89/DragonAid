@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
 using Microsoft.WindowsAzure.MobileServices;
@@ -13,7 +14,7 @@ namespace DragonAidWindowsClient.ViewModel
     /// 
     /// Users must await a LoadCharacterFromServiceAsync call for this to be useful
     /// </summary>
-    class CharacterViewModel : GroupableViewModelBase
+    public sealed class CharacterViewModel : GroupableViewModelBase
     {
         private static string CharacterIdToUniqueId(int characterId)
         {
@@ -80,5 +81,72 @@ namespace DragonAidWindowsClient.ViewModel
         /// corresponding ViewModel directly
         /// </summary>
         public Character Character { get { return _character; } set { SetProperty(ref _character, value); } }
+
+        #region Character change handling
+
+        // TODO: Hook up a DragonAidService....UpdateAsync()
+        public event PropertyChangedEventHandler CharacterPropertyChanged;
+        protected void OnCharacterPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var eventHandler = CharacterPropertyChanged;
+            if (eventHandler != null)
+            {
+                eventHandler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        private delegate void CharacterPropertySetter(Character c);
+        private void SetCharacterProperty(CharacterPropertySetter setter, [CallerMemberName] string propertyName = null)
+        {
+            setter(_character);
+            OnPropertyChanged(propertyName);
+            OnCharacterPropertyChanged(propertyName);
+        }
+
+        #endregion
+
+        #region Data binding properties
+
+        public int PhysicalStrength
+        {
+            get { return Character.PhysicalStrength; } 
+            set { SetCharacterProperty(c => c.PhysicalStrength = value); }
+        }
+        public int ManualDexterity
+        {
+            get { return Character.ManualDexterity; }
+            set { SetCharacterProperty(c => c.ManualDexterity = value); }
+        }
+        public int Agility
+        {
+            get { return Character.Agility; }
+            set { SetCharacterProperty(c => c.Agility = value); }
+        }
+        public int PhysicalBeauty
+        {
+            get { return Character.PhysicalBeauty; }
+            set { SetCharacterProperty(c => c.PhysicalBeauty = value); }
+        }
+        public int Willpower
+        {
+            get { return Character.Willpower; }
+            set { SetCharacterProperty(c => c.Willpower = value); }
+        }
+        public int MagicalAptitude
+        {
+            get { return Character.MagicalAptitude; }
+            set { SetCharacterProperty(c => c.MagicalAptitude = value); }
+        }
+        public int Endurance
+        {
+            get { return Character.Endurance; }
+            set { SetCharacterProperty(c => c.Endurance = value); }
+        }
+        public int Fatigue
+        {
+            get { return Character.Fatigue; }
+            set { SetCharacterProperty(c => c.Fatigue = value); }
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DragonAidWindowsClient.ViewModel
 {
@@ -17,7 +18,7 @@ namespace DragonAidWindowsClient.ViewModel
     /// 
     /// Users must await a LoadCharacterFromServiceAsync call for this to be useful
     /// </summary>
-    class PartyViewModel : GroupableViewModelBase
+    public sealed class PartyViewModel : GroupableViewModelBase
     {
         private static string PartyIdToUniqueId(int partyId)
         {
@@ -29,7 +30,7 @@ namespace DragonAidWindowsClient.ViewModel
             return string.Format("Party/{0}/CharacterIds", partyId);
         }
 
-        private static readonly Party AllCharactersParty = new Party
+        public static readonly Party AllCharactersParty = new Party
             {
                 Id = -1,
                 Title = "My Characters",
@@ -42,6 +43,19 @@ namespace DragonAidWindowsClient.ViewModel
         {
             Characters.CollectionChanged += CharacterCollectionChanged;
             PropertyChanged += PartyChangedHandler;
+        }
+
+        /// <summary>
+        /// Populates the PartyViewModel from the given Party data and populates its children with data
+        /// from the given list of knownCharacters.
+        /// </summary>
+        /// <param name="party"></param>
+        /// <param name="knownCharacters">The set of characters to draw CharacterViewModel data from.
+        /// It's okay for knownCharacters to contain more characters than the party (they'll be ignored),
+        /// and it's also okay for it to be missing characters (they won't be displayed).</param>
+        public PartyViewModel(Party party, ICollection<Character> knownCharacters) : this()
+        {
+            SetModels(party, knownCharacters.Where(c => c.PartyId == party.Id));
         }
 
         void PartyChangedHandler(object sender, PropertyChangedEventArgs args)

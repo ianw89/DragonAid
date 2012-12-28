@@ -1,4 +1,7 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
+using Windows.UI.Popups;
 
 namespace DragonAidLib.Data
 {
@@ -21,5 +24,41 @@ namespace DragonAidLib.Data
         );
         
         public static MobileServiceClient Client { get { return MobileService; } }
+
+        public static bool IsLoggedIn(this MobileServiceClient client)
+        {
+            return null != client.CurrentUser;
+        }
+
+        public static async Task RequireLoginAsync()
+        {
+            while (!Client.IsLoggedIn())
+            {
+                string failureMessage = null;
+                try
+                {
+                    await Client.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
+                    if (!Client.IsLoggedIn())
+                    {
+                        failureMessage =
+                            "DragonAid needs to be connected to its servers to work - please log in and try again.";
+                    }
+                }
+                catch (MobileServiceInvalidOperationException e)
+                {
+                    failureMessage = "Client failed to authenticate: "+e.ToString(); // TODO: Make nicer
+                }
+                catch (InvalidOperationException e)
+                {
+                    failureMessage = "Service failed to authenticate: "+e.ToString(); // TODO: Make nicer
+                }
+
+                if (failureMessage != null)
+                {
+                    var dialog = new MessageDialog(failureMessage, "Could not connect to DragonAid servers");
+                    await dialog.ShowAsync();
+                }
+            }
+        }
     }
 }

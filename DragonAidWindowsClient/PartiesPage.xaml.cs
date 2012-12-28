@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
+using DragonAidWindowsClient.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,6 +15,8 @@ namespace DragonAidWindowsClient
     /// </summary>
     public sealed partial class PartiesPage : DragonAidWindowsClient.Common.LayoutAwarePage
     {
+        public AllPartiesViewModel AllPartiesViewModel { get; private set; }
+
         public PartiesPage()
         {
             this.InitializeComponent();
@@ -28,15 +31,20 @@ namespace DragonAidWindowsClient
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // Ignoring navigationParameter - just displaying all parties
-            DefaultViewModel["Parties"] = new AllPartiesViewModel(pageState);
+            AllPartiesViewModel = new AllPartiesViewModel();
+            // Load syncronously available state before hooking to the view
+            AllPartiesViewModel.LoadState(pageState);
+            // Now start loading state from the service
+            await DragonAidService.RequireLoginAsync();
+            await AllPartiesViewModel.LoadAllPartiesFromServiceAsync();
         }
 
         protected override void SaveState(Dictionary<string, object> pageState)
         {
-            (DefaultViewModel["Parties"] as AllPartiesViewModel).SaveState(pageState);
+            AllPartiesViewModel.SaveState(pageState);
         }
 
         /// <summary>
@@ -47,11 +55,12 @@ namespace DragonAidWindowsClient
         void Header_Click(object sender, RoutedEventArgs e)
         {
             // Determine what group the Button instance represents
-            var group = (sender as FrameworkElement).DataContext;
+            var group = ((FrameworkElement) sender).DataContext;
+            var partyId = ((PartyViewModel) group).Party.Id;
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            Frame.Navigate(typeof(PartyDetailPage), ((Party)group).Id);
+            Frame.Navigate(typeof(PartyDetailPage), partyId);
         }
 
         /// <summary>
@@ -62,9 +71,10 @@ namespace DragonAidWindowsClient
         /// <param name="e">Event data that describes the item clicked.</param>
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            var characterId = ((CharacterViewModel)e.ClickedItem).Character.Id;
+
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var characterId = ((Character)e.ClickedItem).Id;
             this.Frame.Navigate(typeof(CharacterDetailPage), characterId);
         }
     }
