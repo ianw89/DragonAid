@@ -14,7 +14,7 @@ namespace DragonAidWindowsClient.ViewModel
     /// ViewModel for a Character with its set of associated Characters
     /// 
     /// Also understands how to deal with the special "party" of ID PartyViewModel.AllCharactersParty,
-    /// which deals with displaying a view of all of a player's characters irrespective of their Parties
+    /// which deals with displaying a view of all of a player's characters irrespective of their PartyViews
     /// 
     /// Users must await a LoadCharacterFromServiceAsync call for this to be useful
     /// </summary>
@@ -30,15 +30,6 @@ namespace DragonAidWindowsClient.ViewModel
             return string.Format("Party/{0}/CharacterIds", partyId);
         }
 
-        public static readonly Party AllCharactersParty = new Party
-            {
-                Id = -1,
-                Title = "My Characters",
-                Description = null,
-                GameMasterName = null,
-                ImageUri = "Assets\\MyCharacters.png"
-            };
-
         public PartyViewModel()
         {
             Characters.CollectionChanged += CharacterCollectionChanged;
@@ -53,7 +44,7 @@ namespace DragonAidWindowsClient.ViewModel
         /// <param name="knownCharacters">The set of characters to draw CharacterViewModel data from.
         /// It's okay for knownCharacters to contain more characters than the party (they'll be ignored),
         /// and it's also okay for it to be missing characters (they won't be displayed).</param>
-        public PartyViewModel(Party party, ICollection<Character> knownCharacters) : this()
+        public PartyViewModel(Party party, IEnumerable<Character> knownCharacters) : this()
         {
             SetModels(party, knownCharacters.Where(c => c.PartyId == party.Id));
         }
@@ -109,46 +100,46 @@ namespace DragonAidWindowsClient.ViewModel
             }
         }
 
-        public async Task LoadPartyFromServiceAsync(int partyId)
-        {
-            await LoadPartyFromServiceAsync(DragonAidService.Client, partyId);
-        }
+        //public async Task LoadPartyFromServiceAsync(int partyId)
+        //{
+        //    await LoadPartyFromServiceAsync(DragonAidService.Client, partyId);
+        //}
 
-        public async Task LoadAllCharactersFromServiceAsync()
-        {
-            await LoadAllCharactersFromServiceAsync(DragonAidService.Client);
-        }
+        //public async Task LoadAllCharactersFromServiceAsync()
+        //{
+        //    await LoadAllCharactersFromServiceAsync(DragonAidService.Client);
+        //}
 
-        public async Task LoadPartyFromServiceAsync(MobileServiceClient client, int partyId)
-        {
-            if (partyId == AllCharactersParty.Id)
-            {
-                await LoadAllCharactersFromServiceAsync(client);
-                return;
-            }
+        //public async Task LoadPartyFromServiceAsync(MobileServiceClient client, int partyId)
+        //{
+        //    if (partyId == AllCharactersParty.Id)
+        //    {
+        //        await LoadAllCharactersFromServiceAsync(client);
+        //        return;
+        //    }
 
-            var partyTable = client.GetTable<Party>();
-            var characterTable = client.GetTable<Character>();
+        //    var partyTable = client.GetTable<Party>();
+        //    var characterTable = client.GetTable<Character>();
 
-            // These can run concurrently, so start both before awaiting either
-            var getPartyTask = partyTable.LookupAsync(partyId);
-            var getCharactersTask = characterTable.Where(c => c.PartyId == partyId).ToListAsync();
+        //    // These can run concurrently, so start both before awaiting either
+        //    var getPartyTask = partyTable.LookupAsync(partyId);
+        //    var getCharactersTask = characterTable.Where(c => c.PartyId == partyId).ToListAsync();
 
-            Party party = await getPartyTask;
-            List<Character> characters = await getCharactersTask;
+        //    Party party = await getPartyTask;
+        //    List<Character> characters = await getCharactersTask;
 
-            // Only after both succeed do we change either
-            SetModels(party, characters);
-        }
+        //    // Only after both succeed do we change either
+        //    SetModels(party, characters);
+        //}
 
-        public async Task LoadAllCharactersFromServiceAsync(MobileServiceClient client)
-        {
- 	        var characterTable = client.GetTable<Character>();
-            var characters = await characterTable.Where(c => c.IsMine).ToListAsync();
+        //public async Task LoadAllCharactersFromServiceAsync(MobileServiceClient client)
+        //{
+        //    var characterTable = client.GetTable<Character>();
+        //    var characters = await characterTable.Where(c => c.IsMine).ToListAsync();
 
-            // Only after the network IO succeeds do we change anything
-            SetModels(AllCharactersParty, characters);
-        }
+        //    // Only after the network IO succeeds do we change anything
+        //    SetModels(AllCharactersParty, characters);
+        //}
 
         private void SetModels(Party party, IEnumerable<Character> characters)
         {

@@ -18,10 +18,10 @@
         -->
         <CollectionViewSource
             x:Name="PartiesViewSource"
-            Source="{Binding Parties}"
+            Source="{Binding Numbers}"
             IsSourceGrouped="true"
             ItemsPath="TopCharacters"
-            d:Source="{Binding AllParties.Parties, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllParties.PartyViews, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -64,7 +64,8 @@
                                     Click="Header_Click"
                                     Style="{StaticResource TextPrimaryButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{StaticResource AppName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="PartiesPage" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="PP2" Margin="300,-250,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>

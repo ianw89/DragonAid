@@ -8,7 +8,7 @@ namespace DragonAidLibTest.Tests.Unit
     public class CharacterEquationsTests
     {
         [TestMethod]
-        public void ComputeBasicTacticalMovementRate_VaryingAgilities()
+        public void ComputeBasicTacticalMovementRateForVaryingAgilities()
         {
             Assert.AreEqual(2, CharacterEquations.ComputeBasicTacticalMovementRate(3, Race.Human));
             Assert.AreEqual(5, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human));
@@ -16,7 +16,7 @@ namespace DragonAidLibTest.Tests.Unit
         }
 
         [TestMethod]
-        public void ComputeBasicTacticalMovementRate_VaryingRaces()
+        public void ComputeBasicTacticalMovementRateForVaryingRaces()
         {
             Assert.AreEqual(5, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human));
             Assert.AreEqual(4, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Dwarf));

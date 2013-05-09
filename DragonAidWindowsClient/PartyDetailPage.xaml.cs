@@ -42,7 +42,7 @@ namespace DragonAidWindowsClient
             // This involves network IO. We'll put up a loading indicator (either full-screen or
             // non-obtrusive, depending on if anything could be loaded synchronously)
             LoadingState = loaded ? LoadingStates.LoadingUpdate : LoadingStates.LoadingFresh;
-            await viewModel.LoadPartyFromServiceAsync(partyId);
+            //await viewModel.LoadPartyFromServiceAsync(partyId);
             LoadingState = LoadingStates.NotLoading;
         }
 

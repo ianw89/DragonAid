@@ -9,7 +9,7 @@ namespace DragonAidWindowsClient.ViewModel
 {
     public sealed class SampleDataSource
     {
-        private List<Character> _sampleCharacters = new List<Character>
+        private readonly List<Character> _sampleCharacters = new List<Character>
             {
                 new Character
                     {
@@ -134,15 +134,15 @@ namespace DragonAidWindowsClient.ViewModel
                     },
             };
 
-        private List<Party> _sampleParties = new List<Party>
+        private readonly List<Party> _sampleParties = new List<Party>
             {
                 new Party
                     {
                         Id = 1,
-                        Title = "Our Tuesday Game",
-                        Description = "Fun Tuesday fun times",
-                        GameMasterName = "Me",
-                        ImageUri = null
+                        Title = "Tuesday Night DragonQuest",
+                        Description = "Casual weekly DragonQuest.",
+                        GameMasterName = "Ian Williams",
+                        ImageUri = "Assets\\MyCharacters.png"
                     },
                 new Party
                     {
@@ -150,7 +150,7 @@ namespace DragonAidWindowsClient.ViewModel
                         Title = "The Land Of Moordoor",
                         Description = "Where the shadows (of sunken boats) lie",
                         GameMasterName = "Me",
-                        ImageUri = null
+                        ImageUri = "Assets\\MyCharacters.png"
                     }
             };
 

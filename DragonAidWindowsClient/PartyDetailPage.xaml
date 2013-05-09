@@ -16,7 +16,7 @@
         <CollectionViewSource
             x:Name="CharactersViewSource"
             Source="{Binding Items}"
-            d:Source="{Binding AllParties.Parties[0].Characters, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllParties.PartyViews[0].Characters, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -27,7 +27,7 @@
     <Grid
         Style="{StaticResource LayoutRootStyle}"
         DataContext="{Binding Group}"
-        d:DataContext="{Binding AllParties.Parties[0], Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}">
+        d:DataContext="{Binding AllParties.PartyViews[0], Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -96,6 +96,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <TextBlock x:Name="PageTitle2" Text="PartyDetailPage" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
