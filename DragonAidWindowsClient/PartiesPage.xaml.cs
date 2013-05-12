@@ -26,7 +26,7 @@ namespace DragonAidWindowsClient
             private set;
         }
 
-        protected bool UseWebService
+        public bool UseWebService
         {
             get { return false; }
         }

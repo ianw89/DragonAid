@@ -142,6 +142,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.2.0.1\lib\winrt45\FluentAssertions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.MobileServices.Managed">
       <HintPath>..\packages\WindowsAzure.MobileServices.0.2.0\lib\win8\Microsoft.WindowsAzure.MobileServices.Managed.dll</HintPath>
     </Reference>

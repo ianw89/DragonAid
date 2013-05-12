@@ -1,5 +1,6 @@
 using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace DragonAidLibTest.Tests.Unit
@@ -19,7 +20,7 @@ namespace DragonAidLibTest.Tests.Unit
                 MagicalAptitude = 15,
             };
 
-            Assert.AreEqual("45", converter.Convert(action.DetermineChanceOfSuccess, typeof(string), joe, "en-us"));
+            converter.Convert(action.DetermineChanceOfSuccess, typeof (string), joe, "en-us").Should().Be("45");
         }
     }
 }

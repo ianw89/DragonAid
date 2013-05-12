@@ -1,5 +1,6 @@
 using DragonAidLib.Data;
 using DragonAidLib.Data.Model;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace DragonAidLibTest.Tests.Unit
@@ -10,17 +11,27 @@ namespace DragonAidLibTest.Tests.Unit
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
         {
-            Assert.AreEqual(2, CharacterEquations.ComputeBasicTacticalMovementRate(3, Race.Human));
-            Assert.AreEqual(5, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human));
-            Assert.AreEqual(8, CharacterEquations.ComputeBasicTacticalMovementRate(26, Race.Human));
+
+            CharacterEquations.ComputeBasicTacticalMovementRate(3, Race.Human).Should().Be(2);
+            CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human).Should().Be(5);
+            CharacterEquations.ComputeBasicTacticalMovementRate(26, Race.Human).Should().Be(8);
         }
 
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingRaces()
         {
-            Assert.AreEqual(5, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human));
-            Assert.AreEqual(4, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Dwarf));
-            Assert.AreEqual(6, CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Elf));
+            CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human).Should().Be(5);
+            CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Dwarf).Should().Be(4);
+            CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Elf).Should().Be(6);
         }
+
+        [Ignore]
+        [TestMethod]
+        public void Test()
+        {
+            ////CharacterEquations.ComputeModifiedManualDexterity(20, null /* objects for shield*/);
+        }
+
+
     }
 }

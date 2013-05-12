@@ -18,10 +18,9 @@
         -->
         <CollectionViewSource
             x:Name="PartiesViewSource"
-            Source="{Binding Numbers}"
+            Source="{Binding PartyViews}"
             IsSourceGrouped="true"
-            ItemsPath="TopCharacters"
-            d:Source="{Binding AllParties.PartyViews, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            ItemsPath="TopCharacters"/>
     </Page.Resources>
 
     <!--
@@ -54,8 +53,10 @@
                     <VirtualizingStackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
+            
             <GridView.GroupStyle>
                 <GroupStyle>
+                    
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="1,0,0,6">
@@ -65,20 +66,22 @@
                                     Style="{StaticResource TextPrimaryButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="PartiesPage" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
-                                        <TextBlock Text="PP2" Margin="300,-250,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>
                             </Grid>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
+                    
                     <GroupStyle.Panel>
                         <ItemsPanelTemplate>
                             <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
                         </ItemsPanelTemplate>
                     </GroupStyle.Panel>
+                    
                 </GroupStyle>
             </GridView.GroupStyle>
+        
         </GridView>
 
         <!-- Vertical scrolling list only used when snapped -->
