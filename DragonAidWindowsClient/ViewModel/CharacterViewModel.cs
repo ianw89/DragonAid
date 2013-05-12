@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using DragonAidLib.Data;
-using DragonAidLib.Data.Model;
+using DragonAid.Lib.Data;
+using DragonAid.Lib.Data.Model;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DragonAidWindowsClient.ViewModel
+namespace DragonAid.WindowsClient.ViewModel
 {
     /// <summary>
     /// ViewModel for a Character, for use as either a tile in one of the Character pages or the content in

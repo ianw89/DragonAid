@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using DragonAidLib.Data;
-using DragonAidLib.Data.Model;
+using DragonAid.Lib.Data;
+using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 
-namespace DragonAidWindowsClient.ViewModel
+namespace DragonAid.WindowsClient.ViewModel
 {
     /// <summary>
     /// ViewModel for a Character with its set of associated Characters

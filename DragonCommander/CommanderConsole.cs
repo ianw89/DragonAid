@@ -1,9 +1,10 @@
 ﻿namespace DragonAid.Commander
 {
-    public class Program
+    public class CommanderConsole
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

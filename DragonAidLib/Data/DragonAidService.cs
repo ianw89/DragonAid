@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Popups;
 
-namespace DragonAidLib.Data
+namespace DragonAid.Lib.Data
 {
     /// <summary>
     /// Acts as a singleton around an app-wide MobileServiceClient pointing to the production

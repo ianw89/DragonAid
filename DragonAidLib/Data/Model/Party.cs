@@ -1,4 +1,4 @@
-namespace DragonAidLib.Data.Model
+namespace DragonAid.Lib.Data.Model
 {
     public sealed class Party
     {

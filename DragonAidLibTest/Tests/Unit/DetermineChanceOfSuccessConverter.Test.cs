@@ -1,9 +1,9 @@
-using DragonAidLib.Data;
-using DragonAidLib.Data.Model;
+using DragonAid.Lib.Data;
+using DragonAid.Lib.Data.Model;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace DragonAidLibTest.Tests.Unit
+namespace DragonAid.Test.Tests.Unit
 {
     [TestClass]
     public class DetermineChanceOfSuccessConverterTest

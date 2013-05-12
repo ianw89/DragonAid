@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonAidLibTest", "DragonA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonAidLib", "DragonAidLib\DragonAidLib.csproj", "{63CDFF4A-7C4F-42F0-A7F4-8D5D831FA15E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonCommander", "DragonCommander\DragonCommander.csproj", "{48B90D54-839D-4A69-86D1-14F30D9B6372}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{63CDFF4A-7C4F-42F0-A7F4-8D5D831FA15E}.Release|x64.Build.0 = Release|x64
 		{63CDFF4A-7C4F-42F0-A7F4-8D5D831FA15E}.Release|x86.ActiveCfg = Release|x86
 		{63CDFF4A-7C4F-42F0-A7F4-8D5D831FA15E}.Release|x86.Build.0 = Release|x86
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Release|ARM.ActiveCfg = Release|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Release|x64.ActiveCfg = Release|Any CPU
+		{48B90D54-839D-4A69-86D1-14F30D9B6372}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

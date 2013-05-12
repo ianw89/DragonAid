@@ -1,6 +1,6 @@
 using Microsoft.WindowsAzure.MobileServices;
 
-namespace DragonAidLib.Data.Model
+namespace DragonAid.Lib.Data.Model
 {
     /// <summary>
     /// This base class just consists of those properties which are persisted to the backing service

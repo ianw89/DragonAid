@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DragonAidLib.Data.Model;
+﻿using System.Collections.Generic;
+using DragonAid.Lib.Data.Model;
 
-namespace DragonAidWindowsClient.ViewModel
+namespace DragonAid.WindowsClient.ViewModel
 {
     public sealed class SampleDataSource
     {

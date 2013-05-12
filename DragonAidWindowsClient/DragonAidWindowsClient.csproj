@@ -7,7 +7,7 @@
     <ProjectGuid>{90FCFDA6-C700-4FF8-9EB9-D8D58A52359F}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DragonAidWindowsClient</RootNamespace>
+    <RootNamespace>DragonAid.WindowsClient</RootNamespace>
     <AssemblyName>DragonAidWindowsClient</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

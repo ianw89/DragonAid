@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace DragonAidLib.Data.Model
+namespace DragonAid.Lib.Data.Model
 {
     public class CombatAction
     {

@@ -1,7 +1,7 @@
 using System.Diagnostics.Contracts;
-using DragonAidLib.Data.Model;
+using DragonAid.Lib.Data.Model;
 
-namespace DragonAidLib.Data
+namespace DragonAid.Lib.Data
 {
     public static class CharacterEquations
     {

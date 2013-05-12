@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using DragonAidLib.Data;
-using DragonAidLib.Data.Model;
-using DragonAidWindowsClient.ViewModel;
+using DragonAid.Lib.Data;
+using DragonAid.WindowsClient.Common;
+using DragonAid.WindowsClient.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Grouped Characters Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
 
-namespace DragonAidWindowsClient
+namespace DragonAid.WindowsClient
 {
     /// <summary>
     /// A page that displays a grouped collection of items.
     /// </summary>
-    public sealed partial class PartiesPage : DragonAidWindowsClient.Common.LayoutAwarePage
+    public sealed partial class PartiesPage : LayoutAwarePage
     {
         public PartiesPage()
         {

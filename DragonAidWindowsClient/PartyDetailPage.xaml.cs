@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using DragonAidLib.Data.Model;
-using DragonAidWindowsClient.ViewModel;
+using DragonAid.Lib.Data.Model;
+using DragonAid.WindowsClient.Common;
+using DragonAid.WindowsClient.ViewModel;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
 
-namespace DragonAidWindowsClient
+namespace DragonAid.WindowsClient
 {
     /// <summary>
     /// A page that displays an overview of a single group, including a preview of the items
     /// within the group.
     /// </summary>
-    public sealed partial class PartyDetailPage : DragonAidWindowsClient.Common.LayoutAwarePage
+    public sealed partial class PartyDetailPage : LayoutAwarePage
     {
         public PartyDetailPage()
         {

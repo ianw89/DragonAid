@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.Data.Json;
 
-namespace DragonAidLib.Data.Model
+namespace DragonAid.Lib.Data.Model
 {
     /// <summary>
     /// Instances of this class are NOT persisted to a data source - the only currently valid options

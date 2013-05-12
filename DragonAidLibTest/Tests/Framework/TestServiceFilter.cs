@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.Foundation;
 
-namespace DragonAidLibTest.Tests.Framework
+namespace DragonAid.Test.Tests.Framework
 {
     /// <summary>
     /// ServiceFilter that allows a test to control the HTTP pipeline and

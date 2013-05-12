@@ -9,7 +9,7 @@
     <ProjectGuid>{41F5C267-22EF-4F37-B78C-C2E27407E53F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DragonAidLibTest</RootNamespace>
+    <RootNamespace>DragonAid.Test</RootNamespace>
     <AssemblyName>DragonAidLibTest</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

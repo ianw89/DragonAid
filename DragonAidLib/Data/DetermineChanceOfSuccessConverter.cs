@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
-using DragonAidLib.Data.Model;
+using DragonAid.Lib.Data.Model;
 using Windows.UI.Xaml.Data;
 
-namespace DragonAidLib.Data
+namespace DragonAid.Lib.Data
 {
     public class DetermineChanceOfSuccessConverter : IValueConverter
     {
