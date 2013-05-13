@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+#if INCLUDE_AZURE_BINDINGS
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.Data.Json;
+#endif
 
 namespace DragonAid.Lib.Data.Model
 {
@@ -33,6 +35,7 @@ namespace DragonAid.Lib.Data.Model
     /// <summary>
     /// Converts between the known races and static index values.
     /// </summary>
+#if INCLUDE_AZURE_BINDINGS
     public class RaceJsonConverter : IDataMemberJsonConverter
     {
         private static readonly List<Race> Races = new List<Race>
@@ -59,4 +62,5 @@ namespace DragonAid.Lib.Data.Model
             return JsonValue.CreateNumberValue(index);
         }
     }
+#endif
 }

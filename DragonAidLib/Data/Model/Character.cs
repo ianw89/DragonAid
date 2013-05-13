@@ -1,4 +1,6 @@
+#if INCLUDE_AZURE_BINDINGS
 using Microsoft.WindowsAzure.MobileServices;
+#endif
 
 namespace DragonAid.Lib.Data.Model
 {
@@ -32,7 +34,9 @@ namespace DragonAid.Lib.Data.Model
         public int PartyId { get; set; }
 
         // *** DragonQuest specific properties (may be refactored later)
+#if INCLUDE_AZURE_BINDINGS
         [DataMemberJsonConverter(ConverterType = typeof(RaceJsonConverter))]
+#endif
         public Race Race { get; set; }
 
         public int PhysicalStrength { get; set; }

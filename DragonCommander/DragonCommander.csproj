@@ -56,6 +56,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DragonAidLib\Data\CharacterEquations.cs">
+      <Link>Data\CharacterEquations.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\DetermineChanceOfSuccessConverter.cs">
+      <Link>Data\DetermineChanceOfSuccessConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\HardCodedSampleData.cs">
+      <Link>Data\HardCodedSampleData.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\Character.cs">
+      <Link>Data\Model\Character.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\CombatAction.cs">
+      <Link>Data\Model\CombatAction.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\Party.cs">
+      <Link>Data\Model\Party.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\Race.cs">
+      <Link>Data\Model\Race.cs</Link>
+    </Compile>
     <Compile Include="CommanderConsole.cs" />
     <Compile Include="MainMenuState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

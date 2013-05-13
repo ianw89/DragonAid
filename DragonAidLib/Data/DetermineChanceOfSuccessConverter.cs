@@ -2,11 +2,17 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using DragonAid.Lib.Data.Model;
+#if INCLUDE_AZURE_BINDINGS
 using Windows.UI.Xaml.Data;
+#endif
 
 namespace DragonAid.Lib.Data
 {
+#if INCLUDE_AZURE_BINDINGS
     public class DetermineChanceOfSuccessConverter : IValueConverter
+#else
+    public class DetermineChanceOfSuccessConverter
+#endif
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
