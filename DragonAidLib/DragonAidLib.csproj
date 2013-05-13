@@ -109,6 +109,7 @@
     <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
+    <Compile Include="Data\HardCodedSampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
