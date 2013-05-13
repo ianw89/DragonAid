@@ -50,9 +50,9 @@ namespace DragonAid.Commander
             // 1:  Some User Choice
             foreach (var choice in choiceList)
             {
-                Console.Write(choice.InputNumber);
+                Console.Write(choice.Key);
                 Console.Write(":  ");
-                Console.WriteLine(choice.Description);
+                Console.WriteLine(choice.Value.Description);
             }
         }
     }

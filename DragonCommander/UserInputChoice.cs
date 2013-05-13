@@ -4,13 +4,10 @@ namespace DragonAid.Commander
 {
     internal class UserInputChoice
     {
-        public UserInputChoice(int number, string description)
+        public UserInputChoice(string description)
         {
-            this.InputNumber = number;
             this.Description = description;
         }
-
-        public int InputNumber { get; private set; }
 
         public string Description { get; private set; }
 

@@ -13,6 +13,6 @@
         /// <summary>
         /// Called when input is received from the user. 
         /// </summary>
-        public abstract void ProcessInput(string input);
+        public abstract bool ProcessInput(string input);
     }
 }

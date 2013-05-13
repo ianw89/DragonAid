@@ -19,8 +19,8 @@ namespace DragonAid.Commander
         private bool HandleUserInput()
         {
             var input = Console.ReadLine();
-            this._currentState.ProcessInput(input);
-            return false;
+            Console.WriteLine();
+            return this._currentState.ProcessInput(input);
         }
 
         private void Startup()
