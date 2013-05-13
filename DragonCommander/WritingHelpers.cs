@@ -11,6 +11,12 @@ namespace DragonAid.Commander
         /// </summary>
         internal static void WriteLineWithSeperators(params string[] messages)
         {
+            // EXAMPLE:
+            // ==================================================
+            // COOL BLOCK OF TEXT!
+            // Longer message that sets the length of the thingys
+            // Something else
+            // ==================================================
             if (!messages.Any())
             {
                 WriteSeperatorLine(50);
@@ -27,13 +33,27 @@ namespace DragonAid.Commander
             }
         }
 
-        internal static void WriteSeperatorLine(int number)
+        private static void WriteSeperatorLine(int number)
         {
+            // EXAMPLE:
+            // ========================================
             for (int x = 0; x < number; x++)
             {
                 Console.Write("=");
             }
             Console.WriteLine();
+        }
+
+        internal static void WriteListOfChoices(ChoiceList choiceList)
+        {
+            // EXAMPLE:
+            // 1:  Some User Choice
+            foreach (var choice in choiceList)
+            {
+                Console.Write(choice.InputNumber);
+                Console.Write(":  ");
+                Console.WriteLine(choice.Description);
+            }
         }
     }
 }

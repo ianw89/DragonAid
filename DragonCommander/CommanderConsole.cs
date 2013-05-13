@@ -18,7 +18,8 @@ namespace DragonAid.Commander
 
         private bool HandleUserInput()
         {
-            Console.ReadLine();
+            var input = Console.ReadLine();
+            this._currentState.ProcessInput(input);
             return false;
         }
 
@@ -30,14 +31,14 @@ namespace DragonAid.Commander
                 "Welcome! This app provides a variety of command line utilities.");
             Console.WriteLine();
 
-            this._currentState = new MainMenuState();
+            this._currentState = new MainMenuState(this);
             this._currentState.Enter();
         }
 
         private void Shutdown()
         {
             WritingHelpers.WriteLineWithSeperators("E X I T I N G   D R A G O N   A I D");
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
         }
     }
 }
