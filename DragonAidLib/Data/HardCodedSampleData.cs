@@ -50,6 +50,7 @@ namespace DragonAid.Lib.Data
                         PlayerName = "Dan",
                         IsMine = false,
                         PartyId = 1,
+<<<<<<< HEAD
                         PhysicalStrength = 9,
                         ManualDexterity = 12,
                         Agility = 16,
@@ -57,6 +58,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 20,
                         Willpower = 15,
                         Perception = 9,
+=======
+>>>>>>> Moved hard coded data to a new class
                     },
                 new Character
                     {
@@ -69,8 +72,11 @@ namespace DragonAid.Lib.Data
                         IsMine = false,
                         PartyId = 1,
                     },
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Moved hard coded data to a new class
                 new Character
                     {
                         Id = 6,

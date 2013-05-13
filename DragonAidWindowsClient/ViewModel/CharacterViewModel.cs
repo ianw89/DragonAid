@@ -86,7 +86,8 @@ namespace DragonAid.WindowsClient.ViewModel
 
         // TODO: Hook up a DragonAidService....UpdateAsync()
         public event PropertyChangedEventHandler CharacterPropertyChanged;
-        protected void OnCharacterPropertyChanged([CallerMemberName] string propertyName = null)
+
+        private void OnCharacterPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var eventHandler = CharacterPropertyChanged;
             if (eventHandler != null)
