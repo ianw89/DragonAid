@@ -112,6 +112,7 @@
     <Compile Include="Data\RollResult.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

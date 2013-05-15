@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     
     FontSize="18">
+   
     
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
@@ -22,7 +23,12 @@
 
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
             <TextBlock Text="Gamemaster Console Screen" />
-            <TextBlock Text="Subtitle" />
+
+            <TextBlock>
+                <Run Text="PS: " />
+                <Run Text="{Binding Path=PhysicalStrength}" />
+            </TextBlock>
+
         </StackPanel>
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
