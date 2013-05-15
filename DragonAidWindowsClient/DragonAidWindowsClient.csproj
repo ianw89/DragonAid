@@ -114,6 +114,9 @@
       <DependentUpon>CharacterDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="GamemasterConsolePage.xaml.cs">
+      <DependentUpon>GamemasterConsolePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PartiesPage.xaml.cs">
       <DependentUpon>PartiesPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GamemasterConsolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PartiesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
