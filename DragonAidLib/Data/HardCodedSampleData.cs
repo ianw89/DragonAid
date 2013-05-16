@@ -16,6 +16,7 @@ namespace DragonAid.Lib.Data
                         ImageUri = null,
                         PlayerName = "Jen",
                         IsMine = false,
+                        Race = Race.Human,
                         PartyId = 1,
                         PhysicalStrength = 20,
                         ManualDexterity = 15,
@@ -24,6 +25,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 5,
                         Willpower = 9,
                         Perception = 13,
+                        PhysicalBeauty = 13,
+                        Fatigue = 23
                     },
                 new Character
                     {
@@ -33,6 +36,7 @@ namespace DragonAid.Lib.Data
                         Description = "Nazi Hunter. Unknown and at large.",
                         ImageUri = null,
                         PlayerName = "Dan",
+                        Race = Race.Human,
                         IsMine = true,
                         PartyId = 1,
                         PhysicalStrength = 9,
@@ -42,6 +46,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 20,
                         Willpower = 15,
                         Perception = 9,
+                        PhysicalBeauty = 15,
+                        Fatigue = 22
                     },
                 new Character
                     {
@@ -51,6 +57,7 @@ namespace DragonAid.Lib.Data
                         Description = "Falcon Lover of the ages.",
                         ImageUri = null,
                         PlayerName = "David",
+                        Race = Race.Human,
                         IsMine = false,
                         PartyId = 1,
                         PhysicalStrength = 18,
@@ -60,6 +67,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 7,
                         Willpower = 19,
                         Perception = 9,
+                        PhysicalBeauty = 15,
+                        Fatigue = 21
                     },
                 new Character
                     {
@@ -69,6 +78,7 @@ namespace DragonAid.Lib.Data
                         Description = "Full of venom, and worse.",
                         ImageUri = null,
                         PlayerName = "Matt",
+                        Race = Race.Human,
                         IsMine = false,
                         PartyId = 1,
                         PhysicalStrength = 14,
@@ -78,6 +88,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 20,
                         Willpower = 18,
                         Perception = 8,
+                        PhysicalBeauty = 12,
+                        Fatigue = 21
                     },
                 new Character
                     {
@@ -87,6 +99,7 @@ namespace DragonAid.Lib.Data
                         Description = "A bag of secrets.",
                         ImageUri = null,
                         PlayerName = "Lindsay",
+                        Race = Race.Human,
                         IsMine = false,
                         PartyId = 1,
                         PhysicalStrength = 15,
@@ -96,6 +109,8 @@ namespace DragonAid.Lib.Data
                         MagicalAptitude = 5,
                         Willpower = 10,
                         Perception = 9,
+                        PhysicalBeauty = 15,
+                        Fatigue = 21
                     },
 
 
