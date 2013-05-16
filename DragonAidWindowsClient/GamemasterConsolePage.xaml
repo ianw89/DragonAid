@@ -25,8 +25,28 @@
             <TextBlock Text="Gamemaster Console Screen" />
 
             <TextBlock>
-                <Run Text="PS: " />
-                <Run Text="{Binding Path=PhysicalStrength}" />
+                <LineBreak/>
+                PS: 
+                <Run Text="{Binding Path=PhysicalStrength}"/>
+                MD: 
+                <Run Text="{Binding Path=ManualDexterity}"/>
+                AG: 
+                <Run Text="{Binding Path=Agility}"/>
+                MA: 
+                <Run Text="{Binding Path=MagicalAptitude}"/>
+                WP: 
+                <Run Text="{Binding Path=Willpower}"/>
+                EN:
+                <Run Text="{Binding Path=Endurance}"/>
+                FT:
+                <Run Text="{Binding Path=Fatigue}"/>
+                PC: 
+                <Run Text="{Binding Path=Perception}"/>
+                PB: 
+                <Run Text="{Binding Path=PhysicalBeauty}"/>
+                TMR:
+                <Run Text="{Binding Path=TacticalMovementRate}"/>
+                <LineBreak/>
             </TextBlock>
 
         </StackPanel>

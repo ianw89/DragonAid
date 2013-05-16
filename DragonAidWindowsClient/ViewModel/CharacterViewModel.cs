@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
@@ -94,6 +96,16 @@ namespace DragonAid.WindowsClient.ViewModel
             get { return Character.Fatigue; }
             set { SetCharacterProperty(c => c.Fatigue = value); }
         }
+        public int Perception
+        {
+            get { return Character.Perception; }
+            set { SetCharacterProperty(c => c.Perception = value); }
+        }
+        public int TacticalMovementRate
+        {
+            get { return Character.TacticalMovementRate(); }
+            set { throw new NotSupportedException("Cannot set TMR."); }
+        }
 
         #endregion
 
@@ -123,10 +135,9 @@ namespace DragonAid.WindowsClient.ViewModel
             await LoadCharacterFromServiceAsync(DragonAidService.Client, characterId);
         }
 
-        public async Task LoadCharacterFromServiceAsync(MobileServiceClient client, int characterId)
+        public void LoadCharacterFromStaticData(int characterId)
         {
-            var characterTable = client.GetTable<Character>();
-            Character = await characterTable.LookupAsync(characterId);
+            Character = HardCodedSampleData.SampleCharacters.Single(c => c.Id == characterId);
         }
 
         #region Character change handling
@@ -154,6 +165,12 @@ namespace DragonAid.WindowsClient.ViewModel
         private static string CharacterIdToUniqueId(int characterId)
         {
             return string.Format("Character/{0}", characterId);
+        }
+
+        private async Task LoadCharacterFromServiceAsync(MobileServiceClient client, int characterId)
+        {
+            var characterTable = client.GetTable<Character>();
+            Character = await characterTable.LookupAsync(characterId);
         }
 
         private void CharacterChangedHandler(object sender, PropertyChangedEventArgs args)
