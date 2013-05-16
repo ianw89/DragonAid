@@ -50,7 +50,7 @@ namespace DragonAid.WindowsClient
 
             var viewModel = new CharacterViewModel();
 
-            this.DefaultViewModel["Character"] = viewModel;
+            this.DataContext = viewModel;
 
             // This is fast and can be done synchronously
             // Try and load from saved data. Not implemented really...
@@ -71,16 +71,10 @@ namespace DragonAid.WindowsClient
 
             LoadingState = LoadingStates.NotLoading;
         }
-        
-        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void OnOnLoadingStateChanged(object sender, EventArgs eventArgs)
         {
             // TODO maybe do something
         }
-
     }
 }

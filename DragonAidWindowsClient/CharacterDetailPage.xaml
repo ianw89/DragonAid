@@ -1,7 +1,6 @@
 ﻿<common2:LayoutAwarePage
     x:Name="PageRoot"
     x:Class="DragonAid.WindowsClient.CharacterDetailPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,232 +8,124 @@
     xmlns:viewmodel="using:DragonAid.WindowsClient.ViewModel" xmlns:common2="using:DragonAid.WindowsClient.Common"
     mc:Ignorable="d">
 
-    <Page.Resources>
-
-        <!-- Collection of characters displayed by this page -->
-        <!-- CollectionViewSource is a convenient way to remember a binding so it can be accessed in multiple spots -->
-        <CollectionViewSource
-            x:Name="CharactersViewSource"
-            Source="{Binding Items}"
-            d:Source="{Binding AllParties.PartyViews[0].C, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
-    </Page.Resources>
-
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid
-        Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
-        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <!-- Top row for Title and Back Button -->
+            <RowDefinition Height="300"/>
+            <!-- Rest of the space for character data -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <!--
-            The remainder of the page is one large FlipView that displays details for
-            one item at a time, allowing the user to flip through all items in the chosen
-            group
-        -->
-        <FlipView
-            x:Name="FlipView"
-            AutomationProperties.AutomationId="CharactersFlipView"
-            AutomationProperties.Name="Item Details"
-            TabIndex="1"
-            Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource CharactersViewSource}}" SelectionChanged="flipView_SelectionChanged">
 
-            <FlipView.ItemContainerStyle>
-                <Style TargetType="FlipViewItem">
-                    <Setter Property="Margin" Value="0,137,0,0"/>
-                </Style>
-            </FlipView.ItemContainerStyle>
-
-            <FlipView.ItemTemplate>
-                <DataTemplate>
-
-                    <!--
-                        UserControl chosen as the templated item because it supports visual state management
-                        Loaded/unloaded events explicitly subscribe to view state updates from the page
-                    -->
-                    <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates">
-
-
-                        <!-- All the info about this Character is in a ScrollViewer so it scales indefinetely. -->
-                        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
-
-                            <!-- There are several 'sections' of character related info, they each sit in this StackPanel -->
-                            <StackPanel>
-                                                              
-                                <!-- Content is allowed to flow across as many columns as needed -->
-                                <common2:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
-                                    <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
-                                        <Paragraph>
-                                            <Run FontSize="36" FontWeight="Light" Text="{Binding Title}"/>
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            <Run FontWeight="Normal" Text="{Binding Subtitle}"/>
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            <Run FontWeight="Normal" Text="{Binding Description}"/>
-                                        </Paragraph>
-                                        <Paragraph LineStackingStrategy="MaxHeight">
-                                            <InlineUIContainer>
-                                                <Image x:Name="image" MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
-                                            </InlineUIContainer>
-                                        </Paragraph>
-                                        <Paragraph FontSize="36" FontWeight="Light" LineHeight="50">
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            PS: 
-                                            <Run Text="{Binding PhysicalStrength}"/>
-                                            MD: 
-                                            <Run Text="{Binding ManualDexterity}"/>
-                                            AG: 
-                                            <Run Text="{Binding Agility}"/>
-                                            MA: 
-                                            <Run Text="{Binding MagicalAptitude}"/>
-                                            WP: 
-                                            <Run Text="{Binding Willpower}"/>
-                                            EN:
-                                            <Run Text="{Binding Endurance}"/>
-                                            FT:
-                                            <Run Text="{Binding Fatigue}"/>
-                                            PC: 
-                                            <Run Text="{Binding Perception}"/>
-                                            PB: 
-                                            <Run Text="{Binding PhysicalBeauty}"/>
-                                            TMR:
-                                            <Run Text="{Binding TacticalMovementRate}"/>
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                        </Paragraph>
-                                    </RichTextBlock>
-
-
-                                    <!-- Additional columns are created from this template -->
-                                    <common2:RichTextColumns.ColumnTemplate>
-                                        <DataTemplate>
-                                            <RichTextBlockOverflow Width="560" Margin="80,0,0,0">
-                                                <RichTextBlockOverflow.RenderTransform>
-                                                    <TranslateTransform X="-1" Y="4"/>
-                                                </RichTextBlockOverflow.RenderTransform>
-                                            </RichTextBlockOverflow>
-                                        </DataTemplate>
-                                    </common2:RichTextColumns.ColumnTemplate>
-                                </common2:RichTextColumns>
-
-                                
-                                <!-- After that stuff we show the combat actions the character can make -->
-                                <ListView x:Name="attackList" ItemsSource="{Binding CombatActions}">
-
-                                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Height="60" Margin="117,0,117,47">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,0,0">
-                                                    <TextBlock Text="{Binding Name}"/>
-                                                </StackPanel>
-                                                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                                                    <TextBlock Text="TODO: Figure out how to map DetermineChanceOfSuccess. Possibly a converter?"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-
-                            </StackPanel>
-                                   
-                            <VisualStateManager.VisualStateGroups>
-
-                                <!-- Visual states reflect the application's view state inside the FlipView -->
-                                <VisualStateGroup x:Name="ApplicationViewStates">
-                                    <VisualState x:Name="FullScreenLandscape"/>
-                                    <VisualState x:Name="Filled"/>
-
-                                    <!-- Respect the narrower 100-pixel margin convention for portrait -->
-                                    <VisualState x:Name="FullScreenPortrait">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="97,0,87,57"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="400"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-
-                                    <!-- When snapped, the content is reformatted and scrolls vertically -->
-                                    <VisualState x:Name="Snapped">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="17,0,17,57"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="scrollViewer" Storyboard.TargetProperty="Style">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource VerticalScrollViewerStyle}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextBlock" Storyboard.TargetProperty="Width">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="280"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="160"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                        </ScrollViewer>
-                    </UserControl>
-                </DataTemplate>
-            </FlipView.ItemTemplate>
-        </FlipView>
-         
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
-            <TextBlock x:Name="PageTitle2" Text="CharacterDetailPage" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}" Grid.Column="0" Grid.Row="0"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" Grid.Row="0" IsHitTestVisible="false"/>
+            <TextBlock x:Name="PageSubtitle" Text="{Binding Subtitle}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1" Grid.Row="1" IsHitTestVisible="false"/>
         </Grid>
 
-        <VisualStateManager.VisualStateGroups>
+        <!-- Most of the page is split into two big columns -->
+        <Grid Grid.Row="1">
 
-            <!-- Visual states reflect the application's view state -->
-            <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
+            <Grid.ColumnDefinitions>
+                <!-- Left is for charcter info -->
+                <ColumnDefinition Width="*"/>
+                <!-- Right is for actions the player can take with his character -->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- The back button respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
+            <!-- Left half of the screen: Info -->
+            <StackPanel Grid.Column="0">
 
-                <!-- The back button and title have different styles when snapped -->
-                <VisualState x:Name="Snapped">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+                <RichTextBlock Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
+                    <Paragraph LineStackingStrategy="MaxHeight">
+                        <InlineUIContainer>
+                            <Image x:Name="image" MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph FontSize="24" FontWeight="Light" LineHeight="50">
+                        Description:
+                        <Run Text="{Binding Description}"/>
+                        <LineBreak/>
+                        <LineBreak/>
+                    </Paragraph>
+                    <Paragraph FontSize="36" FontWeight="Light" LineHeight="50">
+                        PS:
+                        <Run Text="{Binding PhysicalStrength}"/>
+                        MD:
+                        <Run Text="{Binding ManualDexterity}"/>
+                        AG:
+                        <Run Text="{Binding Agility}"/>
+                        MA:
+                        <Run Text="{Binding MagicalAptitude}"/>
+                        WP:
+                        <Run Text="{Binding Willpower}"/>
+                        EN:
+                        <Run Text="{Binding Endurance}"/>
+                        FT:
+                        <Run Text="{Binding Fatigue}"/>
+                        PC:
+                        <Run Text="{Binding Perception}"/>
+                        PB:
+                        <Run Text="{Binding PhysicalBeauty}"/>
+                        TMR:
+                        <Run Text="{Binding TacticalMovementRate}"/>
+                        <LineBreak/>
+                        <LineBreak/>
+                    </Paragraph>
+                </RichTextBlock>
+
+
+
+                <!-- After that stuff we show the combat actions the character can make -->
+                <!-- This template defines how the items in the list of CombatAttacks are displayed -->
+                <!--<ListView ItemsSource="{Binding CombatActions}">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="60" Margin="117,0,117,47">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,0,0">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                                    <TextBlock Text="TODO: Figure out how to map DetermineChanceOfSuccess. Possibly a converter?"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+
+            </StackPanel>
+
+            <!-- Right half of the screen: Actions -->
+            <StackPanel Grid.Column="1">
+                <Button Padding="30,15,30,15">
+                    <TextBlock Text="Action 1"/>
+                </Button>
+                <Button Padding="30,15,30,15">
+                    <TextBlock Text="Action 2"/>
+                </Button>
+                <Button Padding="30,15,30,15">
+                    <TextBlock Text="Action 3"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </common2:LayoutAwarePage>
