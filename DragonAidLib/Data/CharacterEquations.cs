@@ -30,43 +30,13 @@ namespace DragonAid.Lib.Data
             return tmr + race.TacticalMovementRateModifier;
         }
 
-        public static int TacticalMovementRate(this Character character)
-        {
-            return ComputeBasicTacticalMovementRate(character.Agility, character.Race);
-        }
-
 #if !DRAGON_COMMANDER
-        public static int ComputeCastChance(this Character character, Spell spell)
-        {
-            Contract.Requires(character != null);
-            Contract.Requires(spell != null);
-
-            return ComputeCastChance(character.MagicalAptitude, character.GetSpellRank(spell), spell.BaseChance);
-        }
 
         public static int ComputeCastChance(int magicalAptitude, int rank, int spellBaseChance)
         {
             return spellBaseChance + (magicalAptitude - 15) + (3 * rank);
         }
 
-        private static int GetSpellRank(this Character character, Spell spell)
-        {
-            Contract.Requires(character != null);
-            Contract.Requires(spell != null);
-
-            if (character.Spells == null)
-            {
-                throw new InvalidOperationException("Character has no spell!");
-            }
-
-            int rank;
-            if (!character.Spells.TryGetValue(spell.FullName, out rank))
-            {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Character has no ranks in {0}!", spell.FullName));
-            }
-
-            return rank;
-        }
 #endif
     }
 }

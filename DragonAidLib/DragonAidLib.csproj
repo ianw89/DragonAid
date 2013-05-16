@@ -101,6 +101,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\CharacterExtensions.cs" />
     <Compile Include="Data\DragonAidService.cs" />
     <Compile Include="Data\HardCodedSampleData.cs" />
     <Compile Include="Data\Model\Character.cs" />

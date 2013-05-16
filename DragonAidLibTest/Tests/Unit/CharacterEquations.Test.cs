@@ -56,25 +56,15 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ComputeCastChanceShouldThrowIfCharacterHasNoSpells()
         {
-            Action getCastChance = () => new Character().ComputeCastChance(fakeSpell);
+            Action getCastChance = () => new Character().CastChance(fakeSpell);
             getCastChance.ShouldThrow<InvalidOperationException>();
         }
 
         [TestMethod]
         public void ComputeCastChanceShouldThrowIfCharacterHasNoRankInSpell()
         {
-            Action getCastChance = () => new Character { Spells = new Dictionary<string, int>() }.ComputeCastChance(fakeSpell);
+            Action getCastChance = () => new Character {Spells = new Dictionary<string, int>()}.CastChance(fakeSpell);
             getCastChance.ShouldThrow<InvalidOperationException>();
-        }
-
-        [TestMethod]
-        public void ComputeCastChanceIntegrationTest()
-        {
-            var character = new Character { MagicalAptitude = 17, Spells = new Dictionary<string, int>() };
-            var spell = new Spell("Fireball", 20);
-            character.Spells[spell.FullName] = 5;
-
-            character.ComputeCastChance(spell).Should().Be(20 + (17 - 15) + (3 * 5));
         }
     }
 }

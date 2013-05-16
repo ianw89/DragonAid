@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 namespace DragonAid.Lib.Data
 {
     public class SpellcastResultRange
