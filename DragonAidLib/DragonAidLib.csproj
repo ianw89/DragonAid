@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NETFX_CORE; INCLUDE_AZURE_BINDINGS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE; INCLUDE_AZURE_BINDINGS;DRAGON_AID_LIB</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
@@ -110,6 +110,7 @@
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
     <Compile Include="Data\RollResult.cs" />
+    <Compile Include="Data\Spell.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />

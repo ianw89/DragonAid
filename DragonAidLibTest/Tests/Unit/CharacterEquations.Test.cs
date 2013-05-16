@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 using FluentAssertions;
@@ -8,6 +10,8 @@ namespace DragonAid.Test.Tests.Unit
     [TestClass]
     public class CharacterEquationsTests
     {
+        private readonly Spell fakeSpell = new Spell("FakeSpell", 0);
+
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
         {
@@ -25,13 +29,52 @@ namespace DragonAid.Test.Tests.Unit
             CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Elf).Should().Be(6);
         }
 
-        [Ignore]
         [TestMethod]
-        public void Test()
+        public void SpellCastChanceShouldBeBaseChanceIfNotRankedOrGreatAtMagic()
         {
-            ////CharacterEquations.ComputeModifiedManualDexterity(20, null /* objects for shield*/);
+            CharacterEquations.ComputeCastChance(15, 0, 10).Should().Be(10);
         }
 
+        [TestMethod]
+        public void BetterMagicalAptitudeShouldIncreaseSpellCastChance()
+        {
+            CharacterEquations.ComputeCastChance(20, 0, 10).Should().Be(15);
+        }
 
+        [TestMethod]
+        public void WorseMagicalAptitudeShouldIncreaseSpellCastChance()
+        {
+            CharacterEquations.ComputeCastChance(10, 0, 10).Should().Be(5);
+        }
+
+        [TestMethod]
+        public void HigherRankShouldIncreaseSpellCastChance()
+        {
+            CharacterEquations.ComputeCastChance(15, 3, 10).Should().Be(19);
+        }
+
+        [TestMethod]
+        public void ComputeCastChanceShouldThrowIfCharacterHasNoSpells()
+        {
+            Action getCastChance = () => new Character().ComputeCastChance(fakeSpell);
+            getCastChance.ShouldThrow<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void ComputeCastChanceShouldThrowIfCharacterHasNoRankInSpell()
+        {
+            Action getCastChance = () => new Character { Spells = new Dictionary<string, int>() }.ComputeCastChance(fakeSpell);
+            getCastChance.ShouldThrow<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void ComputeCastChanceIntegrationTest()
+        {
+            var character = new Character { MagicalAptitude = 17, Spells = new Dictionary<string, int>() };
+            var spell = new Spell("Fireball", 20);
+            character.Spells[spell.FullName] = 5;
+
+            character.ComputeCastChance(spell).Should().Be(20 + (17 - 15) + (3 * 5));
+        }
     }
 }

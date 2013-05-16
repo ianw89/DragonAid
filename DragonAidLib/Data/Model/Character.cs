@@ -1,4 +1,5 @@
 #if INCLUDE_AZURE_BINDINGS
+using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
 #endif
 
@@ -56,5 +57,10 @@ namespace DragonAid.Lib.Data.Model
         [DataMemberJsonConverter(ConverterType = typeof(SkillsJsonConverter))]
         public IDictionary<string, int> Skills { get; set; }
         */
+
+#if !DRAGON_COMMANDER
+        // TODO: converter?
+        public IDictionary<string, int> Spells { get; set; }
+#endif
     }
 }
