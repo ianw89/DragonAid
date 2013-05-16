@@ -111,6 +111,8 @@
     <Compile Include="Data\Model\Race.cs" />
     <Compile Include="Data\RollResult.cs" />
     <Compile Include="Data\Model\Spell.cs" />
+    <Compile Include="Data\SpellcastResultRange.cs" />
+    <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />
