@@ -110,7 +110,7 @@
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
     <Compile Include="Data\RollResult.cs" />
-    <Compile Include="Data\Spell.cs" />
+    <Compile Include="Data\Model\Spell.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />

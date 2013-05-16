@@ -1,6 +1,6 @@
 using System.Diagnostics.Contracts;
 
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.Data.Model
 {
     public class Spell
     {
