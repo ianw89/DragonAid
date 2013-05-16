@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left half of the screen: Info -->
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
 
                 <RichTextBlock Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph LineStackingStrategy="MaxHeight">
@@ -59,7 +59,6 @@
                     <Paragraph FontSize="24" FontWeight="Light" LineHeight="50">
                         Description:
                         <Run Text="{Binding Description}"/>
-                        <LineBreak/>
                         <LineBreak/>
                     </Paragraph>
                     <Paragraph FontSize="36" FontWeight="Light" LineHeight="50">
@@ -115,14 +114,15 @@
             </StackPanel>
 
             <!-- Right half of the screen: Actions -->
-            <StackPanel Grid.Column="1">
-                <Button Padding="30,15,30,15">
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <!-- Placeholders. We will have textboxes as inputs for formulas here and such... -->
+                <Button Padding="30,15,30,15" Margin="10">
                     <TextBlock Text="Action 1"/>
                 </Button>
-                <Button Padding="30,15,30,15">
+                <Button Padding="30,15,30,15" Margin="10">
                     <TextBlock Text="Action 2"/>
                 </Button>
-                <Button Padding="30,15,30,15">
+                <Button Padding="30,15,30,15" Margin="10">
                     <TextBlock Text="Action 3"/>
                 </Button>
             </StackPanel>
