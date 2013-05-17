@@ -17,11 +17,20 @@ namespace DragonAid.WindowsClient
     public sealed partial class CharacterDetailPage : LayoutAwarePage
     {
         private bool useWebServiceFordata = false;
+        private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
 
         public CharacterDetailPage()
         {
             this.InitializeComponent();
             this.OnLoadingStateChanged += OnOnLoadingStateChanged;
+        }
+
+        /// <summary>
+        /// The single view model that all the data on the page binds to. It represents one character.
+        /// </summary>
+        public CharacterViewModel CharacterViewModel
+        {
+            get { return _characterViewModel; }
         }
 
         /// <summary>
@@ -45,16 +54,12 @@ namespace DragonAid.WindowsClient
             }
             else
             {
-                characterId = HardCodedSampleData.SampleCharacters.First().Id;
+                characterId = 2; // Muscles
             }
-
-            var viewModel = new CharacterViewModel();
-
-            this.DataContext = viewModel;
 
             // This is fast and can be done synchronously
             // Try and load from saved data. Not implemented really...
-            bool loaded = viewModel.LoadState(characterId, pageState);
+            bool loaded = CharacterViewModel.LoadState(characterId, pageState);
 
             // This involves network IO. We'll put up a loading indicator (either full-screen or
             // non-obtrusive, depending on if anything could be loaded synchronously)
@@ -62,11 +67,11 @@ namespace DragonAid.WindowsClient
 
             if (this.useWebServiceFordata)
             {
-                await viewModel.LoadCharacterFromServiceAsync(characterId);
+                await CharacterViewModel.LoadCharacterFromServiceAsync(characterId);
             }
             else
             {
-                viewModel.LoadCharacterFromStaticData(characterId);
+                CharacterViewModel.LoadCharacterFromStaticData(characterId);
             }
 
             LoadingState = LoadingStates.NotLoading;

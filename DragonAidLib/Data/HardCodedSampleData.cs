@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
@@ -47,7 +48,8 @@ namespace DragonAid.Lib.Data
                         Willpower = 15,
                         Perception = 9,
                         PhysicalBeauty = 15,
-                        Fatigue = 22
+                        Fatigue = 22,
+                        Spells = GetMusclesSpells()
                     },
                 new Character
                     {
@@ -181,6 +183,15 @@ namespace DragonAid.Lib.Data
                         PartyId = 2,
                     },
             };
+
+        private static IDictionary<string, int> GetMusclesSpells()
+        {
+            var spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            spells.Add("Walking Unseen", 40);
+            spells.Add("Shadow Wings", 25);
+            spells.Add("Healing", 45);
+            return spells;
+        }
 
         public static readonly List<Party> SampleParties = new List<Party>
             {

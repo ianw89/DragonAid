@@ -2,6 +2,7 @@
     x:Name="PageRoot"
     x:Class="DragonAid.WindowsClient.CharacterDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    DataContext="{Binding CharacterViewModel, RelativeSource={RelativeSource Self}}"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,7 +18,7 @@
 
         <Grid.RowDefinitions>
             <!-- Top row for Title and Back Button -->
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="200"/>
             <!-- Rest of the space for character data -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -50,7 +51,7 @@
             <!-- Left half of the screen: Info -->
             <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-                <RichTextBlock Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
+                <RichTextBlock Margin="30" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph LineStackingStrategy="MaxHeight">
                         <InlineUIContainer>
                             <Image x:Name="image" MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
@@ -91,25 +92,21 @@
 
                 <!-- After that stuff we show the combat actions the character can make -->
                 <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                <!--<ListView ItemsSource="{Binding CombatActions}">
+                <ListView ItemsSource="{Binding Spells}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="60" Margin="117,0,117,47">
+                            <Grid Height="40" Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,0,0">
-                                    <TextBlock Text="{Binding Name}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                                    <TextBlock Text="TODO: Figure out how to map DetermineChanceOfSuccess. Possibly a converter?"/>
-                                </StackPanel>
+                                <TextBlock Text="{Binding Key}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Value}" Grid.Column="1"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>-->
+                </ListView>
 
             </StackPanel>
 
