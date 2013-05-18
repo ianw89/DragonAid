@@ -18,7 +18,7 @@
 
         <Grid.RowDefinitions>
             <!-- Top row for Title and Back Button -->
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="140"/>
             <!-- Rest of the space for character data -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -29,13 +29,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}" Grid.Column="0" Grid.Row="0"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" Grid.Row="0" IsHitTestVisible="false"/>
-            <TextBlock x:Name="PageSubtitle" Text="{Binding Subtitle}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1" Grid.Row="1" IsHitTestVisible="false"/>
+            <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}" Grid.Column="0"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <!-- Most of the page is split into two big columns -->
@@ -49,20 +44,28 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left half of the screen: Info -->
-            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,15,30,15">
 
-                <RichTextBlock Margin="30" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
+                <!-- Stylized rich text block holds most of the primitive data about the character -->
+                <RichTextBlock Style="{StaticResource CharacteristicsTextStyle}" IsTextSelectionEnabled="False">
+                    
+                    <Paragraph>
+                        <Run Text="{Binding Subtitle}"/>
+                    </Paragraph>
+                    
                     <Paragraph LineStackingStrategy="MaxHeight">
                         <InlineUIContainer>
                             <Image x:Name="image" MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
                         </InlineUIContainer>
                     </Paragraph>
-                    <Paragraph FontSize="24" FontWeight="Light" LineHeight="50">
+                    
+                    <Paragraph>
                         Description:
                         <Run Text="{Binding Description}"/>
                         <LineBreak/>
                     </Paragraph>
-                    <Paragraph FontSize="36" FontWeight="Light" LineHeight="50">
+
+                    <Paragraph>
                         PS:
                         <Run Text="{Binding PhysicalStrength}"/>
                         MD:
@@ -84,11 +87,8 @@
                         TMR:
                         <Run Text="{Binding TacticalMovementRate}"/>
                         <LineBreak/>
-                        <LineBreak/>
                     </Paragraph>
                 </RichTextBlock>
-
-
 
                 <!-- After that stuff we show the combat actions the character can make -->
                 <!-- This template defines how the items in the list of CombatAttacks are displayed -->
@@ -96,13 +96,13 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="40" Margin="10">
+                            <Grid Height="50" Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Key}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Value}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding Key}" Margin="10" Style="{StaticResource SubheaderTextStyle}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Value}" Margin ="10" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -58,6 +58,17 @@
         <Setter Property="FontWeight" Value="SemiLight"/>
     </Style>
 
+    <Style x:Key="CharacteristicsTextStyle" TargetType="RichTextBlock" BasedOn="{StaticResource BaselineRichTextStyle}">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="LineHeight" Value="30"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="-1" Y="6"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- TextBlock styles -->
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
