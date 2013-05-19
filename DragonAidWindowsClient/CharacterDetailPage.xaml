@@ -47,45 +47,46 @@
             <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,15,30,15">
 
                 <!-- Stylized rich text block holds most of the primitive data about the character -->
-                <RichTextBlock Style="{StaticResource CharacteristicsTextStyle}" IsTextSelectionEnabled="False">
-                    
+                <RichTextBlock Style="{StaticResource CharacterBasicInfoTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
                         <Run Text="{Binding Subtitle}"/>
-                    </Paragraph>
-                    
-                    <Paragraph LineStackingStrategy="MaxHeight">
-                        <InlineUIContainer>
-                            <Image x:Name="image" MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
-                        </InlineUIContainer>
-                    </Paragraph>
-                    
-                    <Paragraph>
-                        Description:
-                        <Run Text="{Binding Description}"/>
                         <LineBreak/>
                     </Paragraph>
 
+                    <!--<Paragraph LineStackingStrategy="MaxHeight">
+                        <InlineUIContainer>
+                            <Image MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                        </InlineUIContainer>
+                    </Paragraph>-->
+
+                    <Paragraph>
+                        <Run Text="{Binding Description}"/>
+                        <LineBreak/>
+                    </Paragraph>
+                </RichTextBlock>
+                
+                <RichTextBlock Style="{StaticResource CharacteristicsTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
                         PS:
-                        <Run Text="{Binding PhysicalStrength}"/>
+                        <Run FontWeight="Normal" Text="{Binding PhysicalStrength}"/>
                         MD:
-                        <Run Text="{Binding ManualDexterity}"/>
+                        <Run FontWeight="Normal" Text="{Binding ManualDexterity}"/>
                         AG:
-                        <Run Text="{Binding Agility}"/>
+                        <Run FontWeight="Normal" Text="{Binding Agility}"/>
                         MA:
-                        <Run Text="{Binding MagicalAptitude}"/>
+                        <Run FontWeight="Normal" Text="{Binding MagicalAptitude}"/>
                         WP:
-                        <Run Text="{Binding Willpower}"/>
+                        <Run FontWeight="Normal" Text="{Binding Willpower}"/>
                         EN:
-                        <Run Text="{Binding Endurance}"/>
+                        <Run FontWeight="Normal" Text="{Binding Endurance}"/>
                         FT:
-                        <Run Text="{Binding Fatigue}"/>
+                        <Run FontWeight="Normal" Text="{Binding Fatigue}"/>
                         PC:
-                        <Run Text="{Binding Perception}"/>
+                        <Run FontWeight="Normal" Text="{Binding Perception}"/>
                         PB:
-                        <Run Text="{Binding PhysicalBeauty}"/>
+                        <Run FontWeight="Normal" Text="{Binding PhysicalBeauty}"/>
                         TMR:
-                        <Run Text="{Binding TacticalMovementRate}"/>
+                        <Run FontWeight="Normal" Text="{Binding TacticalMovementRate}"/>
                         <LineBreak/>
                     </Paragraph>
                 </RichTextBlock>
@@ -93,17 +94,14 @@
                 <!-- After that stuff we show the combat actions the character can make -->
                 <!-- This template defines how the items in the list of CombatAttacks are displayed -->
                 <ListView ItemsSource="{Binding Spells}">
-
+                    <!--IsHitTestVisible="False"-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="50" Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Key}" Margin="10" Style="{StaticResource SubheaderTextStyle}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Value}" Margin ="10" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
-                            </Grid>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="Spell: " />
+                                <TextBlock Text="{Binding Key}" Style="{StaticResource BodyTextStyle}" />
+                                <TextBlock Text="{Binding Value}" Style="{StaticResource BodyTextStyle}" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

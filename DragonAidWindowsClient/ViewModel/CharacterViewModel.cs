@@ -120,11 +120,19 @@ namespace DragonAid.WindowsClient.ViewModel
         /// <returns>Whether or not any saved state was found and loaded</returns>
         public bool LoadState(int characterId, IDictionary<string, object> savedState)
         {
-            if (savedState == null) return false;
+            if (savedState == null || savedState.Count == 0)
+            {
+                return false;
+            }
 
+            // Not sure what this formula of saving and loading things is... TODO
             string uniqueId = CharacterIdToUniqueId(characterId);
             var savedCharacter = savedState[uniqueId] as Character;
-            if (savedCharacter == null) return false;
+            
+            if (savedCharacter == null)
+            {
+                return false;
+            }
 
             Character = savedCharacter;
             return true;

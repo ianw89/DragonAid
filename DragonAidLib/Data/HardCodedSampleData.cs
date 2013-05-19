@@ -186,10 +186,12 @@ namespace DragonAid.Lib.Data
 
         private static IDictionary<string, int> GetMusclesSpells()
         {
-            var spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-            spells.Add("Walking Unseen", 40);
-            spells.Add("Shadow Wings", 25);
-            spells.Add("Healing", 45);
+            var spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    {"Walking Unseen", 6},
+                    {"Shadow Wings", 1},
+                    {"Healing", 3}
+                };
             return spells;
         }
 

@@ -60,7 +60,11 @@ namespace DragonAid.Lib.Data.Model
 
 #if !DRAGON_COMMANDER
         // TODO: converter?
-        public IDictionary<string, int> Spells { get; set; }
+        public IDictionary<string, int> Spells
+        {
+            get; 
+            set;
+        }
 #endif
     }
 }
