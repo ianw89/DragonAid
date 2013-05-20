@@ -68,6 +68,9 @@
     <Compile Include="..\DragonAidLib\Data\Model\Character.cs">
       <Link>Data\Model\Character.cs</Link>
     </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellInfo.cs">
+      <Link>Data\Model\CharacterSpellInfo.cs</Link>
+    </Compile>
     <Compile Include="..\DragonAidLib\Data\Model\CombatAction.cs">
       <Link>Data\Model\CombatAction.cs</Link>
     </Compile>
@@ -76,6 +79,9 @@
     </Compile>
     <Compile Include="..\DragonAidLib\Data\Model\Race.cs">
       <Link>Data\Model\Race.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\Spell.cs">
+      <Link>Data\Model\Spell.cs</Link>
     </Compile>
     <Compile Include="..\DragonAidLib\Data\RollResult.cs">
       <Link>Data\RollResult.cs</Link>

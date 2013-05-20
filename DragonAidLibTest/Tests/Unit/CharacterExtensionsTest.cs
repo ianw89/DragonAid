@@ -9,13 +9,13 @@ namespace DragonAid.Test.Tests.Unit
     [TestClass]
     public class CharacterExtensionsTest
     {
-        private readonly Character character = new Character { MagicalAptitude = 17, Spells = new Dictionary<string, int>() };
+        private readonly Character character = new Character { MagicalAptitude = 17 };
         private readonly Spell spell = new Spell("Fireball", 20);
 
         public CharacterExtensionsTest()
         {
             // give him some ranks!
-            character.Spells[spell.FullName] = 5;
+            character.Spells.Add(new CharacterSpellInfo(spell, 5));
         }
 
         [TestMethod]

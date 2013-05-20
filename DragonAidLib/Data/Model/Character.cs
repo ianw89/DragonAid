@@ -15,6 +15,12 @@ namespace DragonAid.Lib.Data.Model
     /// </summary>
     public sealed class Character
     {
+        public Character()
+        {
+            this.Spells = new List<CharacterSpellInfo>();
+        }
+
+
         // *** RPG system agnostic properties
         public int Id { get; set; }
         /// <summary>
@@ -59,7 +65,7 @@ namespace DragonAid.Lib.Data.Model
         */
 
         // TODO: converter?
-        public IDictionary<string, int> Spells
+        public ICollection<CharacterSpellInfo> Spells
         {
             get; 
             set;

@@ -63,7 +63,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ComputeCastChanceShouldThrowIfCharacterHasNoRankInSpell()
         {
-            Action getCastChance = () => new Character {Spells = new Dictionary<string, int>()}.CastChance(fakeSpell);
+            Action getCastChance = () => new Character {Spells = new List<CharacterSpellInfo>()}.CastChance(fakeSpell);
             getCastChance.ShouldThrow<InvalidOperationException>();
         }
     }

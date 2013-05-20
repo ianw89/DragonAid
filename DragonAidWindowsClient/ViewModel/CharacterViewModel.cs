@@ -108,7 +108,7 @@ namespace DragonAid.WindowsClient.ViewModel
         }
         public ICollection<string> Spells
         {
-            get { return Character.Spells.Keys; }
+            get { return Character.Spells.Select(s => s.Spell.FullName).ToList(); }
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 

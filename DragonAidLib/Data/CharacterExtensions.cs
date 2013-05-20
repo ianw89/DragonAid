@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Linq;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
@@ -41,13 +42,12 @@ namespace DragonAid.Lib.Data
                 throw new InvalidOperationException("Character has no spell!");
             }
 
-            int rank;
-            if (!character.Spells.TryGetValue(spell.FullName, out rank))
+            if (character.Spells.All(s => s.Spell != spell))
             {
                 throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Character has no ranks in {0}!", spell.FullName));
             }
 
-            return rank;
+            return character.Spells.Single(s => s.Spell == spell).Rank;
         }
     }
 }

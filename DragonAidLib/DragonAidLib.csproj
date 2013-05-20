@@ -106,6 +106,7 @@
     <Compile Include="Data\HardCodedSampleData.cs" />
     <Compile Include="Data\Model\Character.cs" />
     <Compile Include="Data\CharacterEquations.cs" />
+    <Compile Include="Data\Model\CharacterSpellInfo.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
     <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
     <Compile Include="Data\Model\Party.cs" />

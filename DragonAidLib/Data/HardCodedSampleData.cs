@@ -49,11 +49,11 @@ namespace DragonAid.Lib.Data
                         Perception = 9,
                         PhysicalBeauty = 15,
                         Fatigue = 22,
-                        Spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                        Spells = new List<CharacterSpellInfo>()
                             {
-                                {"Walking Unseen", 6},
-                                {"Shadow Wings", 1},
-                                {"Healing", 3}
+                                new CharacterSpellInfo(SpellLibrary.WalkingUnseen, 6),
+                                new CharacterSpellInfo(SpellLibrary.ShadowWings, 1),
+                                new CharacterSpellInfo(SpellLibrary.Healing, 3),
                             }
                     },
                 new Character
@@ -208,5 +208,12 @@ namespace DragonAid.Lib.Data
                         ImageUri = "Assets\\MyCharacters.png"
                     }
             };
+    }
+
+    public class SpellLibrary
+    {
+        public static Spell WalkingUnseen = new Spell("Walking Unseen", 40);
+        public static Spell ShadowWings = new Spell("Shadow Wings", 25);
+        public static Spell Healing = new Spell("Healing", 45);
     }
 }
