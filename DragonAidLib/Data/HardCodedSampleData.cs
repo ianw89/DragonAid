@@ -49,7 +49,12 @@ namespace DragonAid.Lib.Data
                         Perception = 9,
                         PhysicalBeauty = 15,
                         Fatigue = 22,
-                        Spells = GetMusclesSpells()
+                        Spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                            {
+                                {"Walking Unseen", 6},
+                                {"Shadow Wings", 1},
+                                {"Healing", 3}
+                            }
                     },
                 new Character
                     {
@@ -183,17 +188,6 @@ namespace DragonAid.Lib.Data
                         PartyId = 2,
                     },
             };
-
-        private static IDictionary<string, int> GetMusclesSpells()
-        {
-            var spells = new SortedDictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-                {
-                    {"Walking Unseen", 6},
-                    {"Shadow Wings", 1},
-                    {"Healing", 3}
-                };
-            return spells;
-        }
 
         public static readonly List<Party> SampleParties = new List<Party>
             {

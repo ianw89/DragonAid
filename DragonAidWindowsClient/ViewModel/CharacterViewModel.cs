@@ -106,9 +106,9 @@ namespace DragonAid.WindowsClient.ViewModel
             get { return Character.TacticalMovementRate(); }
             set { throw new NotSupportedException("Cannot set TMR."); }
         }
-        public IDictionary<string,int> Spells
+        public ICollection<string> Spells
         {
-            get { return Character.Spells; }
+            get { return Character.Spells.Keys; }
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 

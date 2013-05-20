@@ -98,9 +98,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="Spell: " />
-                                <TextBlock Text="{Binding Key}" Style="{StaticResource BodyTextStyle}" />
-                                <TextBlock Text="{Binding Value}" Style="{StaticResource BodyTextStyle}" />
+                                <TextBlock Text="{Binding}" Style="{StaticResource CharacteristicsBoxTextStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
