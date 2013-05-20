@@ -1,7 +1,7 @@
 #if INCLUDE_AZURE_BINDINGS
-using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
 #endif
+using System.Collections.Generic;
 
 namespace DragonAid.Lib.Data.Model
 {
@@ -58,13 +58,11 @@ namespace DragonAid.Lib.Data.Model
         public IDictionary<string, int> Skills { get; set; }
         */
 
-#if !DRAGON_COMMANDER
         // TODO: converter?
         public IDictionary<string, int> Spells
         {
             get; 
             set;
         }
-#endif
     }
 }
