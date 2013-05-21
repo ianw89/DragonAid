@@ -39,7 +39,7 @@ namespace DragonAid.Lib.Data
                         ImageUri = null,
                         PlayerName = "Dan",
                         Race = Race.Human,
-                        IsMine = true,
+                        IsMine = false,
                         PartyId = 1,
                         PhysicalStrength = 9,
                         ManualDexterity = 12,
