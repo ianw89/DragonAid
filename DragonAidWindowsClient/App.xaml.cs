@@ -66,7 +66,7 @@ namespace DragonAid.WindowsClient
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(CharacterDetailPage), null))
+                if (!rootFrame.Navigate(typeof(PartyDetailPage), null))
                 {
                     throw new Exception("Failed to create initial page");
                 }

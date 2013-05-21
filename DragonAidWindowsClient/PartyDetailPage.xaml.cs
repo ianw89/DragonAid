@@ -15,9 +15,20 @@ namespace DragonAid.WindowsClient
     /// </summary>
     public sealed partial class PartyDetailPage : LayoutAwarePage
     {
+        private PartyViewModel _partyViewModel = new PartyViewModel();
+
         public PartyDetailPage()
         {
             InitializeComponent();
+            OnLoadingStateChanged += OnOnLoadingStateChanged;
+        }
+
+        /// <summary>
+        /// The single view model that all the data on the page binds to. It represents one party of characters.
+        /// </summary>
+        public PartyViewModel PartyViewModel
+        {
+            get { return _partyViewModel; }
         }
 
         /// <summary>
@@ -31,19 +42,27 @@ namespace DragonAid.WindowsClient
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            var partyId = (int) navigationParameter;
-            var viewModel = new PartyViewModel();
-
-            this.DefaultViewModel["Party"] = viewModel;
-            this.DefaultViewModel["Characters"] = viewModel.Characters;
+            // Normally this page will be open when clicked on, so there is a navigation parameter that
+            // contains the Id of the party we are displaying details for.
+            // During development it's conventient to load a hard coded party instead.
+            int partyId;
+            if (navigationParameter != null)
+            {
+                partyId = (int)navigationParameter;
+            }
+            else
+            {
+                partyId = 1; // Tuesday night DQ!
+            }
 
             // This is fast and can be done synchronously
-            bool loaded = viewModel.LoadState(partyId, pageState);
+            bool loaded = PartyViewModel.LoadState(partyId, pageState);
 
             // This involves network IO. We'll put up a loading indicator (either full-screen or
             // non-obtrusive, depending on if anything could be loaded synchronously)
             LoadingState = loaded ? LoadingStates.LoadingUpdate : LoadingStates.LoadingFresh;
             //await viewModel.LoadPartyFromServiceAsync(partyId);
+            PartyViewModel.LoadPartyFromStaticData(partyId);
             LoadingState = LoadingStates.NotLoading;
         }
 
@@ -57,8 +76,13 @@ namespace DragonAid.WindowsClient
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var characterId = ((Character)e.ClickedItem).Id;
+            var characterId = ((CharacterViewModel)e.ClickedItem).Character.Id;
             this.Frame.Navigate(typeof(CharacterDetailPage), characterId);
+        }
+
+        private void OnOnLoadingStateChanged(object sender, EventArgs eventArgs)
+        {
+            // TODO maybe do something
         }
     }
 }

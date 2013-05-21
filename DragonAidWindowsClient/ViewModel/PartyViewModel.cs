@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,15 +18,9 @@ namespace DragonAid.WindowsClient.ViewModel
     /// </summary>
     public sealed class PartyViewModel : GroupableViewModelBase
     {
-        private static string PartyIdToUniqueId(int partyId)
-        {
-            return string.Format("Party/{0}", partyId);
-        }
-
-        private static string PartyIdToUniquePartyCharactersId(int partyId)
-        {
-            return string.Format("Party/{0}/CharacterIds", partyId);
-        }
+        private Party _party;
+        private readonly ObservableCollection<CharacterViewModel> _characters = new ObservableCollection<CharacterViewModel>();
+        private readonly ObservableCollection<CharacterViewModel> _topCharacters = new ObservableCollection<CharacterViewModel>();
 
         public PartyViewModel()
         {
@@ -43,7 +38,21 @@ namespace DragonAid.WindowsClient.ViewModel
         /// and it's also okay for it to be missing characters (they won't be displayed).</param>
         public PartyViewModel(Party party, IEnumerable<Character> knownCharacters) : this()
         {
-            SetModels(party, knownCharacters.Where(c => c.PartyId == party.Id));
+            this.Party = party;
+            SetModels(knownCharacters.Where(c => c.PartyId == party.Id));
+        }
+
+
+        public Party Party { get { return _party; } private set { SetProperty(ref _party, value); } }
+
+        public ObservableCollection<CharacterViewModel> Characters
+        {
+            get { return _characters; }
+        }
+
+        public ObservableCollection<CharacterViewModel> TopCharacters
+        {
+            get { return _topCharacters; }
         }
 
         void PartyChangedHandler(object sender, PropertyChangedEventArgs args)
@@ -56,6 +65,11 @@ namespace DragonAid.WindowsClient.ViewModel
                 Description = Party.Description;
                 SetImage(Party.ImageUri);
             }
+
+            if (args.PropertyName == "Party")
+            {
+                this.SetModels(HardCodedSampleData.SampleCharacters);
+            }
         }
         
         /// <summary>
@@ -64,11 +78,17 @@ namespace DragonAid.WindowsClient.ViewModel
         /// <returns>Whether or not any saved state was found and loaded</returns>
         public bool LoadState(int partyId, IDictionary<string, object> savedState)
         {
-            if (savedState == null) return false;
+            if (savedState == null || savedState.Count == 0)
+            {
+                return false;
+            }
 
             var uniqueId = PartyIdToUniqueId(partyId);
             var savedParty = savedState[uniqueId] as Party;
-            if (savedParty == null) return false;
+            if (savedParty == null)
+            {
+                return false;
+            }
 
             Party = savedParty;
 
@@ -95,6 +115,11 @@ namespace DragonAid.WindowsClient.ViewModel
             {
                 characterViewModel.SaveState(stateContainer);
             }
+        }
+
+        public void LoadPartyFromStaticData(int partyId)
+        {
+            Party = HardCodedSampleData.SampleParties.Single(p => p.Id == partyId);
         }
 
         //public async Task LoadPartyFromServiceAsync(int partyId)
@@ -138,10 +163,23 @@ namespace DragonAid.WindowsClient.ViewModel
         //    SetModels(AllCharactersParty, characters);
         //}
 
-        private void SetModels(Party party, IEnumerable<Character> characters)
+        private static string PartyIdToUniqueId(int partyId)
+        {
+            return string.Format("Party/{0}", partyId);
+        }
+
+        private static string PartyIdToUniquePartyCharactersId(int partyId)
+        {
+            return string.Format("Party/{0}/CharacterIds", partyId);
+        }
+
+        /// <summary>
+        /// Using the current Party that is set, create CharacterViewModels from the character list in the party.
+        /// </summary>
+        /// <param name="characters"></param>
+        private void SetModels(IEnumerable<Character> characters)
         {
             Characters.Clear();
-            Party = party;
             foreach (var c in characters)
             {
                 Characters.Add(new CharacterViewModel(c));
@@ -212,19 +250,5 @@ namespace DragonAid.WindowsClient.ViewModel
             }
         }
 
-        private Party _party;
-        public Party Party { get { return _party; } private set { SetProperty(ref _party, value); } }
-
-        private readonly ObservableCollection<CharacterViewModel> _characters = new ObservableCollection<CharacterViewModel>();
-        public ObservableCollection<CharacterViewModel> Characters
-        {
-            get { return _characters; }
-        }
-
-        private readonly ObservableCollection<CharacterViewModel> _topCharacters = new ObservableCollection<CharacterViewModel>();
-        public ObservableCollection<CharacterViewModel> TopCharacters
-        {
-            get {return _topCharacters; }
-        }
     }
 }

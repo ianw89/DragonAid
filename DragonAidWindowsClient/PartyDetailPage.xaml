@@ -1,7 +1,7 @@
 ﻿<common2:LayoutAwarePage
     x:Name="PageRoot"
     x:Class="DragonAid.WindowsClient.PartyDetailPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    DataContext="{Binding PartyViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,7 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="CharactersViewSource"
-            Source="{Binding Items}"
+            Source="{Binding TopCharacters}"
             d:Source="{Binding AllParties.PartyViews[0].Characters, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
