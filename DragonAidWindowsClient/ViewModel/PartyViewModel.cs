@@ -42,7 +42,6 @@ namespace DragonAid.WindowsClient.ViewModel
             SetModels(knownCharacters.Where(c => c.PartyId == party.Id));
         }
 
-
         public Party Party { get { return _party; } private set { SetProperty(ref _party, value); } }
 
         public ObservableCollection<CharacterViewModel> Characters
@@ -180,7 +179,7 @@ namespace DragonAid.WindowsClient.ViewModel
         private void SetModels(IEnumerable<Character> characters)
         {
             Characters.Clear();
-            foreach (var c in characters)
+            foreach (var c in characters.Where(c => c.PartyId == this.Party.Id))
             {
                 Characters.Add(new CharacterViewModel(c));
             }
@@ -249,6 +248,5 @@ namespace DragonAid.WindowsClient.ViewModel
                     break;
             }
         }
-
     }
 }

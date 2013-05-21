@@ -14,8 +14,7 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="CharactersViewSource"
-            Source="{Binding TopCharacters}"
-            d:Source="{Binding AllParties.PartyViews[0].Characters, Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            Source="{Binding TopCharacters}"/>
     </Page.Resources>
 
     <!--
@@ -24,9 +23,7 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid
-        Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
-        d:DataContext="{Binding AllParties.PartyViews[0], Source={d:DesignInstance Type=viewmodel:SampleDataSource, IsDesignTimeCreatable=True}}">
+        Style="{StaticResource LayoutRootStyle}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -94,8 +91,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
-            <TextBlock x:Name="PageTitle2" Text="PartyDetailPage" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <TextBlock x:Name="PageTitle" Text="The Party" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
