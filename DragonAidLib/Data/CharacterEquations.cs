@@ -30,13 +30,9 @@ namespace DragonAid.Lib.Data
             return tmr + race.TacticalMovementRateModifier;
         }
 
-#if !DRAGON_COMMANDER
-
         public static int ComputeCastChance(int magicalAptitude, int rank, int spellBaseChance)
         {
             return spellBaseChance + (magicalAptitude - 15) + (3 * rank);
         }
-
-#endif
     }
 }
