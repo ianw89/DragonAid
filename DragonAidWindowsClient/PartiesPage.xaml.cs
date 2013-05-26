@@ -23,7 +23,7 @@ namespace DragonAid.WindowsClient
         public AllPartiesViewModel AllPartiesViewModel
         {
             get; 
-            private set;
+            set;
         }
 
         public bool UseWebService

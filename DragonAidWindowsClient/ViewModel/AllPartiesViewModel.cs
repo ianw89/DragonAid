@@ -22,7 +22,6 @@ namespace DragonAid.WindowsClient.ViewModel
         private ICollection<Party> _rawPartyData;
 
         private readonly ObservableCollection<PartyViewModel> _partyViews = new ObservableCollection<PartyViewModel>();
-        private readonly ObservableCollection<int> _numbers = new ObservableCollection<int>();
 
         private const string AllPartiesUniqueId = "AllParties/PartyIds";
 
@@ -30,24 +29,17 @@ namespace DragonAid.WindowsClient.ViewModel
         {
             this._rawCharacterData = new List<Character>();
             this._rawPartyData = new List<Party>();
-            this._numbers = new ObservableCollection<int>(new[] {1,2,3,4,5});
         }
 
         public AllPartiesViewModel(ICollection<Party> parties, ICollection<Character> characters)
         {
             this._rawCharacterData = characters;
             this._rawPartyData = parties;
-            this._numbers = new ObservableCollection<int>(new[] {1,2,3,4,5});
         }
 
         public ObservableCollection<PartyViewModel> PartyViews
         {
             get { return _partyViews; }
-        }
-
-        public ObservableCollection<int> Numbers
-        {
-            get { return _numbers; }
         }
 
         /// <summary>
@@ -56,7 +48,10 @@ namespace DragonAid.WindowsClient.ViewModel
         /// <returns>Whether or not any saved state was found and loaded</returns>
         public bool LoadState(IDictionary<string, object> savedState)
         {
-            if (savedState == null) return false;
+            if (savedState == null || savedState.Count == 0)
+            {
+                return false;
+            }
 
             var savedPartyIds = savedState[AllPartiesUniqueId] as IEnumerable<int>;
             if (savedPartyIds == null) return false;
@@ -119,10 +114,8 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public static AllPartiesViewModel CreateWithStaticData()
         {
-            var sampleData = new SampleDataSource();
-            var instance = sampleData.AllParties;
+            var instance = new AllPartiesViewModel(HardCodedSampleData.SampleParties, HardCodedSampleData.SampleCharacters);
             instance.BuildPartyViewModelsFromParties();
-
             return instance;
         }
     }
