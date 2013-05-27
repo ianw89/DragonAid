@@ -10,7 +10,7 @@ namespace DragonAid.Test.Tests.Unit
     [TestClass]
     public class CharacterEquationsTests
     {
-        private readonly Spell fakeSpell = new Spell("FakeSpell", 0);
+        private readonly Spell fakeSpell = new Spell("FakeSpell", 10);
 
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
@@ -32,25 +32,33 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void SpellCastChanceShouldBeBaseChanceIfNotRankedOrGreatAtMagic()
         {
-            CharacterEquations.ComputeCastChance(15, 0, 10).Should().Be(10);
+            var c = new Character { MagicalAptitude = 15 };
+            c.SpellRanks[this.fakeSpell] = 0;
+            CharacterEquations.ComputeCastChance(c, this.fakeSpell).Should().Be(10);
         }
 
         [TestMethod]
         public void BetterMagicalAptitudeShouldIncreaseSpellCastChance()
         {
-            CharacterEquations.ComputeCastChance(20, 0, 10).Should().Be(15);
+            var c = new Character { MagicalAptitude = 20 };
+            c.SpellRanks[this.fakeSpell] = 0;
+            CharacterEquations.ComputeCastChance(c, this.fakeSpell).Should().Be(15);
         }
 
         [TestMethod]
         public void WorseMagicalAptitudeShouldIncreaseSpellCastChance()
         {
-            CharacterEquations.ComputeCastChance(10, 0, 10).Should().Be(5);
+            var c = new Character { MagicalAptitude = 10 };
+            c.SpellRanks[this.fakeSpell] = 0;
+            CharacterEquations.ComputeCastChance(c, this.fakeSpell).Should().Be(5);
         }
 
         [TestMethod]
         public void HigherRankShouldIncreaseSpellCastChance()
         {
-            CharacterEquations.ComputeCastChance(15, 3, 10).Should().Be(19);
+            var c = new Character { MagicalAptitude = 15 };
+            c.SpellRanks[this.fakeSpell] = 3;
+            CharacterEquations.ComputeCastChance(c, this.fakeSpell).Should().Be(19);
         }
 
         [TestMethod]
@@ -63,7 +71,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ComputeCastChanceShouldThrowIfCharacterHasNoRankInSpell()
         {
-            Action getCastChance = () => new Character {Spells = new List<CharacterSpellInfo>()}.CastChance(fakeSpell);
+            Action getCastChance = () => new Character().CastChance(fakeSpell);
             getCastChance.ShouldThrow<InvalidOperationException>();
         }
     }

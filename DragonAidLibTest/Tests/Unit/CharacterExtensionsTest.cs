@@ -15,7 +15,7 @@ namespace DragonAid.Test.Tests.Unit
         public CharacterExtensionsTest()
         {
             // give him some ranks!
-            character.Spells.Add(new CharacterSpellInfo(spell, 5, character));
+            character.SpellRanks[spell] = 5;
         }
 
         [TestMethod]

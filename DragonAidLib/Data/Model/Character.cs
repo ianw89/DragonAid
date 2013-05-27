@@ -1,4 +1,9 @@
 #if INCLUDE_AZURE_BINDINGS
+using System;
+using System.Diagnostics.Contracts;
+using System.Globalization;
+using System.Linq;
+using System.Runtime.Serialization;
 using Microsoft.WindowsAzure.MobileServices;
 #endif
 using System.Collections.Generic;
@@ -15,9 +20,11 @@ namespace DragonAid.Lib.Data.Model
     /// </summary>
     public sealed class Character
     {
+        private CharacterSpellRanks _spellRanks;
+
         public Character()
         {
-            this.Spells = new List<CharacterSpellInfo>();
+            this._spellRanks = new CharacterSpellRanks(this);
         }
 
 
@@ -65,10 +72,16 @@ namespace DragonAid.Lib.Data.Model
         */
 
         // TODO: converter?
-        public ICollection<CharacterSpellInfo> Spells
+        public CharacterSpellRanks SpellRanks
         {
-            get; 
-            set;
+            get { return _spellRanks; }
+            set
+            {
+#if !DRAGON_COMMANDER
+                Contract.Requires(value != null);
+#endif
+                _spellRanks = value;
+            }
         }
     }
 }

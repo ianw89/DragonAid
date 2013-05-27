@@ -19,7 +19,7 @@ namespace DragonAid.Lib.Data
             Contract.Requires(character != null);
             Contract.Requires(spell != null);
 
-            return CharacterEquations.ComputeCastChance(character.MagicalAptitude, character.GetSpellRank(spell), spell.BaseChance);
+            return CharacterEquations.ComputeCastChance(character, spell);
         }
 
         public static SpellcastResult SpellcastResult(this Character character, Spell spell, int roll)
@@ -30,24 +30,6 @@ namespace DragonAid.Lib.Data
         private static SpellcastResultRange SpellcastResultRange(this Character character, Spell spell)
         {
             return SpellcastResultRangeCalculator.Calculate(character.CastChance(spell));
-        }
-
-        private static int GetSpellRank(this Character character, Spell spell)
-        {
-            Contract.Requires(character != null);
-            Contract.Requires(spell != null);
-
-            if (character.Spells == null)
-            {
-                throw new InvalidOperationException("Character has no spell!");
-            }
-
-            if (character.Spells.All(s => s.Spell != spell))
-            {
-                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Character has no ranks in {0}!", spell.FullName));
-            }
-
-            return character.Spells.Single(s => s.Spell == spell).Rank;
         }
     }
 }

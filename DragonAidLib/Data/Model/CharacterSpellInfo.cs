@@ -25,7 +25,7 @@ namespace DragonAid.Lib.Data.Model
         {
             get
             {
-                return CharacterEquations.ComputeCastChance(this._character.MagicalAptitude, this.Rank, this.Spell.BaseChance);
+                return CharacterEquations.ComputeCastChance(this._character, this.Spell);
             }
             set
             {

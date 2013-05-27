@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Linq.Expressions;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
@@ -30,9 +31,14 @@ namespace DragonAid.Lib.Data
             return tmr + race.TacticalMovementRateModifier;
         }
 
-        public static int ComputeCastChance(int magicalAptitude, int rank, int spellBaseChance)
+        public static readonly Expression<Func<Character, Spell, int>> CastChance =
+            (Character c, Spell s) => s.BaseChance + (c.MagicalAptitude - 15) + (3 * c.SpellRanks[s]);
+
+        private static readonly Lazy<Func<Character, Spell, int>> CompiledCastChance = new Lazy<Func<Character, Spell, int>>(() => CastChance.Compile()); 
+
+        public static int ComputeCastChance(Character magicalAptitude, Spell spell)
         {
-            return spellBaseChance + (magicalAptitude - 15) + (3 * rank);
+            return CompiledCastChance.Value(magicalAptitude, spell);
         }
     }
 }

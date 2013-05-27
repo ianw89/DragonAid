@@ -71,6 +71,9 @@
     <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellInfo.cs">
       <Link>Data\Model\CharacterSpellInfo.cs</Link>
     </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellRanks.cs">
+      <Link>Data\Model\CharacterSpellRanks.cs</Link>
+    </Compile>
     <Compile Include="..\DragonAidLib\Data\Model\CombatAction.cs">
       <Link>Data\Model\CombatAction.cs</Link>
     </Compile>

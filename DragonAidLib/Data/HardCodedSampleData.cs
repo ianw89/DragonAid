@@ -50,7 +50,12 @@ namespace DragonAid.Lib.Data
                         Perception = 9,
                         PhysicalBeauty = 15,
                         Fatigue = 22,
-                        
+                        SpellRanks = 
+                        {
+                            { SpellLibrary.WalkingUnseen, 6 },
+                            { SpellLibrary.ShadowWings, 2 },
+                            { SpellLibrary.Healing, 3 },
+                        },
                     },
                 new Character
                     {
@@ -204,18 +209,6 @@ namespace DragonAid.Lib.Data
                         ImageUri = "Assets\\MyCharacters.png"
                     }
             };
-
-
-        static HardCodedSampleData()
-        {
-            var muscles = HardCodedSampleData.SampleCharacters.Single(c => c.Id == 2);
-            muscles.Spells = new List<CharacterSpellInfo>()
-                {
-                    new CharacterSpellInfo(SpellLibrary.WalkingUnseen, 6, muscles),
-                    new CharacterSpellInfo(SpellLibrary.ShadowWings, 2, muscles),
-                    new CharacterSpellInfo(SpellLibrary.Healing, 3, muscles),
-                };
-        }
     }
     
     
