@@ -4,6 +4,7 @@ using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
 using System;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
@@ -18,6 +19,8 @@ namespace DragonAid.WindowsClient
     {
         private bool useWebServiceFordata = false;
         private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
+
+        private Grid InventoryGrid;
 
         public CharacterDetailPage()
         {
@@ -80,6 +83,35 @@ namespace DragonAid.WindowsClient
         private void OnOnLoadingStateChanged(object sender, EventArgs eventArgs)
         {
             // TODO maybe do something
+        }
+
+        private void InventoryTabClicked(object sender, RoutedEventArgs e)
+        {
+            this.SelectTab(this.InventoryTab);
+        }
+
+        private void SelectTab(ListView selectedTab)
+        {
+            this.SpellTab.Visibility = Visibility.Collapsed;
+            this.SkillTab.Visibility = Visibility.Collapsed;
+            this.CombatTab.Visibility = Visibility.Collapsed;
+            this.InventoryTab.Visibility = Visibility.Collapsed;
+            selectedTab.Visibility = Visibility.Visible;
+        }
+
+        private void SpellTabClicked(object sender, RoutedEventArgs e)
+        {
+            this.SelectTab(this.SpellTab);
+        }
+
+        private void SkillTabClicked(object sender, RoutedEventArgs e)
+        {
+            this.SelectTab(this.SkillTab);
+        }
+
+        private void CombatTabClicked(object sender, RoutedEventArgs e)
+        {
+            this.SelectTab(this.CombatTab);
         }
     }
 }

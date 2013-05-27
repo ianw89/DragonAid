@@ -7,6 +7,7 @@ using DragonAid.Lib.Data.Model;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace DragonAid.WindowsClient.ViewModel
 {
@@ -109,6 +110,11 @@ namespace DragonAid.WindowsClient.ViewModel
         public IEnumerable<CharacterSpellInfo> Spells
         {
             get { return Character.SpellRanks; }
+            set { throw new NotSupportedException("Cannot set spell dictioary."); }
+        }
+        public IEnumerable<String> Inventory
+        {
+            get { return new List<string>() {"Sword", "Shield", "Skull", "Bones"}; }
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 

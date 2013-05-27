@@ -92,33 +92,83 @@
                 </RichTextBlock>
 
                 <!-- After that stuff we show the combat actions the character can make -->
-                <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                <ListView ItemsSource="{Binding Spells}">
-                    <!--IsHitTestVisible="False"-->
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="{Binding Spell.FullName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
-                                <TextBlock Text="{Binding BaseCastChace}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="100" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
 
             </StackPanel>
 
-            <!-- Right half of the screen: Actions -->
+            <!-- Right half of the screen: Controllable content -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <!-- Placeholders. We will have textboxes as inputs for formulas here and such... -->
-                <Button Padding="30,15,30,15" Margin="10">
-                    <TextBlock Text="Action 1"/>
-                </Button>
-                <Button Padding="30,15,30,15" Margin="10">
-                    <TextBlock Text="Action 2"/>
-                </Button>
-                <Button Padding="30,15,30,15" Margin="10">
-                    <TextBlock Text="Action 3"/>
-                </Button>
+                <!-- Top Part of the right side of the screen is a bunch of tabs you can choose -->
+                <StackPanel Orientation="Horizontal">
+                    <Button Click="InventoryTabClicked">
+                        <TextBlock Text="Inventory" />
+                    </Button>
+                    <Button Click="SpellTabClicked">
+                        <TextBlock Text="Spells" />
+                    </Button>
+                    <Button Click="SkillTabClicked">
+                        <TextBlock Text="Skills" />
+                    </Button>
+                    <Button Click="CombatTabClicked">
+                        <TextBlock Text="Combat" />
+                    </Button>
+                </StackPanel>
+                
+                <!-- Lower part of right side of screen is the info for the selected tab -->
+                <!-- We define all of the things we could view here, but only enable 1 at a time-->
+                <StackPanel>
+
+                    <!-- Inventory page shows items -->
+                    <ListView x:Name="InventoryTab" ItemsSource="{Binding Inventory}" Visibility="Collapsed">
+                        <!--IsHitTestVisible="False"-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <!-- Spells page shows spells -->
+                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
+                    <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
+                        <!--IsHitTestVisible="False"-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Spell.FullName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                    <TextBlock Text="{Binding BaseCastChace}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="100" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <!-- Spells page shows spells -->
+                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
+                    <ListView x:Name="SkillTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
+                        <!--IsHitTestVisible="False"-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" Orientation="Horizontal">
+                                    <TextBlock Text="Skill Tab" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <!-- Spells page shows spells -->
+                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
+                    <ListView x:Name="CombatTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
+                        <!--IsHitTestVisible="False"-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" Orientation="Horizontal">
+                                    <TextBlock Text="Combat Tab" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>
