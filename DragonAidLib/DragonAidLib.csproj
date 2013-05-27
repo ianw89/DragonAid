@@ -120,6 +120,7 @@
     <Compile Include="Data\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\EquationPrettyTextWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
