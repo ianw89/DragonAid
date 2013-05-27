@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
 
@@ -6,7 +7,7 @@ namespace DragonAid.Lib.Util
 {
     public class EquationPrettyTextWriter
     {
-        private int _depth = -2; //welp, this is hack
+        private readonly Stack<ExpressionType> operatorStack = new Stack<ExpressionType>();
         public string Write(Expression toWrite)
         {
             return this.Visit(toWrite);
@@ -14,35 +15,27 @@ namespace DragonAid.Lib.Util
 
         private string Visit(Expression expression)
         {
-            this._depth++;
-            try
+            switch (expression.NodeType)
             {
-                switch (expression.NodeType)
-                {
-                    case ExpressionType.Lambda:
-                        return this.VisitLambda((LambdaExpression) expression);
+                case ExpressionType.Lambda:
+                    return this.VisitLambda((LambdaExpression) expression);
 
-                    case ExpressionType.Call:
-                        return this.MethodMethodCall((MethodCallExpression)expression);
+                case ExpressionType.Call:
+                    return this.MethodMethodCall((MethodCallExpression) expression);
 
-                    case ExpressionType.MemberAccess:
-                        return this.VisitMember((MemberExpression) expression);
+                case ExpressionType.MemberAccess:
+                    return this.VisitMember((MemberExpression) expression);
 
-                    case ExpressionType.Constant:
-                        return this.VisitConstant((ConstantExpression) expression);
+                case ExpressionType.Constant:
+                    return this.VisitConstant((ConstantExpression) expression);
 
-                    case ExpressionType.Multiply:
-                    case ExpressionType.Subtract:
-                    case ExpressionType.Add:
-                        return this.VisitBinary((BinaryExpression) expression);
-                }
-
-                throw new NotImplementedException(expression.GetType().FullName);
+                case ExpressionType.Multiply:
+                case ExpressionType.Subtract:
+                case ExpressionType.Add:
+                    return this.VisitBinary((BinaryExpression) expression);
             }
-            finally
-            {
-                this._depth--;
-            }
+
+            throw new NotImplementedException(expression.GetType().FullName);
         }
 
         private string MethodMethodCall(MethodCallExpression expression)
@@ -78,8 +71,17 @@ namespace DragonAid.Lib.Util
                     throw new NotImplementedException(expression.GetType().FullName);
             }
 
-            string format = _depth > 0 ? "({0} {1} {2})" : "{0} {1} {2}";
-            return string.Format(format, Visit(expression.Left), operatorText, Visit(expression.Right));
+            var wrapWithParens = this.operatorStack.Count > 0 && this.operatorStack.Peek() != expression.NodeType;
+            string format = wrapWithParens ? "({0} {1} {2})" : "{0} {1} {2}";
+            try
+            {
+                this.operatorStack.Push(expression.NodeType);
+                return string.Format(format, Visit(expression.Left), operatorText, Visit(expression.Right));
+            }
+            finally
+            {
+                this.operatorStack.Pop();
+            }
         }
 
         private string VisitLambda(LambdaExpression expression)

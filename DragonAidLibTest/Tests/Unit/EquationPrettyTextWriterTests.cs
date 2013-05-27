@@ -60,7 +60,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void SpellCastChanceEquationBaseline()
         {
-            Write(CharacterEquations.CastChance).Should().Be("(BaseChance + (MA - 15)) + (3 * Rank)");
+            Write(CharacterEquations.CastChance).Should().Be("BaseChance + (MA - 15) + (3 * Rank)");
         }
 
         private string Write(Expression<Func<Character, int>> expr)
