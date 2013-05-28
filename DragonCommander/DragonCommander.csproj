@@ -74,6 +74,12 @@
     <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellRanks.cs">
       <Link>Data\Model\CharacterSpellRanks.cs</Link>
     </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\CharacterWeaponInfo.cs">
+      <Link>Data\Model\CharacterWeaponInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\CharacterWeaponRanks.cs">
+      <Link>Data\Model\CharacterWeaponRanks.cs</Link>
+    </Compile>
     <Compile Include="..\DragonAidLib\Data\Model\CombatAction.cs">
       <Link>Data\Model\CombatAction.cs</Link>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="..\DragonAidLib\Data\Model\Spell.cs">
       <Link>Data\Model\Spell.cs</Link>
+    </Compile>
+    <Compile Include="..\DragonAidLib\Data\Model\Weapon.cs">
+      <Link>Data\Model\Weapon.cs</Link>
     </Compile>
     <Compile Include="..\DragonAidLib\Data\RollResult.cs">
       <Link>Data\RollResult.cs</Link>

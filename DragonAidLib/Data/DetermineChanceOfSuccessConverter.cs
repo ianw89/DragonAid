@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Data;
 
 namespace DragonAid.Lib.Data
 {
+    // TODO we aren't acutally using this anymore I think
 #if INCLUDE_AZURE_BINDINGS
     public class DetermineChanceOfSuccessConverter : IValueConverter
 #else

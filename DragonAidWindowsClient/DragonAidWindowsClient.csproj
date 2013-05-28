@@ -133,6 +133,8 @@
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\GroupableViewModelBase.cs" />
     <Compile Include="ViewModel\PartyViewModel.cs" />
+    <Compile Include="ViewModel\SkillViewModel.cs" />
+    <Compile Include="ViewModel\WeaponViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

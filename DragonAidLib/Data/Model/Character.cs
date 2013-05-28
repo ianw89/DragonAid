@@ -21,10 +21,12 @@ namespace DragonAid.Lib.Data.Model
     public sealed class Character
     {
         private CharacterSpellRanks _spellRanks;
+        private CharacterWeaponRanks _weaponRanks;
 
         public Character()
         {
             this._spellRanks = new CharacterSpellRanks(this);
+            this._weaponRanks = new CharacterWeaponRanks(this);
         }
 
 
@@ -81,6 +83,18 @@ namespace DragonAid.Lib.Data.Model
                 Contract.Requires(value != null);
 #endif
                 _spellRanks = value;
+            }
+        }
+
+        public CharacterWeaponRanks WeaponRanks
+        {
+            get { return _weaponRanks; }
+            set
+            {
+#if !DRAGON_COMMANDER
+                Contract.Requires(value != null);
+#endif
+                _weaponRanks = value;
             }
         }
     }

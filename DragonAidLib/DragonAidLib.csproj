@@ -108,10 +108,13 @@
     <Compile Include="Data\CharacterEquations.cs" />
     <Compile Include="Data\Model\CharacterSpellInfo.cs" />
     <Compile Include="Data\Model\CharacterSpellRanks.cs" />
+    <Compile Include="Data\Model\CharacterWeaponInfo.cs" />
+    <Compile Include="Data\Model\CharacterWeaponRanks.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
     <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
+    <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\RollResult.cs" />
     <Compile Include="Data\Model\Spell.cs" />
     <Compile Include="Data\SpellcastResultRange.cs" />

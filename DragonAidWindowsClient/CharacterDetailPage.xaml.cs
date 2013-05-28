@@ -20,8 +20,6 @@ namespace DragonAid.WindowsClient
         private bool useWebServiceFordata = false;
         private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
 
-        private Grid InventoryGrid;
-
         public CharacterDetailPage()
         {
             this.InitializeComponent();
@@ -90,15 +88,6 @@ namespace DragonAid.WindowsClient
             this.SelectTab(this.InventoryTab);
         }
 
-        private void SelectTab(ListView selectedTab)
-        {
-            this.SpellTab.Visibility = Visibility.Collapsed;
-            this.SkillTab.Visibility = Visibility.Collapsed;
-            this.CombatTab.Visibility = Visibility.Collapsed;
-            this.InventoryTab.Visibility = Visibility.Collapsed;
-            selectedTab.Visibility = Visibility.Visible;
-        }
-
         private void SpellTabClicked(object sender, RoutedEventArgs e)
         {
             this.SelectTab(this.SpellTab);
@@ -111,7 +100,17 @@ namespace DragonAid.WindowsClient
 
         private void CombatTabClicked(object sender, RoutedEventArgs e)
         {
-            this.SelectTab(this.CombatTab);
+            this.SelectTab(this.WeaponTab);
         }
+
+        private void SelectTab(ListView selectedTab)
+        {
+            this.SpellTab.Visibility = Visibility.Collapsed;
+            this.SkillTab.Visibility = Visibility.Collapsed;
+            this.WeaponTab.Visibility = Visibility.Collapsed;
+            this.InventoryTab.Visibility = Visibility.Collapsed;
+            selectedTab.Visibility = Visibility.Visible;
+        }
+
     }
 }

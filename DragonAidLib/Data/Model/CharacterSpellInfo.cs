@@ -19,8 +19,6 @@ namespace DragonAid.Lib.Data.Model
         public Spell Spell { get; set; }
         public int Rank { get; set; }
 
-        // TODO: This is not the way properties that are data bound should work.
-        // They need setters to trigger the UI to update. They need to be dumb values controlled by something else.
         public int BaseCastChace
         {
             get

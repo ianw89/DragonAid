@@ -129,7 +129,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <!-- Spells page shows spells -->
+                    <!-- Spells page shows spells, talents and rituals that the character has -->
                     <!-- This template defines how the items in the list of CombatAttacks are displayed -->
                     <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
                         <!--IsHitTestVisible="False"-->
@@ -143,27 +143,25 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     
-                    <!-- Spells page shows spells -->
-                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                    <ListView x:Name="SkillTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
+                    <!-- Skills tab shows the skills the character has and the associated abilities -->
+                    <ListView x:Name="SkillTab" ItemsSource="{Binding Skills}" Visibility="Collapsed">
                         <!--IsHitTestVisible="False"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="10" Orientation="Horizontal">
-                                    <TextBlock Text="Skill Tab" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                    <TextBlock Text="{Binding}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     
-                    <!-- Spells page shows spells -->
-                    <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                    <ListView x:Name="CombatTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
+                    <!-- Weapons tab shows weapons that the character has -->
+                    <ListView x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed">
                         <!--IsHitTestVisible="False"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="10" Orientation="Horizontal">
-                                    <TextBlock Text="Combat Tab" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                    <TextBlock Text="{Binding Text}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

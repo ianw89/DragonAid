@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
@@ -28,7 +26,12 @@ namespace DragonAid.Lib.Data
                         Willpower = 9,
                         Perception = 13,
                         PhysicalBeauty = 13,
-                        Fatigue = 23
+                        Fatigue = 23,
+                        WeaponRanks =
+                            {
+                                { WeaponLibrary.Mattock, 1 },
+                                { WeaponLibrary.Dagger, 2 },
+                            }
                     },
                 new Character
                     {
@@ -51,11 +54,16 @@ namespace DragonAid.Lib.Data
                         PhysicalBeauty = 15,
                         Fatigue = 22,
                         SpellRanks = 
-                        {
-                            { SpellLibrary.WalkingUnseen, 6 },
-                            { SpellLibrary.ShadowWings, 2 },
-                            { SpellLibrary.Healing, 3 },
-                        },
+                            {
+                                { SpellLibrary.WalkingUnseen, 6 },
+                                { SpellLibrary.ShadowWings, 2 },
+                                { SpellLibrary.Healing, 3 },
+                            },
+                        WeaponRanks =
+                            {
+                                { WeaponLibrary.Sap, 3 },
+                                { WeaponLibrary.Dagger, 0 },
+                            }
                     },
                 new Character
                     {
@@ -205,17 +213,24 @@ namespace DragonAid.Lib.Data
                         Id = 2,
                         Title = "The Land Of Moordoor",
                         Description = "Where the shadows (of sunken boats) lie",
-                        GameMasterName = "Me",
+                        GameMasterName = "Sauron",
                         ImageUri = "Assets\\MyCharacters.png"
                     }
             };
     }
     
     
-    public class SpellLibrary
+    public static class SpellLibrary
     {
         public static Spell WalkingUnseen = new Spell("Walking Unseen", 40);
         public static Spell ShadowWings = new Spell("Shadow Wings", 25);
         public static Spell Healing = new Spell("Healing", 45);
+    }
+
+    public static class WeaponLibrary
+    {
+        public static Weapon Sap = new Weapon("Sap", 40);
+        public static Weapon Dagger = new Weapon("Dagger", 40);
+        public static Weapon Mattock = new Weapon("Mattock", 55);
     }
 }
