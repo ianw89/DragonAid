@@ -136,8 +136,11 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="10" Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Spell.FullName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
-                                    <TextBlock Text="{Binding BaseCastChace}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="100" />
+                                    <TextBlock Text="{Binding SpellName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                    <TextBlock Text="RK:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Rank}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="50" Margin="10,0,0,0" />
+                                    <TextBlock Text="%:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding BaseCastChance}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="50" Margin="10,0,0,0" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -115,9 +115,9 @@ namespace DragonAid.WindowsClient.ViewModel
         }
 
         // TODO SpellViewModel
-        public IEnumerable<CharacterSpellInfo> Spells
+        public IEnumerable<SpellViewModel> Spells
         {
-            get { return Character.SpellRanks; }
+            get { return this.GetSpellViewModelsFromCharacter(); }
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 
@@ -226,5 +226,15 @@ namespace DragonAid.WindowsClient.ViewModel
             return null;
         }
 
+        private IEnumerable<SpellViewModel> GetSpellViewModelsFromCharacter()
+        {
+
+            if (this._character != null)
+            {
+                return this._character.SpellRanks.Select(spellInfo => new SpellViewModel(spellInfo)).ToList();
+            }
+
+            return null;
+        }
     }
 }
