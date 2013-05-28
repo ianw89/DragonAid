@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-#if INCLUDE_AZURE_BINDINGS
-using Microsoft.WindowsAzure.MobileServices;
-using Windows.Data.Json;
-#endif
-
 namespace DragonAid.Lib.Data.Model
 {
     /// <summary>
@@ -31,36 +24,4 @@ namespace DragonAid.Lib.Data.Model
             TacticalMovementRateModifier = tmr;
         }
     }
-
-    /// <summary>
-    /// Converts between the known races and static index values.
-    /// </summary>
-#if INCLUDE_AZURE_BINDINGS
-    public class RaceJsonConverter : IDataMemberJsonConverter
-    {
-        private static readonly List<Race> Races = new List<Race>
-            {
-                Race.Human,
-                Race.Dwarf,
-                Race.Elf,
-                Race.Orc
-                // Make sure that future updates only append to the end of the list, as opposed to
-                // adding new options in the middle of it.
-            };
-
-        public object ConvertFromJson(IJsonValue value)
-        {
-            var numericValue = value.GetNumber();
-            var index = Convert.ToInt32(numericValue);
-            return Races[index];
-        }
-
-        public IJsonValue ConvertToJson(object instance)
-        {
-            var race = instance as Race;
-            var index = Races.IndexOf(race);
-            return JsonValue.CreateNumberValue(index);
-        }
-    }
-#endif
 }

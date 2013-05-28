@@ -3,8 +3,6 @@ using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
 
 namespace DragonAid.WindowsClient.ViewModel
 {
@@ -75,29 +73,6 @@ namespace DragonAid.WindowsClient.ViewModel
             {
                 partyViewModel.SaveState(stateContainer);
             }
-        }
-
-        public async Task LoadAllPartiesFromServiceAsync()
-        {
-            await LoadAllPartiesFromServiceAsync(DragonAidService.Client);
-        }
-        
-        public async Task LoadAllPartiesFromServiceAsync(MobileServiceClient client)
-        {
-            var characterTable = client.GetTable<Character>();
- 	        var partyTable = client.GetTable<Party>();
-
-            var getPartiesTask = partyTable.ToListAsync();
-            var getCharactersTask = characterTable.ToListAsync();
-
-            var parties = await getPartiesTask;
-            var characters = await getCharactersTask;
-            
-            // Only after the network IO succeeds do we change anything
-            // TODO want these readonly fields
-            this._rawCharacterData = characters;
-            this._rawPartyData = parties;
-            BuildPartyViewModelsFromParties();
         }
 
         /// <summary>

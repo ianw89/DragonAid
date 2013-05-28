@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using DragonAid.Lib.Data;
 using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
 using Windows.UI.Xaml;
@@ -26,11 +25,6 @@ namespace DragonAid.WindowsClient
             set;
         }
 
-        public bool UseWebService
-        {
-            get { return false; }
-        }
-
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -40,26 +34,12 @@ namespace DragonAid.WindowsClient
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected  override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            if (this.UseWebService)
-            {
-                // Ignoring navigationParameter - just displaying all parties
-                this.AllPartiesViewModel = new AllPartiesViewModel();
-                // Load syncronously available state before hooking to the view
-                this.AllPartiesViewModel.LoadState(pageState);
-
-                // Login and then load data from web service
-                await DragonAidService.RequireLoginAsync();
-                await AllPartiesViewModel.LoadAllPartiesFromServiceAsync();
-            }
-            else
-            {
-                // Ignoring navigationParameter - just displaying all parties
-                this.AllPartiesViewModel = AllPartiesViewModel.CreateWithStaticData();
-                // Load syncronously available state before hooking to the view
-                this.AllPartiesViewModel.LoadState(pageState);
-            }
+            // Ignoring navigationParameter - just displaying all parties
+            this.AllPartiesViewModel = AllPartiesViewModel.CreateWithStaticData();
+            // Load syncronously available state before hooking to the view
+            this.AllPartiesViewModel.LoadState(pageState);
         }
 
         protected override void SaveState(Dictionary<string, object> pageState)

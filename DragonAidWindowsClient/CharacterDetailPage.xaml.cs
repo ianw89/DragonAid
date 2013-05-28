@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using DragonAid.Lib.Data;
-using DragonAid.WindowsClient.Common;
+﻿using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -17,7 +15,6 @@ namespace DragonAid.WindowsClient
     /// </summary>
     public sealed partial class CharacterDetailPage : LayoutAwarePage
     {
-        private bool useWebServiceFordata = false;
         private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
 
         public CharacterDetailPage()
@@ -43,7 +40,7 @@ namespace DragonAid.WindowsClient
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // Normally this page will be open when clicked on, so there is a navigation parameter that
             // contains the Id of the character we are displaying details for.
@@ -55,27 +52,12 @@ namespace DragonAid.WindowsClient
             }
             else
             {
-                characterId = 2; // Muscles
+                throw new InvalidOperationException("Cannot open a CharacterDetailPage without a navigation paramter that provides the character to open.");
             }
 
-            // This is fast and can be done synchronously
             // Try and load from saved data. Not implemented really...
-            bool loaded = CharacterViewModel.LoadState(characterId, pageState);
-
-            // This involves network IO. We'll put up a loading indicator (either full-screen or
-            // non-obtrusive, depending on if anything could be loaded synchronously)
-            LoadingState = loaded ? LoadingStates.LoadingUpdate : LoadingStates.LoadingFresh;
-
-            if (this.useWebServiceFordata)
-            {
-                await CharacterViewModel.LoadCharacterFromServiceAsync(characterId);
-            }
-            else
-            {
-                CharacterViewModel.LoadCharacterFromStaticData(characterId);
-            }
-
-            LoadingState = LoadingStates.NotLoading;
+            this.CharacterViewModel.LoadState(characterId, pageState);
+            CharacterViewModel.LoadCharacterFromStaticData(characterId);
         }
 
         private void OnOnLoadingStateChanged(object sender, EventArgs eventArgs)

@@ -102,7 +102,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\CharacterExtensions.cs" />
-    <Compile Include="Data\DragonAidService.cs" />
     <Compile Include="Data\HardCodedSampleData.cs" />
     <Compile Include="Data\Model\Character.cs" />
     <Compile Include="Data\CharacterEquations.cs" />
@@ -127,11 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.WindowsAzure.MobileServices.Managed">
-      <HintPath>..\packages\WindowsAzure.MobileServices.0.2.0\lib\win8\Microsoft.WindowsAzure.MobileServices.Managed.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

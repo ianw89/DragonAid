@@ -4,10 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
-using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 
 namespace DragonAid.WindowsClient.ViewModel
 {
@@ -175,11 +172,6 @@ namespace DragonAid.WindowsClient.ViewModel
             stateContainer[UniqueId] = Character;
         }
 
-        public async Task LoadCharacterFromServiceAsync(int characterId)
-        {
-            await LoadCharacterFromServiceAsync(DragonAidService.Client, characterId);
-        }
-
         public void LoadCharacterFromStaticData(int characterId)
         {
             Character = HardCodedSampleData.SampleCharacters.Single(c => c.Id == characterId);
@@ -222,12 +214,6 @@ namespace DragonAid.WindowsClient.ViewModel
         private static string CharacterIdToUniqueId(int characterId)
         {
             return string.Format("Character/{0}", characterId);
-        }
-
-        private async Task LoadCharacterFromServiceAsync(MobileServiceClient client, int characterId)
-        {
-            var characterTable = client.GetTable<Character>();
-            Character = await characterTable.LookupAsync(characterId);
         }
 
         private IEnumerable<WeaponViewModel> GetWeaponViewModelsFromCharacter()
