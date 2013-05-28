@@ -56,54 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DragonAidLib\Data\CharacterEquations.cs">
-      <Link>Data\CharacterEquations.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\DetermineChanceOfSuccessConverter.cs">
-      <Link>Data\DetermineChanceOfSuccessConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\HardCodedSampleData.cs">
-      <Link>Data\HardCodedSampleData.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\Character.cs">
-      <Link>Data\Model\Character.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellInfo.cs">
-      <Link>Data\Model\CharacterSpellInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\CharacterSpellRanks.cs">
-      <Link>Data\Model\CharacterSpellRanks.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\CharacterWeaponInfo.cs">
-      <Link>Data\Model\CharacterWeaponInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\CharacterWeaponRanks.cs">
-      <Link>Data\Model\CharacterWeaponRanks.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\CombatAction.cs">
-      <Link>Data\Model\CombatAction.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\Party.cs">
-      <Link>Data\Model\Party.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\Race.cs">
-      <Link>Data\Model\Race.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\Spell.cs">
-      <Link>Data\Model\Spell.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\Model\Weapon.cs">
-      <Link>Data\Model\Weapon.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\RollResult.cs">
-      <Link>Data\RollResult.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\TeamAttributeChecker.cs">
-      <Link>Data\TeamAttributeChecker.cs</Link>
-    </Compile>
-    <Compile Include="..\DragonAidLib\Data\TeamRollResult.cs">
-      <Link>Data\TeamRollResult.cs</Link>
-    </Compile>
     <Compile Include="ChoiceList.cs" />
     <Compile Include="CommanderConsole.cs" />
     <Compile Include="MainMenuState.cs" />
@@ -131,6 +83,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DragonAidLib\DragonAidLib.csproj">
+      <Project>{63cdff4a-7c4f-42f0-a7f4-8d5d831fa15e}</Project>
+      <Name>DragonAidLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
