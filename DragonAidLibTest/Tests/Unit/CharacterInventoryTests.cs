@@ -9,6 +9,8 @@ namespace DragonAid.Test.Tests.Unit
     [TestClass]
     public class CharacterInventoryTests
     {
+        private readonly Armor _testArmor = new Armor("Fake armor", -1, 2);
+
         [TestMethod]
         public void InventoryShouldBeEmptyByDefault()
         {
@@ -43,6 +45,49 @@ namespace DragonAid.Test.Tests.Unit
         public void EmptyInventoryIsWeightless()
         {
             new CharacterInventory().TotalWeight.Should().Be(0m);
+        }
+
+        [TestMethod]
+        public void NoArmorIsEquippedByDefault()
+        {
+            new CharacterInventory().EquippedArmor.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void ArmorAddedToInventoryIsNotAutomaticallyEquipped()
+        {
+            new CharacterInventory { _testArmor}.EquippedArmor.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void EquippedArmorIsAutomaticallyPartOfInventory()
+        {
+            new CharacterInventory { EquippedArmor = _testArmor }.Should().Contain(_testArmor);
+        }
+
+        [TestMethod]
+        public void ArmorThatIsUnequippedStaysInInventory()
+        {
+            var inventory = new CharacterInventory { EquippedArmor = _testArmor };
+            inventory.EquippedArmor = null;
+            inventory.Should().Contain(_testArmor);
+        }
+
+        [TestMethod]
+        public void ArmorThatWasInInventoryIsNotDoubleCountedWhenEquipped()
+        {
+            var inventory = new CharacterInventory { _testArmor };
+            inventory.EquippedArmor = _testArmor;
+            inventory.Should().HaveCount(1);
+        }
+
+        [TestMethod]
+        public void ArmorThatWasInInventoryIsNotDoubleCountedWhenEquippedTwice()
+        {
+            var inventory = new CharacterInventory { _testArmor };
+            inventory.EquippedArmor = _testArmor;
+            inventory.EquippedArmor = _testArmor;
+            inventory.Should().HaveCount(1);
         }
     }
 }

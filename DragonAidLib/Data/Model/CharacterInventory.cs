@@ -27,7 +27,11 @@ namespace DragonAid.Lib.Data.Model
 
             set
             {
-                Contract.Requires(value != null);
+                if (value != null && !this._items.Contains(value))
+                {
+                    this._items.Add(value);
+                }
+
                 this._armor = value;
             }
         }
