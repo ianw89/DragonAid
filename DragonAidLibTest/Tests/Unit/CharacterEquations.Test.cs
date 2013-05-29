@@ -15,7 +15,6 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
         {
-
             CharacterEquations.ComputeBasicTacticalMovementRate(3, Race.Human).Should().Be(2);
             CharacterEquations.ComputeBasicTacticalMovementRate(15, Race.Human).Should().Be(5);
             CharacterEquations.ComputeBasicTacticalMovementRate(26, Race.Human).Should().Be(8);
@@ -73,6 +72,20 @@ namespace DragonAid.Test.Tests.Unit
         {
             Action getCastChance = () => new Character().CastChance(fakeSpell);
             getCastChance.ShouldThrow<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void EffectiveAgilityShouldBeAffectedByInventoryWeight()
+        {
+            var c = new Character { Agility = 10, Inventory = { WeaponLibrary.Mattock } };
+            CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(c.Agility);
+        }
+
+        [TestMethod]
+        public void EffectiveAgilityShouldNotBeAffectedIfInventoryIsEmpty()
+        {
+            var c = new Character { Agility = 10 };
+            CharacterEquations.ComputeEffectiveAgility(c).Should().Be(c.Agility);
         }
     }
 }

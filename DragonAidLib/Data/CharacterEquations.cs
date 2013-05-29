@@ -36,9 +36,24 @@ namespace DragonAid.Lib.Data
 
         private static readonly Lazy<Func<Character, Spell, int>> CompiledCastChance = new Lazy<Func<Character, Spell, int>>(() => CastChance.Compile()); 
 
-        public static int ComputeCastChance(Character magicalAptitude, Spell spell)
+        public static int ComputeCastChance(Character character, Spell spell)
         {
-            return CompiledCastChance.Value(magicalAptitude, spell);
+            Contract.Requires(character != null);
+            Contract.Requires(spell != null);
+            return CompiledCastChance.Value(character, spell);
+        }
+
+        public static int ComputeEffectiveAgility(Character character)
+        {
+            Contract.Requires(character != null);
+            decimal totalWeight = character.Inventory.TotalWeight;
+            if (totalWeight > 0)
+            {
+                // TODO: use real formula!!!
+                return character.Agility - 1;
+            }
+
+            return character.Agility;
         }
     }
 }
