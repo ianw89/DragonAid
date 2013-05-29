@@ -122,5 +122,12 @@ namespace DragonAid.Test.Tests.Unit
             c.Inventory.Add(WeaponLibrary.Mattock);
             c.TacticalMovementRate().Should().BeLessThan(tmr);
         }
+
+        [TestMethod]
+        public void ArmorAffectsAgility()
+        {
+            var c = new Character { Agility = 10, EquippedArmor = new Armor("A straightjacket", -10, 0) };
+            c.EffectiveAgility().Should().Be(0);
+        }
     }
 }

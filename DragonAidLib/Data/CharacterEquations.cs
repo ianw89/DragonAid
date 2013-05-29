@@ -47,20 +47,27 @@ namespace DragonAid.Lib.Data
         {
             Contract.Requires(character != null);
             decimal totalWeight = character.Inventory.TotalWeight;
+            var agility = character.Agility;
+
+            if (character.EquippedArmor != null)
+            {
+                agility += character.EquippedArmor.AgilityModifier;
+            }
+
             if (totalWeight > 3)
             {
                 // TODO: use real formula!!!
                 if (character.PhysicalStrength > 10)
                 {
-                    return character.Agility - 2;
+                    return agility - 2;
                 }
                 
                 if (character.PhysicalStrength > 5)
                 {
-                    return character.Agility - 3;
+                    return agility - 3;
                 }
 
-                return character.Agility - 4;
+                return agility - 4;
             }
             
             if (totalWeight > 0)
@@ -68,18 +75,18 @@ namespace DragonAid.Lib.Data
                 // TODO: use real formula!!!
                 if (character.PhysicalStrength > 10)
                 {
-                    return character.Agility - 1;
+                    return agility - 1;
                 }
                 
                 if (character.PhysicalStrength > 5)
                 {
-                    return character.Agility - 2;
+                    return agility - 2;
                 }
 
-                return character.Agility - 3;
+                return agility - 3;
             }
 
-            return character.Agility;
+            return agility;
         }
     }
 }

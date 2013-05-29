@@ -86,5 +86,11 @@ namespace DragonAid.Lib.Data.Model
                 _inventory = value;
             }
         }
+
+        public Armor EquippedArmor
+        {
+            get { return this.Inventory.EquippedArmor;  }
+            set { this.Inventory.EquippedArmor = value; }
+        }
     }
 }
