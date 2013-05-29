@@ -11,6 +11,7 @@ namespace DragonAid.Test.Tests.Unit
     public class CharacterEquationsTests
     {
         private readonly Spell fakeSpell = new Spell("FakeSpell", 10);
+        private readonly Item _heavyItem = new Item("Lead weight", 50);
 
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
@@ -82,16 +83,16 @@ namespace DragonAid.Test.Tests.Unit
         }
 
         [TestMethod]
-        public void EffectiveAgilityShouldNotBeAffectedIfInventoryIsEmpty()
+        public void EffectiveAgilityShouldNotBeAffectedIfInventoryIsEmptyAndStrengthIsReasonably()
         {
-            var c = new Character { Agility = 10 };
+            var c = new Character { Agility = 10, PhysicalStrength = 15 };
             CharacterEquations.ComputeEffectiveAgility(c).Should().Be(c.Agility);
         }
 
         [TestMethod]
         public void EffectOfWeightOnAgilityIsLessForStrongerCharacter()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { _heavyItem } };
             var withMediumStrength = CharacterEquations.ComputeEffectiveAgility(c);
             c.PhysicalStrength += 5;
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeGreaterThan(withMediumStrength);
@@ -100,7 +101,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void EffectOfWeightOnAgilityIsMoreForWeakerCharacter()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { _heavyItem } };
             var withMediumStrength = CharacterEquations.ComputeEffectiveAgility(c);
             c.PhysicalStrength -= 5;
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(withMediumStrength);
@@ -109,9 +110,9 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void HeavierItemsAffectAgilityMoreThanLightOnes()
         {
-            var withMattock = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var withHeavyItem = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { _heavyItem } };
             var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Dagger } };
-            CharacterEquations.ComputeEffectiveAgility(withMattock).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
+            CharacterEquations.ComputeEffectiveAgility(withHeavyItem).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
         }
 
         [TestMethod]
@@ -119,14 +120,14 @@ namespace DragonAid.Test.Tests.Unit
         {
             var c = new Character { Agility = 10, PhysicalStrength = 10, Race = Race.Human };
             var tmr = c.TacticalMovementRate();
-            c.Inventory.Add(WeaponLibrary.Mattock);
+            c.Inventory.Add(_heavyItem);
             c.TacticalMovementRate().Should().BeLessThan(tmr);
         }
 
         [TestMethod]
         public void ArmorAffectsAgility()
         {
-            var c = new Character { Agility = 10, EquippedArmor = new Armor("A straightjacket", -10, 0) };
+            var c = new Character { Agility = 10, PhysicalStrength = 15, EquippedArmor = new Armor("A straightjacket", -10, 0) };
             c.EffectiveAgility().Should().Be(0);
         }
     }
