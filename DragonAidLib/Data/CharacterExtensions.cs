@@ -11,7 +11,14 @@ namespace DragonAid.Lib.Data
         public static int TacticalMovementRate(this Character character)
         {
             Contract.Requires(character != null);
-            return CharacterEquations.ComputeBasicTacticalMovementRate(character.Agility, character.Race);
+            Contract.Requires(character.Race != null);
+            return CharacterEquations.ComputeBasicTacticalMovementRate(character.EffectiveAgility(), character.Race);
+        }
+
+        public static int EffectiveAgility(this Character character)
+        {
+            Contract.Requires(character != null);
+            return CharacterEquations.ComputeEffectiveAgility(character);
         }
 
         public static int CastChance(this Character character, Spell spell)
