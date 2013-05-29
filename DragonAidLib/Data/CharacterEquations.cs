@@ -50,7 +50,17 @@ namespace DragonAid.Lib.Data
             if (totalWeight > 0)
             {
                 // TODO: use real formula!!!
-                return character.Agility - 1;
+                if (character.PhysicalStrength > 10)
+                {
+                    return character.Agility - 1;
+                }
+                
+                if (character.PhysicalStrength > 5)
+                {
+                    return character.Agility - 2;
+                }
+
+                return character.Agility - 3;
             }
 
             return character.Agility;

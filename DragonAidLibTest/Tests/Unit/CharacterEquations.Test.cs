@@ -77,7 +77,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void EffectiveAgilityShouldBeAffectedByInventoryWeight()
         {
-            var c = new Character { Agility = 10, Inventory = { WeaponLibrary.Mattock } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(c.Agility);
         }
 
@@ -86,6 +86,24 @@ namespace DragonAid.Test.Tests.Unit
         {
             var c = new Character { Agility = 10 };
             CharacterEquations.ComputeEffectiveAgility(c).Should().Be(c.Agility);
+        }
+
+        [TestMethod]
+        public void EffectOfWeightOnAgilityIsLessForStrongerCharacter()
+        {
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var withMediumStrength = CharacterEquations.ComputeEffectiveAgility(c);
+            c.PhysicalStrength += 5;
+            CharacterEquations.ComputeEffectiveAgility(c).Should().BeGreaterThan(withMediumStrength);
+        }
+
+        [TestMethod]
+        public void EffectOfWeightOnAgilityIsMoreForWeakerCharacter()
+        {
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var withMediumStrength = CharacterEquations.ComputeEffectiveAgility(c);
+            c.PhysicalStrength -= 5;
+            CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(withMediumStrength);
         }
     }
 }
