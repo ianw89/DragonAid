@@ -16,5 +16,10 @@ namespace DragonAid.Lib.Data.Model
         {
             return GetEnumerator();
         }
+
+        public void Add(Item item)
+        {
+            _items.Add(item);
+        }
     }
 }

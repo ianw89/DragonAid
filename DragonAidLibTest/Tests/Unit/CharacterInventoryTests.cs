@@ -14,5 +14,14 @@ namespace DragonAid.Test.Tests.Unit
         {
             new CharacterInventory().Should().BeEmpty();
         }
+
+        [TestMethod]
+        public void ItemCanBeAddedToInventory()
+        {
+            var testSubject = new CharacterInventory();
+            var item = new Item();
+            testSubject.Add(item);
+            testSubject.Should().Contain(item);
+        }
     }
 }
