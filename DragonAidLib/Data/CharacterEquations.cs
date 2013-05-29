@@ -54,37 +54,7 @@ namespace DragonAid.Lib.Data
                 agility += character.EquippedArmor.AgilityModifier;
             }
 
-            if (totalWeight > 3)
-            {
-                // TODO: use real formula!!!
-                if (character.PhysicalStrength > 10)
-                {
-                    return agility - 2;
-                }
-                
-                if (character.PhysicalStrength > 5)
-                {
-                    return agility - 3;
-                }
-
-                return agility - 4;
-            }
-            
-            if (totalWeight > 0)
-            {
-                // TODO: use real formula!!!
-                if (character.PhysicalStrength > 10)
-                {
-                    return agility - 1;
-                }
-                
-                if (character.PhysicalStrength > 5)
-                {
-                    return agility - 2;
-                }
-
-                return agility - 3;
-            }
+            agility += FatigueAndEncumberanceChart.Lookup(character.PhysicalStrength, totalWeight).AgilityModifier;
 
             return agility;
         }
