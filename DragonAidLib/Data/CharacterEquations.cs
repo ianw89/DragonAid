@@ -47,6 +47,22 @@ namespace DragonAid.Lib.Data
         {
             Contract.Requires(character != null);
             decimal totalWeight = character.Inventory.TotalWeight;
+            if (totalWeight > 3)
+            {
+                // TODO: use real formula!!!
+                if (character.PhysicalStrength > 10)
+                {
+                    return character.Agility - 2;
+                }
+                
+                if (character.PhysicalStrength > 5)
+                {
+                    return character.Agility - 3;
+                }
+
+                return character.Agility - 4;
+            }
+            
             if (totalWeight > 0)
             {
                 // TODO: use real formula!!!

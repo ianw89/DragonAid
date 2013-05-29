@@ -105,5 +105,13 @@ namespace DragonAid.Test.Tests.Unit
             c.PhysicalStrength -= 5;
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(withMediumStrength);
         }
+
+        [TestMethod]
+        public void HeavierItemsAffectAgilityMoreThanLightOnes()
+        {
+            var withMattock = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Dagger } };
+            CharacterEquations.ComputeEffectiveAgility(withMattock).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
+        }
     }
 }
