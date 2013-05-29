@@ -113,5 +113,14 @@ namespace DragonAid.Test.Tests.Unit
             var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Dagger } };
             CharacterEquations.ComputeEffectiveAgility(withMattock).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
         }
+
+        [TestMethod]
+        public void CarryingStuffSlowsCharacterDown()
+        {
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Race = Race.Human };
+            var tmr = c.TacticalMovementRate();
+            c.Inventory.Add(WeaponLibrary.Mattock);
+            c.TacticalMovementRate().Should().BeLessThan(tmr);
+        }
     }
 }
