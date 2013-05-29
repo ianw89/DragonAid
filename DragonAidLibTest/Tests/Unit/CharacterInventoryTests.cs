@@ -19,7 +19,7 @@ namespace DragonAid.Test.Tests.Unit
         public void ItemCanBeAddedToInventory()
         {
             var testSubject = new CharacterInventory();
-            var item = new Item();
+            var item = new Item("Fake item", 0);
             testSubject.Add(item);
             testSubject.Should().Contain(item);
         }
@@ -27,7 +27,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void CharacterCanBeInitializedWithItemInInventory()
         {  
-            var item = new Item();
+            var item = new Item("Fake item", 0);
             var character = new Character { Inventory = { item } };
             character.Inventory.Should().Contain(item);
         }
