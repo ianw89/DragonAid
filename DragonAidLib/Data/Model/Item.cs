@@ -4,16 +4,16 @@ namespace DragonAid.Lib.Data.Model
 {
     public class Item
     {
-        public Item(string name, decimal weight)
+        public Item(string fullName, decimal weight)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(name));
+            Contract.Requires(!string.IsNullOrWhiteSpace(fullName));
             Contract.Requires(weight >= 0);
 
-            Name = name;
+            FullName = fullName;
             Weight = weight;
         }
 
-        public string Name { get; private set; }
+        public string FullName { get; private set; }
 
         public decimal Weight { get; private set; }
     }

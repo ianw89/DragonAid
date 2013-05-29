@@ -229,8 +229,8 @@ namespace DragonAid.Lib.Data
 
     public static class WeaponLibrary
     {
-        public static Weapon Sap = new Weapon("Sap", 40);
-        public static Weapon Dagger = new Weapon("Dagger", 40);
-        public static Weapon Mattock = new Weapon("Mattock", 55);
+        public static Weapon Sap = new Weapon("Sap", 40, 1m);
+        public static Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
+        public static Weapon Mattock = new Weapon("Mattock", 55, 6m);
     }
 }
