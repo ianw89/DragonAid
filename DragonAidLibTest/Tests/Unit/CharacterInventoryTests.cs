@@ -23,5 +23,13 @@ namespace DragonAid.Test.Tests.Unit
             testSubject.Add(item);
             testSubject.Should().Contain(item);
         }
+
+        [TestMethod]
+        public void CharacterCanBeInitializedWithItemInInventory()
+        {  
+            var item = new Item();
+            var character = new Character { Inventory = { item } };
+            character.Inventory.Should().Contain(item);
+        }
     }
 }
