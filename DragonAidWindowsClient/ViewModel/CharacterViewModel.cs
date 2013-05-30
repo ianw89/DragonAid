@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
@@ -57,55 +58,65 @@ namespace DragonAid.WindowsClient.ViewModel
         public int PhysicalStrength
         {
             get { return Character.PhysicalStrength; } 
-            set { SetCharacterProperty(c => c.PhysicalStrength = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int ManualDexterity
         {
             get { return Character.ManualDexterity; }
-            set { SetCharacterProperty(c => c.ManualDexterity = value); }
+            set { throw new NotSupportedException(); }
         }
 
-        public int Agility
+        public string Agility
         {
-            get { return Character.Agility; }
-            set { SetCharacterProperty(c => c.Agility = value); }
+            get
+            {
+                var sb = new StringBuilder();
+
+                sb.Append(Character.Agility);
+                sb.Append("(");
+                sb.Append(Character.EffectiveAgility());
+                sb.Append(")");
+
+                return sb.ToString();
+            }
+            set { throw new NotSupportedException(); }
         }
 
         public int PhysicalBeauty
         {
             get { return Character.PhysicalBeauty; }
-            set { SetCharacterProperty(c => c.PhysicalBeauty = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int Willpower
         {
             get { return Character.Willpower; }
-            set { SetCharacterProperty(c => c.Willpower = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int MagicalAptitude
         {
             get { return Character.MagicalAptitude; }
-            set { SetCharacterProperty(c => c.MagicalAptitude = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int Endurance
         {
             get { return Character.Endurance; }
-            set { SetCharacterProperty(c => c.Endurance = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int Fatigue
         {
             get { return Character.Fatigue; }
-            set { SetCharacterProperty(c => c.Fatigue = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int Perception
         {
             get { return Character.Perception; }
-            set { SetCharacterProperty(c => c.Perception = value); }
+            set { throw new NotSupportedException(); }
         }
 
         public int TacticalMovementRate
