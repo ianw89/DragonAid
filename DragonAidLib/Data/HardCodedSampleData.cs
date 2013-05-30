@@ -11,9 +11,9 @@ namespace DragonAid.Lib.Data
                     {
                         Id = 1,
                         Name = "Hap",
-                        Title = "Happinstance McGillity",
-                        Description = "Big, mean, and ugly.",
-                        ImageUri = null,
+                        Title = "Happenstance McGillity",
+                        Description = "Big, mean, and in a dress.",
+                        ImageUri = "http://2.bp.blogspot.com/-BHuLJWjHQfs/Ty3X7Nm6xhI/AAAAAAAABOg/-0dpWOaDCCY/s400/strong_muscular_women_sw201.jpg",
                         PlayerName = "Jen",
                         IsMine = false,
                         Race = Race.Human,
