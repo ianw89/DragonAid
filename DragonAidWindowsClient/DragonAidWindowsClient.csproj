@@ -132,6 +132,7 @@
     <Compile Include="ViewModel\AllPartiesViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\GroupableViewModelBase.cs" />
+    <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="ViewModel\PartyViewModel.cs" />
     <Compile Include="ViewModel\SkillViewModel.cs" />
     <Compile Include="ViewModel\SpellViewModel.cs" />

@@ -64,6 +64,12 @@ namespace DragonAid.Lib.Data
                                 { WeaponLibrary.Sap, 3 },
                                 { WeaponLibrary.Dagger, 0 },
                             }
+                            ,
+                        Inventory = 
+                            {
+                                { new Item("Food Supplies", 1.5m)},
+                                { new Item("Sap", 1) },
+                            }
                     },
                 new Character
                     {

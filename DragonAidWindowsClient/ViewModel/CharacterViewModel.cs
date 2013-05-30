@@ -122,9 +122,9 @@ namespace DragonAid.WindowsClient.ViewModel
         }
 
         // TODO ItemViewModel
-        public IEnumerable<String> Inventory
+        public IEnumerable<ItemViewModel> Inventory
         {
-            get { return new List<string> {"Sword", "Shield", "Skull", "Bones"}; }
+            get { return this.GetItemViewModelsFromCharacter(); }
             set { throw new NotSupportedException("Cannot set inventory."); }
         }
 
@@ -228,10 +228,19 @@ namespace DragonAid.WindowsClient.ViewModel
 
         private IEnumerable<SpellViewModel> GetSpellViewModelsFromCharacter()
         {
-
             if (this._character != null)
             {
                 return this._character.SpellRanks.Select(spellInfo => new SpellViewModel(spellInfo)).ToList();
+            }
+
+            return null;
+        }
+
+        private IEnumerable<ItemViewModel> GetItemViewModelsFromCharacter()
+        {
+            if (this._character != null)
+            {
+                return this._character.Inventory.Select(item => new ItemViewModel(item)).ToList();
             }
 
             return null;

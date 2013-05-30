@@ -3,6 +3,9 @@ using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.WindowsClient.ViewModel
 {
+    /// <summary>
+    /// View model for a Spell.
+    /// </summary>
     public class SpellViewModel
     {
         private readonly CharacterSpellInfo _spellInfo;
