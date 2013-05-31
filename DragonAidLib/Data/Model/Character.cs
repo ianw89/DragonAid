@@ -14,12 +14,14 @@ namespace DragonAid.Lib.Data.Model
     {
         private CharacterSpellRanks _spellRanks;
         private CharacterWeaponRanks _weaponRanks;
+        private CharacterSkillRanks _skillRanks;
         private CharacterInventory _inventory;
 
         public Character()
         {
             this._spellRanks = new CharacterSpellRanks(this);
             this._weaponRanks = new CharacterWeaponRanks(this);
+            this._skillRanks = new CharacterSkillRanks(this);
             this._inventory = new CharacterInventory();
         }
 
@@ -77,6 +79,16 @@ namespace DragonAid.Lib.Data.Model
             }
         }
 
+        public CharacterSkillRanks Skills
+        {
+            get { return _skillRanks; }
+            set
+            {
+                Contract.Requires(value != null);
+                _skillRanks = value;
+            }
+        }
+
         public CharacterInventory Inventory
         {
             get { return _inventory; }
@@ -92,5 +104,6 @@ namespace DragonAid.Lib.Data.Model
             get { return this.Inventory.EquippedArmor;  }
             set { this.Inventory.EquippedArmor = value; }
         }
+
     }
 }

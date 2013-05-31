@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 namespace DragonAid.WindowsClient.Common
 {
     /// <summary>
-    /// Value converter that translates true to false and vice versa.
+    /// Rank converter that translates true to false and vice versa.
     /// </summary>
     public sealed class BooleanNegationConverter : IValueConverter
     {

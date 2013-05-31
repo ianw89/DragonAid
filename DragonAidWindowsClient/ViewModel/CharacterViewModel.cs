@@ -125,14 +125,12 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set TMR."); }
         }
 
-        // TODO SpellViewModel
         public IEnumerable<SpellViewModel> Spells
         {
             get { return this.GetSpellViewModelsFromCharacter(); }
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 
-        // TODO ItemViewModel
         public IEnumerable<ItemViewModel> Inventory
         {
             get { return this.GetItemViewModelsFromCharacter(); }
@@ -145,10 +143,9 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set weapons."); }
         }
 
-        // TODO SkillViewModel
-        public IEnumerable<String> Skills
+        public IEnumerable<SkillViewModel> Skills
         {
-            get { return new List<string> { "Ranger", "Assassin", "Troubador" }; }
+            get { return this.GetSkillViewModelsFromCharacter(); }
             set { throw new NotSupportedException("Cannot set skills."); }
         }
 
@@ -256,5 +253,16 @@ namespace DragonAid.WindowsClient.ViewModel
 
             return null;
         }
+
+        private IEnumerable<SkillViewModel> GetSkillViewModelsFromCharacter()
+        {
+            if (this._character != null)
+            {
+                return this._character.Skills.Select(Skills => new SkillViewModel(Skills)).ToList();
+            }
+
+            return null;
+        }
+
     }
 }

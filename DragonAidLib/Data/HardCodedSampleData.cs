@@ -69,6 +69,12 @@ namespace DragonAid.Lib.Data
                             {
                                 { new Item("Food Supplies", 1.5m)},
                                 { new Item("Sap", 1) },
+                            },
+                        Skills =
+                            {
+                                { SkillLibrary.Assassin, 3},     
+                                { SkillLibrary.Horsemanship, 0},        
+                                { SkillLibrary.Stealth, 2}        
                             }
                     },
                 new Character
@@ -238,5 +244,16 @@ namespace DragonAid.Lib.Data
         public static Weapon Sap = new Weapon("Sap", 40, 1m);
         public static Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
         public static Weapon Mattock = new Weapon("Mattock", 55, 6m);
+    }
+
+    public static class SkillLibrary
+    {
+        public static Skill Assassin = new Skill("Assassin");
+        public static Skill Alchemy = new Skill("Alchemy");
+        public static Skill Astrology = new Skill("Astrology");
+        public static Skill Beastmaster = new Skill("Beastmaster");
+
+        public static Skill Horsemanship = new Skill("Horsemanship");
+        public static Skill Stealth = new Skill("Stealth");
     }
 }

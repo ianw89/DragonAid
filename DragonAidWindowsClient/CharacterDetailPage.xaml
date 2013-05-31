@@ -161,7 +161,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="{Binding}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                <TextBlock Text="{Binding FullName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                                <TextBlock Text="RK:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Rank}" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

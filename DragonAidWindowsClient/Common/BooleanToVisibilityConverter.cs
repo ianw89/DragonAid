@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 namespace DragonAid.WindowsClient.Common
 {
     /// <summary>
-    /// Value converter that translates true to <see cref="Visibility.Visible"/> and false to
+    /// Rank converter that translates true to <see cref="Visibility.Visible"/> and false to
     /// <see cref="Visibility.Collapsed"/>.
     /// </summary>
     public sealed class BooleanToVisibilityConverter : IValueConverter

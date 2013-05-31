@@ -40,6 +40,8 @@
     <Compile Include="Data\Model\Character.cs" />
     <Compile Include="Data\CharacterEquations.cs" />
     <Compile Include="Data\Model\CharacterInventory.cs" />
+    <Compile Include="Data\Model\CharacterSkillInfo.cs" />
+    <Compile Include="Data\Model\CharacterSkillRanks.cs" />
     <Compile Include="Data\Model\CharacterSpellInfo.cs" />
     <Compile Include="Data\Model\CharacterSpellRanks.cs" />
     <Compile Include="Data\Model\CharacterWeaponInfo.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="Data\Model\Item.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
+    <Compile Include="Data\Model\Skill.cs" />
     <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\RollResult.cs" />
     <Compile Include="Data\Model\Spell.cs" />
