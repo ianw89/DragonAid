@@ -104,7 +104,7 @@ namespace DragonAid.Lib.Data
                         Name = "Nick",
                         Title = "Nick Black",
                         Description = "Full of venom, and worse.",
-                        ImageUri = null,
+                        ImageUri = "Assets/SnakeToTheFace.png",
                         PlayerName = "Matt",
                         Race = Race.Human,
                         IsMine = false,
@@ -117,7 +117,38 @@ namespace DragonAid.Lib.Data
                         Willpower = 18,
                         Perception = 8,
                         PhysicalBeauty = 12,
-                        Fatigue = 21
+                        Fatigue = 21,
+                        SpellRanks =
+                            {
+                                { SpellLibrary.ESP, 1 },
+                                { SpellLibrary.Hypnotism, 2 },
+                                { SpellLibrary.MentalAttack, 2 },
+                                { SpellLibrary.MentalHealing, 1 },
+                            },
+                        WeaponRanks =
+                            {
+                                { WeaponLibrary.Cane, 3 },
+                                { WeaponLibrary.Sap, 3 },
+                                { WeaponLibrary.Darts, 2 },
+                            }
+                            ,
+                        Inventory = 
+                            {
+                                new Item("Cloth armor (improved)", 6),
+                                WeaponLibrary.Cane,
+                                WeaponLibrary.Sap,
+                                WeaponLibrary.Darts,
+                                
+                                new Item("Adventuring pack", 23),
+                                new Item("Money", 5),
+                                new Item("2 weeks of supplies", 14),
+                            },
+                        Skills =
+                            {
+                                { SkillLibrary.Assassin, 3},     
+                                { SkillLibrary.Spy, 1},        
+                                { SkillLibrary.Stealth, 1}        
+                            }
                     },
                 new Character
                     {
@@ -237,6 +268,11 @@ namespace DragonAid.Lib.Data
         public static Spell WalkingUnseen = new Spell("Walking Unseen", 40);
         public static Spell ShadowWings = new Spell("Shadow Wings", 25);
         public static Spell Healing = new Spell("Healing", 45);
+
+        public static Spell ESP = new Spell("ESP", 40);
+        public static Spell Hypnotism = new Spell("Hypnotism", 40);
+        public static Spell MentalAttack = new Spell("Mental Attack", 25);
+        public static Spell MentalHealing = new Spell("Healing", 40);
     }
 
     public static class WeaponLibrary
@@ -244,6 +280,9 @@ namespace DragonAid.Lib.Data
         public static Weapon Sap = new Weapon("Sap", 40, 1m);
         public static Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
         public static Weapon Mattock = new Weapon("Mattock", 55, 6m);
+
+        public static Weapon Cane = new Weapon("Cane (Sap)", 40, 5);
+        public static Weapon Darts = new Weapon("Darts (10)", 40, 2);
     }
 
     public static class SkillLibrary
@@ -255,5 +294,7 @@ namespace DragonAid.Lib.Data
 
         public static Skill Horsemanship = new Skill("Horsemanship");
         public static Skill Stealth = new Skill("Stealth");
+
+        public static Skill Spy = new Skill("Spy");
     }
 }

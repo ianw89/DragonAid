@@ -151,6 +151,7 @@
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\muscles-bufflyton.jpg" />
     <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\SnakeToTheFace.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\LightGray.png" />
