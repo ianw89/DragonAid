@@ -19,7 +19,7 @@ namespace DragonAid.Lib.Data.Model
         public Spell Spell { get; set; }
         public int Rank { get; set; }
 
-        public int BaseCastChace
+        public int CastChace
         {
             get
             {

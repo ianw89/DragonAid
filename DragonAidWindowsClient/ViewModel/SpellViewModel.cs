@@ -1,4 +1,5 @@
 ﻿using System;
+using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.WindowsClient.ViewModel
@@ -27,10 +28,28 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException();}
         }
 
-        public int BaseCastChance
+        public int CastChance
         {
-            get { return this._spellInfo.BaseCastChace; }
+            get { return this._spellInfo.CastChace; }
             set { throw new NotSupportedException();}
+        }
+
+        public int BackfireChance
+        {
+            get { return SpellcastResultRangeCalculator.Calculate(this.CastChance).Backfire; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public int TripleEffectChance
+        {
+            get { return SpellcastResultRangeCalculator.Calculate(this.CastChance).TripleEffect; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public int DoubleEffectChance
+        {
+            get { return SpellcastResultRangeCalculator.Calculate(this.CastChance).DoubleEffect; }
+            set { throw new NotSupportedException(); }
         }
     }
 }

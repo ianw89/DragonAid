@@ -12,19 +12,19 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void BackfireRangeStartsSomewhere()
         {
-            SpellcastResultRangeCalculator.Calculate(10).Backfire.Should().Be(30);
+            SpellcastResultRangeCalculator.Calculate(10).Backfire.Should().Be(40);
         }
 
         [TestMethod]
         public void DoubleEffectRangeStartsSomewhere()
         {
-            SpellcastResultRangeCalculator.Calculate(30).DoubleEffect.Should().Be(10);
+            SpellcastResultRangeCalculator.Calculate(60).DoubleEffect.Should().Be(9);
         }
 
         [TestMethod]
         public void TripleEffectRangeStartsSomewhere()
         {
-            SpellcastResultRangeCalculator.Calculate(50).TripleEffect.Should().Be(10);
+            SpellcastResultRangeCalculator.Calculate(60).TripleEffect.Should().Be(3);
         }
     }
 }

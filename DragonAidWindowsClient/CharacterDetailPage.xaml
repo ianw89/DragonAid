@@ -149,7 +149,10 @@
                                 <TextBlock Text="RK:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
                                 <TextBlock Text="{Binding Rank}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="50" Margin="10,0,0,0" />
                                 <TextBlock Text="%:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding BaseCastChance}" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding TripleEffectChance}" Foreground="Green" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" TextAlignment="Center" />
+                                <TextBlock Text="{Binding DoubleEffectChance}" Foreground="Yellow" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" TextAlignment="Center" />
+                                <TextBlock Text="{Binding CastChance}" FontWeight="Bold" Foreground="White" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="20,0,0,0" TextAlignment="Center" />
+                                <TextBlock Text="{Binding BackfireChance}" Foreground="Red" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="20,0,0,0" TextAlignment="Center" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

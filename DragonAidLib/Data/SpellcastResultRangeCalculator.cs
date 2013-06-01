@@ -8,9 +8,9 @@ namespace DragonAid.Lib.Data
         {
             return new SpellcastResultRange
                 {
-                    Backfire = castChance * 3,
-                    DoubleEffect = (int)Math.Floor(((decimal)castChance) / 3),
-                    TripleEffect = (int)Math.Floor(((decimal)castChance) / 5),
+                    Backfire = castChance + 30,
+                    DoubleEffect = (int)Math.Floor(((decimal)castChance * 15) / 100),
+                    TripleEffect = (int)Math.Floor(((decimal)castChance * 5) / 100),
                 };
         }
     }
