@@ -55,9 +55,27 @@ namespace DragonAid.Lib.Data
                         Fatigue = 22,
                         SpellRanks = 
                             {
-                                { SpellLibrary.WalkingUnseen, 6 },
-                                { SpellLibrary.ShadowWings, 2 },
-                                { SpellLibrary.Healing, 3 },
+                                /*
+                                { Spells.Shadow.SpeakToShadowCreatures, 0 },
+                                { Spells.Shadow.NightVision, 0 },
+                                { Spells.Shadow.DetectAura, 7 },
+                                */
+
+                                { Spells.Shadow.Blending, 0 },
+                                { Spells.Shadow.Light, 2 },
+                                { Spells.Shadow.Darkness, 1 },
+                                { Spells.Shadow.ShadowForm, 1 },
+                                { Spells.Shadow.WallOfStarlight, 0 },
+                                { Spells.Shadow.WallOfDarkness, 0 },
+                                { Spells.Shadow.Witchsight, 2 },
+                                { Spells.Shadow.WalkingUnseen, 6 },
+                                { Spells.Shadow.Healing, 3 },
+                                { Spells.Shadow.Starfire, 3 },
+                                { Spells.Shadow.ShadowSlipping, 0 },
+                                { Spells.Shadow.GeneralCounterspell, 0 },
+                                { Spells.Shadow.SpecialCounterspell, 0 },
+
+                                { Spells.Shadow.ShadowWings, 2 },
                             },
                         WeaponRanks =
                             {
@@ -120,21 +138,20 @@ namespace DragonAid.Lib.Data
                         Fatigue = 21,
                         SpellRanks =
                             {
-                                { SpellLibrary.ESP, 1 },
-                                { SpellLibrary.Hypnotism, 2 },
-                                { SpellLibrary.MentalAttack, 2 },
-                                { SpellLibrary.MentalHealing, 1 },
+                                { Spells.Mind.ESP, 1 },
+                                { Spells.Mind.Hypnotism, 2 },
+                                { Spells.Mind.MentalAttack, 2 },
+                                { Spells.Mind.MentalHealing, 1 },
                             },
                         WeaponRanks =
                             {
                                 { WeaponLibrary.Cane, 3 },
                                 { WeaponLibrary.Sap, 3 },
                                 { WeaponLibrary.Darts, 2 },
-                            }
-                            ,
+                            },
                         Inventory = 
                             {
-                                new Item("Cloth armor (improved)", 6),
+                                new Armor("Cloth armor (improved)", 0, 6),
                                 WeaponLibrary.Cane,
                                 WeaponLibrary.Sap,
                                 WeaponLibrary.Darts,
@@ -206,39 +223,6 @@ namespace DragonAid.Lib.Data
                         IsMine = false,
                         PartyId = 2,
                     },
-                new Character
-                    {
-                        Id = 9,
-                        Name = "Pirate D",
-                        Title = "Pirate",
-                        Description = "He swashbuckles and stuff",
-                        ImageUri = null,
-                        PlayerName = "Player 4",
-                        IsMine = false,
-                        PartyId = 2,
-                    },
-                new Character
-                    {
-                        Id = 10,
-                        Name = "Pirate E",
-                        Title = "Pirate",
-                        Description = "He swashbuckles and stuff",
-                        ImageUri = null,
-                        PlayerName = "Player 5",
-                        IsMine = false,
-                        PartyId = 2,
-                    },
-                new Character
-                    {
-                        Id = 11,
-                        Name = "Pirate F",
-                        Title = "Pirate",
-                        Description = "He swashbuckles and stuff",
-                        ImageUri = null,
-                        PlayerName = "Player 6",
-                        IsMine = false,
-                        PartyId = 2,
-                    },
             };
 
         public static readonly List<Party> SampleParties = new List<Party>
@@ -263,17 +247,48 @@ namespace DragonAid.Lib.Data
     }
     
     
-    public static class SpellLibrary
+    public static class Spells
     {
-        public static Spell WalkingUnseen = new Spell("Walking Unseen", 40);
-        public static Spell ShadowWings = new Spell("Shadow Wings", 25);
-        public static Spell Healing = new Spell("Healing", 45);
+        public static ShadowSpells Shadow = new ShadowSpells();
+        public static MindSpells Mind = new MindSpells();
 
-        public static Spell ESP = new Spell("ESP", 40);
-        public static Spell Hypnotism = new Spell("Hypnotism", 40);
-        public static Spell MentalAttack = new Spell("Mental Attack", 25);
-        public static Spell MentalHealing = new Spell("Healing", 40);
+        public class ShadowSpells
+        {
+            // TODO Talents
+            public readonly Talent SpeakToShadowCreatures = new Talent("Speak to Shadow Creatures");
+            public readonly Talent NightVision = new Talent("Night Vision");
+            public readonly Talent DetectAura = new Talent("Detect Aura");
+
+            // General Knowledge Spells
+            public readonly Spell Blending = new Spell("Blending", 60);
+            public readonly Spell Light = new Spell("Light", 50);
+            public readonly Spell Darkness = new Spell("Darkness", 50);
+            public readonly Spell ShadowForm = new Spell("Shadow Form", 10);
+            public readonly Spell WallOfStarlight = new Spell("Wall of Starlight", 15);
+            public readonly Spell WallOfDarkness = new Spell("Wall of Darkness", 20);
+            public readonly Spell Witchsight = new Spell("Witchsight", 15);
+            public readonly Spell WalkingUnseen = new Spell("Walking Unseen", 15);
+            public readonly Spell GeneralCounterspell = new Spell("General Counterspell", 40);
+            public readonly Spell SpecialCounterspell = new Spell("Special Counterspell", 40);
+
+            // Special Knowledge Spells
+            public readonly Spell Healing = new Spell("Healing", 40);
+            public readonly Spell Starfire = new Spell("Starfire", 35);
+            public readonly Spell ShadowWings = new Spell("Shadow Wings", 25);
+            public readonly Spell ShadowSlipping = new Spell("Shadow Slipping", 25);
+
+            // TODO Rituals
+        }
+
+        public class MindSpells
+        {
+            public readonly Spell ESP = new Spell("ESP", 40);
+            public readonly Spell Hypnotism = new Spell("Hypnotism", 40);
+            public readonly Spell MentalAttack = new Spell("Mental Attack", 25);
+            public readonly Spell MentalHealing = new Spell("Healing", 40);
+        }
     }
+
 
     public static class WeaponLibrary
     {

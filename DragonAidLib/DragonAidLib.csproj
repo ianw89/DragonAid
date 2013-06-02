@@ -48,6 +48,7 @@
     <Compile Include="Data\Model\CharacterWeaponRanks.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
     <Compile Include="Data\Model\Armor.cs" />
+    <Compile Include="Data\Model\IMagicalAbility.cs" />
     <Compile Include="Data\Model\Item.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Data\Model\Spell.cs" />
     <Compile Include="Data\SpellcastResultRange.cs" />
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
+    <Compile Include="Data\Talent.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />

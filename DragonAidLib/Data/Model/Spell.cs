@@ -2,7 +2,11 @@ using System.Diagnostics.Contracts;
 
 namespace DragonAid.Lib.Data.Model
 {
-    public class Spell
+    /// <summary>
+    /// Class that represents a Spell.
+    /// TODO: Figure out how to handle talents and rituals. In general, some things do not follow the standard formulas.
+    /// </summary>
+    public class Spell : IMagicalAbility
     {
         public Spell(string fullName, int baseChance)
         {

@@ -49,11 +49,11 @@
                         <LineBreak/>
                     </Paragraph>
 
-                    <!--<Paragraph LineStackingStrategy="MaxHeight">
+                    <Paragraph LineStackingStrategy="MaxHeight">
                         <InlineUIContainer>
                             <Image MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
                         </InlineUIContainer>
-                    </Paragraph>-->
+                    </Paragraph>
 
                     <Paragraph>
                         <Run Text="{Binding Description}"/>
