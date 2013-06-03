@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
@@ -54,6 +53,12 @@ namespace DragonAid.WindowsClient.ViewModel
         }
 
         #region Data binding properties
+
+        public string FullName
+        {
+            get { return Character.Title; } 
+            set { throw new NotSupportedException(); }
+        }
 
         public int PhysicalStrength
         {
@@ -185,33 +190,15 @@ namespace DragonAid.WindowsClient.ViewModel
             Character = HardCodedSampleData.SampleCharacters.Single(c => c.Id == characterId);
         }
 
-        #region Character change handling
-
-        // TODO: Hook up a DragonAidService....UpdateAsync()
-
-        private void OnCharacterPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var eventHandler = CharacterPropertyChanged;
-            if (eventHandler != null)
-            {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        private delegate void CharacterPropertySetter(Character c);
-        private void SetCharacterProperty(CharacterPropertySetter setter, [CallerMemberName] string propertyName = null)
-        {
-            setter(_character);
-            OnPropertyChanged(propertyName);
-            OnCharacterPropertyChanged(propertyName);
-        }
+        #region Change handling
 
         private void CharacterChangedHandler(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName == "Character")
             {
                 UniqueId = CharacterIdToUniqueId(Character.Id);
-                Title = Character.Name;
-                Subtitle = Character.IsMine ? Character.Title : Character.PlayerName;
+                Title = Character.Title;
+                Subtitle = Character.PlayerName;
                 Description = Character.Description;
                 SetImage(Character.ImageUri);
             }

@@ -45,7 +45,6 @@
                 <!-- Stylized rich text block holds most of the primitive data about the character -->
                 <RichTextBlock Style="{StaticResource CharacterBasicInfoTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
-                        <Run Text="{Binding Title}"/>
                         <Run Text="{Binding Subtitle}"/>
                         <LineBreak/>
                     </Paragraph>
