@@ -123,7 +123,7 @@
                 
             <!-- Lower part of right side of screen is the info for the selected tab -->
             <!-- We define all of the things we could view here, but only enable 1 at a time-->
-            <StackPanel>
+            <StackPanel Orientation="Vertical">
 
                 <!-- Inventory page shows items -->
                 <ListView x:Name="InventoryTab" ItemsSource="{Binding Inventory}" Visibility="Collapsed">
@@ -140,20 +140,35 @@
 
                 <!-- Spells page shows spells, talents and rituals that the character has -->
                 <!-- This template defines how the items in the list of CombatAttacks are displayed -->
-                <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed">
-                    <!--IsHitTestVisible="False"-->
+                <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" IsHitTestVisible="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="{Binding SpellName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
-                                <TextBlock Text="RK:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Rank}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="50" Margin="10,0,0,0" />
-                                <TextBlock Text="%:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding TripleEffectChance}" Foreground="Green" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" TextAlignment="Center" />
-                                <TextBlock Text="{Binding DoubleEffectChance}" Foreground="Yellow" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" TextAlignment="Center" />
-                                <TextBlock Text="{Binding CastChance}" FontWeight="Bold" Foreground="White" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="20,0,0,0" TextAlignment="Center" />
-                                <TextBlock Text="{Binding BackfireChance}" Foreground="Red" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="20,0,0,0" TextAlignment="Center" />
-                            </StackPanel>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="10*" MinWidth="50" />
+                                    <ColumnDefinition Width="10*" MinWidth="40" />
+                                    <ColumnDefinition Width="10*" MinWidth="50" />
+                                    <ColumnDefinition Width="10*" MinWidth="30" />
+                                    <ColumnDefinition Width="10*" MinWidth="40" />
+                                    <ColumnDefinition Width="10*" MinWidth="40" />
+                                    <ColumnDefinition Width="10*" MinWidth="40" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding SpellName}" />
+                                <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold" />
+                                <TextBlock Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" />
+                                <TextBlock Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="%:" FontWeight="Bold" />
+                                <TextBlock Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding TripleEffectChance}" Foreground="Green" />
+                                <TextBlock Grid.Column="5" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding DoubleEffectChance}" Foreground="Yellow" />
+                                <TextBlock Grid.Column="6" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding CastChance}" Foreground="White" />
+                                <TextBlock Grid.Column="7" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding BackfireChance}" Foreground="Red" />
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
