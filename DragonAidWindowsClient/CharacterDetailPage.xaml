@@ -45,6 +45,7 @@
                 <!-- Stylized rich text block holds most of the primitive data about the character -->
                 <RichTextBlock Style="{StaticResource CharacterBasicInfoTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
+                        <Run Text="{Binding Title}"/>
                         <Run Text="{Binding Subtitle}"/>
                         <LineBreak/>
                     </Paragraph>
@@ -75,6 +76,8 @@
                         <Run FontWeight="Normal" Text="{Binding Willpower}"/>
                         EN:
                         <Run FontWeight="Normal" Text="{Binding Endurance}"/>
+                    </Paragraph>
+                    <Paragraph>
                         FT:
                         <Run FontWeight="Normal" Text="{Binding Fatigue}"/>
                         PC:
@@ -127,13 +130,21 @@
 
                 <!-- Inventory page shows items -->
                 <ListView x:Name="InventoryTab" ItemsSource="{Binding Inventory}" Visibility="Collapsed">
-                    <!--IsHitTestVisible="False"-->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="{Binding ItemName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="400" />
-                                <TextBlock Text="{Binding Weight}" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" />
-                            </StackPanel>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="*" MinWidth="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
+                                <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -175,7 +186,6 @@
                     
                 <!-- Skills tab shows the skills the character has and the associated abilities -->
                 <ListView x:Name="SkillTab" ItemsSource="{Binding Skills}" Visibility="Collapsed">
-                    <!--IsHitTestVisible="False"-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Horizontal">
@@ -189,7 +199,6 @@
                     
                 <!-- Weapons tab shows weapons that the character has -->
                 <ListView x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed">
-                    <!--IsHitTestVisible="False"-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Horizontal">
