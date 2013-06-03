@@ -47,7 +47,6 @@
     <Compile Include="Data\Model\CharacterWeaponInfo.cs" />
     <Compile Include="Data\Model\CharacterWeaponRanks.cs" />
     <Compile Include="Data\Model\CombatAction.cs" />
-    <Compile Include="Data\DetermineChanceOfSuccessConverter.cs" />
     <Compile Include="Data\Model\Armor.cs" />
     <Compile Include="Data\Model\Item.cs" />
     <Compile Include="Data\Model\Party.cs" />

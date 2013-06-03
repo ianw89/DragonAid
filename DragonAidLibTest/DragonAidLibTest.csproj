@@ -117,7 +117,6 @@
     <Compile Include="Tests\Unit\EquationPrettyTextWriterTests.cs" />
     <Compile Include="Tests\Unit\SpellcastResultRangeTest.cs" />
     <Compile Include="Tests\Unit\SpellcastResultRangeCalculatorTest.cs" />
-    <Compile Include="Tests\Unit\DetermineChanceOfSuccessConverter.Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
