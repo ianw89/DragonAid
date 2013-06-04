@@ -22,11 +22,6 @@ namespace DragonAid.WindowsClient.ViewModel
         private Character _character;
 
         /// <summary>
-        /// Event for standard property change handling.
-        /// </summary>
-        public event PropertyChangedEventHandler CharacterPropertyChanged;
-
-        /// <summary>
         /// Construct a ViewModel without assigning a character.
         /// </summary>
         public CharacterViewModel()

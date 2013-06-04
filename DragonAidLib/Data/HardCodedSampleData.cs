@@ -13,7 +13,7 @@ namespace DragonAid.Lib.Data
                         Name = "Hap",
                         Title = "Happenstance McGillity",
                         Description = "Big, mean, and in a dress.",
-                        ImageUri = "http://2.bp.blogspot.com/-BHuLJWjHQfs/Ty3X7Nm6xhI/AAAAAAAABOg/-0dpWOaDCCY/s400/strong_muscular_women_sw201.jpg",
+                        ImageUri = "Assets/Hap.jpg",
                         PlayerName = "Jen",
                         IsMine = false,
                         Race = Race.Human,
@@ -39,7 +39,7 @@ namespace DragonAid.Lib.Data
                         Name = "Muscles",
                         Title = "Muscles Bufflyton",
                         Description = "Nazi Hunter. Unknown and at large.",
-                        ImageUri = null,
+                        ImageUri = "Assets/Muscles.jpg",
                         PlayerName = "Dan",
                         Race = Race.Human,
                         IsMine = false,
@@ -85,8 +85,14 @@ namespace DragonAid.Lib.Data
                             ,
                         Inventory = 
                             {
-                                { new Item("Food Supplies", 1.5m)},
-                                { new Item("Sap", 1) },
+                                new Armor("Cloth armor (improved)", 0, 6),
+                                WeaponLibrary.Sap,
+                                WeaponLibrary.Sap,
+                                WeaponLibrary.Dagger,
+
+                                new Item("Adventuring pack", 23),
+                                new Item("Money", 5),
+                                new Item("2 weeks of supplies", 14),
                             },
                         Skills =
                             {
@@ -100,8 +106,8 @@ namespace DragonAid.Lib.Data
                         Id = 3,
                         Name = "Orj",
                         Title = "Orjbortz Daborgleschnortz",
-                        Description = "Falcon Lover of the ages.",
-                        ImageUri = null,
+                        Description = "He trains falcons, not dire wolves.",
+                        ImageUri = "Assets/Orjbortz.jpg",
                         PlayerName = "David",
                         Race = Race.Human,
                         IsMine = false,
@@ -122,7 +128,7 @@ namespace DragonAid.Lib.Data
                         Name = "Nick",
                         Title = "Nick Black",
                         Description = "Full of venom, and worse.",
-                        ImageUri = "Assets/SnakeToTheFace.png",
+                        ImageUri = "Assets/Nick.png",
                         PlayerName = "Matt",
                         Race = Race.Human,
                         IsMine = false,
@@ -172,8 +178,8 @@ namespace DragonAid.Lib.Data
                         Id = 5,
                         Name = "Renee",
                         Title = "Renee Black",
-                        Description = "A bag of secrets.",
-                        ImageUri = null,
+                        Description = "Able-bodied sailor and baby-sitter.",
+                        ImageUri = "Assets/Renee.jpg",
                         PlayerName = "Lindsay",
                         Race = Race.Human,
                         IsMine = false,
@@ -233,7 +239,7 @@ namespace DragonAid.Lib.Data
                         Title = "Tuesday Night DragonQuest",
                         Description = "Casual weekly DragonQuest.",
                         GameMasterName = "Ian Williams",
-                        ImageUri = "Assets\\MyCharacters.png"
+                        ImageUri = "Assets/MyCharacters.png"
                     },
                 new Party
                     {
@@ -241,7 +247,7 @@ namespace DragonAid.Lib.Data
                         Title = "The Land Of Moordoor",
                         Description = "Where the shadows (of sunken boats) lie",
                         GameMasterName = "Sauron",
-                        ImageUri = "Assets\\MyCharacters.png"
+                        ImageUri = "Assets/MyCharacters.png"
                     }
             };
     }

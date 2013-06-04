@@ -148,10 +148,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\eagleback.jpg" />
+    <Content Include="Assets\Hap.jpg" />
     <Content Include="Assets\Logo.png" />
-    <Content Include="Assets\muscles-bufflyton.jpg" />
+    <Content Include="Assets\Muscles.jpg" />
+    <Content Include="Assets\Nick.png" />
+    <Content Include="Assets\Orjbortz.jpg" />
+    <Content Include="Assets\Renee.jpg" />
     <Content Include="Assets\SmallLogo.png" />
-    <Content Include="Assets\SnakeToTheFace.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\LightGray.png" />
