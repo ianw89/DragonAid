@@ -69,13 +69,13 @@ namespace DragonAid.Lib.Data
                                 { Spells.Shadow.WallOfDarkness, 0 },
                                 { Spells.Shadow.Witchsight, 2 },
                                 { Spells.Shadow.WalkingUnseen, 6 },
-                                { Spells.Shadow.Healing, 3 },
-                                { Spells.Shadow.Starfire, 3 },
-                                { Spells.Shadow.ShadowSlipping, 0 },
                                 { Spells.Shadow.GeneralCounterspell, 0 },
                                 { Spells.Shadow.SpecialCounterspell, 0 },
-
+                                
+                                { Spells.Shadow.Healing, 3 },
+                                { Spells.Shadow.Starfire, 3 },
                                 { Spells.Shadow.ShadowWings, 2 },
+                                { Spells.Shadow.ShadowSlipping, 0 },
                             },
                         WeaponRanks =
                             {
@@ -145,7 +145,13 @@ namespace DragonAid.Lib.Data
                         SpellRanks =
                             {
                                 { Spells.Mind.ESP, 1 },
+                                { Spells.Mind.LimitedPrecognition, 0 },
+                                { Spells.Mind.MindCloak, 0 },
+                                { Spells.Mind.Empathy, 0 },
                                 { Spells.Mind.Hypnotism, 2 },
+                                { Spells.Mind.ControlAnimal, 0 },
+                                { Spells.Mind.ControlPerson, 0 },
+
                                 { Spells.Mind.MentalAttack, 2 },
                                 { Spells.Mind.MentalHealing, 1 },
                             },
@@ -288,10 +294,30 @@ namespace DragonAid.Lib.Data
 
         public class MindSpells
         {
-            public readonly Spell ESP = new Spell("ESP", 40);
+            // TODO Talents
+
+            // General Knowledge Spells
+            public readonly Spell ESP = new Spell("Extrasensory Perception", 40);
+            public readonly Spell LimitedPrecognition = new Spell("Limited Precognition", 20);
+            public readonly Spell MindCloak = new Spell("Mind Cloak", 30);
+            public readonly Spell Empathy = new Spell("Empathy", 20);
             public readonly Spell Hypnotism = new Spell("Hypnotism", 40);
+            public readonly Spell ControlAnimal = new Spell("Control Animal", 40);
+            public readonly Spell ControlPerson = new Spell("Control Person", 30);
+
+            // Special Knowledge Spells
             public readonly Spell MentalAttack = new Spell("Mental Attack", 25);
+            public readonly Spell Telepathy = new Spell("Telepathy", 0);
+            public readonly Spell Phantasm = new Spell("Phantasm", 0);
+            public readonly Spell MolecularDisruption = new Spell("Molecular Disruption", 0);
+            public readonly Spell MolecularRearrangement = new Spell("Molecular Rearrangement", 0);
+            public readonly Spell ForceShield = new Spell("Force Shield", 40);
             public readonly Spell MentalHealing = new Spell("Healing", 40);
+            public readonly Spell Invisibility = new Spell("Invisibility", 15);
+            public readonly Spell Telekinesis = new Spell("Telekinesis", 25);
+            public readonly Spell TelekineticRage = new Spell("Telekinetic Rage", 1);
+
+            // TODO Rituals
         }
     }
 
