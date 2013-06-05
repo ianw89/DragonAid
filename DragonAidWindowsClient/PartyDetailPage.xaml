@@ -22,8 +22,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid
-        Style="{StaticResource LayoutRootStyle}">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -37,7 +36,7 @@
             AutomationProperties.Name="Characters in party"
             TabIndex="1"
             Grid.RowSpan="2"
-            Padding="120,126,120,50"
+            Padding="0,40,0,40"
             ItemsSource="{Binding Source={StaticResource CharactersViewSource}}"
             ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
             SelectionMode="None"
