@@ -6,7 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodel="using:DragonAid.WindowsClient.ViewModel" xmlns:common2="using:DragonAid.WindowsClient.Common"
+    xmlns:common2="using:DragonAid.WindowsClient.Common"
     mc:Ignorable="d">
 
     <!-- The page is split into two big columns -->
@@ -45,14 +45,16 @@
                 <!-- Stylized rich text block holds most of the primitive data about the character -->
                 <RichTextBlock Style="{StaticResource CharacterBasicInfoTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
+                        Player: 
                         <Run Text="{Binding Subtitle}"/>
                         <LineBreak/>
                     </Paragraph>
 
                     <Paragraph LineStackingStrategy="MaxHeight">
                         <InlineUIContainer>
-                            <Image MaxHeight="120" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                            <Image MaxHeight="120" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
                         </InlineUIContainer>
+                        <LineBreak/>
                     </Paragraph>
 
                     <Paragraph>
@@ -149,7 +151,6 @@
                 </ListView>
 
                 <!-- Spells page shows spells, talents and rituals that the character has -->
-                <!-- This template defines how the items in the list of CombatAttacks are displayed -->
                 <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" IsHitTestVisible="False">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
