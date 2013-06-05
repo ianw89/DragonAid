@@ -255,8 +255,8 @@ namespace DragonAid.Lib.Data
     
     public static class Spells
     {
-        public static ShadowSpells Shadow = new ShadowSpells();
-        public static MindSpells Mind = new MindSpells();
+        public static readonly ShadowSpells Shadow = new ShadowSpells();
+        public static readonly MindSpells Mind = new MindSpells();
 
         public class ShadowSpells
         {
@@ -298,24 +298,24 @@ namespace DragonAid.Lib.Data
 
     public static class WeaponLibrary
     {
-        public static Weapon Sap = new Weapon("Sap", 40, 1m);
-        public static Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
-        public static Weapon Mattock = new Weapon("Mattock", 55, 6m);
+        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m);
+        public static readonly Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
+        public static readonly Weapon Mattock = new Weapon("Mattock", 55, 6m);
 
-        public static Weapon Cane = new Weapon("Cane (Sap)", 40, 5);
-        public static Weapon Darts = new Weapon("Darts (10)", 40, 2);
+        public static readonly Weapon Cane = new Weapon("Cane (Sap)", 40, 5);
+        public static readonly Weapon Darts = new Weapon("Darts (10)", 40, 2);
     }
 
     public static class SkillLibrary
     {
-        public static Skill Assassin = new Skill("Assassin");
-        public static Skill Alchemy = new Skill("Alchemy");
-        public static Skill Astrology = new Skill("Astrology");
-        public static Skill Beastmaster = new Skill("Beastmaster");
+        public static readonly Skill Assassin = new Skill("Assassin");
+        public static readonly Skill Alchemy = new Skill("Alchemy");
+        public static readonly Skill Astrology = new Skill("Astrology");
+        public static readonly Skill Beastmaster = new Skill("Beastmaster");
 
-        public static Skill Horsemanship = new Skill("Horsemanship");
-        public static Skill Stealth = new Skill("Stealth");
+        public static readonly Skill Horsemanship = new Skill("Horsemanship");
+        public static readonly Skill Stealth = new Skill("Stealth");
 
-        public static Skill Spy = new Skill("Spy");
+        public static readonly Skill Spy = new Skill("Spy");
     }
 }
