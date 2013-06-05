@@ -324,12 +324,14 @@ namespace DragonAid.Lib.Data
 
     public static class WeaponLibrary
     {
-        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m);
-        public static readonly Weapon Dagger = new Weapon("Dagger", 40, 10m/16m);
-        public static readonly Weapon Mattock = new Weapon("Mattock", 55, 6m);
+        // Name, BaseChance, Weight, Use, MaxRank
+        public static readonly Weapon Dagger = new Weapon("Dagger", 40, 10m / 16m, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 9);
 
-        public static readonly Weapon Cane = new Weapon("Cane (Sap)", 40, 5);
-        public static readonly Weapon Darts = new Weapon("Darts (10)", 40, 2);
+        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m, WeaponKind.Close & WeaponKind.Melee, 3);
+        public static readonly Weapon Mattock = new Weapon("Mattock", 55, 6m, WeaponKind.Melee, 5);
+
+        public static readonly Weapon Cane = new Weapon("Cane (Sap)", 40, 5, WeaponKind.Close & WeaponKind.Melee, 3);
+        public static readonly Weapon Darts = new Weapon("Darts (10)", 40, 2, WeaponKind.Ranged, 10);
     }
 
     public static class SkillLibrary
