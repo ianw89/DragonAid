@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.WindowsClient.ViewModel
@@ -17,9 +12,21 @@ namespace DragonAid.WindowsClient.ViewModel
             this._info = info;
         }
 
-        public string Text
+        public string Name
         {
-            get { return string.Format(CultureInfo.InvariantCulture, "'{0}' RK: {1} SC: {2}", this._info.Weapon.FullName, this._info.Rank, this._info.StrikeChance); }
+            get { return _info.Weapon.FullName; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public int StrikeChance
+        {
+            get { return _info.StrikeChance; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public int Rank
+        {
+            get { return _info.Rank; }
             set { throw new NotSupportedException(); }
         }
     }

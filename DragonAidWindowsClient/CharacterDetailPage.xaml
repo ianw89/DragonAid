@@ -131,6 +131,9 @@
 
                 <!-- Inventory page shows items -->
                 <ListView x:Name="InventoryTab" ItemsSource="{Binding Inventory}" Visibility="Collapsed">
+
+                    <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
+                         instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -160,6 +163,10 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="10">
+                                
+                                <!-- Notice how we use relative sizing (*) for width so it scales to various sized devices.
+                                     However, we set MinWidth to a reasonable (and consistent) value based on the max # of characters we expect. 
+                                     Be consisent with this as much as possible across the tabs (and pages...) -->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80*" />
                                     <ColumnDefinition Width="10*" MinWidth="50" />
@@ -186,6 +193,11 @@
                     
                 <!-- Skills tab shows the skills the character has and the associated abilities -->
                 <ListView x:Name="SkillTab" ItemsSource="{Binding Skills}" Visibility="Collapsed">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Horizontal">
@@ -199,11 +211,28 @@
                     
                 <!-- Weapons tab shows weapons that the character has -->
                 <ListView x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="{Binding Text}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
-                            </StackPanel>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="10*" MinWidth="50" />
+                                    <ColumnDefinition Width="10*" MinWidth="40" />
+                                    <ColumnDefinition Width="10*" MinWidth="50" />
+                                    <ColumnDefinition Width="10*" MinWidth="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Name}" />
+                                <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold" />
+                                <TextBlock Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" />
+                                <TextBlock Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="SC:" FontWeight="Bold" />
+                                <TextBlock Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding StrikeChance}" />
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
