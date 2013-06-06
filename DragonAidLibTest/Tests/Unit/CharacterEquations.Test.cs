@@ -130,5 +130,45 @@ namespace DragonAid.Test.Tests.Unit
             var c = new Character { Agility = 10, PhysicalStrength = 15, EquippedArmor = new Armor("A straightjacket", -10, 0) };
             c.EffectiveAgility().Should().Be(0);
         }
+
+        // ///////////////////////////////////////////////
+        // Strike Chance
+        // ///////////////////////////////////////////////
+
+        [TestMethod]
+        public void ForUnrankedStrikeChanceIsJustBaseChance()
+        {
+            var w = new Weapon("Bat", 30, 1m, WeaponKind.Melee, 10);
+            var c = new Character { ManualDexterity = 20 };
+            // No ranks added to character
+            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
+        }
+        
+        [TestMethod]
+        public void StrikeChanceStartsWithBaseChanceIfRanked()
+        {
+            var w = new Weapon("Bat", 30, 1m, WeaponKind.Melee, 10);
+            var c = new Character { ManualDexterity = 0 };
+            c.WeaponRanks[w] = 0;
+            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
+        }
+
+        [TestMethod]
+        public void DexterityAffectsStrikeChanceIfRanked()
+        {
+            var w = new Weapon("Bat", 30, 1m, WeaponKind.Melee, 10);
+            var c = new Character { ManualDexterity = 20 };
+            c.WeaponRanks[w] = 0;
+            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(50);
+        }
+
+        [TestMethod]
+        public void RankAffectsStrikeChance()
+        {
+            var w = new Weapon("Bat", 30, 1m, WeaponKind.Melee, 10);
+            var c = new Character { ManualDexterity = 0 };
+            c.WeaponRanks[w] = 3;
+            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(42);
+        }
     }
 }

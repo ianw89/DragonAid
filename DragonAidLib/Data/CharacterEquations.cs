@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Linq;
 using System.Linq.Expressions;
 using DragonAid.Lib.Data.Model;
 
@@ -57,6 +58,29 @@ namespace DragonAid.Lib.Data
             agility += FatigueAndEncumberanceChart.Lookup(character.PhysicalStrength, totalWeight).AgilityModifier;
 
             return agility;
+        }
+
+        public static readonly Expression<Func<Character, Weapon, int>> RankedStrikeChance =
+            (Character c, Weapon s) => s.BaseChance + (c.ManualDexterity) + (4 * c.WeaponRanks[s]) ;
+
+        public static readonly Expression<Func<Character, Weapon, int>> UnrankedStrikeChance =
+            (Character c, Weapon s) => s.BaseChance;
+
+        private static readonly Lazy<Func<Character, Weapon, int>> CompiledRankedStrikeChance = new Lazy<Func<Character, Weapon, int>>(() => RankedStrikeChance.Compile()); 
+
+        private static readonly Lazy<Func<Character, Weapon, int>> CompiledUnrankedStrikeChance = new Lazy<Func<Character, Weapon, int>>(() => UnrankedStrikeChance.Compile()); 
+
+        public static int ComputeStrikeChance(Character character, Weapon weapon)
+        {
+            Contract.Requires(character != null);
+            Contract.Requires(weapon != null);
+            var info = character.WeaponRanks.SingleOrDefault(i => i.Weapon == weapon);
+            if (info != null)
+            {
+                return CompiledRankedStrikeChance.Value(character, weapon);
+            }
+
+            return CompiledUnrankedStrikeChance.Value(character, weapon);
         }
     }
 }

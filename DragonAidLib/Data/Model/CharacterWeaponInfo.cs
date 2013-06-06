@@ -24,7 +24,7 @@ namespace DragonAid.Lib.Data.Model
             get
             {
                 // TODO need equation
-                return this.Weapon.BaseChance;
+                return CharacterEquations.ComputeStrikeChance(this._character, this.Weapon);
             }
             set
             {
