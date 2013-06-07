@@ -1,58 +1,71 @@
-﻿<Page
+﻿<common2:LayoutAwarePage
+    x:Name="PageRoot"
     x:Class="DragonAid.WindowsClient.GamemasterConsolePage"
     DataContext="{Binding PartyViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DragonAid.WindowsClient"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    
-    FontSize="18">
-   
-    
+    xmlns:common2="using:DragonAid.WindowsClient.Common"
+    mc:Ignorable="d">
+
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Gamemaster Console Screen" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+        </Grid>
+
+        <!-- Rest of the Screen -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
 
-        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
-            <TextBlock Text="Gamemaster Console Screen" />
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
+                <TextBlock Text="Left Side" />
 
-            <ListView
-            AutomationProperties.AutomationId="ItemListView"
-            AutomationProperties.Name="Items In Group"
-            TabIndex="1"
-            Visibility="Collapsed"
-            ItemsSource="{Binding TopCharacters}"
-            ItemTemplate="{StaticResource Standard80ItemTemplate}"
-            SelectionMode="None"
-            IsSwipeEnabled="false"
-            IsItemClickEnabled="True"
-            ItemClick="CharacterClicked">
+                <ListView
+                    AutomationProperties.AutomationId="ItemListView"
+                    AutomationProperties.Name="Items In Group"
+                    TabIndex="1"
+                    Visibility="Collapsed"
+                    ItemsSource="{Binding TopCharacters}"
+                    ItemTemplate="{StaticResource Standard80ItemTemplate}"
+                    SelectionMode="None"
+                    IsSwipeEnabled="false"
+                    IsItemClickEnabled="True"
+                    ItemClick="CharacterClicked">
 
-                <ListView.Header>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Title}" Margin="10,0,18,20" Style="{StaticResource TitleTextStyle}" MaxHeight="60"/>
-                        <Image Source="{Binding Image}" Margin="10,0,18,0" MaxHeight="160" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        <TextBlock Margin="10,20,18,30" Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"/>
-                    </StackPanel>
-                </ListView.Header>
-            </ListView>
+                    <ListView.Header>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" Margin="10,0,18,20" Style="{StaticResource TitleTextStyle}" MaxHeight="60"/>
+                            <Image Source="{Binding Image}" Margin="10,0,18,0" MaxHeight="160" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                            <TextBlock Margin="10,20,18,30" Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"/>
+                        </StackPanel>
+                    </ListView.Header>
+                </ListView>
 
 
 
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
-            <TextBlock Text="Other Side" />
-        </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
+                <TextBlock Text="Other Side" />
+            </StackPanel>
+        </Grid>
     </Grid>
-    
-</Page>
+
+</common2:LayoutAwarePage>
