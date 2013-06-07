@@ -8,7 +8,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:common2="using:DragonAid.WindowsClient.Common"
     mc:Ignorable="d">
+    
+    <Page.Resources>
 
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource
+            x:Name="CharactersViewSource"
+            Source="{Binding TopCharacters}"/>
+    </Page.Resources>
+    
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
@@ -37,28 +45,25 @@
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
                 <TextBlock Text="Left Side" />
 
-                <ListView
-                    AutomationProperties.AutomationId="ItemListView"
-                    AutomationProperties.Name="Items In Group"
-                    TabIndex="1"
-                    Visibility="Collapsed"
-                    ItemsSource="{Binding TopCharacters}"
-                    ItemTemplate="{StaticResource Standard80ItemTemplate}"
+                <GridView
+                    AutomationProperties.AutomationId="CharactersGridView"
+                    AutomationProperties.Name="Characters in party"
+                    Padding="0,40,0,40"
+                    ItemsSource="{Binding Source={StaticResource CharactersViewSource}}"
+                    ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
                     SelectionMode="None"
                     IsSwipeEnabled="false"
                     IsItemClickEnabled="True"
                     ItemClick="CharacterClicked">
 
-                    <ListView.Header>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}" Margin="10,0,18,20" Style="{StaticResource TitleTextStyle}" MaxHeight="60"/>
-                            <Image Source="{Binding Image}" Margin="10,0,18,0" MaxHeight="160" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                            <TextBlock Margin="10,20,18,30" Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"/>
+                    <GridView.Header>
+                        <StackPanel Width="480" Margin="0,4,14,0">
+                            <TextBlock Text="{Binding Subtitle}" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
+                            <Image Source="{Binding Image}" Height="400" Margin="0,0,18,20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                            <TextBlock Text="{Binding Description}" Margin="0,0,18,0" Style="{StaticResource BodyTextStyle}"/>
                         </StackPanel>
-                    </ListView.Header>
-                </ListView>
-
-
+                    </GridView.Header>
+                </GridView>
 
             </StackPanel>
 
