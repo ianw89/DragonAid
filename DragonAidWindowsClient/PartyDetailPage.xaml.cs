@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
@@ -72,6 +73,12 @@ namespace DragonAid.WindowsClient
 
             // Then create and navigate to a new CharacterDetailPage for that Character
             this.Frame.Navigate(typeof(CharacterDetailPage), characterId);
+        }
+
+        private void GamemasterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Create and navigate to a GamemasterConsolePage that works with this party
+            this.Frame.Navigate(typeof (GamemasterConsolePage), this._partyViewModel.Party.Id);
         }
     }
 }

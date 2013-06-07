@@ -27,8 +27,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
+        </Grid.RowDefinitions> 
+        
         <!-- Horizontal scrolling grid used in most view states -->
         <GridView
             x:Name="CharactersGridView"
@@ -83,14 +83,20 @@
             </ListView.Header>
         </ListView>
 
+        
+        
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="BackButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=PageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="PageTitle" Text="The Party" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <Button x:Name="GamemasterButton" Click="GamemasterButton_OnClick" Grid.Column="2" Margin="50,30,50,30" Padding="15">
+                <TextBlock Text="GM Screen" />
+            </Button>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

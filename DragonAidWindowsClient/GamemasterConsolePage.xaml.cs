@@ -22,13 +22,12 @@ namespace DragonAid.WindowsClient
     /// </summary>
     public sealed partial class GamemasterConsolePage : Page
     {
-        private CharacterViewModel _characterToDisplay;
+        private Character _clickedCharacter;
 
         public GamemasterConsolePage()
         {
             this.InitializeComponent();
-            this._characterToDisplay = new CharacterViewModel(HardCodedSampleData.SampleCharacters.First());
-            this.DataContext = CharacterToDisplay;
+            this.PartyViewModel = new PartyViewModel(HardCodedSampleData.SampleParties.First(), HardCodedSampleData.SampleCharacters);
         }
 
         /// <summary>
@@ -38,12 +37,19 @@ namespace DragonAid.WindowsClient
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter != null)
+            {
+                this.PartyViewModel = new PartyViewModel(HardCodedSampleData.SampleParties.Single(p => p.Id == (int)e.Parameter), HardCodedSampleData.SampleCharacters);
+            }
+            else throw new InvalidOperationException();
         }
 
-        public CharacterViewModel CharacterToDisplay
+        public PartyViewModel PartyViewModel { get; set; }
+
+        private void CharacterClicked(object sender, ItemClickEventArgs e)
         {
-            get { return this._characterToDisplay; }
-            set { this._characterToDisplay = value; }
+            // Remember what is clicked for later...? TODO
+            this._clickedCharacter = ((CharacterViewModel) e.ClickedItem).Character;
         }
     }
 }
