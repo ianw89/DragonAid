@@ -82,8 +82,6 @@
                 </StackPanel>
             </ListView.Header>
         </ListView>
-
-        
         
         <!-- Back button and page title -->
         <Grid>
