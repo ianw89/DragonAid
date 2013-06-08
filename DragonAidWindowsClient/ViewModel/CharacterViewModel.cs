@@ -21,6 +21,8 @@ namespace DragonAid.WindowsClient.ViewModel
         /// </summary>
         private Character _character;
 
+        private IEnumerable<ItemViewModel> _activeItemSet;
+
         /// <summary>
         /// Construct a ViewModel without assigning a character.
         /// </summary>
@@ -131,10 +133,10 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 
-        public IEnumerable<ItemViewModel> Inventory
+        public IEnumerable<ItemViewModel> ActiveItemSet
         {
-            get { return this.GetItemViewModelsFromCharacter(); }
-            set { throw new NotSupportedException("Cannot set inventory."); }
+            get { return _activeItemSet; }
+            set { this.SetProperty(ref _activeItemSet, value); }
         }
 
         public IEnumerable<WeaponViewModel> Weapons
@@ -196,6 +198,7 @@ namespace DragonAid.WindowsClient.ViewModel
                 Subtitle = Character.PlayerName;
                 Description = Character.Description;
                 SetImage(Character.ImageUri);
+                this.SetItemSetToAll();
             }
         }
 
@@ -226,12 +229,10 @@ namespace DragonAid.WindowsClient.ViewModel
             return null;
         }
 
-        private IEnumerable<ItemViewModel> GetItemViewModelsFromCharacter()
+        // TODO Right now we are dumb and call this alot. We shouldn't have to keep rebuilding the view models. Cache.
+        private IEnumerable<ItemViewModel> GetItemViewModels(IEnumerable<Item> sourceItems)
         {
-            if (this._character != null)
-            {
-                return this._character.Inventory.Select(item => new ItemViewModel(item)).ToList();
-            }
+            return sourceItems.Select(item => new ItemViewModel(item)).ToList();
 
             return null;
         }
@@ -246,5 +247,22 @@ namespace DragonAid.WindowsClient.ViewModel
             return null;
         }
 
+        public void SetItemSetToAll()
+        {
+            this.ActiveItemSet = this.GetItemViewModels(this.Character.Inventory);
+        }
+
+        public void SetItemSet(string setIdentifier)
+        {
+            if (this.Character.Inventory.ItemSets.ContainsKey(setIdentifier))
+            {
+                this.ActiveItemSet = this.GetItemViewModels(this.Character.Inventory.ItemSets[setIdentifier]);
+            }
+            else
+            {
+                // If the set isn't defined, we'll just make it an empty list
+                this.ActiveItemSet = new List<ItemViewModel>();
+            }
+        }
     }
 }

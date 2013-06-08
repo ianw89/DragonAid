@@ -85,7 +85,7 @@ namespace DragonAid.WindowsClient
             this.SelectTab(this.WeaponTab);
         }
 
-        private void SelectTab(ListView selectedTab)
+        private void SelectTab(FrameworkElement selectedTab)
         {
             this.SpellTab.Visibility = Visibility.Collapsed;
             this.SkillTab.Visibility = Visibility.Collapsed;
@@ -94,5 +94,19 @@ namespace DragonAid.WindowsClient
             selectedTab.Visibility = Visibility.Visible;
         }
 
+        private void AllItemsClicked(object sender, RoutedEventArgs e)
+        {
+            this.CharacterViewModel.SetItemSetToAll();
+        }
+
+        private void CombatItemsClicked(object sender, RoutedEventArgs e)
+        {
+            this.CharacterViewModel.SetItemSet("Combat");
+        }
+
+        private void OverlandFootItemsClicked(object sender, RoutedEventArgs e)
+        {
+            this.CharacterViewModel.SetItemSet("OverlandFoot");
+        }
     }
 }

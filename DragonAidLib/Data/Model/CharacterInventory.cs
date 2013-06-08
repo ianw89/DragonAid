@@ -5,9 +5,14 @@ using System.Linq;
 
 namespace DragonAid.Lib.Data.Model
 {
+    /// <summary>
+    /// Class that manages all the items a Character has.
+    /// Enumerating it returns all of the items the character has.
+    /// </summary>
     public class CharacterInventory : IEnumerable<Item>
     {
         private readonly List<Item> _items = new List<Item>();
+        private readonly IDictionary<string, List<Item>> _itemSets = new Dictionary<string, List<Item>>();
         private Armor _armor;
 
         public decimal TotalWeight
@@ -34,6 +39,11 @@ namespace DragonAid.Lib.Data.Model
 
                 this._armor = value;
             }
+        }
+
+        public IDictionary<string, List<Item>> ItemSets
+        {
+            get { return this._itemSets; }
         }
 
         public IEnumerator<Item> GetEnumerator()

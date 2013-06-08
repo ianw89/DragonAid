@@ -129,30 +129,56 @@
             <!-- We define all of the things we could view here, but only enable 1 at a time-->
             <StackPanel Orientation="Vertical">
 
-                <!-- Inventory page shows items -->
-                <ListView x:Name="InventoryTab" ItemsSource="{Binding Inventory}" Visibility="Collapsed">
+                <!-- Inventory page shows items. There are multiple views over these items. -->
+                <StackPanel x:Name="InventoryTab" Orientation="Vertical" Visibility="Collapsed">
 
-                    <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
+                    <!-- One button per item set. -->
+                    <!-- TODO make them not hardcoded -->
+                    <Grid HorizontalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Click="AllItemsClicked" Width="150" Height="60" Margin="10">
+                            <TextBlock Text="All Items" />
+                        </Button>
+                        <Button Grid.Column="1" Click="CombatItemsClicked" Width="150" Height="60" Margin="10">
+                            <TextBlock Text="Combat Gear" />
+                        </Button>
+                        <Button Grid.Column="2" Click="OverlandFootItemsClicked" Width="150" Height="60" Margin="10">
+                            <TextBlock Text="Overland (foot)" />
+                        </Button>
+                    </Grid>
+
+                    <!-- This is list of items in the currently selected set of items -->
+                    <ListView x:Name="InventoryItems" ItemsSource="{Binding ActiveItemSet}">
+
+                        <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
                          instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*" />
-                                    <ColumnDefinition Width="*" MinWidth="100" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
-                                <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="*" MinWidth="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
+                                    <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
+                </StackPanel>
+                
                 <!-- Spells page shows spells, talents and rituals that the character has -->
                 <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" IsHitTestVisible="False">
                     <ListView.ItemContainerStyle>
