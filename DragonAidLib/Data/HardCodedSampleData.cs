@@ -31,6 +31,9 @@ namespace DragonAid.Lib.Data
                             {
                                 { WeaponLibrary.Mattock, 1 },
                                 { WeaponLibrary.Dagger, 2 },
+                                { WeaponLibrary.WarHammer, 5 },
+                                { WeaponLibrary.MorningStar, 0 },
+                                { WeaponLibrary.Crossbow, 1 },
                             },
                         Skills =
                             {
@@ -361,8 +364,12 @@ namespace DragonAid.Lib.Data
 
         public static readonly Weapon HandAxe = new Weapon("Hand Axe", 40, 2m, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 4);
         public static readonly Weapon BattleAxe = new Weapon("Battle Axe", 60, 5m, WeaponKind.Close & WeaponKind.Melee, 7);
-        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m, WeaponKind.Close & WeaponKind.Melee, 3);
+        public static readonly Weapon WarHammer = new Weapon("War Hammer", 45, 4m, WeaponKind.Ranged & WeaponKind.Melee, 5);
+        public static readonly Weapon MorningStar = new Weapon("Morningstar", 60, 5m, WeaponKind.Melee, 5);
         public static readonly Weapon Mattock = new Weapon("Mattock", 55, 6m, WeaponKind.Melee, 5);
+        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m, WeaponKind.Close & WeaponKind.Melee, 3);
+
+        public static readonly Weapon Crossbow = new Weapon("Crossbow", 60, 7m, WeaponKind.Ranged, 5);
 
         public static readonly Weapon Cane = new Weapon("Cane (Sap)", 40, 5, WeaponKind.Close & WeaponKind.Melee, 3);
         public static readonly Weapon Darts = new Weapon("Darts (10)", 40, 2, WeaponKind.Ranged, 10);
