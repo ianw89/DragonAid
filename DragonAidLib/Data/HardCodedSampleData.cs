@@ -348,31 +348,31 @@ namespace DragonAid.Lib.Data
     public static class WeaponLibrary
     {
         // Name, BaseChance, Weight, Use, MaxRank
-        public static readonly Weapon Dagger = new Weapon("Dagger", 40, 10m / 16m, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 9);
-        public static readonly Weapon MainGauche = new Weapon("Main-Gauche", 45, 1m, WeaponKind.Close & WeaponKind.Melee, 10);
-        public static readonly Weapon ShortSword = new Weapon("Short Sword", 45, 2m, WeaponKind.Melee, 6);
-        public static readonly Weapon Falchion = new Weapon("Falchion", 50, 4m, WeaponKind.Melee, 8);
-        public static readonly Weapon Scimitar = new Weapon("Scimitar", 50, 4m, WeaponKind.Melee, 8);
-        public static readonly Weapon Tulwar = new Weapon("Tulwar", 50, 4m, WeaponKind.Melee, 8);
-        public static readonly Weapon Rapier = new Weapon("Rapier", 45, 2m, WeaponKind.Melee, 10);
-        public static readonly Weapon Sabre = new Weapon("Sabre", 60, 3m, WeaponKind.Melee, 7);
-        public static readonly Weapon Broadsword = new Weapon("Broadsword", 55, 3m, WeaponKind.Melee, 6);
-        public static readonly Weapon Estoc = new Weapon("Estoc", 45, 2m, WeaponKind.Melee, 9);
-        public static readonly Weapon HandAndAHalf = new Weapon("Hand & a Half", 60, 6m, WeaponKind.Melee, 7);
-        public static readonly Weapon Claymore = new Weapon("Claymore", 50, 5m, WeaponKind.Melee, 7);
-        public static readonly Weapon TwoHandedSword = new Weapon("Two-Handed Sword", 55, 9m, WeaponKind.Melee, 5);
+        public static readonly Weapon Dagger = new Weapon("Dagger", 10m / 16m, 40, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 9);
+        public static readonly Weapon MainGauche = new Weapon("Main-Gauche", 1m, 45, WeaponKind.Close & WeaponKind.Melee, 10);
+        public static readonly Weapon ShortSword = new Weapon("Short Sword", 2m, 45, WeaponKind.Melee, 6);
+        public static readonly Weapon Falchion = new Weapon("Falchion", 4m, 50, WeaponKind.Melee, 8);
+        public static readonly Weapon Scimitar = new Weapon("Scimitar", 4m, 50, WeaponKind.Melee, 8);
+        public static readonly Weapon Tulwar = new Weapon("Tulwar", 4m, 50, WeaponKind.Melee, 8);
+        public static readonly Weapon Rapier = new Weapon("Rapier", 2m, 45, WeaponKind.Melee, 10);
+        public static readonly Weapon Sabre = new Weapon("Sabre", 3m, 60, WeaponKind.Melee, 7);
+        public static readonly Weapon Broadsword = new Weapon("Broadsword", 3m, 55, WeaponKind.Melee, 6);
+        public static readonly Weapon Estoc = new Weapon("Estoc", 2m, 45, WeaponKind.Melee, 9);
+        public static readonly Weapon HandAndAHalf = new Weapon("Hand & a Half", 6m, 60, WeaponKind.Melee, 7);
+        public static readonly Weapon Claymore = new Weapon("Claymore", 5m, 50, WeaponKind.Melee, 7);
+        public static readonly Weapon TwoHandedSword = new Weapon("Two-Handed Sword", 9m, 55, WeaponKind.Melee, 5);
 
-        public static readonly Weapon HandAxe = new Weapon("Hand Axe", 40, 2m, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 4);
-        public static readonly Weapon BattleAxe = new Weapon("Battle Axe", 60, 5m, WeaponKind.Close & WeaponKind.Melee, 7);
-        public static readonly Weapon WarHammer = new Weapon("War Hammer", 45, 4m, WeaponKind.Ranged & WeaponKind.Melee, 5);
-        public static readonly Weapon MorningStar = new Weapon("Morningstar", 60, 5m, WeaponKind.Melee, 5);
-        public static readonly Weapon Mattock = new Weapon("Mattock", 55, 6m, WeaponKind.Melee, 5);
-        public static readonly Weapon Sap = new Weapon("Sap", 40, 1m, WeaponKind.Close & WeaponKind.Melee, 3);
+        public static readonly Weapon HandAxe = new Weapon("Hand Axe", 2m, 40, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 4);
+        public static readonly Weapon BattleAxe = new Weapon("Battle Axe", 5m, 60, WeaponKind.Close & WeaponKind.Melee, 7);
+        public static readonly Weapon WarHammer = new Weapon("War Hammer", 4m, 45, WeaponKind.Ranged & WeaponKind.Melee, 5);
+        public static readonly Weapon MorningStar = new Weapon("Morningstar", 5m, 60, WeaponKind.Melee, 5);
+        public static readonly Weapon Mattock = new Weapon("Mattock", 6m, 55, WeaponKind.Melee, 5);
+        public static readonly Weapon Sap = new Weapon("Sap", 1m, 40, WeaponKind.Close & WeaponKind.Melee, 3);
 
-        public static readonly Weapon Crossbow = new Weapon("Crossbow", 60, 7m, WeaponKind.Ranged, 5);
+        public static readonly Weapon Crossbow = new Weapon("Crossbow", 7m, 60, WeaponKind.Ranged, 5);
 
-        public static readonly Weapon Cane = new Weapon("Cane (Sap)", 40, 5, WeaponKind.Close & WeaponKind.Melee, 3);
-        public static readonly Weapon Darts = new Weapon("Darts (10)", 40, 2, WeaponKind.Ranged, 10);
+        public static readonly Weapon Cane = new Weapon("Cane (Sap)", 5, 40, WeaponKind.Close & WeaponKind.Melee, 3);
+        public static readonly Weapon Darts = new Weapon("Darts (10)", 2, 40, WeaponKind.Ranged, 10);
     }
 
     public static class SkillLibrary

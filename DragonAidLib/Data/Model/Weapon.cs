@@ -7,7 +7,7 @@ namespace DragonAid.Lib.Data.Model
     // Note that when we do skills we will have _abilities_ of the skills that look like these...
     public class Weapon : Item
     {
-        public Weapon(string fullName, int baseChance, decimal weight, WeaponKind use, int maxRank)
+        public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank)
             : base(fullName, weight)
         {
             Contract.Requires(baseChance >= 0 && baseChance <= 100);
