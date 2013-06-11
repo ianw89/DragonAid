@@ -347,7 +347,7 @@ namespace DragonAid.Lib.Data
 
     public static class WeaponLibrary
     {
-        // Name, BaseChance, Weight, Use, MaxRank
+        // Name, Weight, BaseChance, Use, MaxRank
         public static readonly Weapon Dagger = new Weapon("Dagger", 10m / 16m, 40, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 9);
         public static readonly Weapon MainGauche = new Weapon("Main-Gauche", 1m, 45, WeaponKind.Close & WeaponKind.Melee, 10);
         public static readonly Weapon ShortSword = new Weapon("Short Sword", 2m, 45, WeaponKind.Melee, 6);
