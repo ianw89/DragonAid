@@ -31,7 +31,21 @@ namespace DragonAid.Lib.Data
                             {
                                 { WeaponLibrary.Mattock, 1 },
                                 { WeaponLibrary.Dagger, 2 },
-                            }
+                            },
+                        Skills =
+                            {
+                                { SkillLibrary.Courtesan, 3 },
+                                { SkillLibrary.Alchemy, 0 },
+
+                                { SkillLibrary.Climbing, 3 },
+                                { SkillLibrary.Horsemanship, 3 },
+                                { SkillLibrary.Stealth, 1 },
+                                { SkillLibrary.Swimming, 1 },
+
+                                // The following are binary skills (either you have it or you don't), so rank isn't applicable.
+                                { SkillLibrary.InstantDispatch, 0 },
+                                { SkillLibrary.CombatRotation, 0 }
+                            },
                     },
                 new Character
                     {
@@ -350,14 +364,22 @@ namespace DragonAid.Lib.Data
 
     public static class SkillLibrary
     {
+        /* Standard skills */
         public static readonly Skill Assassin = new Skill("Assassin");
         public static readonly Skill Alchemy = new Skill("Alchemy");
         public static readonly Skill Astrology = new Skill("Astrology");
         public static readonly Skill Beastmaster = new Skill("Beastmaster");
+        public static readonly Skill Spy = new Skill("Spy");
+        public static readonly Skill Courtesan = new Skill("Courtesan");
 
+        /* Adventuring skills */
+        public static readonly Skill Swimming = new Skill("Swimming");
+        public static readonly Skill Climbing = new Skill("Climbing");
         public static readonly Skill Horsemanship = new Skill("Horsemanship");
         public static readonly Skill Stealth = new Skill("Stealth");
 
-        public static readonly Skill Spy = new Skill("Spy");
+        /* Extension skills */
+        public static readonly Skill InstantDispatch = new Skill("Instant Dispatch");
+        public static readonly Skill CombatRotation = new Skill("Combat Rotation");
     }
 }
