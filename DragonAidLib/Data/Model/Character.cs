@@ -15,6 +15,7 @@ namespace DragonAid.Lib.Data.Model
         private CharacterSpellRanks _spellRanks;
         private CharacterWeaponRanks _weaponRanks;
         private CharacterSkillRanks _skillRanks;
+        private CharacterLanguageRanks _languageRanks;
         private CharacterInventory _inventory;
 
         public Character()
@@ -86,6 +87,16 @@ namespace DragonAid.Lib.Data.Model
             {
                 Contract.Requires(value != null);
                 _skillRanks = value;
+            }
+        }
+
+        public CharacterLanguageRanks Languages
+        {
+            get { return _languageRanks; }
+            set
+            {
+                Contract.Requires(value != null);
+                _languageRanks = value;
             }
         }
 
