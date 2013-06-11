@@ -46,6 +46,12 @@ namespace DragonAid.Lib.Data
                                 { SkillLibrary.InstantDispatch, 0 },
                                 { SkillLibrary.CombatRotation, 0 }
                             },
+                        Languages =
+                            {
+                                { LanguageLibrary.Common, 8, 4 },
+                                { LanguageLibrary.BerensTongue, 8, 0 },
+                                { LanguageLibrary.Lutherian, 0, null }
+                            }
                     },
                 new Character
                     {
@@ -381,5 +387,12 @@ namespace DragonAid.Lib.Data
         /* Extension skills */
         public static readonly Skill InstantDispatch = new Skill("Instant Dispatch");
         public static readonly Skill CombatRotation = new Skill("Combat Rotation");
+    }
+
+    public static class LanguageLibrary
+    {
+        public static readonly Language Common = new Language("Common");
+        public static readonly Language BerensTongue = new Language("Beren's Tongue");
+        public static readonly Language Lutherian = new Language("Lutherian");
     }
 }
