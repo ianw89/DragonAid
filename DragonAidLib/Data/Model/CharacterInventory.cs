@@ -56,10 +56,20 @@ namespace DragonAid.Lib.Data.Model
             return GetEnumerator();
         }
 
-        public void Add(Item item)
+        public void Add(Item item, params string[] setNames)
         {
             Contract.Requires(item != null);
             _items.Add(item);
+
+            foreach (var setName in setNames)
+            {
+                if (!this.ItemSets.ContainsKey(setName))
+                {
+                    this.ItemSets.Add(setName, new List<Item>());
+                }
+
+                this.ItemSets[setName].Add(item);
+            }
         }
     }
 }

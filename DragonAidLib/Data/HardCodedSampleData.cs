@@ -108,7 +108,7 @@ namespace DragonAid.Lib.Data
                             ,
                         Inventory = 
                             {
-                                new Armor("Cloth armor (improved)", 0, 6),
+                                { new Armor("Cloth armor (improved)", 0, 6), "Combat" },
                                 WeaponLibrary.Sap,
                                 WeaponLibrary.Sap,
                                 WeaponLibrary.Dagger,

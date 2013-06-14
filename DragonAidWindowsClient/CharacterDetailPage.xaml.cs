@@ -16,6 +16,8 @@ namespace DragonAid.WindowsClient
     public sealed partial class CharacterDetailPage : LayoutAwarePage
     {
         private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
+        private static readonly string CombatSetIdentifier = "Combat";
+        private static readonly string OverlandFootSetIdentifier = "OverlandFoot";
 
         public CharacterDetailPage()
         {
@@ -101,12 +103,12 @@ namespace DragonAid.WindowsClient
 
         private void CombatItemsClicked(object sender, RoutedEventArgs e)
         {
-            this.CharacterViewModel.SetItemSet("Combat");
+            this.CharacterViewModel.SetItemSet(CombatSetIdentifier);
         }
 
         private void OverlandFootItemsClicked(object sender, RoutedEventArgs e)
         {
-            this.CharacterViewModel.SetItemSet("OverlandFoot");
+            this.CharacterViewModel.SetItemSet(OverlandFootSetIdentifier);
         }
     }
 }
