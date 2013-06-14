@@ -113,6 +113,7 @@
     <Compile Include="Tests\Unit\CharacterEquations.Test.cs" />
     <Compile Include="Tests\Unit\CharacterExtensionsTest.cs" />
     <Compile Include="Tests\Unit\CharacterInventoryTests.cs" />
+    <Compile Include="Tests\Unit\CharacterTests.cs" />
     <Compile Include="Tests\Unit\FatigueAndEncumberanceChartTests.cs" />
     <Compile Include="Tests\Unit\EquationPrettyTextWriterTests.cs" />
     <Compile Include="Tests\Unit\SpellcastResultRangeTest.cs" />

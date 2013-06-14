@@ -15,8 +15,8 @@ namespace DragonAid.Lib.Data.Model
 
             _character = character;
             Language = language;
-            SpeakRank = speakRank;
-            ReadWriteRank = readWriteRank;
+            _speakRank = speakRank;
+            _readWriteRank = readWriteRank;
         }
 
         public Language Language { get; private set; }

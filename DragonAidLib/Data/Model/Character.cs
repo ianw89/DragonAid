@@ -24,6 +24,7 @@ namespace DragonAid.Lib.Data.Model
             this._weaponRanks = new CharacterWeaponRanks(this);
             this._skillRanks = new CharacterSkillRanks(this);
             this._inventory = new CharacterInventory();
+            this._languageRanks = new CharacterLanguageRanks(this);
         }
 
         // *** RPG system agnostic properties
