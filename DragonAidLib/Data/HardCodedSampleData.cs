@@ -299,17 +299,6 @@ namespace DragonAid.Lib.Data
                         IsMine = false,
                         PartyId = 2,
                     },
-                new Character
-                    {
-                        Id = 8,
-                        Name = "Pirate C",
-                        Title = "Pirate",
-                        Description = "He swashbuckles and stuff",
-                        ImageUri = null,
-                        PlayerName = "Player 3",
-                        IsMine = false,
-                        PartyId = 2,
-                    },
             };
 
         public static readonly List<Party> SampleParties = new List<Party>
