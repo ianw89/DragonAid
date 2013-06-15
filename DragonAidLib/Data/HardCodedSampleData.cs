@@ -177,7 +177,7 @@ namespace DragonAid.Lib.Data
                                 { WeaponLibrary.Bola, "Combat", "OverlandFoot" },
                                 { new Item("Falconry Pads", 3), "Combat", "OverlandFoot" },
                                 
-                                { new Item("Leather Pack", 8.5), "OverlandFoot" },
+                                { new Item("Leather Pack", 8.5m), "OverlandFoot" },
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
                                 { new Item("Money", 0), "OverlandFoot" },
                                 { new Item("Climbing Pack", 5), "OverlandFoot" },
