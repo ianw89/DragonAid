@@ -109,13 +109,13 @@ namespace DragonAid.Lib.Data
                         Inventory = 
                             {
                                 { new Armor("Cloth armor (improved)", 0, 6), "Combat" },
-                                WeaponLibrary.Sap,
-                                WeaponLibrary.Sap,
-                                WeaponLibrary.Dagger,
+                                { WeaponLibrary.Sap, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Sap, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Dagger, "Combat", "OverlandFoot" },
 
-                                new Item("Adventuring pack", 23),
-                                new Item("Money", 5),
-                                new Item("2 weeks of supplies", 14),
+                                { new Item("Adventuring pack", 23), "OverlandFoot" },
+                                { new Item("Money", 15), "OverlandFoot" },
+                                { new Item("2 weeks of supplies", 14), "OverlandFoot" },
                             },
                         Skills =
                             {
@@ -171,16 +171,15 @@ namespace DragonAid.Lib.Data
                             },
                         Inventory =
                             {
-                                { new Armor("Leather", -1, 18), "Combat", "OverlandFoot" },
+                                { new Armor("Leather Armor", -1, 18), "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Whip, "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Net, "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Bola, "Combat", "OverlandFoot" },
                                 { new Item("Falconry Pads", 3), "Combat", "OverlandFoot" },
                                 
-                                { new Item("Leather Pack", 8.5m), "OverlandFoot" },
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
-                                { new Item("Money", 0), "OverlandFoot" },
-                                { new Item("Climbing Pack", 5), "OverlandFoot" },
+                                { new Item("Money", 15), "OverlandFoot" },
+                                { new Item("Climbing Pack", 24), "OverlandFoot" },
                                 { new Item("2 weeks of supplies", 14), "OverlandFoot" },
                             }
                     },
