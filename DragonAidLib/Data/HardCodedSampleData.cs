@@ -122,6 +122,11 @@ namespace DragonAid.Lib.Data
                                 { SkillLibrary.Assassin, 3},     
                                 { SkillLibrary.Horsemanship, 0},        
                                 { SkillLibrary.Stealth, 2}        
+                            },
+                        Languages =
+                            {
+                                { LanguageLibrary.Common, 8, null },
+                                { LanguageLibrary.BerensTongue, 8, null },
                             }
                     },
                 new Character
@@ -143,7 +148,41 @@ namespace DragonAid.Lib.Data
                         Willpower = 19,
                         Perception = 9,
                         PhysicalBeauty = 15,
-                        Fatigue = 21
+                        Fatigue = 21,
+                        WeaponRanks =
+                            {
+                                { WeaponLibrary.Whip, 2 },
+                                { WeaponLibrary.Net, 2 },
+                                { WeaponLibrary.Bola, 2 },
+                            },
+                        Skills =
+                            {
+                                { SkillLibrary.Beastmaster, 2 },
+
+                                { SkillLibrary.Climbing, 3 },
+                                { SkillLibrary.Horsemanship, 4 },
+                                { SkillLibrary.Stealth, 0 },
+                                { SkillLibrary.Swimming, 0 }
+                            },
+                        Languages =
+                            {
+                                { LanguageLibrary.Common, 8, 4 },
+                                { LanguageLibrary.Hundschrei, 5, 1 },
+                            },
+                        Inventory =
+                            {
+                                { new Armor("Leather", -1, 18), "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Whip, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Net, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Bola, "Combat", "OverlandFoot" },
+                                { new Item("Falconry Pads", 3), "Combat", "OverlandFoot" },
+                                
+                                { new Item("Leather Pack", 8.5), "OverlandFoot" },
+                                { new Item("Adventuring pack", 23), "OverlandFoot" },
+                                { new Item("Money", 0), "OverlandFoot" },
+                                { new Item("Climbing Pack", 5), "OverlandFoot" },
+                                { new Item("2 weeks of supplies", 14), "OverlandFoot" },
+                            }
                     },
                 new Character
                     {
@@ -186,7 +225,7 @@ namespace DragonAid.Lib.Data
                             },
                         Inventory = 
                             {
-                                new Armor("Cloth armor (improved)", 0, 6),
+                                { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
                                 WeaponLibrary.Cane,
                                 WeaponLibrary.Sap,
                                 WeaponLibrary.Darts,
@@ -439,6 +478,7 @@ namespace DragonAid.Lib.Data
         public static readonly Skill Stealth = new Skill("Stealth");
 
         /* Extension skills */
+        // TODO Should be top level abilities, not skill
         public static readonly Skill InstantDispatch = new Skill("Instant Dispatch");
         public static readonly Skill CombatRotation = new Skill("Combat Rotation");
     }
@@ -448,5 +488,8 @@ namespace DragonAid.Lib.Data
         public static readonly Language Common = new Language("Common");
         public static readonly Language BerensTongue = new Language("Beren's Tongue");
         public static readonly Language Lutherian = new Language("Lutherian");
+        public static readonly Language Hundschrei = new Language("Hundschrei");
+        public static readonly Language Orcish = new Language("Orcish");
+        public static readonly Language Elvish = new Language("Elvish");
     }
 }
