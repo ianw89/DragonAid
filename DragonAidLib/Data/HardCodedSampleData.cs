@@ -54,6 +54,20 @@ namespace DragonAid.Lib.Data
                                 { LanguageLibrary.Common, 8, 4 },
                                 { LanguageLibrary.BerensTongue, 8, 0 },
                                 { LanguageLibrary.Lutherian, 0, null }
+                            },
+                        Inventory =
+                            {
+                                { WeaponLibrary.Mattock, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Crossbow, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Dagger, "Combat", "OverlandFoot" },
+                                { new Armor("Partial Plate", -2, 33), "Combat", "OverlandFoot" },
+                                { new Item("Buckler", 3), "Combat", "OverlandFoot" },
+                                { new Item("Quiver", 3), "Combat", "OverlandFoot" },
+                                { new Item("Quarrels", 7), "Combat", "OverlandFoot" },
+ 
+                                { new Item("Adventuring Pack", 23), "OverlandFoot" },
+                                { new Item("Overnight Pack", 12), "OverlandFoot" },
+                                { new Item("Money", 10), "OverlandFoot" },
                             }
                     },
                 new Character
@@ -108,13 +122,13 @@ namespace DragonAid.Lib.Data
                             ,
                         Inventory = 
                             {
-                                { new Armor("Cloth armor (improved)", 0, 6), "Combat" },
+                                { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Sap, "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Sap, "Combat", "OverlandFoot" },
                                 { WeaponLibrary.Dagger, "Combat", "OverlandFoot" },
 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
-                                { new Item("Money", 15), "OverlandFoot" },
+                                { new Item("Money", 10), "OverlandFoot" },
                                 { new Item("2 weeks of supplies", 14), "OverlandFoot" },
                             },
                         Skills =
@@ -178,7 +192,7 @@ namespace DragonAid.Lib.Data
                                 { new Item("Falconry Pads", 3), "Combat", "OverlandFoot" },
                                 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
-                                { new Item("Money", 15), "OverlandFoot" },
+                                { new Item("Money", 10), "OverlandFoot" },
                                 { new Item("Climbing Pack", 24), "OverlandFoot" },
                                 { new Item("2 weeks of supplies", 14), "OverlandFoot" },
                             }
@@ -225,13 +239,13 @@ namespace DragonAid.Lib.Data
                         Inventory = 
                             {
                                 { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
-                                WeaponLibrary.Cane,
-                                WeaponLibrary.Sap,
-                                WeaponLibrary.Darts,
+                                { WeaponLibrary.Cane, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Sap, "Combat", "OverlandFoot" },
+                                { WeaponLibrary.Darts, "Combat", "OverlandFoot" },
                                 
-                                new Item("Adventuring pack", 23),
-                                new Item("Money", 5),
-                                new Item("2 weeks of supplies", 14),
+                                { new Item("Adventuring pack", 23), "OverlandFoot" },
+                                { new Item("Money", 10), "OverlandFoot" },
+                                { new Item("2 weeks of supplies", 14), "OverlandFoot" },
                             },
                         Skills =
                             {
