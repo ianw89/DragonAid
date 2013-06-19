@@ -26,7 +26,10 @@ namespace DragonAid.WindowsClient
         {
             if (navigationParameter != null)
             {
-                this.PartyViewModel = new PartyViewModel(HardCodedSampleData.SampleParties.Single(p => p.Id == (int)navigationParameter), HardCodedSampleData.SampleCharacters);
+                var partyId = (int) navigationParameter;
+                this.PartyViewModel = new PartyViewModel();
+                this.PartyViewModel.LoadState(partyId, null);
+                this.PartyViewModel.LoadPartyFromStaticData(partyId);
             }
             else throw new InvalidOperationException();        
         }

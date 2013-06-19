@@ -121,47 +121,6 @@ namespace DragonAid.WindowsClient.ViewModel
             Party = HardCodedSampleData.SampleParties.Single(p => p.Id == partyId);
         }
 
-        //public async Task LoadPartyFromServiceAsync(int partyId)
-        //{
-        //    await LoadPartyFromServiceAsync(DragonAidService.Client, partyId);
-        //}
-
-        //public async Task LoadAllCharactersFromServiceAsync()
-        //{
-        //    await LoadAllCharactersFromServiceAsync(DragonAidService.Client);
-        //}
-
-        //public async Task LoadPartyFromServiceAsync(MobileServiceClient client, int partyId)
-        //{
-        //    if (partyId == AllCharactersParty.Id)
-        //    {
-        //        await LoadAllCharactersFromServiceAsync(client);
-        //        return;
-        //    }
-
-        //    var partyTable = client.GetTable<Party>();
-        //    var characterTable = client.GetTable<Character>();
-
-        //    // These can run concurrently, so start both before awaiting either
-        //    var getPartyTask = partyTable.LookupAsync(partyId);
-        //    var getCharactersTask = characterTable.Where(c => c.PartyId == partyId).ToListAsync();
-
-        //    Party party = await getPartyTask;
-        //    List<Character> characters = await getCharactersTask;
-
-        //    // Only after both succeed do we change either
-        //    SetModels(party, characters);
-        //}
-
-        //public async Task LoadAllCharactersFromServiceAsync(MobileServiceClient client)
-        //{
-        //    var characterTable = client.GetTable<Character>();
-        //    var characters = await characterTable.Where(c => c.IsMine).ToListAsync();
-
-        //    // Only after the network IO succeeds do we change anything
-        //    SetModels(AllCharactersParty, characters);
-        //}
-
         private static string PartyIdToUniqueId(int partyId)
         {
             return string.Format("Party/{0}", partyId);

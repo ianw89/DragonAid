@@ -14,7 +14,7 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="CharactersViewSource"
-            Source="{Binding TopCharacters}"/>
+            Source="{Binding Characters}"/>
     </Page.Resources>
     
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -41,33 +41,28 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
                 <TextBlock Text="Left Side" />
 
-                <GridView
-                    AutomationProperties.AutomationId="CharactersGridView"
-                    AutomationProperties.Name="Characters in party"
-                    Padding="0,40,0,40"
-                    ItemsSource="{Binding Source={StaticResource CharactersViewSource}}"
-                    ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
-                    SelectionMode="None"
-                    IsSwipeEnabled="false"
-                    IsItemClickEnabled="True"
-                    ItemClick="CharacterClicked">
+                <ListView ItemsSource="{Binding Characters}" Margin="20" Padding="10">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="Thing" />
+                                <TextBlock Text="{Binding Title}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-                    <GridView.Header>
-                        <StackPanel Width="480" Margin="0,4,14,0">
-                            <TextBlock Text="{Binding Subtitle}" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
-                            <Image Source="{Binding Image}" Height="400" Margin="0,0,18,20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                            <TextBlock Text="{Binding Description}" Margin="0,0,18,0" Style="{StaticResource BodyTextStyle}"/>
-                        </StackPanel>
-                    </GridView.Header>
-                </GridView>
+                </StackPanel>
 
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
                 <TextBlock Text="Other Side" />
             </StackPanel>
         </Grid>
