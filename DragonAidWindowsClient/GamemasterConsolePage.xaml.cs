@@ -15,6 +15,7 @@ namespace DragonAid.WindowsClient
     /// </summary>
     public sealed partial class GamemasterConsolePage : LayoutAwarePage
     {
+        private readonly PartyViewModel _partyViewModel = new PartyViewModel();
         //private Character _clickedCharacter;
 
         public GamemasterConsolePage()
@@ -27,14 +28,16 @@ namespace DragonAid.WindowsClient
             if (navigationParameter != null)
             {
                 var partyId = (int) navigationParameter;
-                this.PartyViewModel = new PartyViewModel();
                 this.PartyViewModel.LoadState(partyId, null);
                 this.PartyViewModel.LoadPartyFromStaticData(partyId);
             }
             else throw new InvalidOperationException();        
         }
 
-        public PartyViewModel PartyViewModel { get; set; }
+        public PartyViewModel PartyViewModel
+        {
+            get { return _partyViewModel; }
+        }
 
         private void CharacterClicked(object sender, ItemClickEventArgs e)
         {

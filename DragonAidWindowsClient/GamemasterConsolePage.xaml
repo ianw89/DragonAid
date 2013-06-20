@@ -14,7 +14,7 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="CharactersViewSource"
-            Source="{Binding Characters}"/>
+            Source="{Binding TopCharacters}"/>
     </Page.Resources>
     
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -42,9 +42,9 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
-                <TextBlock Text="Left Side" />
 
-                <ListView ItemsSource="{Binding Characters}" Margin="20" Padding="10">
+                <!-- Show a list of all the characters in the party -->
+                <ListView ItemsSource="{Binding Source={StaticResource CharactersViewSource}}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -53,17 +53,16 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="Thing" />
-                                <TextBlock Text="{Binding Title}" />
+                                <TextBlock Text="{Binding Title}" Padding="10" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                
+            </StackPanel>
 
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
-                <TextBlock Text="Other Side" />
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
+                <TextBlock Text="Placeholder - right side of screen" />
             </StackPanel>
         </Grid>
     </Grid>
