@@ -19,7 +19,7 @@
             x:Name="PartiesViewSource"
             Source="{Binding PartyViews}"
             IsSourceGrouped="true"
-            ItemsPath="TopCharacters"/>
+            ItemsPath="Characters"/>
     </Page.Resources>
 
     <!--
