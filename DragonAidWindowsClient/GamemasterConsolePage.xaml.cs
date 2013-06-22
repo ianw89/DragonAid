@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
+using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace DragonAid.WindowsClient
@@ -16,6 +20,7 @@ namespace DragonAid.WindowsClient
     public sealed partial class GamemasterConsolePage : LayoutAwarePage
     {
         private readonly PartyViewModel _partyViewModel = new PartyViewModel();
+        private double _difficultyFactor;
         //private Character _clickedCharacter;
 
         public GamemasterConsolePage()
@@ -43,6 +48,33 @@ namespace DragonAid.WindowsClient
         {
             // Remember what is clicked for later...? TODO
             //this._clickedCharacter = ((CharacterViewModel) e.ClickedItem).Character;
+        }
+
+        private void MakeTeamPerceptionRollClicked(object sender, RoutedEventArgs e)
+        {
+            var checker = new TeamAttributeChecker(this.PartyViewModel.Characters.Select(v => v.Character));
+            if (this._difficultyFactor > 0)
+            {
+                var result = checker.MakePerceptionRoll(this._difficultyFactor);
+                this.PerceptionRollResults.Text = result.ToString();
+            }
+        }
+
+        private void DifficultyFactorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Clear any previous results
+            this.PerceptionRollResults.Text = "";
+
+            // If what is in the box does not parse correctly, then outline box in red
+            this._difficultyFactor = -1;
+            if (Double.TryParse(this.PerceptionRollDifficultyFactorBox.Text, out _difficultyFactor))
+            {
+                this.PerceptionRollDifficultyFactorBox.BorderBrush = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                this.PerceptionRollDifficultyFactorBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
         }
     }
 }

@@ -116,6 +116,5 @@ namespace DragonAid.Lib.Data.Model
             get { return this.Inventory.EquippedArmor;  }
             set { this.Inventory.EquippedArmor = value; }
         }
-
     }
 }

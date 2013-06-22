@@ -367,7 +367,7 @@ namespace DragonAid.Lib.Data
             public readonly Spell Empathy = new Spell("Empathy", 20);
             public readonly Spell Hypnotism = new Spell("Hypnotism", 40);
             public readonly Spell ControlAnimal = new Spell("Control Animal", 40);
-            public readonly Spell ControlPerson = new Spell("Control Person", 30);
+            public readonly Spell ControlPerson = new Spell("Control Character", 30);
 
             // Special Knowledge Spells
             public readonly Spell MentalAttack = new Spell("Mental Attack", 25);

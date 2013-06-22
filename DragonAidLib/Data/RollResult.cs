@@ -5,7 +5,7 @@ namespace DragonAid.Lib.Data
     /// <summary>
     /// Object that encapsulates the result of a particular roll.
     /// </summary>
-    internal class RollResult
+    public class RollResult
     {
         public bool Success
         {
@@ -16,11 +16,11 @@ namespace DragonAid.Lib.Data
 
         public int RequiredRoll { get; set; }
 
-        public Character Person { get; set; }
+        public Character Character { get; set; }
 
         public override string ToString()
         {
-            return this.Person + " rolled a " + this.Roll + " and need a " + this.RequiredRoll + " to succeed.";
+            return this.Character + " rolled a " + this.Roll + " and need a " + this.RequiredRoll + " to succeed.";
         }
     }
 }

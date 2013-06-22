@@ -3,7 +3,7 @@
     /// <summary>
     /// Object that encapsulates the result of a team making a roll.
     /// </summary>
-    internal class TeamRollResult
+    public class TeamRollResult
     {
         private readonly RollResult _result;
 
@@ -16,11 +16,11 @@
         {
             if (this._result != null && this._result.Success)
             {
-                return "The team succeeded, thanks to " +
-                       this._result.Person +
-                       ", who rolled a " +
+                return "Success! " +
+                       this._result.Character.Name +
+                       " rolled a " +
                        this._result.Roll +
-                       "!";
+                       ".";
             }
 
             return "The team failed the roll.";

@@ -61,8 +61,24 @@
                 
             </StackPanel>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
-                <TextBlock Text="Placeholder - right side of screen" />
+
+            <StackPanel Grid.Column="1">
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Height="50" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Difficulty Factor:" />
+
+                    <TextBox Width="120" Height="50" IsReadOnly="False" Margin="30,0,60,0" TextChanged="DifficultyFactorTextChanged" x:Name="PerceptionRollDifficultyFactorBox" />
+                    
+                    <Button Width="200" Height="50" Click="MakeTeamPerceptionRollClicked">
+                        <TextBlock Text="Make Team PC Roll" />
+                    </Button>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="00,0,30,0"/>
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" x:Name="PerceptionRollResults" />
+                </StackPanel>
+                
             </StackPanel>
         </Grid>
     </Grid>

@@ -9,7 +9,7 @@ namespace DragonAid.Lib.Data
     /// Object that knows how to check if a group of <see cref="Character"/>s have suceeded
     /// at a particular check.
     /// </summary>
-    internal class TeamAttributeChecker
+    public class TeamAttributeChecker
     {
         private readonly IEnumerable<Character> _people;
         private readonly Random _rand;
@@ -27,7 +27,7 @@ namespace DragonAid.Lib.Data
             foreach (var person in _people.OrderByDescending(p => p.Perception))
             {
                 lastResult = MakeDifficultyFactorRoll(person.Perception, difficultyFactor);
-                lastResult.Person = person;
+                lastResult.Character = person;
 
                 if (lastResult.Success)
                 {

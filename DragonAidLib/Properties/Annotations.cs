@@ -265,7 +265,7 @@ namespace DragonAid.Lib.Annotations
   /// </code></item>
   /// <item><code>
   /// [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
-  /// public bool TryParse(string s, out Person result)
+  /// public bool TryParse(string s, out Character result)
   /// </code></item>
   /// </list>
   /// </examples>
