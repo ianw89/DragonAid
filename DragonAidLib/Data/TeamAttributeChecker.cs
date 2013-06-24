@@ -12,12 +12,10 @@ namespace DragonAid.Lib.Data
     public class TeamAttributeChecker
     {
         private readonly IEnumerable<Character> _people;
-        private readonly Random _rand;
 
         public TeamAttributeChecker(IEnumerable<Character> people)
         {
             _people = people;
-            _rand = new Random();
         }
 
         public TeamRollResult MakePerceptionRoll(double difficultyFactor)
@@ -46,12 +44,12 @@ namespace DragonAid.Lib.Data
             return new TeamRollResult(lastResult);
         }
 
-        private RollResult MakeDifficultyFactorRoll(int perception, double difficultyFactor)
+        private RollResult MakeDifficultyFactorRoll(int stat, double difficultyFactor)
         {
             return new RollResult
             {
-                Roll = _rand.Next(100) + 1,
-                RequiredRoll = (int)(difficultyFactor * perception)
+                Roll = Dice.RollD100(),
+                RequiredRoll = (int)(difficultyFactor * stat)
             };
         }
     }

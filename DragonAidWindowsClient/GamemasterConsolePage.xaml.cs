@@ -76,5 +76,10 @@ namespace DragonAid.WindowsClient
                 this.PerceptionRollDifficultyFactorBox.BorderBrush = new SolidColorBrush(Colors.Red);
             }
         }
+
+        private void RollDiceButtonClicked(object sender, RoutedEventArgs e)
+        {
+            this.RollDiceResults.Text = Dice.RollD100().ToString();
+        }
     }
 }

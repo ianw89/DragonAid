@@ -40,7 +40,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
+            
+            <!-- Left Side of the Screen -->
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="50" VerticalAlignment="Top">
 
                 <!-- Show a list of all the characters in the party -->
@@ -61,22 +62,34 @@
                 
             </StackPanel>
 
-
+            <!-- Ride Side of the Screen -->
             <StackPanel Grid.Column="1">
                 
+                <!-- Team Attribute Checking -->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Height="50" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Difficulty Factor:" />
-
-                    <TextBox Width="120" Height="50" IsReadOnly="False" Margin="30,0,60,0" TextChanged="DifficultyFactorTextChanged" x:Name="PerceptionRollDifficultyFactorBox" />
-                    
-                    <Button Width="200" Height="50" Click="MakeTeamPerceptionRollClicked">
+                    <Button Width="200" Height="50" Margin="30,0,30,0" Click="MakeTeamPerceptionRollClicked">
                         <TextBlock Text="Make Team PC Roll" />
                     </Button>
+
+                    <TextBlock Height="50" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="30,0,30,0" Text="Difficulty Factor:" />
+
+                    <TextBox Width="120" Height="50" IsReadOnly="False" Margin="30,0,30,0" TextChanged="DifficultyFactorTextChanged" x:Name="PerceptionRollDifficultyFactorBox" />
                 </StackPanel>
                 
+                <!-- Team Attribute Checking Results -->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="00,0,30,0"/>
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="30,0,30,0"/>
                     <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" x:Name="PerceptionRollResults" />
+                </StackPanel>
+                
+                <!-- Simple Dice Roller -->
+                <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                    <Button Width="200" Height="50" Margin="30,0,30,0" Click="RollDiceButtonClicked">
+                        <TextBlock Text="Roll D100" />
+                    </Button>
+                    
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="30,0,30,0"/>
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" x:Name="RollDiceResults"/>
                 </StackPanel>
                 
             </StackPanel>

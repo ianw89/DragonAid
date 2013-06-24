@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\CharacterExtensions.cs" />
+    <Compile Include="Data\Dice.cs" />
     <Compile Include="Data\FatigueAndEncumberanceChart.cs" />
     <Compile Include="Data\FatigueAndEncumberanceChartEntry.cs" />
     <Compile Include="Data\HardCodedSampleData.cs" />
