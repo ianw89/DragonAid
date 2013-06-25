@@ -21,7 +21,8 @@ namespace DragonAid.WindowsClient.ViewModel
         /// </summary>
         private Character _character;
 
-        private IEnumerable<ItemViewModel> _activeItemSet;
+        private IEnumerable<ItemViewModel> _displayedItemSet;
+        private string _displayedItemSetName;
 
         /// <summary>
         /// Construct a ViewModel without assigning a character.
@@ -133,10 +134,10 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 
-        public IEnumerable<ItemViewModel> ActiveItemSet
+        public IEnumerable<ItemViewModel> DisplayedItemSet
         {
-            get { return _activeItemSet; }
-            set { this.SetProperty(ref _activeItemSet, value); }
+            get { return _displayedItemSet; }
+            set { this.SetProperty(ref _displayedItemSet, value); }
         }
 
         public IEnumerable<WeaponViewModel> Weapons
@@ -249,20 +250,26 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public void SetItemSetToAll()
         {
-            this.ActiveItemSet = this.GetItemViewModels(this.Character.Inventory);
+            this.DisplayedItemSet = this.GetItemViewModels(this.Character.Inventory);
         }
 
-        public void SetItemSet(string setIdentifier)
+        public void SetVisibleItemSet(string setIdentifier)
         {
             if (this.Character.Inventory.ItemSets.ContainsKey(setIdentifier))
             {
-                this.ActiveItemSet = this.GetItemViewModels(this.Character.Inventory.ItemSets[setIdentifier]);
+                this._displayedItemSetName = setIdentifier;
+                this.DisplayedItemSet = this.GetItemViewModels(this.Character.Inventory.ItemSets[setIdentifier]);
             }
             else
             {
                 // If the set isn't defined, we'll just make it an empty list
-                this.ActiveItemSet = new List<ItemViewModel>();
+                this.DisplayedItemSet = new List<ItemViewModel>();
             }
+        }
+
+        public void SetVisibleItemSetToEquipted()
+        {
+            this.Character.Inventory.EquiptedSetName = this._displayedItemSetName;
         }
     }
 }

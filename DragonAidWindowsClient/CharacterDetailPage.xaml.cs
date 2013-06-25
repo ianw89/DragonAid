@@ -103,12 +103,17 @@ namespace DragonAid.WindowsClient
 
         private void CombatItemsClicked(object sender, RoutedEventArgs e)
         {
-            this.CharacterViewModel.SetItemSet(CombatSetIdentifier);
+            this.CharacterViewModel.SetVisibleItemSet(CombatSetIdentifier);
         }
 
         private void OverlandFootItemsClicked(object sender, RoutedEventArgs e)
         {
-            this.CharacterViewModel.SetItemSet(OverlandFootSetIdentifier);
+            this.CharacterViewModel.SetVisibleItemSet(OverlandFootSetIdentifier);
+        }
+
+        private void EquipActiveItemSetClicked(object sender, RoutedEventArgs e)
+        {
+            this.CharacterViewModel.SetVisibleItemSetToEquipted();
         }
     }
 }

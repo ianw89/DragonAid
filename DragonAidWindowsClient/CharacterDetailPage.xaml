@@ -140,6 +140,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width=".66*"/>
                         </Grid.ColumnDefinitions>
 
                         <Button Grid.Column="0" Click="AllItemsClicked" Width="150" Height="60" Margin="10">
@@ -151,10 +152,13 @@
                         <Button Grid.Column="2" Click="OverlandFootItemsClicked" Width="150" Height="60" Margin="10">
                             <TextBlock Text="Overland (foot)" />
                         </Button>
+                        <Button Grid.Column="3" Click="EquipActiveItemSetClicked" Width="100" Height="60" Margin="10">
+                            <TextBlock Text="Equip" />
+                        </Button>
                     </Grid>
 
                     <!-- This is list of items in the currently selected set of items -->
-                    <ListView x:Name="InventoryItems" ItemsSource="{Binding ActiveItemSet}">
+                    <ListView x:Name="InventoryItems" ItemsSource="{Binding DisplayedItemSet}">
 
                         <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
                          instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
