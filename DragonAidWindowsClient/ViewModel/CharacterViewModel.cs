@@ -23,6 +23,8 @@ namespace DragonAid.WindowsClient.ViewModel
 
         private IEnumerable<ItemViewModel> _displayedItemSet;
         private string _displayedItemSetName;
+        private string _agilityString;
+        private int _tmr;
 
         /// <summary>
         /// Construct a ViewModel without assigning a character.
@@ -64,6 +66,7 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException(); }
         }
 
+        // TODO can be modified by equipted stuff; convert to backing field like Agility
         public int ManualDexterity
         {
             get { return Character.ManualDexterity; }
@@ -72,17 +75,7 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public string Agility
         {
-            get
-            {
-                var sb = new StringBuilder();
-
-                sb.Append(Character.Agility);
-                sb.Append("(");
-                sb.Append(Character.EffectiveAgility());
-                sb.Append(")");
-
-                return sb.ToString();
-            }
+            get { return this._agilityString; }
             set { throw new NotSupportedException(); }
         }
 
@@ -124,8 +117,8 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public int TacticalMovementRate
         {
-            get { return Character.TacticalMovementRate(); }
-            set { throw new NotSupportedException("Cannot set TMR."); }
+            get { return this._tmr; }
+            set { throw new NotSupportedException(); }
         }
 
         public IEnumerable<SpellViewModel> Spells
@@ -200,6 +193,12 @@ namespace DragonAid.WindowsClient.ViewModel
                 Description = Character.Description;
                 SetImage(Character.ImageUri);
                 this.SetItemSetToAll();
+                this.RefreshAgility();
+            }
+
+            if (args.PropertyName == "Agility")
+            {
+                SetProperty(ref this._tmr, this.Character.TacticalMovementRate(), "TacticalMovementRate");
             }
         }
 
@@ -250,6 +249,7 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public void SetItemSetToAll()
         {
+            this._displayedItemSetName = "All";
             this.DisplayedItemSet = this.GetItemViewModels(this.Character.Inventory);
         }
 
@@ -269,7 +269,24 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public void SetVisibleItemSetToEquipted()
         {
+            // TODO Is is bad that we have to know here that chaning this affects Agility and only Agility?
+            // This smells bad to me... but maybe this IS where all that knowledge is supposed to live?
             this.Character.Inventory.EquiptedSetName = this._displayedItemSetName;
+            this.RefreshAgility();
+        }
+
+        // TODO Hmm... haven't really figured out the right pattern for 'updating' computed values. 
+        // It seems like the BindableBass class provided for us is really just optimized for simple that are get and set
+        private void RefreshAgility()
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(Character.Agility);
+            sb.Append("(");
+            sb.Append(Character.EffectiveAgility());
+            sb.Append(")");
+
+            this.SetProperty(ref this._agilityString, sb.ToString(), "Agility");
         }
     }
 }
