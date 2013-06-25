@@ -38,13 +38,19 @@ namespace DragonAid.Test.Tests.Unit
         public void InventoryCanReportTotalWeight()
         {
             var testSubject = new CharacterInventory { new Item("Sandwich", 1), new Weapon("Shotgun", 5, 0, WeaponKind.Ranged, 10) };
-            testSubject.TotalWeight.Should().Be(6m);
+            testSubject.GetWeightForSet("All").Should().Be(6m);
         }
 
         [TestMethod]
         public void EmptyInventoryIsWeightless()
         {
-            new CharacterInventory().TotalWeight.Should().Be(0m);
+            new CharacterInventory().GetWeightForSet("All").Should().Be(0m);
+        }
+
+        [TestMethod]
+        public void InventoryCanReportWeightForASubsetOfItems()
+        {
+            new CharacterInventory { { new Item("Pie", 5), "SetA" }, { new Item("Raspberries", 2), "SetB"} }.GetWeightForSet("SetA").Should().Be(5m);
         }
 
         [TestMethod]

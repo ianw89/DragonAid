@@ -82,6 +82,17 @@ namespace DragonAid.Test.Tests.Unit
         }
 
         [TestMethod]
+        public void EffectiveAgilityShouldUseCurrentlyEquiptedItemSet()
+        {
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { { WeaponLibrary.Mattock, "Combat" }, _heavyItem } };
+            var withAllItems = CharacterEquations.ComputeEffectiveAgility(c);
+            c.Inventory.EquiptedSetName = "Combat";
+            var agilityWithSubsetOfItems = CharacterEquations.ComputeEffectiveAgility(c);
+            agilityWithSubsetOfItems.Should().BeLessThan(c.Agility);
+            agilityWithSubsetOfItems.Should().BeGreaterThan(withAllItems);
+        }
+
+        [TestMethod]
         public void EffectiveAgilityShouldNotBeAffectedIfInventoryIsEmptyAndStrengthIsReasonably()
         {
             var c = new Character { Agility = 10, PhysicalStrength = 15 };

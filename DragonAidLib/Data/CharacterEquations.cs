@@ -47,7 +47,7 @@ namespace DragonAid.Lib.Data
         public static int ComputeEffectiveAgility(Character character)
         {
             Contract.Requires(character != null);
-            decimal totalWeight = character.Inventory.TotalWeight;
+            decimal totalWeight = character.Inventory.GetWeightForSet(character.Inventory.EquiptedSetName);
             var agility = character.Agility;
 
             if (character.EquippedArmor != null)

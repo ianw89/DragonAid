@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using DragonAid.Lib.Annotations;
 
 namespace DragonAid.Lib.Data.Model
 {
@@ -13,14 +14,33 @@ namespace DragonAid.Lib.Data.Model
     {
         private readonly List<Item> _items = new List<Item>();
         private readonly IDictionary<string, List<Item>> _itemSets = new Dictionary<string, List<Item>>();
-        private Armor _armor;
+        [CanBeNull] private Armor _armor;
 
-        public decimal TotalWeight
+        public CharacterInventory() : this("All")
         {
-            get
+            
+        }
+
+        public CharacterInventory(string equiptedSetName)
+        {
+            EquiptedSetName = equiptedSetName;
+        }
+
+        public string EquiptedSetName { get; set; }
+
+        public decimal GetWeightForSet(string setName)
+        {
+            if (setName.ToLower() == "all")
             {
                 return this.Sum(i => i.Weight);
             }
+
+            if (this.ItemSets.ContainsKey(setName))
+            {
+                return this.ItemSets[setName].Sum(i => i.Weight);
+            }
+
+            return 0;
         }
 
         public Armor EquippedArmor
