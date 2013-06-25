@@ -80,7 +80,7 @@
                 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="30,0,30,30"/>
-                        <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="0,0,0,30" x:Name="PerceptionRollResults" />
+                        <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="0,0,30,30" x:Name="PerceptionRollResults" />
                     </StackPanel>
                     
                 </StackPanel>
@@ -92,7 +92,7 @@
                     </Button>
                     
                     <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Text="Results:" Margin="30"/>
-                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="0,0,0,30" x:Name="RollDiceResults"/>
+                    <TextBlock Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="0,30,30,30" x:Name="RollDiceResults"/>
                 </StackPanel>
                 
             </StackPanel>
