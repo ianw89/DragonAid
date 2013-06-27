@@ -9,6 +9,9 @@ namespace DragonAid.Lib.Data
     /// Object that knows how to check if a group of <see cref="Character"/>s have suceeded
     /// at a particular check.
     /// </summary>
+    /// <remarks>
+    /// Uses this forumla: the person with the
+    /// </remarks>
     public class TeamAttributeChecker
     {
         private readonly IEnumerable<Character> _people;
@@ -18,13 +21,13 @@ namespace DragonAid.Lib.Data
             _people = people;
         }
 
-        public TeamRollResult MakePerceptionRoll(double difficultyFactor)
+        public TeamRollResult MakeTeamRoll(double difficultyFactor, Func<Character, int> characteristicExtractor)
         {
             RollResult lastResult = null;
 
-            foreach (var person in _people.OrderByDescending(p => p.Perception))
+            foreach (var person in _people.OrderByDescending(characteristicExtractor))
             {
-                lastResult = MakeDifficultyFactorRoll(person.Perception, difficultyFactor);
+                lastResult = MakeDifficultyFactorRoll(characteristicExtractor(person), difficultyFactor);
                 lastResult.Character = person;
 
                 if (lastResult.Success)
@@ -35,7 +38,7 @@ namespace DragonAid.Lib.Data
                 // Harder for next person
                 difficultyFactor = difficultyFactor / 2;
 
-                if (difficultyFactor < 0.5)
+                if (difficultyFactor < 0.25)
                 {
                     break;
                 }

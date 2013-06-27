@@ -55,7 +55,7 @@ namespace DragonAid.WindowsClient
             var checker = new TeamAttributeChecker(this.PartyViewModel.Characters.Select(v => v.Character));
             if (this._difficultyFactor > 0)
             {
-                var result = checker.MakePerceptionRoll(this._difficultyFactor);
+                var result = checker.MakeTeamRoll(this._difficultyFactor, (c) => c.Perception);
                 this.PerceptionRollResults.Text = result.ToString();
             }
         }
