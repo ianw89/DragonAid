@@ -1,9 +1,11 @@
-﻿using DragonAid.WindowsClient.Common;
+﻿using System.Linq;
+using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
@@ -114,6 +116,19 @@ namespace DragonAid.WindowsClient
         private void EquipActiveItemSetClicked(object sender, RoutedEventArgs e)
         {
             this.CharacterViewModel.SetVisibleItemSetToEquipted();
+        }
+
+        private void SpellTab_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var spell in e.AddedItems.Cast<SpellViewModel>())
+            {
+                spell.ExtendedInfoVisibility = Visibility.Visible;
+            }
+
+            foreach (var spell in e.RemovedItems.Cast<SpellViewModel>())
+            {
+                spell.ExtendedInfoVisibility = Visibility.Collapsed;
+            }
         }
     }
 }
