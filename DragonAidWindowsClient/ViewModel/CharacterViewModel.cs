@@ -223,7 +223,7 @@ namespace DragonAid.WindowsClient.ViewModel
         {
             if (this._character != null)
             {
-                return this._character.SpellRanks.Select(spellInfo => new SpellViewModel(spellInfo)).ToList();
+                return this._character.SpellRanks.Select(spellInfo => new SpellViewModel(spellInfo)).OrderByDescending(s => s.CastChance).ToList();
             }
 
             return null;

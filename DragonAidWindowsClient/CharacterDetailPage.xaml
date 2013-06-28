@@ -220,7 +220,7 @@
                                 <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding DoubleEffectChance}" IsHitTestVisible="False" Foreground="Yellow" />
                                 <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding CastChance}"  IsHitTestVisible="False" Foreground="White" />
                                 <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding BackfireChance}"  IsHitTestVisible="False" Foreground="Red" />
-                                <TextBlock Name="SpellDescriptionTextBlock"  Grid.Row="1" Grid.ColumnSpan="8" Text="{Binding Description}"  IsHitTestVisible="False" Visibility="{Binding ExtendedInfoVisibility}" />
+                                <TextBlock Name="SpellDescriptionTextBlock"  Grid.Row="1" Grid.ColumnSpan="8" Text="{Binding Description}"  IsHitTestVisible="False" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

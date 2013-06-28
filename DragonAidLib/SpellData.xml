@@ -79,7 +79,7 @@
       <Spells>
         <m:Spell>
           <m:BaseChance>40</m:BaseChance>
-          <m:Description>This spell never works for me.</m:Description>
+          <m:Description>Can sense the presence and exact location of any entity in range of the spell.</m:Description>
           <m:FullName>Extrasensory Perception</m:FullName>
         </m:Spell>
         <m:Spell>
@@ -96,6 +96,7 @@
         </m:Spell>
         <m:Spell>
           <m:BaseChance>40</m:BaseChance>
+          <m:Description>May lull an entity of my choice that is within range into a trance like state in which they will be subject to suggestion. The spell may only be cast over a target with whom I can normally communicate verbally. It can never be cast over a totally hostile character. Once the subject has been hypnotized, I can make suggestions which the subject will readily accept unless they conflict directly with their best interests. The subject will remain suggestable so long as concentration is maintained and will continue to implement suggestions for 3 (+3 per rank) hours after the suggestion has been made, even when no longer hypnotized. The subject will never have any idea where the suggestions it is implementing came from.</m:Description>
           <m:FullName>Hypnotism</m:FullName>
         </m:Spell>
         <m:Spell>
@@ -108,6 +109,7 @@
         </m:Spell>
         <m:Spell>
           <m:BaseChance>25</m:BaseChance>
+          <m:Description>Knocks a character who can be seen or located via Telepathy (S-2) unconscious. At ranks 15+ they lose [D - 5] (min 1) from willpower. This can only be cured by Hypnotism.</m:Description>
           <m:FullName>Mental Attack</m:FullName>
         </m:Spell>
         <m:Spell>
