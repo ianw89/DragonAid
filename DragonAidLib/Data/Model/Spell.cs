@@ -24,5 +24,8 @@ namespace DragonAid.Lib.Data.Model
 
         [DataMember]
         public string FullName { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
     }
 }

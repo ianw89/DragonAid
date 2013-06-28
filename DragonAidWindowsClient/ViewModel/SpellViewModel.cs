@@ -60,7 +60,7 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public string Description
         {
-            get { return "This is a fake spell description."; }
+            get { return this._spellInfo.Spell.Description ?? "<No spell description set>"; }
             set { throw new NotImplementedException(); }
         }
 
