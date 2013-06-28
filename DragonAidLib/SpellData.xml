@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SpellColleges xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/DragonAid.Lib.Data" xmlns:m="http://schemas.datacontract.org/2004/07/DragonAid.Lib.Data.Model">
+  <Colleges>
+    <SpellCollege>
+      <Name>Shadow</Name>
+      <Spells>
+        <m:Spell>
+          <m:BaseChance>60</m:BaseChance>
+          <m:FullName>Blending</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>50</m:BaseChance>
+          <m:FullName>Light</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>50</m:BaseChance>
+          <m:FullName>Darkness</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>10</m:BaseChance>
+          <m:FullName>Shadow Form</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>15</m:BaseChance>
+          <m:FullName>Wall of Starlight</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>20</m:BaseChance>
+          <m:FullName>Wall of Darkness</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>15</m:BaseChance>
+          <m:FullName>Witchsight</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>15</m:BaseChance>
+          <m:FullName>Walking Unseen</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>General Counterspell</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Special Counterspell</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Healing</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>35</m:BaseChance>
+          <m:FullName>Starfire</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>25</m:BaseChance>
+          <m:FullName>Shadow Wings</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>25</m:BaseChance>
+          <m:FullName>Shadow Slipping</m:FullName>
+        </m:Spell>
+      </Spells>
+      <Talents>
+        <Talent>
+          <FullName>Speak to Shadow Creatures</FullName>
+        </Talent>
+        <Talent>
+          <FullName>Night Vision</FullName>
+        </Talent>
+        <Talent>
+          <FullName>Detect Aura</FullName>
+        </Talent>
+      </Talents>
+    </SpellCollege>
+    <SpellCollege>
+      <Name>Mind</Name>
+      <Spells>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Extrasensory Perception</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>20</m:BaseChance>
+          <m:FullName>Limited Precognition</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>30</m:BaseChance>
+          <m:FullName>Mind Cloak</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>20</m:BaseChance>
+          <m:FullName>Empathy</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Hypnotism</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Control Animal</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>30</m:BaseChance>
+          <m:FullName>Control Person</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>25</m:BaseChance>
+          <m:FullName>Mental Attack</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>0</m:BaseChance>
+          <m:FullName>Telepathy</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>0</m:BaseChance>
+          <m:FullName>Phantasm</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>0</m:BaseChance>
+          <m:FullName>Molecular Disruption</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>0</m:BaseChance>
+          <m:FullName>Molecular Rearrangement</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Force Shield</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>40</m:BaseChance>
+          <m:FullName>Healing</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>15</m:BaseChance>
+          <m:FullName>Invisibility</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>25</m:BaseChance>
+          <m:FullName>Telekinesis</m:FullName>
+        </m:Spell>
+        <m:Spell>
+          <m:BaseChance>1</m:BaseChance>
+          <m:FullName>Telekinetic Rage</m:FullName>
+        </m:Spell>
+      </Spells>
+      <Talents />
+    </SpellCollege>
+  </Colleges>
+</SpellColleges>

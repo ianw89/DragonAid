@@ -321,69 +321,6 @@ namespace DragonAid.Lib.Data
                     }
             };
     }
-    
-    
-    public static class Spells
-    {
-        public static readonly ShadowSpells Shadow = new ShadowSpells();
-        public static readonly MindSpells Mind = new MindSpells();
-
-        public class ShadowSpells
-        {
-            // TODO Talents
-            public readonly Talent SpeakToShadowCreatures = new Talent("Speak to Shadow Creatures");
-            public readonly Talent NightVision = new Talent("Night Vision");
-            public readonly Talent DetectAura = new Talent("Detect Aura");
-
-            // General Knowledge Spells
-            public readonly Spell Blending = new Spell("Blending", 60);
-            public readonly Spell Light = new Spell("Light", 50);
-            public readonly Spell Darkness = new Spell("Darkness", 50);
-            public readonly Spell ShadowForm = new Spell("Shadow Form", 10);
-            public readonly Spell WallOfStarlight = new Spell("Wall of Starlight", 15);
-            public readonly Spell WallOfDarkness = new Spell("Wall of Darkness", 20);
-            public readonly Spell Witchsight = new Spell("Witchsight", 15);
-            public readonly Spell WalkingUnseen = new Spell("Walking Unseen", 15);
-            public readonly Spell GeneralCounterspell = new Spell("General Counterspell", 40);
-            public readonly Spell SpecialCounterspell = new Spell("Special Counterspell", 40);
-
-            // Special Knowledge Spells
-            public readonly Spell Healing = new Spell("Healing", 40);
-            public readonly Spell Starfire = new Spell("Starfire", 35);
-            public readonly Spell ShadowWings = new Spell("Shadow Wings", 25);
-            public readonly Spell ShadowSlipping = new Spell("Shadow Slipping", 25);
-
-            // TODO Rituals
-        }
-
-        public class MindSpells
-        {
-            // TODO Talents
-
-            // General Knowledge Spells
-            public readonly Spell ESP = new Spell("Extrasensory Perception", 40);
-            public readonly Spell LimitedPrecognition = new Spell("Limited Precognition", 20);
-            public readonly Spell MindCloak = new Spell("Mind Cloak", 30);
-            public readonly Spell Empathy = new Spell("Empathy", 20);
-            public readonly Spell Hypnotism = new Spell("Hypnotism", 40);
-            public readonly Spell ControlAnimal = new Spell("Control Animal", 40);
-            public readonly Spell ControlPerson = new Spell("Control Character", 30);
-
-            // Special Knowledge Spells
-            public readonly Spell MentalAttack = new Spell("Mental Attack", 25);
-            public readonly Spell Telepathy = new Spell("Telepathy", 0);
-            public readonly Spell Phantasm = new Spell("Phantasm", 0);
-            public readonly Spell MolecularDisruption = new Spell("Molecular Disruption", 0);
-            public readonly Spell MolecularRearrangement = new Spell("Molecular Rearrangement", 0);
-            public readonly Spell ForceShield = new Spell("Force Shield", 40);
-            public readonly Spell MentalHealing = new Spell("Healing", 40);
-            public readonly Spell Invisibility = new Spell("Invisibility", 15);
-            public readonly Spell Telekinesis = new Spell("Telekinesis", 25);
-            public readonly Spell TelekineticRage = new Spell("Telekinetic Rage", 1);
-
-            // TODO Rituals
-        }
-    }
 
 
     public static class WeaponLibrary

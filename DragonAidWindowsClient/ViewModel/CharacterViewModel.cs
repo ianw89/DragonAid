@@ -233,8 +233,6 @@ namespace DragonAid.WindowsClient.ViewModel
         private IEnumerable<ItemViewModel> GetItemViewModels(IEnumerable<Item> sourceItems)
         {
             return sourceItems.Select(item => new ItemViewModel(item)).ToList();
-
-            return null;
         }
 
         private IEnumerable<SkillViewModel> GetSkillViewModelsFromCharacter()

@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace DragonAid.Lib.Data.Model
 {
@@ -6,6 +7,7 @@ namespace DragonAid.Lib.Data.Model
     /// Class that represents a Spell.
     /// TODO: Figure out how to handle talents and rituals. In general, some things do not follow the standard formulas.
     /// </summary>
+    [DataContract]
     public class Spell : IMagicalAbility
     {
         public Spell(string fullName, int baseChance)
@@ -17,8 +19,10 @@ namespace DragonAid.Lib.Data.Model
             this.BaseChance = baseChance;
         }
 
-        public int BaseChance { get; private set; }
+        [DataMember]
+        public int BaseChance { get; set; }
 
-        public string FullName { get; private set; }
+        [DataMember]
+        public string FullName { get; set; }
     }
 }
