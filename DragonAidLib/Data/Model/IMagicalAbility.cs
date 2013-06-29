@@ -2,13 +2,8 @@ namespace DragonAid.Lib.Data.Model
 {
     /// <summary>
     /// Inteface for an ability a character has. 
-    /// TODO We will want just IAbility some day.
     /// </summary>
-    public interface IMagicalAbility
+    public interface IMagicalAbility : IAbility
     {
-        /// <summary>
-        /// Gets the name of the ability.
-        /// </summary>
-        string FullName { get; }
     }
 }
