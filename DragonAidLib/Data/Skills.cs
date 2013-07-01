@@ -21,7 +21,21 @@ namespace DragonAid.Lib.Data
 
         /* Adventuring skills. Everyone has them. */
         public static readonly TopLevelSkill Swimming = new TopLevelSkill("Swimming",
-            "An adventurer will use swimming to perform any actions in the water. The base chance for swimming is PS + AG + EN + [8 x Rank]. Little or no clothing: +10. Encumbered: -1 per lb. Water temperature: +5 to -25. Water conditions: +10 to -25. May not swim freely: -10 to -50. A failure does not mean drowning, but does mean the character is in serious trouble. Two failed rolls means the character is underwater, holding his breath. The base time a character can hold their breath is current [EN / 3] + [Rank / 2] pulses, rounded up. If a pass action is taken to prepare, this time is doubled. Once that time is expired then the character must make a 5 × WP check in order to continue holding their breath. At the end of subsequent pulses, the WP factor is reduced by 1 until the roll fails.  At that point the character starts drowning, taking physical damage at a rate of D10 EN per pulse until death or rescue. A drowning  character needs to make a 2 × (WP + swimming rank) check before being able to perform useful activity as above. Swimming TMR = (Land TMR + Rank) / 3.");
+@"An adventurer will use swimming to perform any actions in the water. 
+
+The base chance for swimming is PS + AG + EN + [8 x Rank].
+
+Little or no clothing: +10. 
+Encumbered: -1 per lb. 
+Water temperature: +5 to -25. 
+Water conditions: +10 to -25. 
+May not swim freely: -10 to -50. 
+
+A failure does not mean drowning, but does mean the character is in serious trouble. Two failed rolls means the character is underwater, holding his breath. 
+
+The base time a character can hold their breath is current [EN / 3] + [Rank / 2] pulses, rounded up. If a pass action is taken to prepare, this time is doubled. Once that time is expired then the character must make a 5 × WP check in order to continue holding their breath. At the end of subsequent pulses, the WP factor is reduced by 1 until the roll fails.  At that point the character starts drowning, taking physical damage at a rate of D10 EN per pulse until death or rescue. 
+
+A drowning  character needs to make a 2 × (WP + swimming rank) check before being able to perform useful activity as above. Swimming TMR = (Land TMR + Rank) / 3.");
         public static readonly TopLevelSkill Climbing = new TopLevelSkill("Climbing",
             "An adventurer will use climbing to traverse verticle surfaces. The base chance for climbing is ([3 x MD] + [2 x AG] + [10 x Rank]) - (Distance Modifier). Distance Modifier = (total distance / 5) + ([distance – 50] / 5). The second part of the distance modifier is added only if the distance is greater than 50 feet. A check is made for an entire vertical surface. If a failure occurs, roll percentile dice to determine at which height the character fell.  Once a ledge, or similar area, where a character can stand freely and rest is reached, the climb has ended. If he proceeds upward from that point, another success check should be rolled. However, the GM should ensure that the presence of a ledge always helps the character, regardless of how the numbers work out. The BC is modifed by armor and the surface being climbing. Consult climbing rules.");
         public static readonly TopLevelSkill Horsemanship = new TopLevelSkill("Horsemanship",
