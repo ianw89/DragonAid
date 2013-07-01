@@ -77,14 +77,14 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void EffectiveAgilityShouldBeAffectedByInventoryWeight()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Mattock } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { Weapons.Mattock } };
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(c.Agility);
         }
 
         [TestMethod]
         public void EffectiveAgilityShouldUseCurrentlyEquiptedItemSet()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { { WeaponLibrary.Mattock, "Combat" }, _heavyItem } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { { Weapons.Mattock, "Combat" }, _heavyItem } };
             var withAllItems = CharacterEquations.ComputeEffectiveAgility(c);
             c.Inventory.EquiptedSetName = "Combat";
             var agilityWithSubsetOfItems = CharacterEquations.ComputeEffectiveAgility(c);
@@ -121,7 +121,7 @@ namespace DragonAid.Test.Tests.Unit
         public void HeavierItemsAffectAgilityMoreThanLightOnes()
         {
             var withHeavyItem = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { _heavyItem } };
-            var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { WeaponLibrary.Dagger } };
+            var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { Weapons.Dagger } };
             CharacterEquations.ComputeEffectiveAgility(withHeavyItem).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
         }
 

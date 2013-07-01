@@ -59,7 +59,7 @@ namespace DragonAid.WindowsClient.ViewModel
         public string Description
         {
             get { return this._spellInfo.Spell.Description ?? "<No spell description set>"; }
-            set { throw new NotImplementedException(); }
+            set { throw new NotSupportedException(); }
         }
 
         public Visibility ExtendedInfoVisibility
