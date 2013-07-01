@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using DragonAid.Lib.Annotations;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
+using DragonAid.WindowsClient.Common;
 using Windows.UI.Xaml;
 
 namespace DragonAid.WindowsClient.ViewModel
@@ -11,7 +9,7 @@ namespace DragonAid.WindowsClient.ViewModel
     /// <summary>
     /// View model for a Spell.
     /// </summary>
-    public class SpellViewModel : INotifyPropertyChanged
+    public class SpellViewModel : BindableBase
     {
         private readonly CharacterSpellInfo _spellInfo;
         private Visibility _extendedInfoVisibility;
@@ -67,20 +65,7 @@ namespace DragonAid.WindowsClient.ViewModel
         public Visibility ExtendedInfoVisibility
         {
             get { return _extendedInfoVisibility; }
-            set
-            {
-                _extendedInfoVisibility = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            set { this.SetProperty(ref this._extendedInfoVisibility, value); }
         }
     }
 }

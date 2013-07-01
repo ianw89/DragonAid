@@ -192,7 +192,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="10">
+                            <Grid Margin="10" IsHitTestVisible="False">
                                 
                                 <!-- Notice how we use relative sizing (*) for width so it scales to various sized devices.
                                      However, we set MinWidth to a reasonable (and consistent) value based on the max # of characters we expect. 
@@ -212,15 +212,15 @@
                                     <RowDefinition MinHeight="0"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding SpellName}" IsHitTestVisible="False" />
-                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold"  IsHitTestVisible="False" />
+                                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding SpellName}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold"  />
                                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" IsHitTestVisible="False"/>
-                                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="%:" FontWeight="Bold"  IsHitTestVisible="False"/>
-                                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding TripleEffectChance}" IsHitTestVisible="False" Foreground="Green" />
-                                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding DoubleEffectChance}" IsHitTestVisible="False" Foreground="Yellow" />
-                                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding CastChance}"  IsHitTestVisible="False" Foreground="White" />
-                                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding BackfireChance}"  IsHitTestVisible="False" Foreground="Red" />
-                                <TextBlock Name="SpellDescriptionTextBlock"  Grid.Row="1" Grid.ColumnSpan="8" Text="{Binding Description}"  IsHitTestVisible="False" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+                                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="%:" FontWeight="Bold" />
+                                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding TripleEffectChance}" Foreground="Green" />
+                                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding DoubleEffectChance}" Foreground="Yellow" />
+                                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding CastChance}"  Foreground="White" />
+                                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding BackfireChance}"  Foreground="Red" />
+                                <TextBlock Name="SpellDescriptionTextBlock"  Grid.Row="1" Grid.ColumnSpan="8" Text="{Binding Description}"  Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
