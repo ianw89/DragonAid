@@ -3,6 +3,10 @@ using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.WindowsClient.ViewModel
 {
+    /// <summary>
+    /// View model for a ranked skill. 
+    /// Extends the basic SkillViewModel with Rank information.
+    /// </summary>
     public class RankedSkillViewModel : SkillViewModel
     {
         private readonly CharacterSkillInfo _characterSkillInfo;

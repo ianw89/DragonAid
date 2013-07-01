@@ -10,9 +10,10 @@ namespace DragonAid.Lib.Data.Model
     {
         private readonly string _fullName;
 
-        public TopLevelSkill(string fullName)
+        public TopLevelSkill(string fullName, string description)
         {
             _fullName = fullName;
+            Description = description;
         }
 
         public string FullName

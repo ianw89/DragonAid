@@ -46,7 +46,7 @@ namespace DragonAid.Lib.Data
                                 { Skills.Swimming, 1 },
 
                                 // The following are binary skills (either you have it or you don't), so rank isn't applicable.
-                                { Skills.InstantDispatch, 0 },
+                                { Skills.CoupDeGras, 0 },
                                 { Skills.CombatRotation, 0 }
                             },
                         Languages =

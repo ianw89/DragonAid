@@ -244,7 +244,7 @@
 
                                 <!-- The rest of the stuff is only displayed if the skill is selected. -->
 
-                                <TextBlock Text="{Binding Description}" Margin="50,0,0,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Description}" Margin="50,0,10,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
                                 
                                 <ListView ItemsSource="{Binding Subskills}" Visibility="{Binding ExtendedInfoVisibility}" >
                                     <ListView.ItemContainerStyle>
@@ -256,7 +256,7 @@
                                         <DataTemplate>
                                             <StackPanel Margin="10" Orientation="Horizontal" IsHitTestVisible="False">
                                                 <TextBlock Text="{Binding FullName}" FontWeight="Bold" Width="300" />
-                                                <TextBlock Text="{Binding Description}" Margin="10,0,0,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding Description}" Margin="10,0,10,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
