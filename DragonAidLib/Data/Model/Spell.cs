@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Runtime.Serialization;
 
@@ -8,7 +9,7 @@ namespace DragonAid.Lib.Data.Model
     /// TODO: Figure out how to handle talents and rituals. In general, some things do not follow the standard formulas.
     /// </summary>
     [DataContract]
-    public class Spell : IMagicalAbility
+    public class Spell : IMagicalSkill
     {
         public Spell(string fullName, int baseChance)
         {
@@ -24,6 +25,8 @@ namespace DragonAid.Lib.Data.Model
 
         [DataMember]
         public string FullName { get; set; }
+
+        public IList<ISkill> Subskills { get { return new List<ISkill>(); } }
 
         [DataMember]
         public string Description { get; set; }

@@ -1,18 +1,24 @@
-﻿using DragonAid.Lib.Data.Model;
+﻿using System.Collections.Generic;
+using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
 {
-    public class UnaffectingPassiveAbility : IAbility
+    public class UnaffectingPassiveSkill : ISkill
     {
         private readonly string _description;
 
-        public UnaffectingPassiveAbility(string name, string description)
+        public UnaffectingPassiveSkill(string name, string description)
         {
             _description = description;
             this.FullName = name;
         }
 
         public string FullName { get; private set; }
+
+        public IList<ISkill> Subskills
+        {
+            get { return new List<ISkill>(); }
+        }
 
         public string Description
         {

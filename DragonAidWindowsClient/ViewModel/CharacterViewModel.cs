@@ -133,7 +133,7 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set weapons."); }
         }
 
-        public IEnumerable<SkillViewModel> Skills
+        public IEnumerable<RankedSkillViewModel> Skills
         {
             get { return this.GetSkillViewModelsFromCharacter(); }
             set { throw new NotSupportedException("Cannot set skills."); }
@@ -228,11 +228,11 @@ namespace DragonAid.WindowsClient.ViewModel
             return sourceItems.Select(item => new ItemViewModel(item)).ToList();
         }
 
-        private IEnumerable<SkillViewModel> GetSkillViewModelsFromCharacter()
+        private IEnumerable<RankedSkillViewModel> GetSkillViewModelsFromCharacter()
         {
             if (this._character != null)
             {
-                return this._character.Skills.Select(Skills => new SkillViewModel(Skills)).ToList();
+                return this._character.Skills.Select(Skills => new RankedSkillViewModel(Skills)).ToList();
             }
 
             return null;

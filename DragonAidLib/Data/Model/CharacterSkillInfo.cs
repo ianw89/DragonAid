@@ -2,7 +2,7 @@ namespace DragonAid.Lib.Data.Model
 {
     public class CharacterSkillInfo
     {
-        private readonly Skill _skill;
+        private readonly TopLevelSkill _skill;
         private int _rank;
         private readonly Character _character;
 
@@ -11,14 +11,14 @@ namespace DragonAid.Lib.Data.Model
             
         }
 
-        public CharacterSkillInfo(Skill skill, int rank, Character character)
+        public CharacterSkillInfo(TopLevelSkill skill, int rank, Character character)
         {
             _skill = skill;
             _rank = rank;
             _character = character;
         }
 
-        public Skill Skill
+        public TopLevelSkill Skill
         {
             get { return _skill; }
         }

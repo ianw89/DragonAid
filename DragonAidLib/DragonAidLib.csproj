@@ -34,7 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\Languages.cs" />
-    <Compile Include="Data\SelfActivatedAbility.cs" />
+    <Compile Include="Data\Model\INonMagicalSkill.cs" />
+    <Compile Include="Data\SelfActivatedSkill.cs" />
     <Compile Include="Data\CharacterExtensions.cs" />
     <Compile Include="Data\Dice.cs" />
     <Compile Include="Data\FatigueAndEncumberanceChart.cs" />
@@ -52,13 +53,13 @@
     <Compile Include="Data\Model\CharacterWeaponInfo.cs" />
     <Compile Include="Data\Model\CharacterWeaponRanks.cs" />
     <Compile Include="Data\Model\Armor.cs" />
-    <Compile Include="Data\Model\IAbility.cs" />
-    <Compile Include="Data\Model\IMagicalAbility.cs" />
+    <Compile Include="Data\Model\ISkill.cs" />
+    <Compile Include="Data\Model\IMagicalSkill.cs" />
     <Compile Include="Data\Model\Item.cs" />
     <Compile Include="Data\Model\Language.cs" />
     <Compile Include="Data\Model\Party.cs" />
     <Compile Include="Data\Model\Race.cs" />
-    <Compile Include="Data\Model\Skill.cs" />
+    <Compile Include="Data\Model\TopLevelSkill.cs" />
     <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\RollResult.cs" />
     <Compile Include="Data\Model\Spell.cs" />
@@ -67,10 +68,10 @@
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
     <Compile Include="Data\Spells.cs" />
     <Compile Include="Data\Talent.cs" />
-    <Compile Include="Data\TargetedActivatedAbility.cs" />
+    <Compile Include="Data\TargetedActivatedSkill.cs" />
     <Compile Include="Data\TeamAttributeChecker.cs" />
     <Compile Include="Data\TeamRollResult.cs" />
-    <Compile Include="Data\UnaffectingPassiveAbility.cs" />
+    <Compile Include="Data\UnaffectingPassiveSkill.cs" />
     <Compile Include="Data\Weapons.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

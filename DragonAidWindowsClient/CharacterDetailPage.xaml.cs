@@ -124,5 +124,18 @@ namespace DragonAid.WindowsClient
                 spell.ExtendedInfoVisibility = Visibility.Collapsed;
             }
         }
+
+        private void SkillTab_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var skill in e.AddedItems.Cast<RankedSkillViewModel>())
+            {
+                skill.ExtendedInfoVisibility = Visibility.Visible;
+            }
+
+            foreach (var skill in e.RemovedItems.Cast<RankedSkillViewModel>())
+            {
+                skill.ExtendedInfoVisibility = Visibility.Collapsed;
+            }
+        }
     }
 }

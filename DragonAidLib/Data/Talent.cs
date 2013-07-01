@@ -1,10 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
 {
     [DataContract]
-    public class Talent : IMagicalAbility
+    public class Talent : IMagicalSkill
     {
         public Talent(string name)
         {
@@ -13,5 +14,9 @@ namespace DragonAid.Lib.Data
 
         [DataMember]
         public string FullName { get; private set; }
+
+        public IList<ISkill> Subskills { get { return new List<ISkill>(); } }
+
+        public string Description { get { return "TODO: Descriptions for Talents"; } }
     }
 }

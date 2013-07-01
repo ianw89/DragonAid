@@ -28,12 +28,12 @@ namespace DragonAid.Lib.Data.Model
             return GetEnumerator();
         }
 
-        public void Add(Skill skill, int rank)
+        public void Add(TopLevelSkill skill, int rank)
         {
             this[skill] = rank;
         }
 
-        public int this[Skill skill]
+        public int this[TopLevelSkill skill]
         {
             get
             {
