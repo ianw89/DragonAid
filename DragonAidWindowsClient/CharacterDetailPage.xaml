@@ -244,9 +244,9 @@
 
                                 <!-- The rest of the stuff is only displayed if the skill is selected. -->
 
-                                <TextBlock Text="{Binding Description}" Margin="50,0,10,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
-                                
-                                <ListView ItemsSource="{Binding Subskills}" Visibility="{Binding ExtendedInfoVisibility}" >
+                                <TextBlock Text="{Binding Description}"  Margin="50,0,10,10" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+
+                                <ListView ItemsSource="{Binding Subskills}" Visibility="{Binding ExtendedInfoVisibility}" IsHitTestVisible="False" >
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -254,9 +254,9 @@
                                     </ListView.ItemContainerStyle>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Margin="10" Orientation="Horizontal" IsHitTestVisible="False">
-                                                <TextBlock Text="{Binding FullName}" FontWeight="Bold" Width="300" />
-                                                <TextBlock Text="{Binding Description}" Margin="10,0,10,0" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+                                            <StackPanel Margin="10" IsHitTestVisible="False">
+                                                <TextBlock Text="{Binding FullName}" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Description}" Margin="50,0,10,0" TextWrapping="Wrap" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>

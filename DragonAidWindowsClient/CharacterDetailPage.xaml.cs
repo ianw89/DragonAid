@@ -127,12 +127,12 @@ namespace DragonAid.WindowsClient
 
         private void SkillTab_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var skill in e.AddedItems.Cast<RankedSkillViewModel>())
+            foreach (var skill in e.AddedItems.Cast<SkillViewModel>())
             {
                 skill.ExtendedInfoVisibility = Visibility.Visible;
             }
 
-            foreach (var skill in e.RemovedItems.Cast<RankedSkillViewModel>())
+            foreach (var skill in e.RemovedItems.Cast<SkillViewModel>())
             {
                 skill.ExtendedInfoVisibility = Visibility.Collapsed;
             }
