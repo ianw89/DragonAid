@@ -1,7 +1,4 @@
-using System;
 using System.Diagnostics.Contracts;
-using System.Globalization;
-using System.Linq;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Data
@@ -19,6 +16,12 @@ namespace DragonAid.Lib.Data
         {
             Contract.Requires(character != null);
             return CharacterEquations.ComputeEffectiveAgility(character);
+        }
+
+        public static int EffectiveManualDexterity(this Character character)
+        {
+            Contract.Requires(character != null);
+            return character.ManualDexterity; // TODO can be lowered by shield
         }
 
         public static int CastChance(this Character character, Spell spell)

@@ -44,12 +44,6 @@ namespace DragonAid.WindowsClient
             get { return _partyViewModel; }
         }
 
-        private void CharacterClicked(object sender, ItemClickEventArgs e)
-        {
-            // Remember what is clicked for later...? TODO
-            //this._clickedCharacter = ((CharacterViewModel) e.ClickedItem).Character;
-        }
-
         private void MakeTeamPerceptionRollClicked(object sender, RoutedEventArgs e)
         {
             var checker = new TeamAttributeChecker(this.PartyViewModel.Characters.Select(v => v.Character));

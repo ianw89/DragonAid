@@ -24,7 +24,6 @@ namespace DragonAid.WindowsClient
         public CharacterDetailPage()
         {
             this.InitializeComponent();
-            this.OnLoadingStateChanged += OnOnLoadingStateChanged;
         }
 
         /// <summary>
@@ -62,11 +61,6 @@ namespace DragonAid.WindowsClient
             // Try and load from saved data. Not implemented really...
             this.CharacterViewModel.LoadState(characterId, pageState);
             CharacterViewModel.LoadCharacterFromStaticData(characterId);
-        }
-
-        private void OnOnLoadingStateChanged(object sender, EventArgs eventArgs)
-        {
-            // TODO maybe do something
         }
 
         private void InventoryTabClicked(object sender, RoutedEventArgs e)

@@ -25,13 +25,14 @@ namespace DragonAid.WindowsClient.ViewModel
         private string _displayedItemSetName;
         private string _agilityString;
         private int _tmr;
+        private string _manualDexterityString;
 
         /// <summary>
         /// Construct a ViewModel without assigning a character.
         /// </summary>
         public CharacterViewModel()
         {
-            PropertyChanged += CharacterChangedHandler;
+            PropertyChanged += this.PropertyChangedHandler;
         }
 
         /// <summary>
@@ -54,22 +55,15 @@ namespace DragonAid.WindowsClient.ViewModel
 
         #region Data binding properties
 
-        public string FullName
-        {
-            get { return Character.Title; } 
-            set { throw new NotSupportedException(); }
-        }
-
         public int PhysicalStrength
         {
             get { return Character.PhysicalStrength; } 
             set { throw new NotSupportedException(); }
         }
 
-        // TODO can be modified by equipted stuff; convert to backing field like Agility
-        public int ManualDexterity
+        public string ManualDexterity
         {
-            get { return Character.ManualDexterity; }
+            get { return this._manualDexterityString; }
             set { throw new NotSupportedException(); }
         }
 
@@ -158,8 +152,7 @@ namespace DragonAid.WindowsClient.ViewModel
                 return false;
             }
 
-            // Not sure what this formula of saving and loading things is... TODO
-            string uniqueId = CharacterIdToUniqueId(characterId);
+            string uniqueId = UniqueIdHandler.CharacterIdToUniqueId(characterId);
             var savedCharacter = savedState[uniqueId] as Character;
             
             if (savedCharacter == null)
@@ -183,17 +176,22 @@ namespace DragonAid.WindowsClient.ViewModel
 
         #region Change handling
 
-        private void CharacterChangedHandler(object sender, PropertyChangedEventArgs args)
+        /// <summary>
+        /// Method that handles any property changes to this class. All of the dependencies are authored into this method.
+        /// </summary>
+        private void PropertyChangedHandler(object sender, PropertyChangedEventArgs args)
         {
+            // TODO We want this stuff to happen once at the creation time of this view model. Character should never get set after that...
             if (args.PropertyName == "Character")
             {
-                UniqueId = CharacterIdToUniqueId(Character.Id);
+                UniqueId = UniqueIdHandler.CharacterIdToUniqueId(Character.Id);
                 Title = Character.Title;
                 Subtitle = Character.PlayerName;
                 Description = Character.Description;
                 SetImage(Character.ImageUri);
                 this.SetItemSetToAll();
-                this.RefreshAgility();
+                this.RefreshCharacteristicStrings();
+
             }
 
             if (args.PropertyName == "Agility")
@@ -203,11 +201,6 @@ namespace DragonAid.WindowsClient.ViewModel
         }
 
         #endregion
-
-        private static string CharacterIdToUniqueId(int characterId)
-        {
-            return string.Format("Character/{0}", characterId);
-        }
 
         private IEnumerable<WeaponViewModel> GetWeaponViewModelsFromCharacter()
         {
@@ -267,24 +260,31 @@ namespace DragonAid.WindowsClient.ViewModel
 
         public void SetVisibleItemSetToEquipted()
         {
-            // TODO Is is bad that we have to know here that chaning this affects Agility and only Agility?
-            // This smells bad to me... but maybe this IS where all that knowledge is supposed to live?
             this.Character.Inventory.EquiptedSetName = this._displayedItemSetName;
-            this.RefreshAgility();
+            this.RefreshCharacteristicStrings();
         }
 
         // TODO Hmm... haven't really figured out the right pattern for 'updating' computed values. 
         // It seems like the BindableBass class provided for us is really just optimized for simple that are get and set
-        private void RefreshAgility()
+        private void RefreshCharacteristicStrings()
+        {
+            this.SetProperty(ref this._agilityString, this.CreateCharacteristicDisplayString(this.Character.Agility, this.Character.EffectiveAgility()), "Agility");
+            this.SetProperty(ref this._manualDexterityString, this.CreateCharacteristicDisplayString(this.Character.ManualDexterity, this.Character.EffectiveManualDexterity()), "ManualDexterity");
+        }
+
+        private string CreateCharacteristicDisplayString(int rawCharacteristic, int effectiveCharacteristic)
         {
             var sb = new StringBuilder();
+            sb.Append(rawCharacteristic);
 
-            sb.Append(Character.Agility);
-            sb.Append("(");
-            sb.Append(Character.EffectiveAgility());
-            sb.Append(")");
-
-            this.SetProperty(ref this._agilityString, sb.ToString(), "Agility");
+            if (rawCharacteristic != effectiveCharacteristic)
+            {
+                sb.Append("(");
+                sb.Append(effectiveCharacteristic);
+                sb.Append(")");
+            }
+            
+            return sb.ToString();
         }
     }
 }
