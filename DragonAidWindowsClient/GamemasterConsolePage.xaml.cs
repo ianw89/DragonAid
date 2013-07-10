@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DragonAid.Lib.Data;
+using DragonAid.Lib.GamemasterUtilities;
 using DragonAid.Lib.Data.Model;
 using DragonAid.WindowsClient.Common;
 using DragonAid.WindowsClient.ViewModel;

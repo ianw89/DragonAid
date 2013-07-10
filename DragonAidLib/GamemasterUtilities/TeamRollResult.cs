@@ -1,4 +1,6 @@
-﻿namespace DragonAid.Lib.Data
+using DragonAid.Lib.Data.Model;
+
+namespace DragonAid.Lib.GamemasterUtilities
 {
     /// <summary>
     /// Object that encapsulates the result of a team making a roll.

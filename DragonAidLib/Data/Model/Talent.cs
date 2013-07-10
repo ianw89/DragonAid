@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-using DragonAid.Lib.Data.Model;
 
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.Data.Model
 {
     [DataContract]
     public class Talent : IMagicalSkill

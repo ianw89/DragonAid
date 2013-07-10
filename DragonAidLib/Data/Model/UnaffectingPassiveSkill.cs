@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using DragonAid.Lib.Data.Model;
+using System.Collections.Generic;
 
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.Data.Model
 {
     public class UnaffectingPassiveSkill : ISkill
     {

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using DragonAid.Lib.Data;
+using DragonAid.Lib.Data.HardCoded;
 using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

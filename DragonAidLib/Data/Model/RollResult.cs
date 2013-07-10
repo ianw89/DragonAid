@@ -1,6 +1,4 @@
-﻿using DragonAid.Lib.Data.Model;
-
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.Data.Model
 {
     /// <summary>
     /// Object that encapsulates the result of a particular roll.

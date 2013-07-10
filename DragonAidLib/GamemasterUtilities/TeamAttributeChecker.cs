@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.GamemasterUtilities
 {
     /// <summary>
     /// Object that knows how to check if a group of <see cref="Character"/>s have suceeded

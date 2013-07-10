@@ -4,20 +4,20 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using DragonAid.Lib.Data.Model;
 
-namespace DragonAid.Lib.Data
+namespace DragonAid.Lib.Data.HardCoded
 {
     public static class Spells
     {
-        private static readonly SpellColleges _colleges;
+        private static readonly SpellColleges Colleges;
 
         static Spells()
         {
             var stream = typeof(Spells).GetTypeInfo().Assembly.GetManifestResourceStream("DragonAid.Lib.SpellData.xml");
             var serializer = new DataContractSerializer(typeof(SpellColleges));
-            _colleges = (SpellColleges)serializer.ReadObject(stream);
+            Colleges = (SpellColleges)serializer.ReadObject(stream);
 
-            Shadow = new ShadowSpells(_colleges.FindCollege("Shadow"));
-            Mind = new MindSpells(_colleges.FindCollege("Mind"));
+            Shadow = new ShadowSpells(Colleges.FindCollege("Shadow"));
+            Mind = new MindSpells(Colleges.FindCollege("Mind"));
         }
 
         public static readonly ShadowSpells Shadow;
@@ -122,7 +122,10 @@ namespace DragonAid.Lib.Data
             }
         }
     }
+}
 
+namespace DragonAid.Lib.Data
+{
     [DataContract]
     [KnownType(typeof(SpellCollege))]
     [KnownType(typeof(Spell))]
