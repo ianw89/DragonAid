@@ -63,15 +63,15 @@
         </m:Spell>
       </Spells>
       <Talents>
-        <Talent>
-          <FullName>Speak to Shadow Creatures</FullName>
-        </Talent>
-        <Talent>
-          <FullName>Night Vision</FullName>
-        </Talent>
-        <Talent>
-          <FullName>Detect Aura</FullName>
-        </Talent>
+        <m:Talent>
+          <m:FullName>Speak to Shadow Creatures</m:FullName>
+        </m:Talent>
+        <m:Talent>
+          <m:FullName>Night Vision</m:FullName>
+        </m:Talent>
+        <m:Talent>
+          <m:FullName>Detect Aura</m:FullName>
+        </m:Talent>
       </Talents>
     </SpellCollege>
     <SpellCollege>

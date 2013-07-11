@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
@@ -92,19 +91,10 @@ namespace DragonAid.WindowsClient
             selectedTab.Visibility = Visibility.Visible;
         }
 
-        private void AllItemsClicked(object sender, RoutedEventArgs e)
+        private void ItemSetClicked(object sender, RoutedEventArgs e)
         {
-            this.CharacterViewModel.SetItemSetToAll();
-        }
-
-        private void CombatItemsClicked(object sender, RoutedEventArgs e)
-        {
-            this.CharacterViewModel.SetVisibleItemSet(CombatSetIdentifier);
-        }
-
-        private void OverlandFootItemsClicked(object sender, RoutedEventArgs e)
-        {
-            this.CharacterViewModel.SetVisibleItemSet(OverlandFootSetIdentifier);
+            var innerTextBlock = ((Button) sender).Content as TextBlock;
+            this.CharacterViewModel.SetVisibleItemSet(innerTextBlock.Text);
         }
 
         private void EquipActiveItemSetClicked(object sender, RoutedEventArgs e)

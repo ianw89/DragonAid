@@ -131,28 +131,33 @@
 
                 <!-- Inventory page shows items. There are multiple views over these items. -->
                 <StackPanel x:Name="InventoryTab" Orientation="Vertical" Visibility="Collapsed">
-
-                    <!-- One button per item set. -->
-                    <!-- TODO make them not hardcoded -->
+                    
                     <Grid HorizontalAlignment="Center">
 
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width=".66*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Click="AllItemsClicked" Width="150" Height="60" Margin="10">
-                            <TextBlock Text="All Items" />
-                        </Button>
-                        <Button Grid.Column="1" Click="CombatItemsClicked" Width="150" Height="60" Margin="10">
-                            <TextBlock Text="Combat Gear" />
-                        </Button>
-                        <Button Grid.Column="2" Click="OverlandFootItemsClicked" Width="150" Height="60" Margin="10">
-                            <TextBlock Text="Overland (foot)" />
-                        </Button>
-                        <Button Grid.Column="3" Click="EquipActiveItemSetClicked" Width="100" Height="60" Margin="10">
+                        <!-- One button per item set. -->
+                        <!-- TODO This layout won't scale to many item sets very well -->
+                        <ListView x:Name="InventorySets" ItemsSource="{Binding ItemSetNames}" Grid.Column="0">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Click="ItemSetClicked" Width="150" Height="60" Margin="10">
+                                        <TextBlock Text="{Binding}" />
+                                    </Button>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <!-- Equip Button is to the side of the ItemSet buttons -->
+                        <Button Grid.Column="0" Click="EquipActiveItemSetClicked" Width="100" Height="60" Margin="10">
                             <TextBlock Text="Equip" />
                         </Button>
                     </Grid>

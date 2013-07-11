@@ -1,6 +1,6 @@
 using DragonAid.Lib.Data.Model;
 
-namespace DragonAid.Lib.Data.HardCoded
+namespace DragonAid.Lib.Data
 {
     public static class Languages
     {

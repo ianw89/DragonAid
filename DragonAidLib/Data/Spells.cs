@@ -1,11 +1,69 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using DragonAid.Lib.Data.Model;
 
-namespace DragonAid.Lib.Data.HardCoded
+namespace DragonAid.Lib.Data
 {
+    [DataContract]
+    [KnownType(typeof(SpellCollege))]
+    [KnownType(typeof(Spell))]
+    [KnownType(typeof(Talent))]
+    public class SpellColleges
+    {
+        private IList<SpellCollege> _colleges;
+
+        [DataMember]
+        public IList<SpellCollege> Colleges
+        {
+            get { return this._colleges ?? (this._colleges = new List<SpellCollege>()); }
+        }
+
+        public SpellCollege FindCollege(string name)
+        {
+            return this._colleges.Single(s => s.Name == name);
+        }
+    }
+
+    [DataContract]
+    public class SpellCollege
+    {
+        private List<Spell> _spells;
+        private List<Talent> _talents;
+
+        protected SpellCollege(SpellCollege collegeToCopy)
+        {
+            this._talents = new List<Talent>(collegeToCopy.Talents);
+            this._spells = new List<Spell>(collegeToCopy.Spells);
+        }
+
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public IList<Spell> Spells
+        {
+            get { return this._spells ?? (this._spells = new List<Spell>()); }
+        }
+
+        [DataMember]
+        public IList<Talent> Talents
+        {
+            get { return this._talents ?? (this._talents = new List<Talent>()); }
+        }
+
+        public Spell FindSpell(string fullName)
+        {
+            return this._spells.Single(s => s.FullName == fullName);
+        }
+
+        public Talent FindTalent(string fullName)
+        {
+            return this._talents.Single(s => s.FullName == fullName);
+        }
+    }
+
     public static class Spells
     {
         private static readonly SpellColleges Colleges;
@@ -120,67 +178,6 @@ namespace DragonAid.Lib.Data.HardCoded
                 this.Telekinesis = this.FindSpell("Telekinesis");
                 this.TelekineticRage = this.FindSpell("Telekinetic Rage");
             }
-        }
-    }
-}
-
-namespace DragonAid.Lib.Data
-{
-    [DataContract]
-    [KnownType(typeof(SpellCollege))]
-    [KnownType(typeof(Spell))]
-    [KnownType(typeof(Talent))]
-    public class SpellColleges
-    {
-        private IList<SpellCollege> _colleges;
-
-        [DataMember]
-        public IList<SpellCollege> Colleges
-        {
-            get { return this._colleges ?? (this._colleges = new List<SpellCollege>()); }
-        }
-
-        public SpellCollege FindCollege(string name)
-        {
-            return this._colleges.Single(s => s.Name == name);
-        }
-    }
-
-    [DataContract]
-    public class SpellCollege
-    {
-        private List<Spell> _spells;
-        private List<Talent> _talents;
-
-        protected SpellCollege(SpellCollege collegeToCopy)
-        {
-            this._talents = new List<Talent>(collegeToCopy.Talents);
-            this._spells = new List<Spell>(collegeToCopy.Spells);
-        }
-
-        [DataMember]
-        public string Name { get; set; }
-
-        [DataMember]
-        public IList<Spell> Spells
-        {
-            get { return this._spells ?? (this._spells = new List<Spell>()); }
-        }
-
-        [DataMember]
-        public IList<Talent> Talents
-        {
-            get { return this._talents ?? (this._talents = new List<Talent>()); }
-        }
-
-        public Spell FindSpell(string fullName)
-        {
-            return this._spells.Single(s => s.FullName == fullName);
-        }
-
-        public Talent FindTalent(string fullName)
-        {
-            return this._talents.Single(s => s.FullName == fullName);
         }
     }
 }

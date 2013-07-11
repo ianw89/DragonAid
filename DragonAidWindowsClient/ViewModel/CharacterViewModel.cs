@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using DragonAid.Lib.Data;
-using DragonAid.Lib.Data.HardCoded;
 using DragonAid.Lib.Data.Model;
 using System.Collections.Generic;
 
@@ -27,6 +26,7 @@ namespace DragonAid.WindowsClient.ViewModel
         private string _agilityString;
         private int _tmr;
         private string _manualDexterityString;
+        private IEnumerable<string> itemSetNames;
 
         /// <summary>
         /// Construct a ViewModel without assigning a character.
@@ -122,6 +122,12 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException("Cannot set spell dictioary."); }
         }
 
+        public IEnumerable<string> ItemSetNames
+        {
+            get { return this.itemSetNames; }
+            set { throw new NotSupportedException(); }
+        }
+
         public IEnumerable<ItemViewModel> DisplayedItemSet
         {
             get { return _displayedItemSet; }
@@ -192,7 +198,7 @@ namespace DragonAid.WindowsClient.ViewModel
                 SetImage(Character.ImageUri);
                 this.SetItemSetToAll();
                 this.RefreshCharacteristicStrings();
-
+                this.SetProperty(ref this.itemSetNames, this.Character.Inventory.ItemSets.Keys, "ItemSetNames");
             }
 
             if (args.PropertyName == "Agility")

@@ -33,10 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\HardCoded\HardCodedSampleData.cs" />
-    <Compile Include="Data\HardCoded\Languages.cs" />
-    <Compile Include="Data\HardCoded\Skills.cs" />
-    <Compile Include="Data\HardCoded\Weapons.cs" />
+    <Compile Include="Data\HardCodedSampleData.cs" />
+    <Compile Include="Data\Languages.cs" />
     <Compile Include="Data\Model\INonMagicalSkill.cs" />
     <Compile Include="Data\Model\RollResult.cs" />
     <Compile Include="Data\Model\SelfActivatedSkill.cs" />
@@ -68,9 +66,11 @@
     <Compile Include="Data\Model\TopLevelSkill.cs" />
     <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\Model\Spell.cs" />
+    <Compile Include="Data\Skills.cs" />
     <Compile Include="Data\SpellcastResultRange.cs" />
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
-    <Compile Include="Data\HardCoded\Spells.cs" />
+    <Compile Include="Data\Spells.cs" />
+    <Compile Include="Data\Weapons.cs" />
     <Compile Include="GamemasterUtilities\TeamAttributeChecker.cs" />
     <Compile Include="GamemasterUtilities\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />

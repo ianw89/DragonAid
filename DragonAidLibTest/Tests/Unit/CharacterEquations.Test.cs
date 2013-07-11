@@ -1,6 +1,5 @@
 using System;
 using DragonAid.Lib.Data;
-using DragonAid.Lib.Data.HardCoded;
 using DragonAid.Lib.Data.Model;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
