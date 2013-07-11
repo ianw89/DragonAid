@@ -11,7 +11,90 @@
 
             <!-- Application-specific resources -->
             <x:String x:Key="AppName">DragonAid</x:String>
+            
+            <!-- This template defines how to display a spell that a character has ranks with -->
+            <DataTemplate x:Key="CharacterSpellTemplate">
+                <Grid Margin="10" IsHitTestVisible="False">
 
+                    <!-- Notice how we use relative sizing (*) for width so it scales to various sized devices.
+                                    However, we set MinWidth to a reasonable (and consistent) value based on the max # of characters we expect. 
+                                    Be consisent with this as much as possible across the tabs (and pages...) -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="10*" MinWidth="50" />
+                        <ColumnDefinition Width="10*" MinWidth="40" />
+                        <ColumnDefinition Width="10*" MinWidth="50" />
+                        <ColumnDefinition Width="10*" MinWidth="30" />
+                        <ColumnDefinition Width="10*" MinWidth="40" />
+                        <ColumnDefinition Width="10*" MinWidth="40" />
+                        <ColumnDefinition Width="10*" MinWidth="40" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="10"/>
+                        <RowDefinition MinHeight="0"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding SpellName}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold"  />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" IsHitTestVisible="False"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="%:" FontWeight="Bold" />
+                    <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding TripleEffectChance}" Foreground="Green" />
+                    <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding DoubleEffectChance}" Foreground="Yellow" />
+                    <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding CastChance}"  Foreground="White" />
+                    <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding BackfireChance}"  Foreground="Red" />
+                    <TextBlock Name="SpellDescriptionTextBlock"  Grid.Row="1" Grid.ColumnSpan="8" Text="{Binding Description}"  Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+                </Grid>
+            </DataTemplate>
+
+            <!-- This template defines how to display info about a skill that a character has ranks with -->
+            <DataTemplate x:Key="CharacterSkillTemplate">
+                <StackPanel>
+                    <StackPanel Margin="10" Orientation="Horizontal" IsHitTestVisible="False">
+                        <TextBlock Text="{Binding FullName}" Style="{StaticResource CharacteristicsBoxTextStyle}" Width="300" />
+                        <TextBlock Text="RK:" Style="{StaticResource CharacteristicsBoxTextStyle}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Rank}" Style="{StaticResource CharacteristicsBoxTextStyle}" Margin="10,0,0,0" />
+                    </StackPanel>
+
+                    <!-- The rest of the stuff is only displayed if the skill is selected. -->
+
+                    <TextBlock Text="{Binding Description}"  Margin="50,0,10,10" Visibility="{Binding ExtendedInfoVisibility}" TextWrapping="Wrap" />
+
+                    <ListView ItemsSource="{Binding Subskills}" Visibility="{Binding ExtendedInfoVisibility}" IsHitTestVisible="False" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" IsHitTestVisible="False">
+                                    <TextBlock Text="{Binding FullName}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Description}" Margin="50,0,10,0" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </DataTemplate>
+            
+            <!-- This template defines how to display a info about weapon that a chraracter has ranks with -->
+            <DataTemplate x:Key="CharacterWeaponTemplate">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="10*" MinWidth="50" />
+                        <ColumnDefinition Width="10*" MinWidth="40" />
+                        <ColumnDefinition Width="10*" MinWidth="50" />
+                        <ColumnDefinition Width="10*" MinWidth="50" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Name}" />
+                    <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold" />
+                    <TextBlock Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" />
+                    <TextBlock Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="SC:" FontWeight="Bold" />
+                    <TextBlock Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding StrikeChance}" />
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
