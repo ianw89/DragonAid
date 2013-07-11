@@ -60,7 +60,6 @@ namespace DragonAid.Lib.Data.Model
         public int PhysicalBeauty { get; set; }
         public int Fatigue { get; set; }
 
-        // TODO: converter?
         public CharacterSpellRanks SpellRanks
         {
             get { return _spellRanks; }

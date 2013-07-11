@@ -71,6 +71,10 @@
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
     <Compile Include="Data\Spells.cs" />
     <Compile Include="Data\Weapons.cs" />
+    <Compile Include="GamemasterUtilities\CharacteristicRangeTemplate.cs" />
+    <Compile Include="GamemasterUtilities\NonPlayerCharacterGenerator.cs" />
+    <Compile Include="GamemasterUtilities\NonPlayerCharacterTemplate.cs" />
+    <Compile Include="GamemasterUtilities\RandomCharacteristicGenerator.cs" />
     <Compile Include="GamemasterUtilities\TeamAttributeChecker.cs" />
     <Compile Include="GamemasterUtilities\TeamRollResult.cs" />
     <Compile Include="Properties\Annotations.cs" />
