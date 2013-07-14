@@ -17,9 +17,24 @@ namespace DragonAid.Lib.Data.Model
             this.MaxRank = maxRank;
         }
 
+        // For tests right now
+        public Weapon(string fullName, int minStength, int minDex)
+            : base(fullName, 1)
+        {
+            this.BaseChance = 0;
+            this.Use = WeaponKind.Unspecified;
+            this.MaxRank = 0;
+            this.PhysicalStengthRequired = minStength;
+            this.ManualDexterityRequired = minDex;
+        }
+
         public int BaseChance { get; private set; }
         public WeaponKind Use { get; private set; }
         public int MaxRank { get; private set; }
+
+        // TODO require in main ctor
+        public int PhysicalStengthRequired { get; private set; }
+        public int ManualDexterityRequired { get; private set; }
     }
 
     /// <summary>

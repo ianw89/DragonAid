@@ -1,9 +1,29 @@
+using System.Collections.Generic;
+using System.Linq;
 using DragonAid.Lib.Data.Model;
+using System.Reflection;
 
 namespace DragonAid.Lib.Data
 {
-    public static class Weapons
+    public class Weapons
     {
+        private readonly List<Weapon> _weapons;
+
+        public Weapons()
+        {
+            this._weapons = new List<Weapon>();
+            
+            foreach (var field in typeof(Weapons).GetRuntimeFields().Where(f => f.IsStatic && f.FieldType == typeof(Weapon)))
+            {
+                var value = field.GetValue(typeof (Weapons));
+                this._weapons.Add((Weapon)value);
+            }
+        }
+
+        public List<Weapon> WeaponList { get { return _weapons; } } 
+
+        // TODO PS and MD requirements are needed
+
         // Name, Weight, BaseChance, Use, MaxRank
         public static readonly Weapon Dagger = new Weapon("Dagger", 10m / 16m, 40, WeaponKind.Close & WeaponKind.Melee & WeaponKind.Ranged, 9);
         public static readonly Weapon MainGauche = new Weapon("Main-Gauche", 1m, 45, WeaponKind.Close & WeaponKind.Melee, 10);

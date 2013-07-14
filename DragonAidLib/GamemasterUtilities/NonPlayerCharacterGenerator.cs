@@ -1,4 +1,6 @@
-﻿using DragonAid.Lib.Data.Model;
+﻿using System.Collections.Generic;
+using DragonAid.Lib.Data;
+using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.GamemasterUtilities
 {
@@ -9,10 +11,12 @@ namespace DragonAid.Lib.GamemasterUtilities
     public class NonPlayerCharacterGenerator
     {
         private readonly RandomCharacteristicGenerator _characteristicGenerator;
+        private readonly IWeaponChooser _weaponChooser;
 
         public NonPlayerCharacterGenerator()
         {
             this._characteristicGenerator = new RandomCharacteristicGenerator();
+            this._weaponChooser = new RandomWeaponChooser(new Weapons().WeaponList);
         }
 
         public Character GenerateFromTemplate(NonPlayerCharacterTemplate template)
@@ -28,6 +32,8 @@ namespace DragonAid.Lib.GamemasterUtilities
             character.Fatigue = this._characteristicGenerator.Generate(template.FatigueRange);
             character.Perception = this._characteristicGenerator.Generate(template.PerceptionRange);
             character.PhysicalBeauty = this._characteristicGenerator.Generate(template.PhysicalBeautyRange);
+
+            this._weaponChooser.ChooseWeapons(character);
 
             // TODO Other stuff
 

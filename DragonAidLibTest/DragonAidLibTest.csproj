@@ -118,6 +118,7 @@
     <Compile Include="Tests\Unit\FatigueAndEncumberanceChartTests.cs" />
     <Compile Include="Tests\Unit\EquationPrettyTextWriterTests.cs" />
     <Compile Include="Tests\Unit\NonPlayerCharacterGeneratorTests.cs" />
+    <Compile Include="Tests\Unit\RandomWeaponChooserTests.cs" />
     <Compile Include="Tests\Unit\SpellcastResultRangeTest.cs" />
     <Compile Include="Tests\Unit\SpellcastResultRangeCalculatorTest.cs" />
   </ItemGroup>
