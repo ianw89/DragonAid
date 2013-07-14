@@ -9,12 +9,12 @@ namespace DragonAid.Lib.GamemasterUtilities
     public class RandomWeaponChooser : IWeaponChooser
     {
         private Random _rand;
-        private List<Weapon> _allWeapons;
+        private readonly List<Weapon> _allWeapons;
 
-        public RandomWeaponChooser(List<Weapon> weapons)
+        public RandomWeaponChooser(List<Weapon> allWeapons)
         {
             this._rand = new Random();
-            this._allWeapons = weapons;
+            this._allWeapons = allWeapons;
         }
 
         public void ChooseWeapons(Character character)
@@ -28,11 +28,10 @@ namespace DragonAid.Lib.GamemasterUtilities
             character.WeaponRanks.Add(possibilities.First(), 0);
         }
 
-        // TODO InternalsVisibleTo to our tests is needed. Make this internal.
         [TestOnly]
-        public IEnumerable<Weapon> CreatePossibilities(int str, int dex)
+        internal IEnumerable<Weapon> CreatePossibilities(int maximumStength, int maximumDexterity)
         {
-            return this._allWeapons.Where(w => w.PhysicalStengthRequired <= str && w.ManualDexterityRequired <= dex);
+            return this._allWeapons.Where(w => w.PhysicalStengthRequired <= maximumStength && w.ManualDexterityRequired <= maximumDexterity);
         }
     }
 }

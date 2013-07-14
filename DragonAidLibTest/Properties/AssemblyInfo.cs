@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DragonAidLibTest")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unit tests for DragonAidLib.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DragonAidLibTest")]

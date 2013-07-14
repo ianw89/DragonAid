@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DragonAidWindowsClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Windows Modern App Client for DragonAid")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DragonAidWindowsClient")]
+[assembly: AssemblyProduct("DragonAid")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DragonAidLib")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library defining types and core functionality for DragonAid.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DragonAidLib")]
+[assembly: AssemblyProduct("DragonAid")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -27,3 +27,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: ComVisible(false)]
+
+// InternalsVisibleTo is used to give Test assemblies access to internal method and types 
+// for the purpose of unit testing.
+[assembly: InternalsVisibleTo("DragonAidLibTest")]
