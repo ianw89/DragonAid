@@ -13,7 +13,8 @@ namespace DragonAid.Lib.Data.Model
             Rank = rank;
         }
 
-        public Weapon Weapon { get; set; }
+        // TODO Should be a WeaponSkill (that implements ISkill) instead of a Weapon, which is a physical object.
+        public Weapon Weapon { get; private set; }
         public int Rank { get; set; }
 
         /// <summary>

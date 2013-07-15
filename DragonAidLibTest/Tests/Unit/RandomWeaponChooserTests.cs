@@ -11,8 +11,10 @@ namespace DragonAid.Test.Tests.Unit
     [TestClass]
     public class RandomWeaponChooserTests
     {
+        private readonly Character _dummyCharacter = new Character();
+
         [TestMethod]
-        public void WeaponChooserShouldCreateListOfPossibleWeaponsFromStrengthAndDex()
+        public void CreatePossibilitiesUsesStrengthAndDex()
         {
             var chooser = new RandomWeaponChooser(new List<Weapon>()
                 {
@@ -22,10 +24,68 @@ namespace DragonAid.Test.Tests.Unit
                     new Weapon("D", 3, 3),
                     new Weapon("E", 2, 2)
                 });
+            
             var results = chooser.CreatePossibilities(2, 2);
+            
             var resultsList = results as IList<Weapon> ?? results.ToList();
             resultsList.Should().HaveCount(2);
             resultsList.Should().OnlyContain(w => w.FullName == "A" || w.FullName == "E");
         }
+
+        [TestMethod]
+        public void CreatePossibilitiesCanCreateEmptyListIfAppropriate()
+        {
+            var chooser = new RandomWeaponChooser(new List<Weapon>()
+                {
+                    new Weapon("A", 0, 2),
+                    new Weapon("B", 2, 0),
+                    new Weapon("C", 10, 10),
+                });
+            
+            var results = chooser.CreatePossibilities(1, 1);
+            
+            var resultsList = results as IList<Weapon> ?? results.ToList();
+            resultsList.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void AddRanksForMeleeFighterShouldChooseAMeleeWeapon()
+        {
+            var weapons = new List<Weapon>()
+                {
+                    new Weapon("A", 1, 1, WeaponKind.Melee, 10),
+                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10), 
+                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10), 
+                    new Weapon("D", 1, 1, WeaponKind.Ranged, 10),
+                };
+            var chooser = new RandomWeaponChooser(weapons);
+            
+            chooser.AddRanksForMeleeFighter(weapons, _dummyCharacter);
+            
+            // There is only 1 melee weapon, so it MUST be chosen
+            _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
+        }
+
+        [TestMethod]
+        public void AddRanksForArcherShouldChooseARealRangedWeapon()
+        {
+            // Weapons that have more than just the ranged flag aren't primarilly ranged, so
+            // we don't want them counted as a primary ranged weapon
+            var weapons = new List<Weapon>()
+                {
+                    new Weapon("A", 1, 1, WeaponKind.Ranged, 10),
+                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10), 
+                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10), 
+                    new Weapon("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
+                };
+            var chooser = new RandomWeaponChooser(weapons);
+            
+            chooser.AddRanksForArcher(weapons, _dummyCharacter);
+            
+            // There is only 1 ranged-only weapon, so it MUST be chosen
+            _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
+        }
+
+        // TODO Test (and fix) what happens when no valid weapons for the archtypes exist
     }
 }

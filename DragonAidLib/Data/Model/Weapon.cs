@@ -1,10 +1,16 @@
 using System;
 using System.Diagnostics.Contracts;
+using DragonAid.Lib.GamemasterUtilities;
 
 namespace DragonAid.Lib.Data.Model
-{
-    // TODO Is there value in having Weapon and Spell share a base class?
-    // Note that when we do skills we will have _abilities_ of the skills that look like these...
+{    
+    /// <summary>
+    /// Represents a physical weapon.
+    /// </summary>
+    /// <remarks>
+    /// Note that this is different that the weapon skill. We are kind of collapsing the two right now,
+    /// since CharacterWeaponInfo references this.
+    /// </remarks>
     public class Weapon : Item
     {
         public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank)
@@ -17,7 +23,19 @@ namespace DragonAid.Lib.Data.Model
             this.MaxRank = maxRank;
         }
 
-        // For tests right now
+        public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
+            : base(fullName, weight)
+        {
+            Contract.Requires(baseChance >= 0 && baseChance <= 100);
+            Contract.Requires(maxRank >=0 && maxRank <= 10);
+            this.BaseChance = baseChance;
+            this.Use = use;
+            this.MaxRank = maxRank;
+            this.PhysicalStengthRequired = minStength;
+            this.ManualDexterityRequired = minDex;
+        }
+
+        [TestOnly]
         public Weapon(string fullName, int minStength, int minDex)
             : base(fullName, 1)
         {

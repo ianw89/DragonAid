@@ -7,6 +7,7 @@ namespace DragonAid.Lib.GamemasterUtilities
     /// </summary>
     public class TestOnlyAttribute : Attribute
     {
-        // TODO Can we enforce that?
+        // TODO Can we enforce that a method marked with this is only called from the Test DLL or the class it belongs to?
+        // My only thought is to write a custom FxCop rule, but that sounds horrible.
     }
 }

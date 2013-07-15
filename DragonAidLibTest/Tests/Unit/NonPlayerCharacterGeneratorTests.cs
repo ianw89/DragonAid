@@ -1,4 +1,5 @@
-﻿using DragonAid.Lib.Data.Model;
+﻿using System.Linq;
+using DragonAid.Lib.Data.Model;
 using DragonAid.Lib.GamemasterUtilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
@@ -35,6 +36,27 @@ namespace DragonAid.Test.Tests.Unit
             result.Perception.Should().Be(10);
             result.PhysicalBeauty.Should().Be(10);
             result.Willpower.Should().Be(10);
+        }
+
+        [TestMethod]
+        public void GeneratorShouldGiveAtLeastOneWeaponRank()
+        {
+            var template = new NonPlayerCharacterTemplate
+                {
+                    PhysicalStrengthRange = new CharacteristicRangeTemplate(10, 10),
+                    ManualDexterityRange = new CharacteristicRangeTemplate(10, 10),
+                    AgilityRange = new CharacteristicRangeTemplate(10, 10),
+                    EnduranceRange = new CharacteristicRangeTemplate(10, 10),
+                    FatigueRange = new CharacteristicRangeTemplate(10, 10),
+                    MagicalAptitudeRange = new CharacteristicRangeTemplate(10, 10),
+                    PerceptionRange = new CharacteristicRangeTemplate(10, 10),
+                    PhysicalBeautyRange = new CharacteristicRangeTemplate(10, 10),
+                    WillpowerRange = new CharacteristicRangeTemplate(10, 10),
+                };
+            
+            var result = RunGeneratorTest(template);
+
+            result.WeaponRanks.Count().Should().BeGreaterOrEqualTo(1);
         }
 
         private Character RunGeneratorTest(NonPlayerCharacterTemplate template)
