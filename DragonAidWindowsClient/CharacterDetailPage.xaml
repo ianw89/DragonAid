@@ -45,7 +45,7 @@
                 <!-- Stylized rich text block holds most of the primitive data about the character -->
                 <RichTextBlock Style="{StaticResource CharacterBasicInfoTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
-                        Player: 
+                        Player:
                         <Run Text="{Binding Subtitle}"/>
                         <LineBreak/>
                     </Paragraph>
@@ -62,7 +62,7 @@
                         <LineBreak/>
                     </Paragraph>
                 </RichTextBlock>
-                
+
                 <RichTextBlock Style="{StaticResource CharacteristicsTextStyle}" IsTextSelectionEnabled="False">
                     <Paragraph>
                         PS:
@@ -98,10 +98,15 @@
         </Grid>
 
         <!-- Right half of the screen: Controllable content -->
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,30,30,30">
-                
+        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,30,30,30">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <!-- Top Part of the right side of the screen is a bunch of tabs you can choose -->
-            <Grid HorizontalAlignment="Center" Margin="0,0,0,30">
+            <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,30">
 
                 <!-- Tabs are evenly sized -->
                 <Grid.ColumnDefinitions>
@@ -124,97 +129,95 @@
                     <TextBlock Text="Combat" />
                 </Button>
             </Grid>
-                
+
             <!-- Lower part of right side of screen is the info for the selected tab -->
             <!-- We define all of the things we could view here, but only enable 1 at a time-->
-            <StackPanel Orientation="Vertical">
 
-                <!-- Inventory page shows items. There are multiple views over these items. -->
-                <StackPanel x:Name="InventoryTab" Orientation="Vertical" Visibility="Collapsed">
-                    
-                    <Grid HorizontalAlignment="Center">
+            <!-- Inventory page shows items. There are multiple views over these items. -->
+            <StackPanel Grid.Row="1" x:Name="InventoryTab" Orientation="Vertical" Visibility="Collapsed">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="175"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <Grid HorizontalAlignment="Center">
 
-                        <!-- Thin Left Part -->
-                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                            
-                            <!-- One button per item set -->
-                            <ListView x:Name="InventorySets" ItemsSource="{Binding ItemSetNames}" HorizontalContentAlignment="Center" SelectionMode="None">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Click="ItemSetClicked" Width="150" Height="60">
-                                            <TextBlock Text="{Binding}" />
-                                        </Button>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="175"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                            <!-- Equip Button is below all the item set buttons -->
-                            <Button Click="EquipActiveItemSetClicked" Width="150" Height="60" BorderThickness="4" Margin="3,30,0,0">
-                                <TextBlock Text="Equip" FontWeight="Bold" />
-                            </Button>
+                    <!-- Thin Left Part -->
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
 
-                        </StackPanel>
-
-                        <!-- Larger Right part: This is list of items in the currently selected set of items -->
-                        <ListView x:Name="InventoryItems" ItemsSource="{Binding DisplayedItemSet}" Grid.Column="1">
-
-                            <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
-                             instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
+                        <!-- One button per item set -->
+                        <ListView x:Name="InventorySets" ItemsSource="{Binding ItemSetNames}" HorizontalContentAlignment="Center" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="4*" />
-                                            <ColumnDefinition Width="*" MinWidth="120" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
-                                        <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
-                                    </Grid>
+                                    <Button Click="ItemSetClicked" Width="150" Height="60">
+                                        <TextBlock Text="{Binding}" />
+                                    </Button>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </Grid>
 
-                </StackPanel>
-                
-                <!-- Spells page shows spells, talents and rituals that the character has -->
-                <ListView x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" SelectionChanged="SpellTab_OnSelectionChanged" ItemTemplate="{StaticResource CharacterSpellTemplate}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                    
-                <!-- Skills tab shows the skills the character has and the associated abilities -->
-                <ListView x:Name="SkillTab" ItemsSource="{Binding Skills}" Visibility="Collapsed" SelectionChanged="SkillTab_OnSelectionChanged"  ItemTemplate="{StaticResource CharacterSkillTemplate}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                    
-                <!-- Weapons tab shows weapons that the character has -->
-                <ListView x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed" ItemTemplate="{StaticResource CharacterWeaponTemplate}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                        <!-- Equip Button is below all the item set buttons -->
+                        <Button Click="EquipActiveItemSetClicked" Width="150" Height="60" BorderThickness="4" Margin="3,30,0,0">
+                            <TextBlock Text="Equip" FontWeight="Bold" />
+                        </Button>
+
+                    </StackPanel>
+
+                    <!-- Larger Right part: This is list of items in the currently selected set of items -->
+                    <ListView x:Name="InventoryItems" ItemsSource="{Binding DisplayedItemSet}" Grid.Column="1">
+
+                        <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
+                             instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="*" MinWidth="120" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
+                                    <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
             </StackPanel>
-        </StackPanel>
-        
+
+            <!-- Spells page shows spells, talents and rituals that the character has -->
+            <ListView  Grid.Row="1" x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" SelectionChanged="SpellTab_OnSelectionChanged" ItemTemplate="{StaticResource CharacterSpellTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+            <!-- Skills tab shows the skills the character has and the associated abilities -->
+            <ListView Grid.Row="1" x:Name="SkillTab" ItemsSource="{Binding Skills}" Visibility="Collapsed" SelectionChanged="SkillTab_OnSelectionChanged"  ItemTemplate="{StaticResource CharacterSkillTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+            <!-- Weapons tab shows weapons that the character has -->
+            <ListView Grid.Row="1" x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed" ItemTemplate="{StaticResource CharacterWeaponTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+        </Grid>
     </Grid>
 </common2:LayoutAwarePage>
