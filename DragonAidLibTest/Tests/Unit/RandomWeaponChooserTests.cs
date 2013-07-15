@@ -24,9 +24,9 @@ namespace DragonAid.Test.Tests.Unit
                     new Weapon("D", 3, 3),
                     new Weapon("E", 2, 2)
                 });
-            
+
             var results = chooser.CreatePossibilities(2, 2);
-            
+
             var resultsList = results as IList<Weapon> ?? results.ToList();
             resultsList.Should().HaveCount(2);
             resultsList.Should().OnlyContain(w => w.FullName == "A" || w.FullName == "E");
@@ -41,9 +41,9 @@ namespace DragonAid.Test.Tests.Unit
                     new Weapon("B", 2, 0),
                     new Weapon("C", 10, 10),
                 });
-            
+
             var results = chooser.CreatePossibilities(1, 1);
-            
+
             var resultsList = results as IList<Weapon> ?? results.ToList();
             resultsList.Should().BeEmpty();
         }
@@ -54,14 +54,14 @@ namespace DragonAid.Test.Tests.Unit
             var weapons = new List<Weapon>()
                 {
                     new Weapon("A", 1, 1, WeaponKind.Melee, 10),
-                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10), 
-                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10), 
+                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10),
+                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10),
                     new Weapon("D", 1, 1, WeaponKind.Ranged, 10),
                 };
             var chooser = new RandomWeaponChooser(weapons);
-            
+
             chooser.AddRanksForMeleeFighter(weapons, _dummyCharacter);
-            
+
             // There is only 1 melee weapon, so it MUST be chosen
             _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
         }
@@ -74,18 +74,32 @@ namespace DragonAid.Test.Tests.Unit
             var weapons = new List<Weapon>()
                 {
                     new Weapon("A", 1, 1, WeaponKind.Ranged, 10),
-                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10), 
-                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10), 
+                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
+                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
                     new Weapon("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
                 };
             var chooser = new RandomWeaponChooser(weapons);
-            
-            chooser.AddRanksForArcher(weapons, _dummyCharacter);
-            
+
+            var result = chooser.AddRanksForArcher(weapons, _dummyCharacter);
+
             // There is only 1 ranged-only weapon, so it MUST be chosen
+            result.Should().BeTrue();
             _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
         }
 
-        // TODO Test (and fix) what happens when no valid weapons for the archtypes exist
+        [TestMethod]
+        public void ChooseWeaponsShouldDoNothingIfNoArchtypeIsPossible()
+        {
+            var weapons = new List<Weapon>()
+                {
+                    new Weapon("A", 1, 1, WeaponKind.Unspecified, 10),
+                };
+            var chooser = new RandomWeaponChooser(weapons);
+
+            chooser.ChooseWeapons(_dummyCharacter);
+
+            // Nothing should have happened. Just ensuring that we don't error.
+            _dummyCharacter.WeaponRanks.Should().BeEmpty();
+        }
     }
 }

@@ -12,13 +12,19 @@ namespace DragonAid.Lib.GamemasterUtilities
     /// </summary>
     public class RandomWeaponChooser : IWeaponChooser
     {
-        private Random _rand;
+        private readonly Random _rand;
         private readonly List<Weapon> _allWeapons;
+        private readonly List<Func<IEnumerable<Weapon>, Character, bool>> _baseArchtypes; 
 
         public RandomWeaponChooser(List<Weapon> allWeapons)
         {
+            Contract.Requires(allWeapons != null);
             this._rand = new Random();
             this._allWeapons = allWeapons;
+            this._baseArchtypes = new List<Func<IEnumerable<Weapon>, Character, bool>>();
+            _baseArchtypes.Add(AddRanksForMeleeFighter);
+            _baseArchtypes.Add(AddRanksForMeleeFighter);
+            _baseArchtypes.Add(AddRanksForArcher);
         }
 
         public void ChooseWeapons(Character character)
@@ -29,25 +35,32 @@ namespace DragonAid.Lib.GamemasterUtilities
             var possibilities = this.CreatePossibilities(character.PhysicalStrength, character.ManualDexterity);
 
             // Step 2: Choose an archtype and delegate
-            var result = this._rand.Next(3);
-            switch (result)
+            //         Sometimes an archtype isn't possible due to eliminated weapons, so we try again if that happens
+            var availibleArchtypes = _baseArchtypes.ToList();
+            var success = false;
+
+            while (!success)
             {
-                case 0:
-                case 1:
-                    this.AddRanksForMeleeFighter(possibilities, character);
-                    break;
-                case 2:
-                    this.AddRanksForArcher(possibilities, character);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                if (availibleArchtypes.Count == 0)
+                {
+                    return;
+                }
+
+                var index = this._rand.Next(availibleArchtypes.Count);
+                success = availibleArchtypes[index](possibilities, character);
+                availibleArchtypes.RemoveAt(index);
             }
         }
 
         [TestOnly]
-        internal void AddRanksForArcher(IEnumerable<Weapon> possibilities, Character character)
+        internal bool AddRanksForArcher(IEnumerable<Weapon> possibilities, Character character)
         {
             var rangedOnlyWeapons = possibilities.Where(w => w.Use == WeaponKind.Ranged).ToArray();
+            if (rangedOnlyWeapons.Length == 0)
+            {
+                return false;
+            }
+
             var primaryWeapon = rangedOnlyWeapons[this._rand.Next(rangedOnlyWeapons.Length)];
             var ranksOfPrimary = this._rand.Next(primaryWeapon.MaxRank + 1);
 
@@ -55,12 +68,18 @@ namespace DragonAid.Lib.GamemasterUtilities
             character.WeaponRanks.Add(primaryWeapon, ranksOfPrimary);
 
             // TODO Consider adding ranks to 1-2 secondary weapons
+            return true;
         }
 
         [TestOnly]
-        internal void AddRanksForMeleeFighter(IEnumerable<Weapon> possibilities, Character character)
+        internal bool AddRanksForMeleeFighter(IEnumerable<Weapon> possibilities, Character character)
         {
             var meleeWeapons = possibilities.Where(w => w.Use.HasFlag(WeaponKind.Melee)).ToArray();
+            if (meleeWeapons.Length == 0)
+            {
+                return false;
+            }
+
             var primaryWeapon = meleeWeapons[this._rand.Next(meleeWeapons.Length)];
             var ranksOfPrimary = this._rand.Next(primaryWeapon.MaxRank + 1);
 
@@ -68,6 +87,7 @@ namespace DragonAid.Lib.GamemasterUtilities
             character.WeaponRanks.Add(primaryWeapon, ranksOfPrimary);
 
             // TODO Consider adding ranks to 1-2 secondary weapons
+            return true;
         }
 
         [TestOnly]
