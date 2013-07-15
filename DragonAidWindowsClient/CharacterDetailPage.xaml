@@ -134,62 +134,58 @@
             <!-- We define all of the things we could view here, but only enable 1 at a time-->
 
             <!-- Inventory page shows items. There are multiple views over these items. -->
-            <StackPanel Grid.Row="1" x:Name="InventoryTab" Orientation="Vertical" Visibility="Collapsed">
+            <Grid Grid.Row="1" x:Name="InventoryTab" Visibility="Collapsed" HorizontalAlignment="Center">
 
-                <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="175"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <!-- Thin Left Part -->
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
 
-                    <!-- Thin Left Part -->
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-
-                        <!-- One button per item set -->
-                        <ListView x:Name="InventorySets" ItemsSource="{Binding ItemSetNames}" HorizontalContentAlignment="Center" SelectionMode="None">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Click="ItemSetClicked" Width="150" Height="60">
-                                        <TextBlock Text="{Binding}" />
-                                    </Button>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-
-                        <!-- Equip Button is below all the item set buttons -->
-                        <Button Click="EquipActiveItemSetClicked" Width="150" Height="60" BorderThickness="4" Margin="3,30,0,0">
-                            <TextBlock Text="Equip" FontWeight="Bold" />
-                        </Button>
-
-                    </StackPanel>
-
-                    <!-- Larger Right part: This is list of items in the currently selected set of items -->
-                    <ListView x:Name="InventoryItems" ItemsSource="{Binding DisplayedItemSet}" Grid.Column="1">
-
-                        <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
-                             instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                            </Style>
-                        </ListView.ItemContainerStyle>
+                    <!-- One button per item set -->
+                    <ListView x:Name="InventorySets" ItemsSource="{Binding ItemSetNames}" HorizontalContentAlignment="Center" SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="4*" />
-                                        <ColumnDefinition Width="*" MinWidth="120" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
-                                    <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
-                                </Grid>
+                                <Button Click="ItemSetClicked" Width="150" Height="60">
+                                    <TextBlock Text="{Binding}" />
+                                </Button>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </Grid>
 
-            </StackPanel>
+                    <!-- Equip Button is below all the item set buttons -->
+                    <Button Click="EquipActiveItemSetClicked" Width="150" Height="60" BorderThickness="4" Margin="3,30,0,0">
+                        <TextBlock Text="Equip" FontWeight="Bold" />
+                    </Button>
+
+                </StackPanel>
+
+                <!-- Larger Right part: This is list of items in the currently selected set of items -->
+                <ListView x:Name="InventoryItems" ItemsSource="{Binding DisplayedItemSet}" Grid.Column="1">
+
+                    <!-- This makes it so the contents of the ListView will always 'fill' the area availible, 
+                            instead of being 'auto' sized (which means use as much as you need, but start with nothing) -->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="*" MinWidth="120" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding ItemName}"  />
+                                <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Weight}" Margin="10,0,0,0" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
             <!-- Spells page shows spells, talents and rituals that the character has -->
             <ListView  Grid.Row="1" x:Name="SpellTab" ItemsSource="{Binding Spells}" Visibility="Collapsed" SelectionChanged="SpellTab_OnSelectionChanged" ItemTemplate="{StaticResource CharacterSpellTemplate}">
