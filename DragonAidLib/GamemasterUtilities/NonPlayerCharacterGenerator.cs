@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DragonAid.Lib.Data;
+﻿using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.GamemasterUtilities
@@ -21,17 +20,18 @@ namespace DragonAid.Lib.GamemasterUtilities
 
         public Character GenerateFromTemplate(NonPlayerCharacterTemplate template)
         {
-            var character = new Character();
-            
-            character.PhysicalStrength = this._characteristicGenerator.Generate(template.PhysicalStrengthRange);
-            character.ManualDexterity = this._characteristicGenerator.Generate(template.ManualDexterityRange);
-            character.Agility = this._characteristicGenerator.Generate(template.AgilityRange);
-            character.MagicalAptitude = this._characteristicGenerator.Generate(template.MagicalAptitudeRange);
-            character.Willpower = this._characteristicGenerator.Generate(template.WillpowerRange);
-            character.Endurance = this._characteristicGenerator.Generate(template.EnduranceRange);
-            character.Fatigue = this._characteristicGenerator.Generate(template.FatigueRange);
-            character.Perception = this._characteristicGenerator.Generate(template.PerceptionRange);
-            character.PhysicalBeauty = this._characteristicGenerator.Generate(template.PhysicalBeautyRange);
+            var character = new Character
+                {
+                    PhysicalStrength = this._characteristicGenerator.Generate(template.PhysicalStrengthRange),
+                    ManualDexterity = this._characteristicGenerator.Generate(template.ManualDexterityRange),
+                    Agility = this._characteristicGenerator.Generate(template.AgilityRange),
+                    MagicalAptitude = this._characteristicGenerator.Generate(template.MagicalAptitudeRange),
+                    Willpower = this._characteristicGenerator.Generate(template.WillpowerRange),
+                    Endurance = this._characteristicGenerator.Generate(template.EnduranceRange),
+                    Fatigue = this._characteristicGenerator.Generate(template.FatigueRange),
+                    Perception = this._characteristicGenerator.Generate(template.PerceptionRange),
+                    PhysicalBeauty = this._characteristicGenerator.Generate(template.PhysicalBeautyRange)
+                };
 
             this._weaponChooser.ChooseWeapons(character);
 

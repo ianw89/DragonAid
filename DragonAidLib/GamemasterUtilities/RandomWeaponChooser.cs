@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DragonAid.Lib.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.GamemasterUtilities
 {

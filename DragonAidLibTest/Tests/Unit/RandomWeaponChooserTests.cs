@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DragonAid.Lib.Data;
-using DragonAid.Lib.Data.Model;
+﻿using DragonAid.Lib.Data.Model;
 using DragonAid.Lib.GamemasterUtilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DragonAid.Test.Tests.Unit
 {
