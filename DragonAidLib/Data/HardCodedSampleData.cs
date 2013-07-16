@@ -234,14 +234,14 @@ namespace DragonAid.Lib.Data
                             {
                                 { Weapons.Cane, 3 },
                                 { Weapons.Sap, 3 },
-                                { Weapons.Darts, 2 },
+                                { Weapons.ThrowingDart, 2 },
                             },
                         Inventory = 
                             {
                                 { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
                                 { Weapons.Cane, "Combat", "OverlandFoot" },
                                 { Weapons.Sap, "Combat", "OverlandFoot" },
-                                { Weapons.Darts, "Combat", "OverlandFoot" },
+                                { Items.Darts, "Combat", "OverlandFoot" },
                                 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
                                 { new Item("Money", 10), "OverlandFoot" },

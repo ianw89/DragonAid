@@ -37,7 +37,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void InventoryCanReportTotalWeight()
         {
-            var testSubject = new CharacterInventory { new Item("Sandwich", 1), new Weapon("Shotgun", 5, 0, WeaponKind.Ranged, 10) };
+            var testSubject = new CharacterInventory { new Item("Sandwich", 1), new Weapon("Shotgun", 5, 0, WeaponKind.Ranged, 10, 1, 1) };
             testSubject.GetWeightForSet("All").Should().Be(6m);
         }
 

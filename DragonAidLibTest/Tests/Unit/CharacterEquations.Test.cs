@@ -148,7 +148,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ForUnrankedStrikeChanceIsJustBaseChance()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10);
+            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 20 };
             // No ranks added to character
             CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
@@ -157,7 +157,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void StrikeChanceStartsWithBaseChanceIfRanked()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10);
+            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 0 };
             c.WeaponRanks[w] = 0;
             CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
@@ -166,7 +166,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void DexterityAffectsStrikeChanceIfRanked()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10);
+            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 20 };
             c.WeaponRanks[w] = 0;
             CharacterEquations.ComputeStrikeChance(c, w).Should().Be(50);
@@ -175,7 +175,7 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void RankAffectsStrikeChance()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10);
+            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 0 };
             c.WeaponRanks[w] = 3;
             CharacterEquations.ComputeStrikeChance(c, w).Should().Be(42);

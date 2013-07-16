@@ -52,10 +52,10 @@ namespace DragonAid.Test.Tests.Unit
         {
             var weapons = new List<Weapon>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Melee, 10),
-                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10),
-                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10),
-                    new Weapon("D", 1, 1, WeaponKind.Ranged, 10),
+                    new Weapon("A", 1, 1, WeaponKind.Melee, 10, 1, 1),
+                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new Weapon("D", 1, 1, WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -72,10 +72,10 @@ namespace DragonAid.Test.Tests.Unit
             // we don't want them counted as a primary ranged weapon
             var weapons = new List<Weapon>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Ranged, 10),
-                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
-                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
-                    new Weapon("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10),
+                    new Weapon("A", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new Weapon("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -91,7 +91,7 @@ namespace DragonAid.Test.Tests.Unit
         {
             var weapons = new List<Weapon>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Unspecified, 10),
+                    new Weapon("A", 1, 1, WeaponKind.Unspecified, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 

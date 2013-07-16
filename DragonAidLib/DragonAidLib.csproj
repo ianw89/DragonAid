@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\HardCodedSampleData.cs" />
+    <Compile Include="Data\Items.cs" />
     <Compile Include="Data\Languages.cs" />
     <Compile Include="Data\Model\INonMagicalSkill.cs" />
     <Compile Include="Data\Model\RollResult.cs" />

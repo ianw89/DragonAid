@@ -13,16 +13,6 @@ namespace DragonAid.Lib.Data.Model
     /// </remarks>
     public class Weapon : Item
     {
-        public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank)
-            : base(fullName, weight)
-        {
-            Contract.Requires(baseChance >= 0 && baseChance <= 100);
-            Contract.Requires(maxRank >=0 && maxRank <= 10);
-            this.BaseChance = baseChance;
-            this.Use = use;
-            this.MaxRank = maxRank;
-        }
-
         public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
             : base(fullName, weight)
         {
