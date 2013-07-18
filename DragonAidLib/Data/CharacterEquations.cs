@@ -61,7 +61,7 @@ namespace DragonAid.Lib.Data
         }
 
         public static readonly Expression<Func<Character, Weapon, int>> RankedStrikeChance =
-            (Character c, Weapon s) => s.BaseChance + (c.ManualDexterity) + (4 * c.WeaponRanks[s]) ;
+            (Character c, Weapon s) => s.BaseChance + (c.ManualDexterity) + (4 * c.WeaponRanks[s.Skill]) ;
 
         public static readonly Expression<Func<Character, Weapon, int>> UnrankedStrikeChance =
             (Character c, Weapon s) => s.BaseChance;
@@ -74,7 +74,7 @@ namespace DragonAid.Lib.Data
         {
             Contract.Requires(character != null);
             Contract.Requires(weapon != null);
-            var info = character.WeaponRanks.SingleOrDefault(i => i.Weapon == weapon);
+            var info = character.WeaponRanks.SingleOrDefault(i => i.Weapon == weapon.Skill);
             if (info != null)
             {
                 return CompiledRankedStrikeChance.Value(character, weapon);

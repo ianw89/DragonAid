@@ -206,7 +206,7 @@
             </ListView>
 
             <!-- Weapons tab shows weapons that the character has -->
-            <ListView Grid.Row="1" x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed" ItemTemplate="{StaticResource CharacterWeaponTemplate}">
+            <ListView Grid.Row="1" x:Name="WeaponTab" ItemsSource="{Binding Weapons}" Visibility="Collapsed" ItemTemplate="{StaticResource CharacterWeaponSkillTemplate}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

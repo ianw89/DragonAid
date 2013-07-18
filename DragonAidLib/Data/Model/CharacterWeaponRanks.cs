@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
@@ -10,12 +11,12 @@ namespace DragonAid.Lib.Data.Model
     public class CharacterWeaponRanks : IEnumerable<CharacterWeaponInfo>
     {
         private readonly List<CharacterWeaponInfo> _list = new List<CharacterWeaponInfo>();
-        private readonly Character character;
+        private readonly Character _character;
 
         public CharacterWeaponRanks(Character character)
         {
             Contract.Requires(character != null);
-            this.character = character;
+            this._character = character;
         }
 
         public IEnumerator<CharacterWeaponInfo> GetEnumerator()
@@ -28,22 +29,23 @@ namespace DragonAid.Lib.Data.Model
             return GetEnumerator();
         }
 
-        public void Add(Weapon weapon, int rank)
+        public void Add(WeaponSkill weapon, int rank)
         {
+            Contract.Requires(weapon != null);
             this[weapon] = rank;
         }
 
-        public int this[Weapon weapon]
+        public int this[WeaponSkill weaponSkill]
         {
             get
             {
-                Contract.Requires(weapon != null);
+                Contract.Requires(weaponSkill != null);
 
-                var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weapon);
+                var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weaponSkill);
                 if (characterWeaponInfo == null)
                 {
                     throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture,
-                                                                      "Character has no ranks in {0}!", weapon.FullName));
+                                                                      "Character has no ranks in {0}!", weaponSkill.FullName));
                 }
 
                 return characterWeaponInfo.Rank;
@@ -51,13 +53,13 @@ namespace DragonAid.Lib.Data.Model
 
             set
             {
-                Contract.Requires(weapon != null);
+                Contract.Requires(weaponSkill != null, "Can't have rank with null.");
                 Contract.Requires(value >- 0);
 
-                var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weapon);
+                var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weaponSkill);
                 if (characterWeaponInfo == null)
                 {
-                    this._list.Add(new CharacterWeaponInfo(weapon, value, this.character));
+                    this._list.Add(new CharacterWeaponInfo(weaponSkill, value, this._character));
                 }
                 else
                 {

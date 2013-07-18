@@ -15,18 +15,18 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void CreatePossibilitiesUsesStrengthAndDex()
         {
-            var chooser = new RandomWeaponChooser(new List<Weapon>()
+            var chooser = new RandomWeaponChooser(new List<WeaponSkill>()
                 {
-                    new Weapon("A", 1, 1),
-                    new Weapon("B", 2, 3),
-                    new Weapon("C", 3, 2),
-                    new Weapon("D", 3, 3),
-                    new Weapon("E", 2, 2)
+                    new WeaponSkill("A", 1, 1),
+                    new WeaponSkill("B", 2, 3),
+                    new WeaponSkill("C", 3, 2),
+                    new WeaponSkill("D", 3, 3),
+                    new WeaponSkill("E", 2, 2)
                 });
 
             var results = chooser.CreatePossibilities(2, 2);
 
-            var resultsList = results as IList<Weapon> ?? results.ToList();
+            var resultsList = results as IList<WeaponSkill> ?? results.ToList();
             resultsList.Should().HaveCount(2);
             resultsList.Should().OnlyContain(w => w.FullName == "A" || w.FullName == "E");
         }
@@ -34,28 +34,28 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void CreatePossibilitiesCanCreateEmptyListIfAppropriate()
         {
-            var chooser = new RandomWeaponChooser(new List<Weapon>()
+            var chooser = new RandomWeaponChooser(new List<WeaponSkill>()
                 {
-                    new Weapon("A", 0, 2),
-                    new Weapon("B", 2, 0),
-                    new Weapon("C", 10, 10),
+                    new WeaponSkill("A", 0, 2),
+                    new WeaponSkill("B", 2, 0),
+                    new WeaponSkill("C", 10, 10),
                 });
 
             var results = chooser.CreatePossibilities(1, 1);
 
-            var resultsList = results as IList<Weapon> ?? results.ToList();
+            var resultsList = results as IList<WeaponSkill> ?? results.ToList();
             resultsList.Should().BeEmpty();
         }
 
         [TestMethod]
         public void AddRanksForMeleeFighterShouldChooseAMeleeWeapon()
         {
-            var weapons = new List<Weapon>()
+            var weapons = new List<WeaponSkill>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Melee, 10, 1, 1),
-                    new Weapon("B", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new Weapon("C", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new Weapon("D", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("A", 1, 1, WeaponKind.Melee, 10, 1, 1),
+                    new WeaponSkill("B", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("C", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("D", 1, 1, WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -70,12 +70,12 @@ namespace DragonAid.Test.Tests.Unit
         {
             // Weapons that have more than just the ranged flag aren't primarilly ranged, so
             // we don't want them counted as a primary ranged weapon
-            var weapons = new List<Weapon>()
+            var weapons = new List<WeaponSkill>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new Weapon("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
-                    new Weapon("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
-                    new Weapon("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("A", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -89,9 +89,9 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ChooseWeaponsShouldDoNothingIfNoArchtypeIsPossible()
         {
-            var weapons = new List<Weapon>()
+            var weapons = new List<WeaponSkill>()
                 {
-                    new Weapon("A", 1, 1, WeaponKind.Unspecified, 10, 1, 1),
+                    new WeaponSkill("A", 1, 1, WeaponKind.Unspecified, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 

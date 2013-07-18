@@ -13,36 +13,24 @@ namespace DragonAid.Lib.Data.Model
     /// </remarks>
     public class Weapon : Item
     {
-        public Weapon(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
-            : base(fullName, weight)
+        public Weapon(WeaponSkill skill, decimal weight) : base(skill.FullName, weight)
         {
-            Contract.Requires(baseChance >= 0 && baseChance <= 100);
-            Contract.Requires(maxRank >=0 && maxRank <= 10);
-            this.BaseChance = baseChance;
-            this.Use = use;
-            this.MaxRank = maxRank;
-            this.PhysicalStengthRequired = minStength;
-            this.ManualDexterityRequired = minDex;
-        }
-
-        [TestOnly]
-        public Weapon(string fullName, int minStength, int minDex)
-            : base(fullName, 1)
-        {
-            this.BaseChance = 0;
-            this.Use = WeaponKind.Unspecified;
-            this.MaxRank = 0;
-            this.PhysicalStengthRequired = minStength;
-            this.ManualDexterityRequired = minDex;
+            Contract.Requires(skill != null);
+            Contract.Requires(weight != null);
+            this.Skill = skill;
+            this.BaseChance = skill.BaseChance;
+            this.Use = skill.Use;
+            this.MaxRank = skill.MaxRank;
+            this.PhysicalStengthRequired = Skill.PhysicalStengthRequired;
+            this.ManualDexterityRequired = skill.ManualDexterityRequired;
         }
 
         public int BaseChance { get; private set; }
         public WeaponKind Use { get; private set; }
         public int MaxRank { get; private set; }
-
-        // TODO require in main ctor
         public int PhysicalStengthRequired { get; private set; }
         public int ManualDexterityRequired { get; private set; }
+        public WeaponSkill Skill { get; private set; }
     }
 
     /// <summary>

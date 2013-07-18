@@ -11,6 +11,8 @@ namespace DragonAid.Test.Tests.Unit
     {
         private readonly Spell fakeSpell = new Spell("FakeSpell", 10);
         private readonly Item _heavyItem = new Item("Lead weight", 50);
+        private readonly static WeaponSkill BatWeaponSkill = new WeaponSkill("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
+        private readonly static Weapon BatWeapon = new Weapon(BatWeaponSkill, 1m);
 
         [TestMethod]
         public void ComputeBasicTacticalMovementRateForVaryingAgilities()
@@ -77,14 +79,14 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void EffectiveAgilityShouldBeAffectedByInventoryWeight()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { Weapons.Mattock } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { new Item("Thing", 6m) } };
             CharacterEquations.ComputeEffectiveAgility(c).Should().BeLessThan(c.Agility);
         }
 
         [TestMethod]
         public void EffectiveAgilityShouldUseCurrentlyEquiptedItemSet()
         {
-            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { { Weapons.Mattock, "Combat" }, _heavyItem } };
+            var c = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { { new Item("Thing", 6m), "Combat" }, _heavyItem } };
             var withAllItems = CharacterEquations.ComputeEffectiveAgility(c);
             c.Inventory.EquiptedSetName = "Combat";
             var agilityWithSubsetOfItems = CharacterEquations.ComputeEffectiveAgility(c);
@@ -121,7 +123,7 @@ namespace DragonAid.Test.Tests.Unit
         public void HeavierItemsAffectAgilityMoreThanLightOnes()
         {
             var withHeavyItem = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { _heavyItem } };
-            var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { Weapons.Dagger } };
+            var withDagger = new Character { Agility = 10, PhysicalStrength = 10, Inventory = { Items.Dagger } };
             CharacterEquations.ComputeEffectiveAgility(withHeavyItem).Should().BeLessThan(CharacterEquations.ComputeEffectiveAgility(withDagger));
         }
 
@@ -148,37 +150,42 @@ namespace DragonAid.Test.Tests.Unit
         [TestMethod]
         public void ForUnrankedStrikeChanceIsJustBaseChance()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 20 };
             // No ranks added to character
-            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
+            CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(30);
         }
         
         [TestMethod]
         public void StrikeChanceStartsWithBaseChanceIfRanked()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 0 };
-            c.WeaponRanks[w] = 0;
-            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(30);
+            c.WeaponRanks[BatWeapon.Skill] = 0;
+            CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(30);
         }
 
         [TestMethod]
         public void DexterityAffectsStrikeChanceIfRanked()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 20 };
-            c.WeaponRanks[w] = 0;
-            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(50);
+            c.WeaponRanks[BatWeapon.Skill] = 0;
+            CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(50);
         }
 
         [TestMethod]
         public void RankAffectsStrikeChance()
         {
-            var w = new Weapon("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
             var c = new Character { ManualDexterity = 0 };
-            c.WeaponRanks[w] = 3;
-            CharacterEquations.ComputeStrikeChance(c, w).Should().Be(42);
+            c.WeaponRanks[BatWeapon.Skill] = 3;
+            CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(42);
+        }
+
+        [TestMethod]
+        public void OtherWeaponsRanksDoNotAffectNonmatchingWeaponStrikeChance()
+        {
+            var c = new Character { ManualDexterity = 0 };
+            c.WeaponRanks[new WeaponSkill("Foo", 1m, 10, WeaponKind.Melee, 1, 1, 1)] = 3;
+            c.WeaponRanks[null] = 5;
+            CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(30);
         }
     }
 }

@@ -43,8 +43,8 @@ namespace DragonAid.Test.Tests.Unit
         {
             var template = new NonPlayerCharacterTemplate
                 {
-                    PhysicalStrengthRange = new CharacteristicRangeTemplate(10, 10),
-                    ManualDexterityRange = new CharacteristicRangeTemplate(10, 10),
+                    PhysicalStrengthRange = new CharacteristicRangeTemplate(15, 15),
+                    ManualDexterityRange = new CharacteristicRangeTemplate(15, 15),
                     AgilityRange = new CharacteristicRangeTemplate(10, 10),
                     EnduranceRange = new CharacteristicRangeTemplate(10, 10),
                     FatigueRange = new CharacteristicRangeTemplate(10, 10),

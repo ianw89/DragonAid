@@ -18,12 +18,6 @@ namespace DragonAid.WindowsClient.ViewModel
             set { throw new NotSupportedException(); }
         }
 
-        public int StrikeChance
-        {
-            get { return _info.StrikeChance; }
-            set { throw new NotSupportedException(); }
-        }
-
         public int Rank
         {
             get { return _info.Rank; }

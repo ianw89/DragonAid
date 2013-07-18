@@ -13,15 +13,15 @@ namespace DragonAid.Lib.GamemasterUtilities
     public class RandomWeaponChooser : IWeaponChooser
     {
         private readonly Random _rand;
-        private readonly List<Weapon> _allWeapons;
-        private readonly List<Func<IEnumerable<Weapon>, Character, bool>> _baseArchtypes; 
+        private readonly List<WeaponSkill> _allWeapons;
+        private readonly List<Func<IEnumerable<WeaponSkill>, Character, bool>> _baseArchtypes; 
 
-        public RandomWeaponChooser(List<Weapon> allWeapons)
+        public RandomWeaponChooser(List<WeaponSkill> allWeapons)
         {
             Contract.Requires(allWeapons != null);
             this._rand = new Random();
             this._allWeapons = allWeapons;
-            this._baseArchtypes = new List<Func<IEnumerable<Weapon>, Character, bool>>();
+            this._baseArchtypes = new List<Func<IEnumerable<WeaponSkill>, Character, bool>>();
             _baseArchtypes.Add(AddRanksForMeleeFighter);
             _baseArchtypes.Add(AddRanksForMeleeFighter);
             _baseArchtypes.Add(AddRanksForArcher);
@@ -53,7 +53,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal bool AddRanksForArcher(IEnumerable<Weapon> possibilities, Character character)
+        internal bool AddRanksForArcher(IEnumerable<WeaponSkill> possibilities, Character character)
         {
             var rangedOnlyWeapons = possibilities.Where(w => w.Use == WeaponKind.Ranged).ToArray();
             if (rangedOnlyWeapons.Length == 0)
@@ -72,7 +72,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal bool AddRanksForMeleeFighter(IEnumerable<Weapon> possibilities, Character character)
+        internal bool AddRanksForMeleeFighter(IEnumerable<WeaponSkill> possibilities, Character character)
         {
             var meleeWeapons = possibilities.Where(w => w.Use.HasFlag(WeaponKind.Melee)).ToArray();
             if (meleeWeapons.Length == 0)
@@ -91,7 +91,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal IEnumerable<Weapon> CreatePossibilities(int maximumStength, int maximumDexterity)
+        internal IEnumerable<WeaponSkill> CreatePossibilities(int maximumStength, int maximumDexterity)
         {
             return this._allWeapons.Where(w => w.PhysicalStengthRequired <= maximumStength && w.ManualDexterityRequired <= maximumDexterity);
         }

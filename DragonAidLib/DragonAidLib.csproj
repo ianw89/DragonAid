@@ -67,6 +67,7 @@
     <Compile Include="Data\Model\TopLevelSkill.cs" />
     <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\Model\Spell.cs" />
+    <Compile Include="Data\Model\WeaponSkill.cs" />
     <Compile Include="Data\Skills.cs" />
     <Compile Include="Data\SpellcastResultRange.cs" />
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />

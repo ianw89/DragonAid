@@ -78,7 +78,7 @@
             </DataTemplate>
             
             <!-- This template defines how to display a info about weapon that a chraracter has ranks with -->
-            <DataTemplate x:Key="CharacterWeaponTemplate">
+            <DataTemplate x:Key="CharacterWeaponSkillTemplate">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80*" />
@@ -91,8 +91,10 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Name}" />
                     <TextBlock Grid.Column="1" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="RK:" FontWeight="Bold" />
                     <TextBlock Grid.Column="2" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding Rank}" />
+                    <!-- TODO Need to rework this UI since Strkes Chances require an actual Weapon
                     <TextBlock Grid.Column="3" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="SC:" FontWeight="Bold" />
                     <TextBlock Grid.Column="4" Style="{StaticResource CharacteristicsBoxTextStyle}" Text="{Binding StrikeChance}" />
+                    -->
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>

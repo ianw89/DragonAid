@@ -57,9 +57,9 @@ namespace DragonAid.Lib.Data
                             },
                         Inventory =
                             {
-                                { Weapons.Mattock, "Combat", "OverlandFoot" },
-                                { Weapons.Crossbow, "Combat", "OverlandFoot" },
-                                { Weapons.Dagger, "Combat", "OverlandFoot" },
+                                { Items.Mattock, "Combat", "OverlandFoot" },
+                                { Items.Crossbow, "Combat", "OverlandFoot" },
+                                { Items.Dagger, "Combat", "OverlandFoot" },
                                 { new Armor("Partial Plate", -2, 33), "Combat", "OverlandFoot" },
                                 { new Item("Buckler", 3), "Combat", "OverlandFoot" },
                                 { new Item("Quiver", 3), "Combat", "OverlandFoot" },
@@ -123,9 +123,9 @@ namespace DragonAid.Lib.Data
                         Inventory = 
                             {
                                 { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
-                                { Weapons.Sap, "Combat", "OverlandFoot" },
-                                { Weapons.Sap, "Combat", "OverlandFoot" },
-                                { Weapons.Dagger, "Combat", "OverlandFoot" },
+                                { Items.Sap, "Combat", "OverlandFoot" },
+                                { Items.Sap, "Combat", "OverlandFoot" },
+                                { Items.Dagger, "Combat", "OverlandFoot" },
 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
                                 { new Item("Money", 10), "OverlandFoot" },
@@ -186,9 +186,9 @@ namespace DragonAid.Lib.Data
                         Inventory =
                             {
                                 { new Armor("Leather Armor", -1, 18), "Combat", "OverlandFoot" },
-                                { Weapons.Whip, "Combat", "OverlandFoot" },
-                                { Weapons.Net, "Combat", "OverlandFoot" },
-                                { Weapons.Bola, "Combat", "OverlandFoot" },
+                                { Items.Whip, "Combat", "OverlandFoot" },
+                                { Items.Net, "Combat", "OverlandFoot" },
+                                { Items.Bola, "Combat", "OverlandFoot" },
                                 { new Item("Falconry Pads", 3), "Combat", "OverlandFoot" },
                                 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
@@ -239,8 +239,8 @@ namespace DragonAid.Lib.Data
                         Inventory = 
                             {
                                 { new Armor("Cloth armor (improved)", 0, 6), "Combat", "OverlandFoot" },
-                                { Weapons.Cane, "Combat", "OverlandFoot" },
-                                { Weapons.Sap, "Combat", "OverlandFoot" },
+                                { Items.Cane, "Combat", "OverlandFoot" },
+                                { Items.Sap, "Combat", "OverlandFoot" },
                                 { Items.Darts, "Combat", "OverlandFoot" },
                                 
                                 { new Item("Adventuring pack", 23), "OverlandFoot" },
