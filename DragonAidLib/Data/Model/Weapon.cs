@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.Contracts;
 using DragonAid.Lib.GamemasterUtilities;
 
@@ -15,8 +14,8 @@ namespace DragonAid.Lib.Data.Model
     {
         public Weapon(WeaponSkill skill, decimal weight) : base(skill.FullName, weight)
         {
-            Contract.Requires(skill != null);
-            Contract.Requires(weight != null);
+            ExceptionUtils.CheckArgumentNotNull(skill);
+            ExceptionUtils.CheckArgumentNotNull(weight);
             this.Skill = skill;
             this.BaseChance = skill.BaseChance;
             this.Use = skill.Use;
@@ -31,17 +30,5 @@ namespace DragonAid.Lib.Data.Model
         public int PhysicalStengthRequired { get; private set; }
         public int ManualDexterityRequired { get; private set; }
         public WeaponSkill Skill { get; private set; }
-    }
-
-    /// <summary>
-    /// The possible ways to use a weapon. A weapon may be used in one or more of these modes.
-    /// </summary>
-    [Flags]
-    public enum WeaponKind
-    {
-        Unspecified = 0,
-        Ranged = 1,
-        Melee = 2,
-        Close = 4,
     }
 }

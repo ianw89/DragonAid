@@ -5,17 +5,17 @@ using System.Reflection;
 
 namespace DragonAid.Lib.Data
 {
-    public class Weapons
+    public class WeaponSkills
     {
         private readonly List<WeaponSkill> _weapons;
 
-        public Weapons()
+        public WeaponSkills()
         {
             this._weapons = new List<WeaponSkill>();
             
-            foreach (var field in typeof(Weapons).GetRuntimeFields().Where(f => f.IsStatic && f.FieldType == typeof(WeaponSkill)))
+            foreach (var field in typeof(WeaponSkills).GetRuntimeFields().Where(f => f.IsStatic && f.FieldType == typeof(WeaponSkill)))
             {
-                var value = field.GetValue(typeof (Weapons));
+                var value = field.GetValue(typeof (WeaponSkills));
                 this._weapons.Add((WeaponSkill)value);
             }
         }

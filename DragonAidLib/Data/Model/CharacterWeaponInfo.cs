@@ -8,8 +8,8 @@ namespace DragonAid.Lib.Data.Model
 
         public CharacterWeaponInfo(WeaponSkill weapon, int rank, Character character)
         {
-            Contract.Requires(weapon != null);
-            Contract.Requires(character != null);
+            ExceptionUtils.CheckArgumentNotNull(weapon);
+            ExceptionUtils.CheckArgumentNotNull(character);
             _character = character;
             Weapon = weapon;
             Rank = rank;

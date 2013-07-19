@@ -29,11 +29,11 @@ namespace DragonAid.Lib.Data
                         Fatigue = 23,
                         WeaponRanks =
                             {
-                                { Weapons.Mattock, 1 },
-                                { Weapons.Dagger, 2 },
-                                { Weapons.WarHammer, 5 },
-                                { Weapons.Morningstar, 0 },
-                                { Weapons.Crossbow, 1 },
+                                { WeaponSkills.Mattock, 1 },
+                                { WeaponSkills.Dagger, 2 },
+                                { WeaponSkills.WarHammer, 5 },
+                                { WeaponSkills.Morningstar, 0 },
+                                { WeaponSkills.Crossbow, 1 },
                             },
                         Skills =
                             {
@@ -116,8 +116,8 @@ namespace DragonAid.Lib.Data
                             },
                         WeaponRanks =
                             {
-                                { Weapons.Sap, 3 },
-                                { Weapons.Dagger, 0 },
+                                { WeaponSkills.Sap, 3 },
+                                { WeaponSkills.Dagger, 0 },
                             }
                             ,
                         Inventory = 
@@ -165,9 +165,9 @@ namespace DragonAid.Lib.Data
                         Fatigue = 21,
                         WeaponRanks =
                             {
-                                { Weapons.Whip, 2 },
-                                { Weapons.Net, 2 },
-                                { Weapons.Bola, 2 },
+                                { WeaponSkills.Whip, 2 },
+                                { WeaponSkills.Net, 2 },
+                                { WeaponSkills.Bola, 2 },
                             },
                         Skills =
                             {
@@ -232,9 +232,9 @@ namespace DragonAid.Lib.Data
                             },
                         WeaponRanks =
                             {
-                                { Weapons.Cane, 3 },
-                                { Weapons.Sap, 3 },
-                                { Weapons.ThrowingDart, 2 },
+                                { WeaponSkills.Cane, 3 },
+                                { WeaponSkills.Sap, 3 },
+                                { WeaponSkills.ThrowingDart, 2 },
                             },
                         Inventory = 
                             {

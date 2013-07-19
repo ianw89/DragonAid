@@ -65,7 +65,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _spellRanks; }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckArgumentNotNull(value);
                 _spellRanks = value;
             }
         }
@@ -75,7 +75,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _weaponRanks; }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckArgumentNotNull(value);
                 _weaponRanks = value;
             }
         }
@@ -85,7 +85,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _skillRanks; }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckArgumentNotNull(value);
                 _skillRanks = value;
             }
         }
@@ -95,7 +95,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _languageRanks; }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckArgumentNotNull(value);
                 _languageRanks = value;
             }
         }
@@ -105,7 +105,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _inventory; }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckArgumentNotNull(value);
                 _inventory = value;
             }
         }

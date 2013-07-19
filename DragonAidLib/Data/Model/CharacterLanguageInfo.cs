@@ -10,9 +10,8 @@ namespace DragonAid.Lib.Data.Model
 
         public CharacterLanguageInfo(Character character, Language language, int? speakRank, int? readWriteRank)
         {
-            Contract.Requires(character != null);
-            Contract.Requires(language != null);
-
+            ExceptionUtils.CheckArgumentNotNull(character);
+            ExceptionUtils.CheckArgumentNotNull(language);
             _character = character;
             Language = language;
             _speakRank = speakRank;

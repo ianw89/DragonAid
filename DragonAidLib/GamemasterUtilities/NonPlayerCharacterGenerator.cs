@@ -15,7 +15,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         public NonPlayerCharacterGenerator()
         {
             this._characteristicGenerator = new RandomCharacteristicGenerator();
-            this._weaponChooser = new RandomWeaponChooser(new Weapons().WeaponList);
+            this._weaponChooser = new RandomWeaponChooser(new WeaponSkills().WeaponList);
         }
 
         public Character GenerateFromTemplate(NonPlayerCharacterTemplate template)

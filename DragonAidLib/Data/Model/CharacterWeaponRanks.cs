@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace DragonAid.Lib.Data.Model
 
         public CharacterWeaponRanks(Character character)
         {
-            Contract.Requires(character != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
             this._character = character;
         }
 
@@ -31,7 +30,7 @@ namespace DragonAid.Lib.Data.Model
 
         public void Add(WeaponSkill weapon, int rank)
         {
-            Contract.Requires(weapon != null);
+            ExceptionUtils.CheckArgumentNotNull(weapon);
             this[weapon] = rank;
         }
 
@@ -39,7 +38,7 @@ namespace DragonAid.Lib.Data.Model
         {
             get
             {
-                Contract.Requires(weaponSkill != null);
+                ExceptionUtils.CheckArgumentNotNull(weaponSkill);
 
                 var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weaponSkill);
                 if (characterWeaponInfo == null)
@@ -53,7 +52,7 @@ namespace DragonAid.Lib.Data.Model
 
             set
             {
-                Contract.Requires(weaponSkill != null, "Can't have rank with null.");
+                ExceptionUtils.CheckArgumentNotNull(weaponSkill);
                 Contract.Requires(value >- 0);
 
                 var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weaponSkill);

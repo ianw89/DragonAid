@@ -1,4 +1,5 @@
 ﻿using System;
+using DragonAid.Lib.Util;
 using DragonAid.WindowsClient.Common;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;

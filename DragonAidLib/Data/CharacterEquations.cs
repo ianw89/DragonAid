@@ -11,7 +11,7 @@ namespace DragonAid.Lib.Data
     {
         public static int ComputeBasicTacticalMovementRate(int agility, Race race)
         {
-            Contract.Requires(race != null);
+            ExceptionUtils.CheckArgumentNotNull(race);
 
             int tmr;
 
@@ -39,14 +39,14 @@ namespace DragonAid.Lib.Data
 
         public static int ComputeCastChance(Character character, Spell spell)
         {
-            Contract.Requires(character != null);
-            Contract.Requires(spell != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
+            ExceptionUtils.CheckArgumentNotNull(spell);
             return CompiledCastChance.Value(character, spell);
         }
 
         public static int ComputeEffectiveAgility(Character character)
         {
-            Contract.Requires(character != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
             decimal totalWeight = character.Inventory.GetWeightForSet(character.Inventory.EquiptedSetName);
             var agility = character.Agility;
 
@@ -72,8 +72,8 @@ namespace DragonAid.Lib.Data
 
         public static int ComputeStrikeChance(Character character, Weapon weapon)
         {
-            Contract.Requires(character != null);
-            Contract.Requires(weapon != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
+            ExceptionUtils.CheckArgumentNotNull(weapon);
             var info = character.WeaponRanks.SingleOrDefault(i => i.Weapon == weapon.Skill);
             if (info != null)
             {

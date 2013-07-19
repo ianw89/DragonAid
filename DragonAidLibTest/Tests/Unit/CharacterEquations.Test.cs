@@ -1,6 +1,7 @@
 using System;
 using DragonAid.Lib.Data;
 using DragonAid.Lib.Data.Model;
+using DragonAid.Lib.Util;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
@@ -184,7 +185,6 @@ namespace DragonAid.Test.Tests.Unit
         {
             var c = new Character { ManualDexterity = 0 };
             c.WeaponRanks[new WeaponSkill("Foo", 1m, 10, WeaponKind.Melee, 1, 1, 1)] = 3;
-            c.WeaponRanks[null] = 5;
             CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(30);
         }
     }

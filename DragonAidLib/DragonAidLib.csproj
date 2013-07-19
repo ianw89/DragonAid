@@ -36,6 +36,7 @@
     <Compile Include="Data\HardCodedSampleData.cs" />
     <Compile Include="Data\Items.cs" />
     <Compile Include="Data\Languages.cs" />
+    <Compile Include="Data\Model\ExceptionUtils.cs" />
     <Compile Include="Data\Model\INonMagicalSkill.cs" />
     <Compile Include="Data\Model\RollResult.cs" />
     <Compile Include="Data\Model\SelfActivatedSkill.cs" />
@@ -67,12 +68,13 @@
     <Compile Include="Data\Model\TopLevelSkill.cs" />
     <Compile Include="Data\Model\Weapon.cs" />
     <Compile Include="Data\Model\Spell.cs" />
+    <Compile Include="Data\Model\WeaponKind.cs" />
     <Compile Include="Data\Model\WeaponSkill.cs" />
     <Compile Include="Data\Skills.cs" />
     <Compile Include="Data\SpellcastResultRange.cs" />
     <Compile Include="Data\SpellcastResultRangeCalculator.cs" />
     <Compile Include="Data\Spells.cs" />
-    <Compile Include="Data\Weapons.cs" />
+    <Compile Include="Data\WeaponSkills.cs" />
     <Compile Include="GamemasterUtilities\CharacteristicRangeTemplate.cs" />
     <Compile Include="GamemasterUtilities\IWeaponChooser.cs" />
     <Compile Include="GamemasterUtilities\NonPlayerCharacterGenerator.cs" />
