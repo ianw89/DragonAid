@@ -30,15 +30,6 @@ namespace DragonAid.Lib.Data.Model
         // *** RPG system agnostic properties
         public int Id { get; set; }
 
-        /// <summary>
-        /// Whether this is your character or someone else's
-        /// </summary>
-        /// <remarks>
-        /// The Mobile Service deals with setting this appropriately based on its internal-only userId
-        /// field - there is no database column for "IsMine".
-        /// </remarks>
-        public bool IsMine { get; set; }
-
         public string Name { get; set; }
         // This is purposefully unrelated to the userId used internally for server-side authorization
         public string PlayerName { get; set; }
@@ -59,6 +50,7 @@ namespace DragonAid.Lib.Data.Model
         public int Perception { get; set; }
         public int PhysicalBeauty { get; set; }
         public int Fatigue { get; set; }
+        public int NaturalArmor { get; set; }
 
         public CharacterSpellRanks SpellRanks
         {
