@@ -37,7 +37,7 @@ namespace DragonAid.Lib.Data.Model
         {
             get
             {
-                Contract.Requires(spell != null);
+                ExceptionUtils.CheckArgumentNotNull(spell);
 
                 var characterSpellInfo = this._list.SingleOrDefault(s => s.Spell == spell);
                 if (characterSpellInfo == null)
@@ -51,8 +51,8 @@ namespace DragonAid.Lib.Data.Model
 
             set
             {
-                Contract.Requires(spell != null);
-                Contract.Requires(value >- 0);
+                ExceptionUtils.CheckArgumentNotNull(spell);
+                ExceptionUtils.MustBeTrue(value > -1);
 
                 var spellInfo = this._list.SingleOrDefault(s => s.Spell == spell);
                 if (spellInfo == null)

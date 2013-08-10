@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 
@@ -14,7 +13,7 @@ namespace DragonAid.Lib.Data.Model
 
         public CharacterSkillRanks(Character character)
         {
-            Contract.Requires(character != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
             this.character = character;
         }
 
@@ -37,7 +36,7 @@ namespace DragonAid.Lib.Data.Model
         {
             get
             {
-                Contract.Requires(skill != null);
+                ExceptionUtils.CheckArgumentNotNull(skill);
 
                 var characterSkillInfo = this._list.SingleOrDefault(s => s.Skill == skill);
                 if (characterSkillInfo == null)
@@ -51,8 +50,8 @@ namespace DragonAid.Lib.Data.Model
 
             set
             {
-                Contract.Requires(skill != null);
-                Contract.Requires(value > -0);
+                ExceptionUtils.CheckArgumentNotNull(skill);
+                ExceptionUtils.MustBeTrue(value > -1);
 
                 var characterSkillInfo = this._list.SingleOrDefault(w => w.Skill == skill);
                 if (characterSkillInfo == null)

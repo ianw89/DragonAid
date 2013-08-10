@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace DragonAid.Lib.Data.Model
 {
     public class CharacterLanguageInfo
@@ -25,7 +23,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _speakRank; }
             set
             {
-                Contract.Requires(_speakRank == null || _speakRank >= 0);
+                ExceptionUtils.MustBeTrue(_speakRank == null || _speakRank >= 0);
                 _speakRank = value;
             }
         }
@@ -35,7 +33,7 @@ namespace DragonAid.Lib.Data.Model
             get { return _readWriteRank; }
             set
             {
-                Contract.Requires(_readWriteRank == null || _readWriteRank >= 0);
+                ExceptionUtils.MustBeTrue(_readWriteRank == null || _readWriteRank >= 0);
                 _readWriteRank = value;
             }
         }

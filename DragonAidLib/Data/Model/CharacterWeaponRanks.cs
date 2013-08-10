@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 
@@ -53,7 +52,7 @@ namespace DragonAid.Lib.Data.Model
             set
             {
                 ExceptionUtils.CheckArgumentNotNull(weaponSkill);
-                Contract.Requires(value >- 0);
+                ExceptionUtils.MustBeTrue(value > -1);
 
                 var characterWeaponInfo = this._list.SingleOrDefault(w => w.Weapon == weaponSkill);
                 if (characterWeaponInfo == null)

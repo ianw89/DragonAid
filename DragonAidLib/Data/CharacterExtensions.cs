@@ -8,7 +8,7 @@ namespace DragonAid.Lib.Data
         public static int TacticalMovementRate(this Character character)
         {
             ExceptionUtils.CheckArgumentNotNull(character);
-            Contract.Requires(character.Race != null);
+            ExceptionUtils.CheckNotNull(character.Race);
             return CharacterEquations.ComputeBasicTacticalMovementRate(character.EffectiveAgility(), character.Race);
         }
 

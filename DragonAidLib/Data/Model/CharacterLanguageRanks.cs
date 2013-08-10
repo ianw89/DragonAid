@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 
@@ -46,7 +45,7 @@ namespace DragonAid.Lib.Data.Model
             }
             set
             {
-                Contract.Requires(value != null);
+                ExceptionUtils.CheckNotNull(value);
 
                 var characterLanguageInfo = _languages.SingleOrDefault(w => w.Language == language);
                 if (characterLanguageInfo == null)

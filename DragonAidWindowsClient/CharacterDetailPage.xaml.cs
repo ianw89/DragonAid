@@ -17,8 +17,6 @@ namespace DragonAid.WindowsClient
     public sealed partial class CharacterDetailPage : LayoutAwarePage
     {
         private readonly CharacterViewModel _characterViewModel = new CharacterViewModel();
-        private static readonly string CombatSetIdentifier = "Combat";
-        private static readonly string OverlandFootSetIdentifier = "OverlandFoot";
 
         public CharacterDetailPage()
         {

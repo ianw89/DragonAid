@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using DragonAid.Lib.Annotations;
 
@@ -78,7 +77,7 @@ namespace DragonAid.Lib.Data.Model
 
         public void Add(Item item, params string[] setNames)
         {
-            Contract.Requires(item != null);
+            ExceptionUtils.CheckNotNull(item);
             _items.Add(item);
 
             foreach (var setName in setNames)

@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace DragonAid.Lib.Data.Model
 {
     public class Armor : Item
@@ -7,7 +5,7 @@ namespace DragonAid.Lib.Data.Model
         public Armor(string fullName, int agilityModifier, decimal weight)
             : base(fullName, weight)
         {
-            Contract.Requires(agilityModifier <= 0);
+            ExceptionUtils.MustBeTrue(agilityModifier <= 0);
             this.AgilityModifier = agilityModifier;
         }
 
