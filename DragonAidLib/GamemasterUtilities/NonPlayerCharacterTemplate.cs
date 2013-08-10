@@ -1,8 +1,12 @@
-﻿namespace DragonAid.Lib.GamemasterUtilities
+﻿using System.Runtime.Serialization;
+
+namespace DragonAid.Lib.GamemasterUtilities
 {
     /// <summary>
     /// Template for generating a pseduo random NPC.
     /// </summary>
+    [DataContract]
+    [KnownType(typeof(CharacteristicRangeTemplate))]
     public class NonPlayerCharacterTemplate
     {
         public CharacteristicRangeTemplate PhysicalStrengthRange { get; set; }

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NPCTemplateLibrary xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/DragonAid.Lib.GamemasterUtilities">
+  <Templates>
+    <NonPlayerCharacterTemplate>
+      <PhysicalStrengthRange>
+        <Minimum>10</Minimum>
+        <Maximum>22</Maximum>
+      </PhysicalStrengthRange>
+      <ManualDexterityRange>
+        <Minimum>10</Minimum>
+        <Maximum>22</Maximum>
+      </ManualDexterityRange>
+      <AgilityRange>
+        <Minimum>8</Minimum>
+        <Maximum>22</Maximum>
+      </AgilityRange>
+      <WillpowerRange>
+        <Minimum>5</Minimum>
+        <Maximum>20</Maximum>
+      </WillpowerRange>
+      <MagicalAptitudeRange>
+        <Minimum>0</Minimum>
+        <Maximum>5</Maximum>
+      </MagicalAptitudeRange>
+      <EnduranceRange>
+        <Minimum>10</Minimum>
+        <Maximum>22</Maximum>
+      </EnduranceRange>
+      <FatigueRange>
+        <Minimum>16</Minimum>
+        <Maximum>24</Maximum>
+      </FatigueRange>
+      <PerceptionRange>
+        <Minimum>6</Minimum>
+        <Maximum>18</Maximum>
+      </PerceptionRange>
+      <PhysicalBeautyRange>
+        <Minimum>7</Minimum>
+        <Maximum>23</Maximum>
+      </PhysicalBeautyRange>
+      <NaturalArmorRange>
+        <Minimum>0</Minimum>
+        <Maximum>0</Maximum>
+      </NaturalArmorRange>
+    </NonPlayerCharacterTemplate>
+  </Templates>
+</NPCTemplateLibrary>

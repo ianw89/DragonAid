@@ -48,6 +48,15 @@ namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
             result.WeaponRanks.Count().Should().BeGreaterOrEqualTo(1);
         }
 
+        [TestMethod]
+        public void DeserializingTemplatesWorks()
+        {
+            foreach (var template in NPCTemplateLibrary.Instance.Templates)
+            {
+                template.Should().NotBeNull();
+            }
+        }
+
         private Character RunGeneratorTest(NonPlayerCharacterTemplate template)
         {
             var generator = new NonPlayerCharacterGenerator();

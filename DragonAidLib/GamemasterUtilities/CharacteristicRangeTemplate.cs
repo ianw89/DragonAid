@@ -1,8 +1,9 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Runtime.Serialization;
 using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.GamemasterUtilities
 {
+    [DataContract]
     public class CharacteristicRangeTemplate
     {
         public CharacteristicRangeTemplate(int minimum, int maximum)
@@ -13,7 +14,9 @@ namespace DragonAid.Lib.GamemasterUtilities
             Maximum = maximum;
         }
 
+        [DataMember]
         public int Minimum { get; set; }
-        public int Maximum { get; private set; }
+        [DataMember]
+        public int Maximum { get; set; }
     }
 }
