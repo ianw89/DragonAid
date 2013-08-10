@@ -4,7 +4,7 @@ using DragonAid.Lib.GamemasterUtilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace DragonAid.Test.Tests.Unit
+namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
 {
     [TestClass]
     public class NonPlayerCharacterGeneratorTests
@@ -25,7 +25,7 @@ namespace DragonAid.Test.Tests.Unit
                     WillpowerRange = new CharacteristicRangeTemplate(10, 10),
                 };
             
-            var result = RunGeneratorTest(template);
+            var result = this.RunGeneratorTest(template);
 
             result.PhysicalStrength.Should().Be(10);
             result.ManualDexterity.Should().Be(10);
@@ -54,7 +54,7 @@ namespace DragonAid.Test.Tests.Unit
                     WillpowerRange = new CharacteristicRangeTemplate(10, 10),
                 };
             
-            var result = RunGeneratorTest(template);
+            var result = this.RunGeneratorTest(template);
 
             result.WeaponRanks.Count().Should().BeGreaterOrEqualTo(1);
         }

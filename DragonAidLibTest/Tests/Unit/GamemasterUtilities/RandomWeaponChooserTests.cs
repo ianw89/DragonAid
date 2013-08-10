@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DragonAid.Test.Tests.Unit
+namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
 {
     [TestClass]
     public class RandomWeaponChooserTests
@@ -59,10 +59,10 @@ namespace DragonAid.Test.Tests.Unit
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
-            chooser.AddRanksForMeleeFighter(weapons, _dummyCharacter);
+            chooser.AddRanksForMeleeFighter(weapons, this._dummyCharacter);
 
             // There is only 1 melee weapon, so it MUST be chosen
-            _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
+            this._dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
         }
 
         [TestMethod]
@@ -79,11 +79,11 @@ namespace DragonAid.Test.Tests.Unit
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
-            var result = chooser.AddRanksForArcher(weapons, _dummyCharacter);
+            var result = chooser.AddRanksForArcher(weapons, this._dummyCharacter);
 
             // There is only 1 ranged-only weapon, so it MUST be chosen
             result.Should().BeTrue();
-            _dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
+            this._dummyCharacter.WeaponRanks.Should().Contain(i => i.Weapon == weapons.First());
         }
 
         [TestMethod]
@@ -95,10 +95,10 @@ namespace DragonAid.Test.Tests.Unit
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
-            chooser.ChooseWeapons(_dummyCharacter);
+            chooser.ChooseWeapons(this._dummyCharacter);
 
             // Nothing should have happened. Just ensuring that we don't error.
-            _dummyCharacter.WeaponRanks.Should().BeEmpty();
+            this._dummyCharacter.WeaponRanks.Should().BeEmpty();
         }
     }
 }
