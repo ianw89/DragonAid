@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.GamemasterUtilities
 {
@@ -6,8 +7,8 @@ namespace DragonAid.Lib.GamemasterUtilities
     {
         public CharacteristicRangeTemplate(int minimum, int maximum)
         {
-            Contract.Requires(minimum >= 0);
-            Contract.Requires(maximum >= minimum);
+            ExceptionUtils.MustBeTrue(minimum >= 0);
+            ExceptionUtils.MustBeTrue(maximum >= minimum);
             Minimum = minimum;
             Maximum = maximum;
         }

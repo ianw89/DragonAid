@@ -18,7 +18,7 @@ namespace DragonAid.Lib.GamemasterUtilities
 
         public RandomWeaponChooser(List<WeaponSkill> allWeapons)
         {
-            Contract.Requires(allWeapons != null);
+            ExceptionUtils.MustBeTrue(allWeapons != null);
             this._rand = new Random();
             this._allWeapons = allWeapons;
             this._baseArchtypes = new List<Func<IEnumerable<WeaponSkill>, Character, bool>>();
@@ -29,7 +29,7 @@ namespace DragonAid.Lib.GamemasterUtilities
 
         public void ChooseWeapons(Character character)
         {
-            Contract.Requires(character != null);
+            ExceptionUtils.MustBeTrue(character != null);
 
             // Step 1: Make list of all possible weapons we could have ranks in based on the character's stats
             var possibilities = this.CreatePossibilities(character.PhysicalStrength, character.ManualDexterity);

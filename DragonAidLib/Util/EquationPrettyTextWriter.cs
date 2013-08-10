@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
+using DragonAid.Lib.Data.Model;
 
 namespace DragonAid.Lib.Util
 {
@@ -50,7 +51,7 @@ namespace DragonAid.Lib.Util
 
         private string VisitBinary(BinaryExpression expression)
         {
-            Contract.Requires(expression != null);
+            ExceptionUtils.MustBeTrue(expression != null);
 
             string operatorText;
             switch (expression.NodeType)
@@ -86,13 +87,13 @@ namespace DragonAid.Lib.Util
 
         private string VisitLambda(LambdaExpression expression)
         {
-            Contract.Requires(expression != null);
+            ExceptionUtils.MustBeTrue(expression != null);
             return this.Visit(expression.Body);
         }
 
         private string VisitMember(MemberExpression expression)
         {
-            Contract.Requires(expression != null);
+            ExceptionUtils.MustBeTrue(expression != null);
             if (expression.Member.Name == "MagicalAptitude")
             {
                 return "MA";
@@ -113,7 +114,7 @@ namespace DragonAid.Lib.Util
 
         private string VisitConstant(ConstantExpression expression)
         {
-            Contract.Requires(expression != null);
+            ExceptionUtils.MustBeTrue(expression != null);
             return expression.Value.ToString();
         }
     }

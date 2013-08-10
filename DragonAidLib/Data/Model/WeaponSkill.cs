@@ -14,9 +14,9 @@ namespace DragonAid.Lib.Data.Model
     {
         public WeaponSkill(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
         {
-            Contract.Requires(fullName != null);
-            Contract.Requires(baseChance >= 0 && baseChance <= 100);
-            Contract.Requires(maxRank >= 0 && maxRank <= 10);
+            ExceptionUtils.CheckArgumentNotNull(fullName);
+            ExceptionUtils.MustBeTrue(baseChance >= 0 && baseChance <= 100);
+            ExceptionUtils.MustBeTrue(maxRank >= 0 && maxRank <= 10);
             this.FullName = fullName;
             this.BaseChance = baseChance;
             this.Use = use;

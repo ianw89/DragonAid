@@ -14,7 +14,7 @@ namespace DragonAid.Lib.Data.Model
 
         public CharacterSpellRanks(Character character)
         {
-            Contract.Requires(character != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
             this.character = character;
         }
 

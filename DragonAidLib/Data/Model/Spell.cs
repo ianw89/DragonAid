@@ -13,8 +13,8 @@ namespace DragonAid.Lib.Data.Model
     {
         public Spell(string fullName, int baseChance)
         {
-            Contract.Requires(!string.IsNullOrEmpty(fullName));
-            Contract.Requires(baseChance >= 0 && baseChance <= 100);
+            ExceptionUtils.MustBeTrue(!string.IsNullOrEmpty(fullName));
+            ExceptionUtils.MustBeTrue(baseChance >= 0 && baseChance <= 100);
 
             this.FullName = fullName;
             this.BaseChance = baseChance;
