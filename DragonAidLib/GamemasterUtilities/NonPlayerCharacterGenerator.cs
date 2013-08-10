@@ -30,7 +30,8 @@ namespace DragonAid.Lib.GamemasterUtilities
                     Endurance = this._characteristicGenerator.Generate(template.EnduranceRange),
                     Fatigue = this._characteristicGenerator.Generate(template.FatigueRange),
                     Perception = this._characteristicGenerator.Generate(template.PerceptionRange),
-                    PhysicalBeauty = this._characteristicGenerator.Generate(template.PhysicalBeautyRange)
+                    PhysicalBeauty = this._characteristicGenerator.Generate(template.PhysicalBeautyRange),
+                    NaturalArmor = this._characteristicGenerator.Generate(template.NaturalArmorRange)
                 };
 
             this._weaponChooser.ChooseWeapons(character);

@@ -14,7 +14,7 @@
         public CharacteristicRangeTemplate FatigueRange { get; set; }
         public CharacteristicRangeTemplate PerceptionRange { get; set; }
         public CharacteristicRangeTemplate PhysicalBeautyRange { get; set; }
-        //public CharacteristicRangeTemplate NaturalArmorRange { get; set; }
+        public CharacteristicRangeTemplate NaturalArmorRange { get; set; }
 
         // TODO Weapon, Spell, Armor, and other important things should have a similar mechanic
     }

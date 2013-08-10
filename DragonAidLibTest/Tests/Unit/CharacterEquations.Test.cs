@@ -12,7 +12,7 @@ namespace DragonAid.Test.Tests.Unit
     {
         private readonly Spell fakeSpell = new Spell("FakeSpell", 10);
         private readonly Item _heavyItem = new Item("Lead weight", 50);
-        private readonly static WeaponSkill BatWeaponSkill = new WeaponSkill("Bat", 1m, 30, WeaponKind.Melee, 10, 1, 1);
+        private readonly static WeaponSkill BatWeaponSkill = new WeaponSkill("Bat", 30, WeaponKind.Melee, 10, 1, 1);
         private readonly static Weapon BatWeapon = new Weapon(BatWeaponSkill, 1m);
 
         [TestMethod]
@@ -184,7 +184,7 @@ namespace DragonAid.Test.Tests.Unit
         public void OtherWeaponsRanksDoNotAffectNonmatchingWeaponStrikeChance()
         {
             var c = new Character { ManualDexterity = 0 };
-            c.WeaponRanks[new WeaponSkill("Foo", 1m, 10, WeaponKind.Melee, 1, 1, 1)] = 3;
+            c.WeaponRanks[new WeaponSkill("Foo", 10, WeaponKind.Melee, 1, 1, 1)] = 3;
             CharacterEquations.ComputeStrikeChance(c, BatWeapon).Should().Be(30);
         }
     }

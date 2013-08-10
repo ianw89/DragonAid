@@ -14,14 +14,14 @@ namespace DragonAid.Lib.GamemasterUtilities
     {
         private readonly Random _rand;
         private readonly List<WeaponSkill> _allWeapons;
-        private readonly List<Func<IEnumerable<WeaponSkill>, Character, bool>> _baseArchtypes; 
+        private readonly List<Func<IList<WeaponSkill>, Character, bool>> _baseArchtypes; 
 
         public RandomWeaponChooser(List<WeaponSkill> allWeapons)
         {
             ExceptionUtils.MustBeTrue(allWeapons != null);
             this._rand = new Random();
             this._allWeapons = allWeapons;
-            this._baseArchtypes = new List<Func<IEnumerable<WeaponSkill>, Character, bool>>();
+            this._baseArchtypes = new List<Func<IList<WeaponSkill>, Character, bool>>();
             _baseArchtypes.Add(AddRanksForMeleeFighter);
             _baseArchtypes.Add(AddRanksForMeleeFighter);
             _baseArchtypes.Add(AddRanksForArcher);
@@ -29,7 +29,7 @@ namespace DragonAid.Lib.GamemasterUtilities
 
         public void ChooseWeapons(Character character)
         {
-            ExceptionUtils.MustBeTrue(character != null);
+            ExceptionUtils.CheckArgumentNotNull(character);
 
             // Step 1: Make list of all possible weapons we could have ranks in based on the character's stats
             var possibilities = this.CreatePossibilities(character.PhysicalStrength, character.ManualDexterity);
@@ -53,7 +53,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal bool AddRanksForArcher(IEnumerable<WeaponSkill> possibilities, Character character)
+        internal bool AddRanksForArcher(IList<WeaponSkill> possibilities, Character character)
         {
             var rangedOnlyWeapons = possibilities.Where(w => w.Use == WeaponKind.Ranged).ToArray();
             if (rangedOnlyWeapons.Length == 0)
@@ -72,7 +72,7 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal bool AddRanksForMeleeFighter(IEnumerable<WeaponSkill> possibilities, Character character)
+        internal bool AddRanksForMeleeFighter(IList<WeaponSkill> possibilities, Character character)
         {
             var meleeWeapons = possibilities.Where(w => w.Use.HasFlag(WeaponKind.Melee)).ToArray();
             if (meleeWeapons.Length == 0)
@@ -91,9 +91,9 @@ namespace DragonAid.Lib.GamemasterUtilities
         }
 
         [TestOnly]
-        internal IEnumerable<WeaponSkill> CreatePossibilities(int maximumStength, int maximumDexterity)
+        internal IList<WeaponSkill> CreatePossibilities(int maximumStength, int maximumDexterity)
         {
-            return this._allWeapons.Where(w => w.PhysicalStengthRequired <= maximumStength && w.ManualDexterityRequired <= maximumDexterity);
+            return this._allWeapons.Where(w => w.PhysicalStengthRequired <= maximumStength && w.ManualDexterityRequired <= maximumDexterity).ToList();
         }
     }
 }

@@ -1,6 +1,3 @@
-using System.Diagnostics.Contracts;
-using DragonAid.Lib.GamemasterUtilities;
-
 namespace DragonAid.Lib.Data.Model
 {    
     /// <summary>
@@ -18,17 +15,11 @@ namespace DragonAid.Lib.Data.Model
             ExceptionUtils.CheckArgumentNotNull(weight);
             this.Skill = skill;
             this.BaseChance = skill.BaseChance;
-            this.Use = skill.Use;
-            this.MaxRank = skill.MaxRank;
-            this.PhysicalStengthRequired = Skill.PhysicalStengthRequired;
-            this.ManualDexterityRequired = skill.ManualDexterityRequired;
+            // TODO BaseChance and DamageModifier can be modified from base
+            // TODO introduce factory to construct these
         }
 
         public int BaseChance { get; private set; }
-        public WeaponKind Use { get; private set; }
-        public int MaxRank { get; private set; }
-        public int PhysicalStengthRequired { get; private set; }
-        public int ManualDexterityRequired { get; private set; }
         public WeaponSkill Skill { get; private set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using DragonAid.Lib.GamemasterUtilities;
 
 namespace DragonAid.Lib.Data.Model
@@ -12,7 +11,7 @@ namespace DragonAid.Lib.Data.Model
     /// </remarks>
     public class WeaponSkill: ISkill
     {
-        public WeaponSkill(string fullName, decimal weight, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
+        public WeaponSkill(string fullName, int baseChance, WeaponKind use, int maxRank, int minStength, int minDex)
         {
             ExceptionUtils.CheckArgumentNotNull(fullName);
             ExceptionUtils.MustBeTrue(baseChance >= 0 && baseChance <= 100);
@@ -27,7 +26,7 @@ namespace DragonAid.Lib.Data.Model
         
         [TestOnly]
         public WeaponSkill(string fullName, int minStength, int minDex)
-            : this(fullName, 1, 0, WeaponKind.Unspecified, 0, minStength, minDex)
+            : this(fullName, 0, WeaponKind.Unspecified, 0, minStength, minDex)
         {
         }
 

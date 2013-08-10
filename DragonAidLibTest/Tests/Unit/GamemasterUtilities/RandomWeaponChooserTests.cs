@@ -52,10 +52,10 @@ namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
         {
             var weapons = new List<WeaponSkill>()
                 {
-                    new WeaponSkill("A", 1, 1, WeaponKind.Melee, 10, 1, 1),
-                    new WeaponSkill("B", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new WeaponSkill("C", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new WeaponSkill("D", 1, 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("A", 1, WeaponKind.Melee, 10, 1, 1),
+                    new WeaponSkill("B", 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("C", 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("D", 1, WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -72,10 +72,10 @@ namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
             // we don't want them counted as a primary ranged weapon
             var weapons = new List<WeaponSkill>()
                 {
-                    new WeaponSkill("A", 1, 1, WeaponKind.Ranged, 10, 1, 1),
-                    new WeaponSkill("B", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
-                    new WeaponSkill("C", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
-                    new WeaponSkill("D", 1, 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("A", 1, WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("B", 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("C", 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
+                    new WeaponSkill("D", 1, WeaponKind.Melee | WeaponKind.Ranged, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
@@ -91,7 +91,7 @@ namespace DragonAid.Test.Tests.Unit.GamemasterUtilities
         {
             var weapons = new List<WeaponSkill>()
                 {
-                    new WeaponSkill("A", 1, 1, WeaponKind.Unspecified, 10, 1, 1),
+                    new WeaponSkill("A", 1, WeaponKind.Unspecified, 10, 1, 1),
                 };
             var chooser = new RandomWeaponChooser(weapons);
 
